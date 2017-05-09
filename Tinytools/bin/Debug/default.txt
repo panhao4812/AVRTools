@@ -1,0 +1,11 @@
+-c,arduino
+-p,t85
+-b,19200
+-P,COM5
+cd,D:/我的文档/GitHub/words2key/words2key/bin/Debug
+flash,
+lfuse,F1
+hfuse,DF
+efuse,FE
+lock,
+eeprom,

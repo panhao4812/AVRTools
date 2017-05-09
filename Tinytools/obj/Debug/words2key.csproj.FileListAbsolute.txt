@@ -1,0 +1,9 @@
+D:\我的文档\GitHub\words2key\words2key\bin\Debug\words2key.exe
+D:\我的文档\GitHub\words2key\words2key\bin\Debug\words2key.pdb
+D:\我的文档\GitHub\words2key\words2key\obj\Debug\words2key.csprojResolveAssemblyReference.cache
+D:\我的文档\GitHub\words2key\words2key\obj\Debug\words2key.Properties.Resources.resources
+D:\我的文档\GitHub\words2key\words2key\obj\Debug\words2key.csproj.GenerateResource.Cache
+D:\我的文档\GitHub\words2key\words2key\obj\Debug\words2key.exe
+D:\我的文档\GitHub\words2key\words2key\obj\Debug\words2key.pdb
+D:\我的文档\GitHub\words2key\words2key\obj\Debug\words2key.words2key.resources
+D:\我的文档\GitHub\words2key\words2key\obj\Debug\words2key.MainWindow.resources

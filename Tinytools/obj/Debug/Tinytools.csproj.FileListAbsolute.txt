@@ -1,0 +1,8 @@
+D:\我的文档\GitHub\words2key\words2key\bin\Debug\Tinytools.exe
+D:\我的文档\GitHub\words2key\words2key\bin\Debug\Tinytools.pdb
+D:\我的文档\GitHub\words2key\words2key\obj\Debug\words2key.MainWindow.resources
+D:\我的文档\GitHub\words2key\words2key\obj\Debug\Tinytools.Properties.Resources.resources
+D:\我的文档\GitHub\words2key\words2key\obj\Debug\words2key.words2key.resources
+D:\我的文档\GitHub\words2key\words2key\obj\Debug\Tinytools.csproj.GenerateResource.Cache
+D:\我的文档\GitHub\words2key\words2key\obj\Debug\Tinytools.exe
+D:\我的文档\GitHub\words2key\words2key\obj\Debug\Tinytools.pdb
