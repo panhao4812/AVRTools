@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace words2key
+namespace Tinytools
 {
     public partial class MainWindow : Form
     {
@@ -251,6 +251,11 @@ namespace words2key
             string str = "micronucleus ";
             str += m_flash_box.Text;
             Main_box.Text = str;
+        }
+
+        private void libusbToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

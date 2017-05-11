@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace words2key
+namespace Tinytools
 {
     public partial class words2key : Form
     {

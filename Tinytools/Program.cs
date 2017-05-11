@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace words2key
+namespace Tinytools
 {
     static class Program
     {

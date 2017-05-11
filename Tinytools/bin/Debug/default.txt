@@ -2,7 +2,7 @@
 -p,t85
 -b,19200
 -P,COM5
-cd,D:/我的文档/GitHub/words2key/words2key/bin/Debug
+cd,D:/Program Files (x86)/Atmel/Studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin
 flash,
 lfuse,F1
 hfuse,DF

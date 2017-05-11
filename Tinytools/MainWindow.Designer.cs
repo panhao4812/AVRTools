@@ -1,4 +1,4 @@
-﻿namespace words2key
+﻿namespace Tinytools
 {
     partial class MainWindow
     {
@@ -71,6 +71,7 @@
             this.m_flash = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.libusbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -113,7 +114,8 @@
             // ToolsToolStripMenuItem
             // 
             this.ToolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.words2keyToolStripMenuItem});
+            this.words2keyToolStripMenuItem,
+            this.libusbToolStripMenuItem});
             this.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem";
             this.ToolsToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
             this.ToolsToolStripMenuItem.Text = "Tools";
@@ -121,7 +123,7 @@
             // words2keyToolStripMenuItem
             // 
             this.words2keyToolStripMenuItem.Name = "words2keyToolStripMenuItem";
-            this.words2keyToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
+            this.words2keyToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.words2keyToolStripMenuItem.Text = "words2key";
             this.words2keyToolStripMenuItem.Click += new System.EventHandler(this.words2keyToolStripMenuItem_Click);
             // 
@@ -511,6 +513,13 @@
             this.label9.TabIndex = 53;
             this.label9.Text = "----------------------------------avrdude----------------------------------";
             // 
+            // libusbToolStripMenuItem
+            // 
+            this.libusbToolStripMenuItem.Name = "libusbToolStripMenuItem";
+            this.libusbToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.libusbToolStripMenuItem.Text = "libusbTool";
+            this.libusbToolStripMenuItem.Click += new System.EventHandler(this.libusbToolStripMenuItem_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -609,5 +618,6 @@
         private System.Windows.Forms.Button m_flash;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ToolStripMenuItem libusbToolStripMenuItem;
     }
 }

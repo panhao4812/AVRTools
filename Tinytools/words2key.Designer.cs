@@ -1,4 +1,4 @@
-﻿namespace words2key
+﻿namespace Tinytools
 {
     partial class words2key
 
