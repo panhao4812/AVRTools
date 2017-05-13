@@ -6,3 +6,12 @@ D:\我的文档\GitHub\words2key\words2key\obj\Debug\words2key.words2key.resourc
 D:\我的文档\GitHub\words2key\words2key\obj\Debug\Tinytools.csproj.GenerateResource.Cache
 D:\我的文档\GitHub\words2key\words2key\obj\Debug\Tinytools.exe
 D:\我的文档\GitHub\words2key\words2key\obj\Debug\Tinytools.pdb
+C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\bin\Debug\Tinytools.exe
+C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\bin\Debug\Tinytools.pdb
+C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.MainWindow.resources
+C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.Properties.Resources.resources
+C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.words2key.resources
+C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.csproj.GenerateResource.Cache
+C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.exe
+C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.pdb

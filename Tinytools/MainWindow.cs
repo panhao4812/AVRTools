@@ -142,7 +142,7 @@ namespace Tinytools
             {
                 path = of.SelectedPath.ToString();
             }
-            cd_box.Text += path.Replace('\\', '/');
+            cd_box.Text = path.Replace('\\', '/');
         }
         private void path_flash_Click(object sender, EventArgs e)
         {
