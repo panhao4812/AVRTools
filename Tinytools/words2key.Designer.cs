@@ -40,7 +40,8 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(6, 28);
+            this.textBox1.BackColor = System.Drawing.Color.OldLace;
+            this.textBox1.Location = new System.Drawing.Point(7, 28);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(300, 400);
@@ -48,7 +49,8 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(314, 28);
+            this.textBox2.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.textBox2.Location = new System.Drawing.Point(313, 28);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(300, 400);

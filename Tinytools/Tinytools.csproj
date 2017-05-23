@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LibUsbDotNet">
+      <HintPath>C:\Program Files\LibUsbDotNet\LibUsbDotNet.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="libusbtool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="libusbtool.Designer.cs">
+      <DependentUpon>libusbtool.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,6 +67,9 @@
     <Compile Include="words2key.Designer.cs">
       <DependentUpon>words2key.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="libusbtool.resx">
+      <DependentUpon>libusbtool.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>

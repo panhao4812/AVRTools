@@ -9,3 +9,5 @@ hfuse,DF
 efuse,FE
 lock,
 eeprom,
+vid,dddd
+pid,3412

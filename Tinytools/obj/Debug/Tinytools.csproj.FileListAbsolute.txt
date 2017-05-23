@@ -15,3 +15,15 @@ C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.
 C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.csproj.GenerateResource.Cache
 C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.exe
 C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.pdb
+D:\我的文档\GitHub\Tinytools\Tinytools\bin\Debug\Tinytools.exe
+D:\我的文档\GitHub\Tinytools\Tinytools\bin\Debug\Tinytools.pdb
+D:\我的文档\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.MainWindow.resources
+D:\我的文档\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.Properties.Resources.resources
+D:\我的文档\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.words2key.resources
+D:\我的文档\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.csproj.GenerateResource.Cache
+D:\我的文档\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.exe
+D:\我的文档\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.pdb
+D:\我的文档\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.libusbtool.resources
+D:\我的文档\GitHub\Tinytools\Tinytools\bin\Debug\LibUsbDotNet.dll
+D:\我的文档\GitHub\Tinytools\Tinytools\bin\Debug\LibUsbDotNet.xml
+D:\我的文档\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.csprojResolveAssemblyReference.cache

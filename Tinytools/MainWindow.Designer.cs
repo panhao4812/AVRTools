@@ -34,6 +34,7 @@
             this.SaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.words2keyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.libusbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CMD = new System.Windows.Forms.Button();
@@ -71,7 +72,6 @@
             this.m_flash = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.libusbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -123,9 +123,16 @@
             // words2keyToolStripMenuItem
             // 
             this.words2keyToolStripMenuItem.Name = "words2keyToolStripMenuItem";
-            this.words2keyToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.words2keyToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
             this.words2keyToolStripMenuItem.Text = "words2key";
             this.words2keyToolStripMenuItem.Click += new System.EventHandler(this.words2keyToolStripMenuItem_Click);
+            // 
+            // libusbToolStripMenuItem
+            // 
+            this.libusbToolStripMenuItem.Name = "libusbToolStripMenuItem";
+            this.libusbToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
+            this.libusbToolStripMenuItem.Text = "libusbTool";
+            this.libusbToolStripMenuItem.Click += new System.EventHandler(this.libusbToolStripMenuItem_Click);
             // 
             // HelpToolStripMenuItem
             // 
@@ -138,8 +145,9 @@
             // AboutToolStripMenuItem
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(130, 26);
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.AboutToolStripMenuItem.Text = "About";
+            this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // CMD
             // 
@@ -512,13 +520,6 @@
             this.label9.Size = new System.Drawing.Size(607, 15);
             this.label9.TabIndex = 53;
             this.label9.Text = "----------------------------------avrdude----------------------------------";
-            // 
-            // libusbToolStripMenuItem
-            // 
-            this.libusbToolStripMenuItem.Name = "libusbToolStripMenuItem";
-            this.libusbToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.libusbToolStripMenuItem.Text = "libusbTool";
-            this.libusbToolStripMenuItem.Click += new System.EventHandler(this.libusbToolStripMenuItem_Click);
             // 
             // MainWindow
             // 

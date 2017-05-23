@@ -93,7 +93,18 @@ namespace Tinytools
         }
         public static void ThreadProc()
         {
-            words2key form = new words2key();//第二个窗体
+            words2key form = new words2key();//第2个窗体
+            form.ShowDialog();
+        }
+        private void libusbToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Thread t = new Thread(new ThreadStart(ThreadProc2));
+            t.SetApartmentState(ApartmentState.STA);
+            t.Start();
+        }
+        public static void ThreadProc2()
+        {
+            libusbtool form = new libusbtool();//第3个窗体
             form.ShowDialog();
         }
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -253,9 +264,11 @@ namespace Tinytools
             Main_box.Text = str;
         }
 
-        private void libusbToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+       
 
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("v1.00 by zian");
         }
     }
 }
