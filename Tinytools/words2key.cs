@@ -37,7 +37,8 @@ namespace Tinytools
             //0xF1,key1,0xF2,key1,key2..
             string output = "";
             char[] ch = textBox1.Text.ToArray();
-            int code = 160;
+            int code = ch.Length;
+            output += code.ToString() + ",";
             for (int j = 0; j < ch.Length; j++)
             {
                 if (ch[j] < 126)
@@ -109,7 +110,7 @@ namespace Tinytools
 	/* ASCII:  44 */ 54,
 	/* ASCII:  45 */ 45,
 	/* ASCII:  46 */ 55,
-	/* ASCII: / 47 */ 184,
+	/* ASCII: / 47 */ 56,
 	/* ASCII:  48 */ 39,
 	/* ASCII:  49 */ 30,
 	/* ASCII:  50 */ 31,
@@ -125,7 +126,7 @@ namespace Tinytools
 	/* ASCII:  60 */ 182,
 	/* ASCII:  61 */ 46,
 	/* ASCII:  62 */ 183,
-	/* ASCII:  ?63 */ 56,
+	/* ASCII:  ?63 */ 184,
 	/* ASCII:  64 */ 159,
 	/* ASCII: A 65 */ 132,
 	/* ASCII:  66 */ 133,
