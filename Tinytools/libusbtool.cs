@@ -29,11 +29,22 @@ namespace Tinytools
         {
             pid = "3412"; vid = "DDDD";
         }
-        bool uploadbyte(short byte1, short index)
+        bool uploadbyte(byte byte1, byte index)
         {
             UsbSetupPacket pack = new UsbSetupPacket();
             pack.RequestType = (byte)UsbRequestType.TypeVendor;
-            pack.Request = 0x02;//USBRQ_HID_GET_REPORT谁便写个标记 和固件对上即可
+            pack.Request = 0x08;//USBRQ_HID_GET_REPORT谁便写个标记 和固件对上即可
+            pack.Value = byte1;
+            pack.Index = index;
+            pack.Length = 8;
+            int lengthTransferred = 0;
+            return MyUsbDevice.ControlTransfer(ref pack, IntPtr.Zero, 4, out lengthTransferred);
+        }
+        bool uploadshort(short byte1, short index)
+        {
+            UsbSetupPacket pack = new UsbSetupPacket();
+            pack.RequestType = (byte)UsbRequestType.TypeVendor;
+            pack.Request = 0x16;//USBRQ_HID_GET_REPORT谁便写个标记 和固件对上即可
             pack.Value = byte1;
             pack.Index = index;
             pack.Length = 8;
@@ -73,10 +84,13 @@ namespace Tinytools
                 {
                     Thread.Sleep(5);
                 }
-                for (short i = 0; i < str.Length; i++)
+                while (!uploadshort(Convert.ToInt16(str[0]), Convert.ToInt16(0)))
                 {
-                    byte data1 = Convert.ToByte(str[i]);
-                    while (!uploadbyte(data1, i))
+                    Thread.Sleep(5);
+                }
+                for (int i = 1; i < str.Length; i++)
+                {
+                    while (!uploadbyte(Convert.ToByte(str[i]),  Convert.ToByte(1+i)))
                     {
                         Thread.Sleep(5);
                     }
@@ -94,28 +108,26 @@ namespace Tinytools
             MainWindow form = new MainWindow();//第2个窗体
             form.ShowDialog();
         }
-
         private void cMDToolsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Thread t = new Thread(new ThreadStart(ThreadProc));
             t.SetApartmentState(ApartmentState.STA);
             t.Start();
         }
+       void Printhex(int str)
+        {
+            string s = str.ToString("X");
+            Print(s);
+        }
         private void convertToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
-            {
-                string output = "";
+            {      
                 char[] ch = textBox1.Text.ToArray();
                 int code = 0;
                 int length = ch.Length;
-                if (length <= 255) output += length.ToString() + ",0,";
-                else if (length - 255 <= 255) output += "255," + (length - 255).ToString() + ",";
-                else if (length - 255 > 255)
-                {
-                    output += "255,255,";
-                    length = 510;
-                }
+                if (length > 508) length = 508;
+                string output= length.ToString()+",";
                 for (int j = 0; j < length; j++)
                 {
                     if (ch[j] < 126)
@@ -135,7 +147,6 @@ namespace Tinytools
             }
             catch (Exception ex) { Print(ex.ToString()); }
         }
-
         private void libusbInfToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -151,7 +162,6 @@ namespace Tinytools
                 Print(ex.ToString());
             }
         }
-
         private void libusbDriverToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -189,7 +199,6 @@ namespace Tinytools
             }
             catch (Exception ex) { Print(ex.ToString()); }
         }
-
         private void connectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
