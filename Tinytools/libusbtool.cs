@@ -3,6 +3,7 @@ using LibUsbDotNet.Main;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -66,15 +67,14 @@ namespace Tinytools
         }
         private void uploadToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            try
-            {
-                if (textBox1.Text == "")
+          //  try{
+                if (textBox2.Text == "")
                 {
                     Clear();
                     Print("Nothing to upload");
                     return;
                 }
-                string[] str = textBox1.Text.Split(',');
+                string[] str = textBox2.Text.Split(',');
                 if (MyUsbDevice == null)
                 {
                     Clear();
@@ -100,12 +100,51 @@ namespace Tinytools
                     Thread.Sleep(5);
                 }
                 Print("Upload finished");
-            }
-            catch (Exception ex)
-            {
-                Print(ex.ToString());
-            }
+           // }catch (Exception ex){Print(ex.ToString());}
         }
+        public static void ThreadProc()
+        {
+            MainWindow form = new MainWindow();//第2个窗体
+            form.ShowDialog();
+        }
+
+        private void cMDToolsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Thread t = new Thread(new ThreadStart(ThreadProc));
+            t.SetApartmentState(ApartmentState.STA);
+            t.Start();
+        }
+        private void convertToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string output = "";
+            char[] ch = textBox1.Text.ToArray();
+            int code = 0;
+            int length = ch.Length;
+            if (length <= 255) output += length.ToString() + ",0,";
+            else if (length - 255 <= 255) output += "255," + (length-255).ToString() + ",";
+            else if (length - 255 > 255)
+            {
+                output += "255,255,";
+                length =510;
+            }
+            for (int j = 0; j < length; j++)
+            {
+                if (ch[j] < 126)
+                {
+                    code = Program.ascii_to_scan_code_table[(int)ch[j]];
+                }
+                if (code != 0)
+                {
+                    // output += (int)ch[j] + "|";
+                    output += code.ToString();
+                    if (j != length - 1) output += ",";
+                }
+                if (code == 40) output += "\r\n";
+            }
+            textBox2.Text = "";
+            textBox2.Text = output;
+        }
+
         private void connectToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try

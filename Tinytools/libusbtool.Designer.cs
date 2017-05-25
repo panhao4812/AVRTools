@@ -37,6 +37,7 @@
             this.convertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uploadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cMDToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +61,6 @@
             this.textBox2.Location = new System.Drawing.Point(390, 94);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(390, 458);
             this.textBox2.TabIndex = 2;
             // 
@@ -107,6 +107,7 @@
             this.convertToolStripMenuItem.Name = "convertToolStripMenuItem";
             this.convertToolStripMenuItem.Size = new System.Drawing.Size(79, 24);
             this.convertToolStripMenuItem.Text = "Convert";
+            this.convertToolStripMenuItem.Click += new System.EventHandler(this.convertToolStripMenuItem_Click);
             // 
             // uploadToolStripMenuItem
             // 
@@ -117,9 +118,18 @@
             // 
             // toolsToolStripMenuItem
             // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cMDToolsToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
             this.toolsToolStripMenuItem.Text = "Tools";
+            // 
+            // cMDToolsToolStripMenuItem
+            // 
+            this.cMDToolsToolStripMenuItem.Name = "cMDToolsToolStripMenuItem";
+            this.cMDToolsToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
+            this.cMDToolsToolStripMenuItem.Text = "CMD Tools";
+            this.cMDToolsToolStripMenuItem.Click += new System.EventHandler(this.cMDToolsToolStripMenuItem_Click);
             // 
             // libusbtool
             // 
@@ -151,5 +161,6 @@
         private System.Windows.Forms.ToolStripMenuItem convertToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uploadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cMDToolsToolStripMenuItem;
     }
 }
