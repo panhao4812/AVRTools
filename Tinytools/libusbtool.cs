@@ -4,6 +4,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -122,30 +123,43 @@ namespace Tinytools
             try
             {      
                 char[] ch = textBox1.Text.ToArray();
+                if (ch == null || ch.Length == 0)
+                {
+                    Clear();
+                    Print("Nothing to Convert");
+                    return;
+                }
+                Print("English 0-127");
                 int code = 0;
                 int length = ch.Length;
                 if (length > 508) length = 508;
                 string output= length.ToString()+",";
                 for (int j = 0; j < length; j++)
                 {
-                    if (ch[j] < 126)
+                    if (ch[j] < 126 && ch[j]>0)
                     {
                         code = Program.ascii_to_scan_code_table[(int)ch[j]];
-                    }
-                    if (code != 0)
-                    {
-                        // output += (int)ch[j] + "|";
                         output += code.ToString();
                         if (j != length - 1) output += ",";
                     }
-                    if (code == 40) output += "\r\n";
+                    else if ( ch[j] < 0xFFFF)
+                    {
+                        //汉字
+                        byte[] data = Encoding.GetEncoding("UTF-16").GetBytes(ch, j, 1);
+                        for (int i = 0; i < data.Length; i++)
+                        {
+                            output += data[i].ToString();
+                        }
+                        if (j != length - 1) output += ",";
+                    }
+                    
                 }
                 textBox2.Text = "";
                 textBox2.Text = output;
             }
             catch (Exception ex) { Print(ex.ToString()); }
         }
-        private void libusbInfToolStripMenuItem_Click(object sender, EventArgs e)
+        private void libusbinf()
         {
             try
             {
@@ -160,7 +174,7 @@ namespace Tinytools
                 Print(ex.ToString());
             }
         }
-        private void libusbDriverToolStripMenuItem_Click(object sender, EventArgs e)
+        private void lisbusbdriver()
         {
             try
             {
