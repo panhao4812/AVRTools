@@ -29,7 +29,7 @@ namespace Tinytools
         {
             pid = "3412"; vid = "DDDD";
         }
-        bool uploadbyte(byte byte1, byte index)
+        bool uploadbyte(byte byte1, short index)
         {
             UsbSetupPacket pack = new UsbSetupPacket();
             pack.RequestType = (byte)UsbRequestType.TypeVendor;
@@ -63,8 +63,7 @@ namespace Tinytools
         }
         private void uploadToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            try
-            {
+          //  try{
                 if (textBox2.Text == "")
                 {
                     Clear();
@@ -90,7 +89,7 @@ namespace Tinytools
                 }
                 for (int i = 1; i < str.Length; i++)
                 {
-                    while (!uploadbyte(Convert.ToByte(str[i]),  Convert.ToByte(1+i)))
+                    while (!uploadbyte(Convert.ToByte(str[i]),  Convert.ToInt16(1+i)))
                     {
                         Thread.Sleep(5);
                     }
@@ -100,8 +99,7 @@ namespace Tinytools
                     Thread.Sleep(5);
                 }
                 Print("Upload finished");
-            }
-            catch (Exception ex) { Print(ex.ToString()); }
+         //   }catch (Exception ex) { Print(ex.ToString()); }
         }
         public static void ThreadProc()
         {
