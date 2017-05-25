@@ -32,9 +32,6 @@
             this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.words2keyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.libusbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CMD = new System.Windows.Forms.Button();
@@ -80,7 +77,6 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileToolStripMenuItem,
-            this.ToolsToolStripMenuItem,
             this.HelpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -110,29 +106,6 @@
             this.SaveToolStripMenuItem.Size = new System.Drawing.Size(124, 26);
             this.SaveToolStripMenuItem.Text = "Save";
             this.SaveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
-            // 
-            // ToolsToolStripMenuItem
-            // 
-            this.ToolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.words2keyToolStripMenuItem,
-            this.libusbToolStripMenuItem});
-            this.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem";
-            this.ToolsToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
-            this.ToolsToolStripMenuItem.Text = "Tools";
-            // 
-            // words2keyToolStripMenuItem
-            // 
-            this.words2keyToolStripMenuItem.Name = "words2keyToolStripMenuItem";
-            this.words2keyToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
-            this.words2keyToolStripMenuItem.Text = "words2key";
-            this.words2keyToolStripMenuItem.Click += new System.EventHandler(this.words2keyToolStripMenuItem_Click);
-            // 
-            // libusbToolStripMenuItem
-            // 
-            this.libusbToolStripMenuItem.Name = "libusbToolStripMenuItem";
-            this.libusbToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
-            this.libusbToolStripMenuItem.Text = "libusbTool";
-            this.libusbToolStripMenuItem.Click += new System.EventHandler(this.libusbToolStripMenuItem_Click);
             // 
             // HelpToolStripMenuItem
             // 
@@ -580,8 +553,6 @@
         private System.Windows.Forms.ToolStripMenuItem FileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem OpenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SaveToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ToolsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem words2keyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
         private System.Windows.Forms.Button CMD;
@@ -619,6 +590,5 @@
         private System.Windows.Forms.Button m_flash;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ToolStripMenuItem libusbToolStripMenuItem;
     }
 }
