@@ -50,24 +50,10 @@ namespace Tinytools
             int lengthTransferred = 0;
             return MyUsbDevice.ControlTransfer(ref pack, IntPtr.Zero, 4, out lengthTransferred);
         }
-        private void driverToolStripMenuItem_Click(object sender, EventArgs e)
+        private void uploadToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             try
             {
-                Process proc = Process.Start("install-filter-win.exe");
-            Clear();
-            Print("select Install a device filter");
-            Print("select vid=" + vid + " pid=" + pid);
-            Print("press Install");
-            }
-            catch (Exception ex)
-            {
-                Print(ex.ToString());
-            }
-        }
-        private void uploadToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-          //  try{
                 if (textBox2.Text == "")
                 {
                     Clear();
@@ -100,7 +86,8 @@ namespace Tinytools
                     Thread.Sleep(5);
                 }
                 Print("Upload finished");
-           // }catch (Exception ex){Print(ex.ToString());}
+            }
+            catch (Exception ex) { Print(ex.ToString()); }
         }
         public static void ThreadProc()
         {
@@ -116,33 +103,91 @@ namespace Tinytools
         }
         private void convertToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string output = "";
-            char[] ch = textBox1.Text.ToArray();
-            int code = 0;
-            int length = ch.Length;
-            if (length <= 255) output += length.ToString() + ",0,";
-            else if (length - 255 <= 255) output += "255," + (length-255).ToString() + ",";
-            else if (length - 255 > 255)
+            try
             {
-                output += "255,255,";
-                length =510;
+                string output = "";
+                char[] ch = textBox1.Text.ToArray();
+                int code = 0;
+                int length = ch.Length;
+                if (length <= 255) output += length.ToString() + ",0,";
+                else if (length - 255 <= 255) output += "255," + (length - 255).ToString() + ",";
+                else if (length - 255 > 255)
+                {
+                    output += "255,255,";
+                    length = 510;
+                }
+                for (int j = 0; j < length; j++)
+                {
+                    if (ch[j] < 126)
+                    {
+                        code = Program.ascii_to_scan_code_table[(int)ch[j]];
+                    }
+                    if (code != 0)
+                    {
+                        // output += (int)ch[j] + "|";
+                        output += code.ToString();
+                        if (j != length - 1) output += ",";
+                    }
+                    if (code == 40) output += "\r\n";
+                }
+                textBox2.Text = "";
+                textBox2.Text = output;
             }
-            for (int j = 0; j < length; j++)
+            catch (Exception ex) { Print(ex.ToString()); }
+        }
+
+        private void libusbInfToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
             {
-                if (ch[j] < 126)
-                {
-                    code = Program.ascii_to_scan_code_table[(int)ch[j]];
-                }
-                if (code != 0)
-                {
-                    // output += (int)ch[j] + "|";
-                    output += code.ToString();
-                    if (j != length - 1) output += ",";
-                }
-                if (code == 40) output += "\r\n";
+                Process proc = Process.Start("install-filter-win.exe");
+                Clear();
+                Print("select Install a device filter");
+                Print("select vid=" + vid + " pid=" + pid);
+                Print("press Install");
             }
-            textBox2.Text = "";
-            textBox2.Text = output;
+            catch (Exception ex)
+            {
+                Print(ex.ToString());
+            }
+        }
+
+        private void libusbDriverToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Clear();
+                string path = "";
+                if (Directory.Exists("C:/Windows/syswow64"))
+                {
+                    Print("x64 dll： Windows/syswow64/libusb0.dll");
+                    if (!File.Exists("C:/Windows/syswow64/libusb0.dll"))
+                    {
+                        path = Environment.CurrentDirectory + "/amd64/libusb0.dll";
+                        File.Copy(path, "C:/Windows/syswow64/libusb0.dll");
+                        Print("Installed");
+                    }
+                }
+                if (Directory.Exists("C:/Windows/system32"))
+                {
+
+                    Print("x86 dll： Windows/system32/libusb0.dll");
+                    if (!File.Exists("C:/Windows/system32/libusb0.dll"))
+                    {
+                        path = Environment.CurrentDirectory + "/x86/libusb0.dll";
+                        File.Copy(path, "C:/Windows/system32/libusb0.dll");
+                        Print("Installed");
+                    }
+                    Print("x86 sys： Windows/system32/drivers/libusb0.sys");
+                    if (!File.Exists("C:/Windows/system32/drivers/libusb0.sys"))
+                    {
+                        path = Environment.CurrentDirectory + "/x86/libusb0.sys";
+                        File.Copy(path, "C:/Windows/system32/drivers/libusb0.sys");
+                        Print("Installed");
+                    }
+                }
+            }
+            catch (Exception ex) { Print(ex.ToString()); }
         }
 
         private void connectToolStripMenuItem_Click(object sender, EventArgs e)
@@ -153,8 +198,8 @@ namespace Tinytools
                 MyUsbDevice = UsbDevice.OpenUsbDevice(new UsbDeviceFinder(Convert.ToInt32(vid, 16), Convert.ToInt32(pid, 16)));
                 if (MyUsbDevice == null)
                 {
+                    Clear();
                     Print("invalid device");
-
                     return;
                 }
                 IUsbDevice wholeUsbDevice = MyUsbDevice as IUsbDevice;

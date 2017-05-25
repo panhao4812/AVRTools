@@ -28,11 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(libusbtool));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.driverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.libusbDriverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.libusbInfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.convertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uploadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,10 +93,26 @@
             // 
             // driverToolStripMenuItem
             // 
+            this.driverToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.libusbDriverToolStripMenuItem,
+            this.libusbInfToolStripMenuItem});
             this.driverToolStripMenuItem.Name = "driverToolStripMenuItem";
             this.driverToolStripMenuItem.Size = new System.Drawing.Size(65, 24);
             this.driverToolStripMenuItem.Text = "Driver";
-            this.driverToolStripMenuItem.Click += new System.EventHandler(this.driverToolStripMenuItem_Click);
+            // 
+            // libusbDriverToolStripMenuItem
+            // 
+            this.libusbDriverToolStripMenuItem.Name = "libusbDriverToolStripMenuItem";
+            this.libusbDriverToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.libusbDriverToolStripMenuItem.Text = "Libusb driver";
+            this.libusbDriverToolStripMenuItem.Click += new System.EventHandler(this.libusbDriverToolStripMenuItem_Click);
+            // 
+            // libusbInfToolStripMenuItem
+            // 
+            this.libusbInfToolStripMenuItem.Name = "libusbInfToolStripMenuItem";
+            this.libusbInfToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.libusbInfToolStripMenuItem.Text = "Libusb inf";
+            this.libusbInfToolStripMenuItem.Click += new System.EventHandler(this.libusbInfToolStripMenuItem_Click);
             // 
             // connectToolStripMenuItem
             // 
@@ -140,6 +159,7 @@
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "libusbtool";
             this.Text = "libusbtool";
             this.Load += new System.EventHandler(this.libusbtool_Load);
@@ -162,5 +182,7 @@
         private System.Windows.Forms.ToolStripMenuItem uploadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cMDToolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem libusbDriverToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem libusbInfToolStripMenuItem;
     }
 }

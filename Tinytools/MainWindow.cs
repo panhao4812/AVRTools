@@ -85,17 +85,7 @@ namespace Tinytools
             }
             catch { }
         }
-        private void words2keyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Thread t = new Thread(new ThreadStart(ThreadProc));
-            t.SetApartmentState(ApartmentState.STA);
-            t.Start();
-        }
-        public static void ThreadProc()
-        {
-            words2key form = new words2key();//第2个窗体
-            form.ShowDialog();
-        }
+       
         private void libusbToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Thread t = new Thread(new ThreadStart(ThreadProc2));
