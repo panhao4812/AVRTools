@@ -18,3 +18,12 @@ C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.
 C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.csproj.GenerateResource.Cache
 C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.exe
 C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.pdb
+D:\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.exe
+D:\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.pdb
+D:\GitHub\Tinytools\Tinytools\bin\Debug\Tinytools.exe
+D:\GitHub\Tinytools\Tinytools\bin\Debug\Tinytools.pdb
+D:\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.csprojResolveAssemblyReference.cache
+D:\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.libusbtool.resources
+D:\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.MainWindow.resources
+D:\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.Properties.Resources.resources
+D:\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.csproj.GenerateResource.Cache

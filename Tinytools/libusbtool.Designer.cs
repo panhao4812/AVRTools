@@ -49,6 +49,7 @@
             this.textBox1.Location = new System.Drawing.Point(0, 94);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(390, 458);
             this.textBox1.TabIndex = 0;
             // 
@@ -61,6 +62,7 @@
             this.textBox2.Location = new System.Drawing.Point(390, 94);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
+            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox2.Size = new System.Drawing.Size(390, 458);
             this.textBox2.TabIndex = 2;
             // 
@@ -70,6 +72,7 @@
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
+            this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox3.Size = new System.Drawing.Size(782, 66);
             this.textBox3.TabIndex = 4;
             // 
@@ -119,7 +122,7 @@
             // cMDToolsToolStripMenuItem
             // 
             this.cMDToolsToolStripMenuItem.Name = "cMDToolsToolStripMenuItem";
-            this.cMDToolsToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
+            this.cMDToolsToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
             this.cMDToolsToolStripMenuItem.Text = "CMD Tools";
             this.cMDToolsToolStripMenuItem.Click += new System.EventHandler(this.cMDToolsToolStripMenuItem_Click);
             // 

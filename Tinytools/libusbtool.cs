@@ -145,11 +145,14 @@ namespace Tinytools
                     else if ( ch[j] < 0xFFFF)
                     {
                         //汉字
-                        byte[] data = Encoding.GetEncoding("UTF-16").GetBytes(ch, j, 1);
-                        for (int i = 0; i < data.Length; i++)
-                        {
-                            output += data[i].ToString();
-                        }
+                        string str2 = Convert.ToString(ch[j]);
+                        byte[] data = Encoding.Default.GetBytes(str2);
+                        
+                            int a1 = data[0];
+                            int a2 = data[1];
+                            int a3 = a1 << 8 + a2;
+                            output += a3.ToString();
+                        
                         if (j != length - 1) output += ",";
                     }
                     
@@ -163,11 +166,26 @@ namespace Tinytools
         {
             try
             {
-                Process proc = Process.Start("install-filter-win.exe");
-                Clear();
-                Print("select Install a device filter");
-                Print("select vid=" + vid + " pid=" + pid);
-                Print("press Install");
+                string output = "";
+                // Process proc = Process.Start("install-filter-win.exe");
+                System.Diagnostics.Process pExecuteEXE = new System.Diagnostics.Process();
+                pExecuteEXE.StartInfo.FileName = "CMD.exe";
+                pExecuteEXE.StartInfo.UseShellExecute = false;    //是否使用操作系统shell启动
+                pExecuteEXE.StartInfo.RedirectStandardInput = true;//接受来自调用程序的输入信息
+                pExecuteEXE.StartInfo.RedirectStandardOutput = true;//由调用程序获取输出信息
+                pExecuteEXE.StartInfo.RedirectStandardError = true;//重定向标准错误输出
+                pExecuteEXE.StartInfo.CreateNoWindow = true;//不显示程序窗口
+                string Arguments = "install-filter install --device=USB\\Vid_dddd.Pid_3412.Rev_0100" + "&exit";
+                pExecuteEXE.Start();
+                pExecuteEXE.StandardInput.WriteLine(Arguments);
+                pExecuteEXE.StandardInput.AutoFlush = true;
+                output = pExecuteEXE.StandardOutput.ReadToEnd();       
+                pExecuteEXE.WaitForExit();//无限期等待完成
+                pExecuteEXE.Close();
+                Print(output);
+                //Print("select Install a device filter");
+               // Print("select vid=" + vid + " pid=" + pid);
+               // Print("press Install");
             }
             catch (Exception ex)
             {
@@ -178,7 +196,6 @@ namespace Tinytools
         {
             try
             {
-                Clear();
                 string path = "";
                 if (Directory.Exists("C:/Windows/syswow64"))
                 {
@@ -213,6 +230,7 @@ namespace Tinytools
         }
         private void connectToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 // Find and open the usb device.
@@ -220,7 +238,9 @@ namespace Tinytools
                 if (MyUsbDevice == null)
                 {
                     Clear();
-                    Print("invalid device");
+                    Print("Install filter. Try open again");                 
+                    lisbusbdriver();
+                    libusbinf();                  
                     return;
                 }
                 IUsbDevice wholeUsbDevice = MyUsbDevice as IUsbDevice;
