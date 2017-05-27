@@ -25,12 +25,12 @@ namespace Tinytools
         }
         private void MainWindow_Load(object sender, EventArgs e)
         {
-            string str = Environment.CurrentDirectory + "\\default.txt";
+            string str = Environment.CurrentDirectory + "\\cmdtools.conf";
             loadOptions(str);
         }
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
-            string str = Environment.CurrentDirectory + "\\default.txt";
+            string str = Environment.CurrentDirectory + "\\cmdtools.conf";
             saveOptions(str);
         }
         private void loadOptions(string path)
@@ -67,7 +67,8 @@ namespace Tinytools
             try
             {
                 FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
-                StreamWriter stream = new StreamWriter(fs);
+                fs.SetLength(0);
+                StreamWriter stream = new StreamWriter(fs);              
                 string output = "";
                 output += "-c," + c_box.Text + "\r\n";
                 output += "-p," + p_box.Text + "\r\n";
@@ -81,6 +82,7 @@ namespace Tinytools
                 output += "lock," + lock_box.Text + "\r\n";
                 output += "eeprom," + eeprom_box.Text;
                 stream.Write(output);
+                stream.Flush();
                 stream.Close();
             }
             catch { }

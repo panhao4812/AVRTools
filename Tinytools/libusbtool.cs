@@ -12,7 +12,7 @@ namespace Tinytools
 {
     public partial class libusbtool : Form
     {
-        string vid, pid;
+        string vid, pid;string eepromsize="511";
         public libusbtool()
         {
             InitializeComponent();
@@ -28,7 +28,14 @@ namespace Tinytools
         }
         private void libusbtool_Load(object sender, EventArgs e)
         {
-            pid = "3412"; vid = "DDDD";
+
+            string str = Environment.CurrentDirectory + "\\tinytools.conf";
+            loadOptions(str);
+        }
+        private void libusbtool_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string str = Environment.CurrentDirectory + "\\tinytools.conf";
+            saveOptions(str);
         }
         bool uploadbyte(byte byte1, short index)
         {
@@ -64,43 +71,40 @@ namespace Tinytools
         }
         private void uploadToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-          //  try{
-                if (textBox2.Text == "")
-                {
-                    Clear();
-                    Print("Nothing to upload");
-                    return;
-                }
-                string[] str = textBox2.Text.Split(',');
-                if (MyUsbDevice == null)
-                {
-                    Clear();
-                    Print("Invalid device");
-                    return;
-                }
+            //  try{
+            if (textBox2.Text == "")
+            {
                 Clear();
-                Print("Uploading");
-                while (!uploadempty(0x01))
+                Print("Nothing to upload");
+                return;
+            }
+            string[] str = textBox2.Text.Split(',');
+            if (MyUsbDevice == null)
+            {
+                Clear();
+                Print("Invalid device");
+                return;
+            }
+            Clear();
+            Print("Uploading");
+            while (!uploadempty(0x01))
+            {
+                Thread.Sleep(5);
+            }         
+            for (int i = 0; i < str.Length; i++)
+            {
+                if ((i*2)> Convert.ToInt32(eepromsize)) break;
+                while (!uploadshort(Convert.ToInt16(str[i]), Convert.ToInt16(i*2)))
                 {
                     Thread.Sleep(5);
                 }
-                while (!uploadshort(Convert.ToInt16(str[0]), Convert.ToInt16(0)))
-                {
-                    Thread.Sleep(5);
-                }
-                for (int i = 1; i < str.Length; i++)
-                {
-                    while (!uploadbyte(Convert.ToByte(str[i]),  Convert.ToInt16(1+i)))
-                    {
-                        Thread.Sleep(5);
-                    }
-                }
-                while (!uploadempty(0x03))
-                {
-                    Thread.Sleep(5);
-                }
-                Print("Upload finished");
-         //   }catch (Exception ex) { Print(ex.ToString()); }
+            }
+            while (!uploadempty(0x03))
+            {
+                Thread.Sleep(5);
+            }
+            Print("Upload finished");
+            //   }catch (Exception ex) { Print(ex.ToString()); }
         }
         public static void ThreadProc()
         {
@@ -113,7 +117,7 @@ namespace Tinytools
             t.SetApartmentState(ApartmentState.STA);
             t.Start();
         }
-       void Printhex(int str)
+        void Printhex(int str)
         {
             string s = str.ToString("X");
             Print(s);
@@ -121,7 +125,7 @@ namespace Tinytools
         private void convertToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
-            {      
+            {
                 char[] ch = textBox1.Text.ToArray();
                 if (ch == null || ch.Length == 0)
                 {
@@ -129,33 +133,34 @@ namespace Tinytools
                     Print("Nothing to Convert");
                     return;
                 }
+                Clear();
                 Print("English 0-127");
                 int code = 0;
                 int length = ch.Length;
-                if (length > 508) length = 508;
-                string output= length.ToString()+",";
+                string output = length.ToString() + ",";
                 for (int j = 0; j < length; j++)
                 {
-                    if (ch[j] < 126 && ch[j]>0)
+                    if (ch[j] <127 && ch[j]>=0)
                     {
                         code = Program.ascii_to_scan_code_table[(int)ch[j]];
-                        output += code.ToString();
-                        if (j != length - 1) output += ",";
+                        if (code != 0)
+                        {
+                            output += code.ToString();
+                            if (j != length - 1) output += ",";
+                        }                     
                     }
-                    else if ( ch[j] < 0xFFFF)
+                    else if (ch[j] <= 0xFFFF)
                     {
                         //汉字
                         string str2 = Convert.ToString(ch[j]);
                         byte[] data = Encoding.Default.GetBytes(str2);
-                        
-                            int a1 = data[0];
-                            int a2 = data[1];
-                            int a3 = a1 << 8 + a2;
-                            output += a3.ToString();
-                        
+                        byte temple = data[0];
+                        data[0] = data[1]; data[1] = temple;
+                        ushort a3 = BitConverter.ToUInt16(data, 0);
+                        output += a3.ToString();
+                        //  Printhex((int)a3);
                         if (j != length - 1) output += ",";
                     }
-                    
                 }
                 textBox2.Text = "";
                 textBox2.Text = output;
@@ -179,13 +184,13 @@ namespace Tinytools
                 pExecuteEXE.Start();
                 pExecuteEXE.StandardInput.WriteLine(Arguments);
                 pExecuteEXE.StandardInput.AutoFlush = true;
-                output = pExecuteEXE.StandardOutput.ReadToEnd();       
+                output = pExecuteEXE.StandardOutput.ReadToEnd();
                 pExecuteEXE.WaitForExit();//无限期等待完成
                 pExecuteEXE.Close();
                 Print(output);
                 //Print("select Install a device filter");
-               // Print("select vid=" + vid + " pid=" + pid);
-               // Print("press Install");
+                // Print("select vid=" + vid + " pid=" + pid);
+                // Print("press Install");
             }
             catch (Exception ex)
             {
@@ -230,7 +235,7 @@ namespace Tinytools
         }
         private void connectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
             try
             {
                 // Find and open the usb device.
@@ -238,9 +243,9 @@ namespace Tinytools
                 if (MyUsbDevice == null)
                 {
                     Clear();
-                    Print("Install filter. Try open again");                 
+                    Print("Install filter. Try open again");
                     lisbusbdriver();
-                    libusbinf();                  
+                    libusbinf();
                     return;
                 }
                 IUsbDevice wholeUsbDevice = MyUsbDevice as IUsbDevice;
@@ -260,6 +265,46 @@ namespace Tinytools
             }
 
 
+        }
+        private void loadOptions(string path)
+        {
+            try
+            {
+                FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
+                StreamReader srd = new StreamReader(fs);
+
+                string str = srd.ReadLine();
+                string[] chara1 = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                if (chara1[0] == "pid") pid = chara1[1];
+                 str = srd.ReadLine();
+                string[] chara2 = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                if (chara2[0] == "vid") vid = chara2[1];
+                 str = srd.ReadLine();
+                string[] chara3 = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                if (chara3[0] == "eepromsize") eepromsize = chara3[1];
+                while (srd.Peek() != -1)
+                {
+                    textBox1.Text += srd.ReadLine() + "\r\n";
+                }
+                srd.Close();
+            }
+            catch { }
+        }
+        private void saveOptions(string path)
+        {
+            try
+            {
+                FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
+                fs.SetLength(0);
+                StreamWriter stream = new StreamWriter(fs);          
+                stream.WriteLine( "pid," + pid );
+                stream.WriteLine( "vid," + vid );
+                stream.WriteLine( "eepromsize," + eepromsize);               
+                stream.Write(textBox1.Text);
+                stream.Flush();
+                stream.Close();
+            }
+            catch { }
         }
     }
 }
