@@ -37,24 +37,25 @@ namespace Tinytools
             string str = Environment.CurrentDirectory + "\\tinytools.conf";
             saveOptions(str);
         }
-        bool uploadbyte(byte byte1, short index)
+        bool uploadbyte(byte byte1, ushort index)
         {
             UsbSetupPacket pack = new UsbSetupPacket();
             pack.RequestType = (byte)UsbRequestType.TypeVendor;
             pack.Request = 0x08;//USBRQ_HID_GET_REPORT谁便写个标记 和固件对上即可
             pack.Value = byte1;
-            pack.Index = index;
+            pack.Index = (short)index;
             pack.Length = 8;
             int lengthTransferred = 0;
             return MyUsbDevice.ControlTransfer(ref pack, IntPtr.Zero, 4, out lengthTransferred);
         }
-        bool uploadshort(short byte1, short index)
+        bool uploadshort(ushort byte1, ushort index)
         {
             UsbSetupPacket pack = new UsbSetupPacket();
             pack.RequestType = (byte)UsbRequestType.TypeVendor;
             pack.Request = 0x16;//USBRQ_HID_GET_REPORT谁便写个标记 和固件对上即可
-            pack.Value = byte1;
-            pack.Index = index;
+            pack.Value = (short)byte1;
+            textBox3.Text +=  pack.Value.ToString()+",";
+            pack.Index = (short)index;
             pack.Length = 8;
             int lengthTransferred = 0;
             return MyUsbDevice.ControlTransfer(ref pack, IntPtr.Zero, 4, out lengthTransferred);
@@ -94,7 +95,7 @@ namespace Tinytools
             for (int i = 0; i < str.Length; i++)
             {
                 if ((i*2)> Convert.ToInt32(eepromsize)) break;
-                while (!uploadshort(Convert.ToInt16(str[i]), Convert.ToInt16(i*2)))
+                while (!uploadshort(Convert.ToUInt16(str[i]), Convert.ToUInt16(i*2)))
                 {
                     Thread.Sleep(5);
                 }
@@ -120,13 +121,15 @@ namespace Tinytools
         void Printhex(int str)
         {
             string s = str.ToString("X");
-            Print(s);
+            Print(s);           
+            Print(Convert.ToString(str, 2));
         }
         private void convertToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
                 char[] ch = textBox1.Text.ToArray();
+
                 if (ch == null || ch.Length == 0)
                 {
                     Clear();
@@ -134,20 +137,26 @@ namespace Tinytools
                     return;
                 }
                 Clear();
-                Print("English 0-127");
-                int code = 0;
-                int length = ch.Length;
-                string output = length.ToString() + ",";
+                Print("English 0-127 Chinese > "+0x8080);
+               
+                int length = Convert.ToInt32(eepromsize) / 2-1;
+                if (ch.Length < length) length = ch.Length;
+                string output = "";
+                int length2 = length;
                 for (int j = 0; j < length; j++)
                 {
                     if (ch[j] <127 && ch[j]>=0)
                     {
-                        code = Program.ascii_to_scan_code_table[(int)ch[j]];
+                        int code  = Program.ascii_to_scan_code_table[(int)ch[j]];
                         if (code != 0)
                         {
                             output += code.ToString();
                             if (j != length - 1) output += ",";
-                        }                     
+                        }
+                        else
+                        {
+                            length2--;
+                        }                    
                     }
                     else if (ch[j] <= 0xFFFF)
                     {
@@ -158,12 +167,12 @@ namespace Tinytools
                         data[0] = data[1]; data[1] = temple;
                         ushort a3 = BitConverter.ToUInt16(data, 0);
                         output += a3.ToString();
-                        //  Printhex((int)a3);
+                        Printhex((int)a3);                      
                         if (j != length - 1) output += ",";
                     }
                 }
-                textBox2.Text = "";
-                textBox2.Text = output;
+                textBox2.Text = length2.ToString()+",";
+                textBox2.Text += output;
             }
             catch (Exception ex) { Print(ex.ToString()); }
         }
