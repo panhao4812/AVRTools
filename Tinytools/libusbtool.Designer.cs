@@ -38,6 +38,7 @@
             this.uploadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cMDToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.libusbFilterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -114,7 +115,8 @@
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cMDToolsToolStripMenuItem});
+            this.cMDToolsToolStripMenuItem,
+            this.libusbFilterToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -122,9 +124,16 @@
             // cMDToolsToolStripMenuItem
             // 
             this.cMDToolsToolStripMenuItem.Name = "cMDToolsToolStripMenuItem";
-            this.cMDToolsToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
+            this.cMDToolsToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.cMDToolsToolStripMenuItem.Text = "CMD Tools";
             this.cMDToolsToolStripMenuItem.Click += new System.EventHandler(this.cMDToolsToolStripMenuItem_Click);
+            // 
+            // libusbFilterToolStripMenuItem
+            // 
+            this.libusbFilterToolStripMenuItem.Name = "libusbFilterToolStripMenuItem";
+            this.libusbFilterToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.libusbFilterToolStripMenuItem.Text = "Libusb Filter";
+            this.libusbFilterToolStripMenuItem.Click += new System.EventHandler(this.libusbFilterToolStripMenuItem_Click);
             // 
             // libusbtool
             // 
@@ -158,5 +167,6 @@
         private System.Windows.Forms.ToolStripMenuItem uploadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cMDToolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem libusbFilterToolStripMenuItem;
     }
 }

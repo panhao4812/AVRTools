@@ -160,14 +160,10 @@ namespace Tinytools
                     }
                     else if (ch[j] <= 0xFFFF)
                     {
-                        //汉字
-                        string str2 = Convert.ToString(ch[j]);
-                        byte[] data = Encoding.Default.GetBytes(str2);
-                        byte temple = data[0];
-                        data[0] = data[1]; data[1] = temple;
-                        ushort a3 = BitConverter.ToUInt16(data, 0);
+                        //汉字                     
+                        ushort a3 = ConvertChinese2(ch[j], "utf-8");
                         output += a3.ToString();
-                        Printhex((int)a3);                      
+                       // Printhex((int)a3);                      
                         if (j != length - 1) output += ",";
                     }
                 }
@@ -175,6 +171,25 @@ namespace Tinytools
                 textBox2.Text += output;
             }
             catch (Exception ex) { Print(ex.ToString()); }
+        }
+        public ushort ConvertChinese1(char str)
+        {
+            string str2 = Convert.ToString(str);
+            byte[] data = Encoding.Default.GetBytes(str2);
+            byte temple = data[0];
+            data[0] = data[1]; data[1] = temple;
+            ushort a3 = BitConverter.ToUInt16(data, 0);
+            return a3;
+
+        }
+            public ushort ConvertChinese2(char str,string code)
+        {
+            string str2 = Convert.ToString(str);
+            byte[] data = Encoding.GetEncoding(code).GetBytes(str2);
+            byte temple = data[0];
+            data[0] = data[1]; data[1] = temple;
+            ushort a3 = BitConverter.ToUInt16(data, 0);
+            return a3;
         }
         private void libusbinf()
         {
@@ -216,9 +231,10 @@ namespace Tinytools
                     Print("x64 dll： Windows/syswow64/libusb0.dll");
                     if (!File.Exists("C:/Windows/syswow64/libusb0.dll"))
                     {
-                        path = Environment.CurrentDirectory + "/amd64/libusb0.dll";
-                        File.Copy(path, "C:/Windows/syswow64/libusb0.dll");
-                        Print("Installed");
+                        //  path = Environment.CurrentDirectory + "/amd64/libusb0.dll";
+                        //  File.Copy(path, "C:/Windows/syswow64/libusb0.dll");
+                        //  Print("Installed");
+                        Print("missed file");
                     }
                 }
                 if (Directory.Exists("C:/Windows/system32"))
@@ -227,16 +243,18 @@ namespace Tinytools
                     Print("x86 dll： Windows/system32/libusb0.dll");
                     if (!File.Exists("C:/Windows/system32/libusb0.dll"))
                     {
-                        path = Environment.CurrentDirectory + "/x86/libusb0.dll";
-                        File.Copy(path, "C:/Windows/system32/libusb0.dll");
-                        Print("Installed");
+                        //   path = Environment.CurrentDirectory + "/x86/libusb0.dll";
+                        //   File.Copy(path, "C:/Windows/system32/libusb0.dll");
+                        //    Print("Installed");
+                        Print("missed file");
                     }
                     Print("x86 sys： Windows/system32/drivers/libusb0.sys");
                     if (!File.Exists("C:/Windows/system32/drivers/libusb0.sys"))
                     {
-                        path = Environment.CurrentDirectory + "/x86/libusb0.sys";
-                        File.Copy(path, "C:/Windows/system32/drivers/libusb0.sys");
-                        Print("Installed");
+                        //  path = Environment.CurrentDirectory + "/x86/libusb0.sys";
+                        //   File.Copy(path, "C:/Windows/system32/drivers/libusb0.sys");
+                        //  Print("Installed");
+                        Print("missed file");
                     }
                 }
             }
@@ -299,6 +317,12 @@ namespace Tinytools
             }
             catch { }
         }
+
+        private void libusbFilterToolStripMenuItem_Click(object sender, EventArgs e)
+        {try { Process proc = Process.Start("install-filter-win.exe"); }
+            catch(Exception ex) { Print(ex.ToString()); }         
+        }
+
         private void saveOptions(string path)
         {
             try
