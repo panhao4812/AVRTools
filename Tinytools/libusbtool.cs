@@ -161,9 +161,9 @@ namespace Tinytools
                     else if (ch[j] <= 0xFFFF)
                     {
                         //汉字                     
-                        ushort a3 = ConvertChinese2(ch[j], "utf-8");
+                        int a3 = ConvertChinese1(ch[j]);
                         output += a3.ToString();
-                       // Printhex((int)a3);                      
+                       Printhex((int)a3);                      
                         if (j != length - 1) output += ",";
                     }
                 }
@@ -172,13 +172,64 @@ namespace Tinytools
             }
             catch (Exception ex) { Print(ex.ToString()); }
         }
-        public ushort ConvertChinese1(char str)
+        /// <summary>
+        /// 十六进制换算为十进制
+        /// </summary>
+        /// <param name="strColorValue"></param>
+        /// <returns></returns>
+        public static int GetHexadecimalValue(String strColorValue)
+        {
+            char[] nums = strColorValue.ToCharArray();
+            int total = 0;
+            try
+            {
+                for (int i = 0; i < nums.Length; i++)
+                {
+                    String strNum = nums[i].ToString().ToUpper();
+                    switch (strNum)
+                    {
+                        case "A":
+                            strNum = "10";
+                            break;
+                        case "B":
+                            strNum = "11";
+                            break;
+                        case "C":
+                            strNum = "12";
+                            break;
+                        case "D":
+                            strNum = "13";
+                            break;
+                        case "E":
+                            strNum = "14";
+                            break;
+                        case "F":
+                            strNum = "15";
+                            break;
+                        default:
+                            break;
+                    }
+                    double power = Math.Pow(16, Convert.ToDouble(nums.Length - i - 1));
+                    total += Convert.ToInt32(strNum) * Convert.ToInt32(power);
+                }
+
+            }
+            catch (System.Exception ex)
+            {
+                String strErorr = ex.ToString();
+                return 0;
+            }
+
+
+            return total;
+        }
+        public int ConvertChinese1(char str)
         {
             string str2 = Convert.ToString(str);
-            byte[] data = Encoding.Default.GetBytes(str2);
-            byte temple = data[0];
-            data[0] = data[1]; data[1] = temple;
-            ushort a3 = BitConverter.ToUInt16(data, 0);
+            byte[] data = Encoding.Unicode.GetBytes(str2);
+            str2 = data[1].ToString("x") + data[0].ToString("x");
+
+            int a3 = GetHexadecimalValue(str2);
             return a3;
 
         }
