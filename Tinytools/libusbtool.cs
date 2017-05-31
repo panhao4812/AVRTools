@@ -75,10 +75,6 @@ namespace Tinytools
             int lengthTransferred = 0;
             return MyUsbDevice.ControlTransfer(ref pack, IntPtr.Zero, 4, out lengthTransferred);
         }
-        private void uploadToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-           
-        }
         public static void ThreadProc()
         {
             MainWindow form = new MainWindow();//第2个窗体
@@ -394,21 +390,36 @@ namespace Tinytools
 
         private void openToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            Clear();
+            try { 
             HidDevice[] HidDeviceList= HidDevices.Enumerate(Convert.ToInt32(vid, 16), Convert.ToInt32(pid2, 16), (ushort)0xFF60).ToArray();
             for(int i=0;i< HidDeviceList.Length; i++)
             {
                 Print(HidDeviceList[i].ToString());
             }
-            HidDevice = HidDeviceList[0];
-            byte[] outdata = new byte[2];
-            outdata[0] = 0x04;
-            outdata[1] = 0x02;
-            HidDevice.Write(outdata);
+            if (HidDeviceList[0] == null)
+            {
+                Print("Connect usb device and install driver. Try open again");             
+                return;
+            }
+            HidDevice = HidDeviceList[0];          
+            Print("Device OK");
+            Print("vid: 0x" + vid);
+            Print("pid2: 0x" + pid2);
         }
+            catch (Exception ex)
+            {
+                Print(ex.ToString());
+            }
+}
 
         private void uploadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            byte[] outdata = new byte[3];
+            outdata[0] = 0x01;
+            outdata[1] = 0x02;
+            outdata[2] = 0x03;
+            HidDevice.Write(outdata);
         }
 
         private void libusbToolStripMenuItem_Click(object sender, EventArgs e)
