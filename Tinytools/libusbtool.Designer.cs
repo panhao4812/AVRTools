@@ -35,9 +35,12 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.Driver = new System.Windows.Forms.ToolStripMenuItem();
             this.libusbToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uploadToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.convertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.uploadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.convertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cMDToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
@@ -85,7 +88,6 @@
             this.Driver,
             this.connectToolStripMenuItem,
             this.convertToolStripMenuItem,
-            this.uploadToolStripMenuItem,
             this.toolsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -96,24 +98,56 @@
             // Driver
             // 
             this.Driver.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.libusbToolStripMenuItem});
+            this.libusbToolStripMenuItem,
+            this.openToolStripMenuItem,
+            this.uploadToolStripMenuItem1});
             this.Driver.Name = "Driver";
-            this.Driver.Size = new System.Drawing.Size(65, 24);
-            this.Driver.Text = "Driver";
+            this.Driver.Size = new System.Drawing.Size(69, 24);
+            this.Driver.Text = "Libusb";
             // 
             // libusbToolStripMenuItem
             // 
             this.libusbToolStripMenuItem.Name = "libusbToolStripMenuItem";
-            this.libusbToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.libusbToolStripMenuItem.Text = "libusb";
+            this.libusbToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
+            this.libusbToolStripMenuItem.Text = "Driver";
             this.libusbToolStripMenuItem.Click += new System.EventHandler(this.libusbToolStripMenuItem_Click);
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
+            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // uploadToolStripMenuItem1
+            // 
+            this.uploadToolStripMenuItem1.Name = "uploadToolStripMenuItem1";
+            this.uploadToolStripMenuItem1.Size = new System.Drawing.Size(137, 26);
+            this.uploadToolStripMenuItem1.Text = "Upload";
+            this.uploadToolStripMenuItem1.Click += new System.EventHandler(this.uploadToolStripMenuItem1_Click);
             // 
             // connectToolStripMenuItem
             // 
+            this.connectToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem1,
+            this.uploadToolStripMenuItem});
             this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
-            this.connectToolStripMenuItem.Size = new System.Drawing.Size(110, 24);
-            this.connectToolStripMenuItem.Text = "OpenDevice";
-            this.connectToolStripMenuItem.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
+            this.connectToolStripMenuItem.Size = new System.Drawing.Size(77, 24);
+            this.connectToolStripMenuItem.Text = "HidRaw";
+            // 
+            // openToolStripMenuItem1
+            // 
+            this.openToolStripMenuItem1.Name = "openToolStripMenuItem1";
+            this.openToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
+            this.openToolStripMenuItem1.Text = "Open";
+            this.openToolStripMenuItem1.Click += new System.EventHandler(this.openToolStripMenuItem1_Click);
+            // 
+            // uploadToolStripMenuItem
+            // 
+            this.uploadToolStripMenuItem.Name = "uploadToolStripMenuItem";
+            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.uploadToolStripMenuItem.Text = "Upload";
+            this.uploadToolStripMenuItem.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click);
             // 
             // convertToolStripMenuItem
             // 
@@ -121,13 +155,6 @@
             this.convertToolStripMenuItem.Size = new System.Drawing.Size(79, 24);
             this.convertToolStripMenuItem.Text = "Convert";
             this.convertToolStripMenuItem.Click += new System.EventHandler(this.convertToolStripMenuItem_Click);
-            // 
-            // uploadToolStripMenuItem
-            // 
-            this.uploadToolStripMenuItem.Name = "uploadToolStripMenuItem";
-            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(74, 24);
-            this.uploadToolStripMenuItem.Text = "Upload";
-            this.uploadToolStripMenuItem.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click_1);
             // 
             // toolsToolStripMenuItem
             // 
@@ -140,7 +167,7 @@
             // cMDToolsToolStripMenuItem
             // 
             this.cMDToolsToolStripMenuItem.Name = "cMDToolsToolStripMenuItem";
-            this.cMDToolsToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.cMDToolsToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
             this.cMDToolsToolStripMenuItem.Text = "CMD Tools";
             this.cMDToolsToolStripMenuItem.Click += new System.EventHandler(this.cMDToolsToolStripMenuItem_Click);
             // 
@@ -173,10 +200,13 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem connectToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem convertToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem uploadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cMDToolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Driver;
         private System.Windows.Forms.ToolStripMenuItem libusbToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem uploadToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem uploadToolStripMenuItem;
     }
 }

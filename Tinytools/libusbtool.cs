@@ -1,6 +1,8 @@
-﻿using LibUsbDotNet;
+﻿using HidLibrary;
+using LibUsbDotNet;
 using LibUsbDotNet.Main;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -13,12 +15,14 @@ namespace Tinytools
 {
     public partial class libusbtool : Form
     {
-        string vid, pid;string eepromsize="511";
+        string vid, pid,pid2;
+        string eepromsize="511";
+        public static UsbDevice MyUsbDevice;
+        public static HidDevice HidDevice;
         public libusbtool()
         {
             InitializeComponent();
-        }
-        public static UsbDevice MyUsbDevice;
+        }    
         public void Clear()
         {
             textBox3.Text = "";
@@ -73,40 +77,7 @@ namespace Tinytools
         }
         private void uploadToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            //  try{
-            if (textBox2.Text == "")
-            {
-                Clear();
-                Print("Nothing to upload");
-                return;
-            }
-            string[] str = textBox2.Text.Split(',');
-            if (MyUsbDevice == null)
-            {
-                Clear();
-                Print("Invalid device");
-                return;
-            }
-            Clear();
-            Print("Uploading");
-            while (!uploadempty(0x01))
-            {
-                Thread.Sleep(5);
-            }         
-            for (int i = 0; i < str.Length; i++)
-            {
-                if ((i*2)> Convert.ToInt32(eepromsize)) break;
-                while (!uploadshort(Convert.ToUInt16(str[i]), Convert.ToUInt16(i*2)))
-                {
-                    Thread.Sleep(5);
-                }
-            }
-            while (!uploadempty(0x03))
-            {
-                Thread.Sleep(5);
-            }
-            Print("Upload finished");
-            //   }catch (Exception ex) { Print(ex.ToString()); }
+           
         }
         public static void ThreadProc()
         {
@@ -219,15 +190,13 @@ namespace Tinytools
 
             return total;
         }
-        public int ConvertChinese1(char str)
+        public ushort ConvertChinese1(char str)
         {
             string str2 = Convert.ToString(str);
             byte[] data = Encoding.Unicode.GetBytes(str2);
             str2 = data[1].ToString("x") + data[0].ToString("x");
-
-            int a3 = GetHexadecimalValue(str2);
+            ushort a3 = Convert.ToUInt16(str2,16);
             return a3;
-
         }
         public ushort ConvertChinese2(char str,string code)
         {
@@ -309,37 +278,7 @@ namespace Tinytools
             }
             catch (Exception ex) { Print(ex.ToString()); }
             return result;
-        }
-        private void connectToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                // Find and open the usb device.
-                MyUsbDevice = UsbDevice.OpenUsbDevice(new UsbDeviceFinder(Convert.ToInt32(vid, 16), Convert.ToInt32(pid, 16)));
-                if (MyUsbDevice == null)
-                {
-                    Clear();
-                    Print("Connect usb device and install driver. Try open again");
-                    //lisbusbdriver();
-                   // libusbinf();
-                    return;
-                }
-                IUsbDevice wholeUsbDevice = MyUsbDevice as IUsbDevice;
-                if (!ReferenceEquals(wholeUsbDevice, null))
-                {
-                    wholeUsbDevice.SetConfiguration(1);
-                    wholeUsbDevice.ClaimInterface(0);
-                }
-                Clear();
-                Print("Device OK");
-                Print("vid: 0x" + vid);
-                Print("pid: 0x" + pid);
-            }
-            catch (Exception ex)
-            {
-                Print(ex.ToString());
-            }
-        }
+        }     
         private void loadOptions(string path)
         {
             try
@@ -351,6 +290,9 @@ namespace Tinytools
                 string[] chara1 = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
                 if (chara1[0] == "pid") pid = chara1[1];
                  str = srd.ReadLine();
+                chara1 = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                if (chara1[0] == "pid2") pid2 = chara1[1];
+                str = srd.ReadLine();
                 string[] chara2 = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
                 if (chara2[0] == "vid") vid = chara2[1];
                  str = srd.ReadLine();
@@ -371,7 +313,7 @@ namespace Tinytools
                 FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
                 fs.SetLength(0);
                 StreamWriter stream = new StreamWriter(fs);
-                stream.WriteLine("pid," + pid);
+                stream.WriteLine("pid," + pid); stream.WriteLine("pid2," + pid2);
                 stream.WriteLine("vid," + vid);
                 stream.WriteLine("eepromsize," + eepromsize);
                 stream.Write(textBox1.Text);
@@ -379,7 +321,96 @@ namespace Tinytools
                 stream.Close();
             }
             catch { }
-        }     
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Find and open the usb device.
+                MyUsbDevice = UsbDevice.OpenUsbDevice(new UsbDeviceFinder(Convert.ToInt32(vid, 16), Convert.ToInt32(pid, 16)));
+                if (MyUsbDevice == null)
+                {
+                    Clear();
+                    Print("Connect usb device and install driver. Try open again");
+                    //lisbusbdriver();
+                    // libusbinf();
+                    return;
+                }
+                IUsbDevice wholeUsbDevice = MyUsbDevice as IUsbDevice;
+                if (!ReferenceEquals(wholeUsbDevice, null))
+                {
+                    wholeUsbDevice.SetConfiguration(1);
+                    wholeUsbDevice.ClaimInterface(0);
+                }
+                Clear();
+                Print("Device OK");
+                Print("vid: 0x" + vid);
+                Print("pid: 0x" + pid);
+            }
+            catch (Exception ex)
+            {
+                Print(ex.ToString());
+            }
+        }
+
+        private void uploadToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            //  try{
+            if (textBox2.Text == "")
+            {
+                Clear();
+                Print("Nothing to upload");
+                return;
+            }
+            string[] str = textBox2.Text.Split(',');
+            if (MyUsbDevice == null)
+            {
+                Clear();
+                Print("Invalid device");
+                return;
+            }
+            Clear();
+            Print("Uploading");
+            while (!uploadempty(0x01))
+            {
+                Thread.Sleep(5);
+            }
+            for (int i = 0; i < str.Length; i++)
+            {
+                if ((i * 2) > Convert.ToInt32(eepromsize)) break;
+                while (!uploadshort(Convert.ToUInt16(str[i]), Convert.ToUInt16(i * 2)))
+                {
+                    Thread.Sleep(5);
+                }
+            }
+            while (!uploadempty(0x03))
+            {
+                Thread.Sleep(5);
+            }
+            Print("Upload finished");
+            //   }catch (Exception ex) { Print(ex.ToString()); }
+        }
+
+        private void openToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            HidDevice[] HidDeviceList= HidDevices.Enumerate(Convert.ToInt32(vid, 16), Convert.ToInt32(pid2, 16), (ushort)0xFF60).ToArray();
+            for(int i=0;i< HidDeviceList.Length; i++)
+            {
+                Print(HidDeviceList[i].ToString());
+            }
+            HidDevice = HidDeviceList[0];
+            byte[] outdata = new byte[2];
+            outdata[0] = 0x04;
+            outdata[1] = 0x02;
+            HidDevice.Write(outdata);
+        }
+
+        private void uploadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void libusbToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (lisbusbdriver())
