@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
+
 namespace Tinytools
 {
     public partial class libusbtool : Form
@@ -161,7 +162,7 @@ namespace Tinytools
                     else if (ch[j] <= 0xFFFF)
                     {
                         //汉字                     
-                        int a3 = ConvertChinese1(ch[j]);
+                        ushort a3 = ConvertChinese2(ch[j],"GBK");
                         output += a3.ToString();
                        Printhex((int)a3);                      
                         if (j != length - 1) output += ",";
@@ -171,12 +172,7 @@ namespace Tinytools
                 textBox2.Text += output;
             }
             catch (Exception ex) { Print(ex.ToString()); }
-        }
-        /// <summary>
-        /// 十六进制换算为十进制
-        /// </summary>
-        /// <param name="strColorValue"></param>
-        /// <returns></returns>
+        }     
         public static int GetHexadecimalValue(String strColorValue)
         {
             char[] nums = strColorValue.ToCharArray();
@@ -233,7 +229,7 @@ namespace Tinytools
             return a3;
 
         }
-            public ushort ConvertChinese2(char str,string code)
+        public ushort ConvertChinese2(char str,string code)
         {
             string str2 = Convert.ToString(str);
             byte[] data = Encoding.GetEncoding(code).GetBytes(str2);
@@ -272,11 +268,12 @@ namespace Tinytools
                 Print(ex.ToString());
             }
         }
-        private void lisbusbdriver()
+        private bool lisbusbdriver()
         {
+            bool result = true;
             try
             {
-                string path = "";
+               // string path = "";
                 if (Directory.Exists("C:/Windows/syswow64"))
                 {
                     Print("x64 dll： Windows/syswow64/libusb0.dll");
@@ -286,6 +283,7 @@ namespace Tinytools
                         //  File.Copy(path, "C:/Windows/syswow64/libusb0.dll");
                         //  Print("Installed");
                         Print("missed file");
+                        result = false;
                     }
                 }
                 if (Directory.Exists("C:/Windows/system32"))
@@ -297,7 +295,7 @@ namespace Tinytools
                         //   path = Environment.CurrentDirectory + "/x86/libusb0.dll";
                         //   File.Copy(path, "C:/Windows/system32/libusb0.dll");
                         //    Print("Installed");
-                        Print("missed file");
+                        Print("missed file"); result = false;
                     }
                     Print("x86 sys： Windows/system32/drivers/libusb0.sys");
                     if (!File.Exists("C:/Windows/system32/drivers/libusb0.sys"))
@@ -305,15 +303,15 @@ namespace Tinytools
                         //  path = Environment.CurrentDirectory + "/x86/libusb0.sys";
                         //   File.Copy(path, "C:/Windows/system32/drivers/libusb0.sys");
                         //  Print("Installed");
-                        Print("missed file");
+                        Print("missed file"); result = false;
                     }
                 }
             }
             catch (Exception ex) { Print(ex.ToString()); }
+            return result;
         }
         private void connectToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             try
             {
                 // Find and open the usb device.
@@ -321,9 +319,9 @@ namespace Tinytools
                 if (MyUsbDevice == null)
                 {
                     Clear();
-                    Print("Install filter. Try open again");
-                    lisbusbdriver();
-                    libusbinf();
+                    Print("Connect usb device and install driver. Try open again");
+                    //lisbusbdriver();
+                   // libusbinf();
                     return;
                 }
                 IUsbDevice wholeUsbDevice = MyUsbDevice as IUsbDevice;
@@ -341,8 +339,6 @@ namespace Tinytools
             {
                 Print(ex.ToString());
             }
-
-
         }
         private void loadOptions(string path)
         {
@@ -368,27 +364,31 @@ namespace Tinytools
             }
             catch { }
         }
-
-        private void libusbFilterToolStripMenuItem_Click(object sender, EventArgs e)
-        {try { Process proc = Process.Start("install-filter-win.exe"); }
-            catch(Exception ex) { Print(ex.ToString()); }         
-        }
-
         private void saveOptions(string path)
         {
             try
             {
                 FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
                 fs.SetLength(0);
-                StreamWriter stream = new StreamWriter(fs);          
-                stream.WriteLine( "pid," + pid );
-                stream.WriteLine( "vid," + vid );
-                stream.WriteLine( "eepromsize," + eepromsize);               
+                StreamWriter stream = new StreamWriter(fs);
+                stream.WriteLine("pid," + pid);
+                stream.WriteLine("vid," + vid);
+                stream.WriteLine("eepromsize," + eepromsize);
                 stream.Write(textBox1.Text);
                 stream.Flush();
                 stream.Close();
             }
             catch { }
+        }     
+        private void libusbToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (lisbusbdriver())
+            {
+                try { Process proc = Process.Start("install-filter-win.exe"); }
+                catch (Exception ex) { Print(ex.ToString()); }
+            }
         }
+
+      
     }
 }
