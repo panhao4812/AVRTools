@@ -415,11 +415,11 @@ namespace Tinytools
 
         private void uploadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            byte[] outdata = new byte[3];
-            outdata[0] = 0x01;
-            outdata[1] = 0x02;
-            outdata[2] = 0x03;
-            HidDevice.Write(outdata);
+            byte[] outdata = new byte[33];
+            outdata[0] = 0;
+            for (int i = 1; i < 33; i++) { outdata[i] = (byte)(33-i); }
+   
+            HidDevice.Write(outdata,50);
         }
 
         private void libusbToolStripMenuItem_Click(object sender, EventArgs e)

@@ -38,28 +38,31 @@ namespace Tinytools
             try
             {
                 FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
-            StreamReader srd = new StreamReader(fs);
-            while (srd.Peek() != -1)
-            {
-                string str = srd.ReadLine();
-                string[] chara = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-                if (chara.Length > 1)
+                StreamReader srd = new StreamReader(fs);
+                while (srd.Peek() != -1)
                 {
-                    if (chara[0] == "-c") c_box.Text = chara[1];
-                    else if (chara[0] == "-p") p_box.Text = chara[1];
-                    else if (chara[0] == "-b") b_box.Text = chara[1];
-                    else if (chara[0] == "-P") p_box2.Text = chara[1];
-                    else if (chara[0] == "cd") cd_box.Text = chara[1];
-                    else if (chara[0] == "lfuse") lfuse_box.Text = chara[1];
-                    else if (chara[0] == "hfuse") hfuse_box.Text = chara[1];
-                    else if (chara[0] == "efuse") efuse_box.Text = chara[1];
+                    string str = srd.ReadLine();
+                    string[] chara = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                    if (chara.Length > 1)
+                    {
+                        if (chara[0] == "-c") c_box.Text = chara[1];
+                        else if (chara[0] == "-p") p_box.Text = chara[1];
+                        else if (chara[0] == "-b") b_box.Text = chara[1];
+                        else if (chara[0] == "-P") p_box2.Text = chara[1];
+                        else if (chara[0] == "cd") cd_box.Text = chara[1];
+                        else if (chara[0] == "lfuse") lfuse_box.Text = chara[1];
+                        else if (chara[0] == "hfuse") hfuse_box.Text = chara[1];
+                        else if (chara[0] == "efuse") efuse_box.Text = chara[1];
                         else if (chara[0] == "lock") lock_box.Text = chara[1];
                         else if (chara[0] == "flash") flash_box.Text = chara[1];
-                    else if (chara[0] == "eeprom") eeprom_box.Text = chara[1];
+                        else if (chara[0] == "eeprom") eeprom_box.Text = chara[1];
+                        else if (chara[0] == "usbpcap") usbpcap_box.Text = chara[1];
+                        else if (chara[0] == "wireshark") wireshark_box.Text = chara[1];
+                        else if (chara[0] == "cap") cap_box.Text = chara[1];
+                    }
                 }
+                srd.Close();
             }
-            srd.Close();
-                 }
             catch { }
         }
         private void saveOptions(string path)
@@ -68,7 +71,7 @@ namespace Tinytools
             {
                 FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
                 fs.SetLength(0);
-                StreamWriter stream = new StreamWriter(fs);              
+                StreamWriter stream = new StreamWriter(fs);
                 string output = "";
                 output += "-c," + c_box.Text + "\r\n";
                 output += "-p," + p_box.Text + "\r\n";
@@ -80,14 +83,16 @@ namespace Tinytools
                 output += "hfuse," + hfuse_box.Text + "\r\n";
                 output += "efuse," + efuse_box.Text + "\r\n";
                 output += "lock," + lock_box.Text + "\r\n";
-                output += "eeprom," + eeprom_box.Text;
+                output += "eeprom," + eeprom_box.Text + "\r\n";
+                output += "usbpcap," + usbpcap_box.Text + "\r\n";
+                output += "wireshark," + wireshark_box.Text + "\r\n";
+                output += "cap," + cap_box.Text;
                 stream.Write(output);
                 stream.Flush();
                 stream.Close();
             }
             catch { }
         }
-       
         private void libusbToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Thread t = new Thread(new ThreadStart(ThreadProc2));
@@ -106,7 +111,7 @@ namespace Tinytools
             if (of.ShowDialog() == DialogResult.OK)
             {
                 str = of.FileName.ToString(); loadOptions(str);
-            }         
+            }
         }
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -114,15 +119,14 @@ namespace Tinytools
             string str = "";
             if (sf.ShowDialog() == DialogResult.OK)
             {
-                str = sf.FileName.ToString();saveOptions(str);
-            }          
+                str = sf.FileName.ToString(); saveOptions(str);
+            }
         }
         private void CMD_Click(object sender, EventArgs e)
         {
             Process proc = Process.Start("CMD.Exe");
         }
         IntPtr hCMD = IntPtr.Zero;
-
         void printw(string str)
         {
             hCMD = FindWindow("ConsoleWindowClass", null);
@@ -161,7 +165,7 @@ namespace Tinytools
         {
             OpenFileDialog of = new OpenFileDialog();
             of.Filter = "(*.eep)|*.eep";
-           
+
             if (of.ShowDialog() == DialogResult.OK)
             {
                 eeprom_box.Text = of.FileName.ToString();
@@ -177,7 +181,6 @@ namespace Tinytools
             char[] c3 = { c1, c2 };
             printw(new string(c3));
         }
-
         private void flash_Click(object sender, EventArgs e)
         {
             if (flash_box.Text == "") return;
@@ -189,7 +192,6 @@ namespace Tinytools
             str += " -U flash:w:";
             Main_box.Text = str + flash_box.Text + ":i";
         }
-
         private void verify_Click(object sender, EventArgs e)
         {
             string str = "avrdude";
@@ -199,7 +201,6 @@ namespace Tinytools
             str += " -P " + p_box2.Text;
             Main_box.Text = str + " -q -v -F";
         }
-
         private void fuse_Click(object sender, EventArgs e)
         {
             string str = "avrdude";
@@ -207,14 +208,13 @@ namespace Tinytools
             str += " -p " + p_box.Text;
             str += " -b " + b_box.Text;
             str += " -P " + p_box2.Text;
-            str += " -u" ;
-            if (hfuse_box.Text!="") str += " -U hfuse:w:"+ hfuse_box.Text+":m";
+            str += " -u";
+            if (hfuse_box.Text != "") str += " -U hfuse:w:" + hfuse_box.Text + ":m";
             if (lfuse_box.Text != "") str += " -U lfuse:w:" + lfuse_box.Text + ":m";
             if (efuse_box.Text != "") str += " -U efuse:w:" + efuse_box.Text + ":m";
             if (lock_box.Text != "") str += " -U lock:w:" + lock_box.Text + ":m";
             Main_box.Text = str;
         }
-
         private void button10_Click(object sender, EventArgs e)
         {
             string str = "avrdude";
@@ -224,7 +224,6 @@ namespace Tinytools
             str += " -P " + p_box2.Text;
             Main_box.Text = str + " -q";
         }
-
         private void eeprom_Click(object sender, EventArgs e)
         {
             if (eeprom_box.Text == "") return;
@@ -234,9 +233,8 @@ namespace Tinytools
             str += " -b " + b_box.Text;
             str += " -P " + p_box2.Text;
             str += " -U eeprom:w:";
-            Main_box.Text = str + eeprom_box.Text ;
+            Main_box.Text = str + eeprom_box.Text;
         }
-
         private void m_path_flash_Click(object sender, EventArgs e)
         {
             OpenFileDialog of = new OpenFileDialog();
@@ -247,7 +245,6 @@ namespace Tinytools
             }
             m_flash_box.Text = m_flash_box.Text.Replace('\\', '/');
         }
-
         private void m_flash_Click(object sender, EventArgs e)
         {
             if (m_flash_box.Text == "") return;
@@ -255,12 +252,46 @@ namespace Tinytools
             str += m_flash_box.Text;
             Main_box.Text = str;
         }
-
-       
-
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("v1.00 by zian");
+        }
+        private void usbpcap_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog of = new OpenFileDialog();
+            of.Filter = "(*.exe)|*.exe";
+            if (of.ShowDialog() == DialogResult.OK)
+            {
+                usbpcap_box.Text = of.FileName.ToString();
+            }
+            usbpcap_box.Text = usbpcap_box.Text.Replace('\\', '/');
+        }
+        private void wireshark_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog of = new OpenFileDialog();
+            of.Filter = "(*.exe)|*.exe";
+            if (of.ShowDialog() == DialogResult.OK)
+            {
+                wireshark_box.Text = of.FileName.ToString();
+            }
+            wireshark_box.Text = wireshark_box.Text.Replace('\\', '/');
+        }
+
+        private void capture_Click(object sender, EventArgs e)
+        {
+            if (usbpcap_box.Text == ""|| wireshark_box.Text == ""||cap_box.Text=="") return;                    
+            Main_box.Text = @"USBPcapCMD.exe -d \\.\" +
+            cap_box.Text +@" -o - | "+ '"' + wireshark_box.Text+'"'+ @" -k -i -";
+        }
+
+        private void usbpcap_cd_Click(object sender, EventArgs e)
+        {
+            if (usbpcap_box.Text == "") return;
+            Main_box.Text = "cd " + Path.GetDirectoryName(usbpcap_box.Text);
+            char c1 = usbpcap_box.Text.ToCharArray()[0];
+            char c2 = usbpcap_box.Text.ToCharArray()[1];
+            char[] c3 = { c1, c2 };
+            printw(new string(c3));
         }
     }
 }
