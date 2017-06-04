@@ -584,7 +584,7 @@
             // 
             this.cap.AutoSize = true;
             this.cap.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.cap.Location = new System.Drawing.Point(384, 434);
+            this.cap.Location = new System.Drawing.Point(387, 434);
             this.cap.Name = "cap";
             this.cap.Size = new System.Drawing.Size(31, 15);
             this.cap.TabIndex = 61;

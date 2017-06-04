@@ -51,11 +51,11 @@
             this.textBox1.BackColor = System.Drawing.Color.Azure;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.textBox1.Location = new System.Drawing.Point(0, 94);
+            this.textBox1.Location = new System.Drawing.Point(2, 94);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(390, 458);
+            this.textBox1.Size = new System.Drawing.Size(385, 458);
             this.textBox1.TabIndex = 0;
             // 
             // textBox2
@@ -64,11 +64,11 @@
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBox2.ForeColor = System.Drawing.Color.Black;
-            this.textBox2.Location = new System.Drawing.Point(390, 94);
+            this.textBox2.Location = new System.Drawing.Point(393, 94);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox2.Size = new System.Drawing.Size(390, 458);
+            this.textBox2.Size = new System.Drawing.Size(385, 458);
             this.textBox2.TabIndex = 2;
             // 
             // textBox3
@@ -78,7 +78,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
             this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox3.Size = new System.Drawing.Size(782, 66);
+            this.textBox3.Size = new System.Drawing.Size(782, 57);
             this.textBox3.TabIndex = 4;
             // 
             // menuStrip1
@@ -138,14 +138,14 @@
             // openToolStripMenuItem1
             // 
             this.openToolStripMenuItem1.Name = "openToolStripMenuItem1";
-            this.openToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
+            this.openToolStripMenuItem1.Size = new System.Drawing.Size(137, 26);
             this.openToolStripMenuItem1.Text = "Open";
             this.openToolStripMenuItem1.Click += new System.EventHandler(this.openToolStripMenuItem1_Click);
             // 
             // uploadToolStripMenuItem
             // 
             this.uploadToolStripMenuItem.Name = "uploadToolStripMenuItem";
-            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
             this.uploadToolStripMenuItem.Text = "Upload";
             this.uploadToolStripMenuItem.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click);
             // 
