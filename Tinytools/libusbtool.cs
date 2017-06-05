@@ -34,8 +34,9 @@ namespace Tinytools
         private void libusbtool_Load(object sender, EventArgs e)
         {           
             string str = Environment.CurrentDirectory + "\\tinytools.conf";
-            if (File.Exists(str)) { loadOptions(str); }
-            else
+            loadOptions(str);
+            str = Environment.CurrentDirectory + "\\avrdude.conf"; 
+            if (!File.Exists(str))          
             {
                 Driver.Enabled = false;
                 toolsToolStripMenuItem.Enabled = false;
@@ -354,7 +355,7 @@ namespace Tinytools
         }
         private void uploadToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            //  try{
+              try{
             if (textBox2.Text == "")
             {
                 Clear();
@@ -387,7 +388,7 @@ namespace Tinytools
                 Thread.Sleep(5);
             }
             Print("Upload finished");
-            //   }catch (Exception ex) { Print(ex.ToString()); }
+              }catch (Exception ex) { Print(ex.ToString()); }
         }
         private void openToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -395,6 +396,11 @@ namespace Tinytools
             try
             {
                 HidDevice[] HidDeviceList = HidDevices.Enumerate(Convert.ToInt32(vid, 16), Convert.ToInt32(pid2, 16), (ushort)0xFF31).ToArray();
+                if (HidDeviceList == null|| HidDeviceList.Length==0)
+                {
+                    Print("Connect usb device and install driver. Try open again");
+                    return;
+                }
                 for (int i = 0; i < HidDeviceList.Length; i++)
                 {
                     Print(HidDeviceList[i].ToString());
@@ -416,6 +422,7 @@ namespace Tinytools
         }
         private void uploadToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            try { 
             if (textBox2.Text == "")
             {
                 Clear();
@@ -475,7 +482,8 @@ namespace Tinytools
             outdata[1] = 0xFF; outdata[2] = 0xF2;
             HidDevice.Write(outdata, 50); Thread.Sleep(50);
             Print("Upload finished");
-        }
+        }catch (Exception ex) { Print(ex.ToString()); }
+}
         private void libusbToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (lisbusbdriver())
