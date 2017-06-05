@@ -420,6 +420,12 @@ namespace Tinytools
                 Print(ex.ToString());
             }
         }
+
+        private void connectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void uploadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try { 
