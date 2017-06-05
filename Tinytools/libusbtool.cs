@@ -15,14 +15,14 @@ namespace Tinytools
 {
     public partial class libusbtool : Form
     {
-        string vid, pid,pid2;
-        string eepromsize="511";
+        string vid, pid, pid2;
+        string eepromsize = "511";
         public static UsbDevice MyUsbDevice;
         public static HidDevice HidDevice;
         public libusbtool()
         {
             InitializeComponent();
-        }    
+        }
         public void Clear()
         {
             textBox3.Text = "";
@@ -32,10 +32,14 @@ namespace Tinytools
             textBox3.Text += str.ToString() + "\r\n";
         }
         private void libusbtool_Load(object sender, EventArgs e)
-        {
-
+        {           
             string str = Environment.CurrentDirectory + "\\tinytools.conf";
-            loadOptions(str);
+            if (File.Exists(str)) { loadOptions(str); }
+            else
+            {
+                Driver.Enabled = false;
+                toolsToolStripMenuItem.Enabled = false;
+            }             
         }
         private void libusbtool_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -59,7 +63,7 @@ namespace Tinytools
             pack.RequestType = (byte)UsbRequestType.TypeVendor;
             pack.Request = 0x16;//USBRQ_HID_GET_REPORT谁便写个标记 和固件对上即可
             pack.Value = (short)byte1;
-            textBox3.Text +=  pack.Value.ToString()+",";
+            textBox3.Text += pack.Value.ToString() + ",";
             pack.Index = (short)index;
             pack.Length = 8;
             int lengthTransferred = 0;
@@ -89,7 +93,7 @@ namespace Tinytools
         void Printhex(int str)
         {
             string s = str.ToString("X");
-            Print(s);           
+            Print(s);
             Print(Convert.ToString(str, 2));
         }
         private void convertToolStripMenuItem_Click(object sender, EventArgs e)
@@ -105,17 +109,17 @@ namespace Tinytools
                     return;
                 }
                 Clear();
-                Print("English 0-127 Chinese > "+0x8080);
-               
-                int length = Convert.ToInt32(eepromsize) / 2-1;
+                Print("English 0-127 GBK > " + 0x8080);
+
+                int length = Convert.ToInt32(eepromsize) / 2 - 1;
                 if (ch.Length < length) length = ch.Length;
                 string output = "";
                 int length2 = length;
                 for (int j = 0; j < length; j++)
                 {
-                    if (ch[j] <127 && ch[j]>=0)
+                    if (ch[j] < 127 && ch[j] >= 0)
                     {
-                        int code  = Program.ascii_to_scan_code_table[(int)ch[j]];
+                        int code = Program.ascii_to_scan_code_table[(int)ch[j]];
                         if (code != 0)
                         {
                             output += code.ToString();
@@ -124,22 +128,22 @@ namespace Tinytools
                         else
                         {
                             length2--;
-                        }                    
+                        }
                     }
                     else if (ch[j] <= 0xFFFF)
                     {
                         //汉字                     
-                        ushort a3 = ConvertChinese2(ch[j],"GBK");
+                        ushort a3 = ConvertChinese2(ch[j], "GBK");
                         output += a3.ToString();
-                       Printhex((int)a3);                      
+                        //Printhex((int)a3);
                         if (j != length - 1) output += ",";
                     }
                 }
-                textBox2.Text = length2.ToString()+",";
+                textBox2.Text = length2.ToString() + ",";
                 textBox2.Text += output;
             }
             catch (Exception ex) { Print(ex.ToString()); }
-        }     
+        }
         public static int GetHexadecimalValue(String strColorValue)
         {
             char[] nums = strColorValue.ToCharArray();
@@ -191,10 +195,10 @@ namespace Tinytools
             string str2 = Convert.ToString(str);
             byte[] data = Encoding.Unicode.GetBytes(str2);
             str2 = data[1].ToString("x") + data[0].ToString("x");
-            ushort a3 = Convert.ToUInt16(str2,16);
+            ushort a3 = Convert.ToUInt16(str2, 16);
             return a3;
         }
-        public ushort ConvertChinese2(char str,string code)
+        public ushort ConvertChinese2(char str, string code)
         {
             string str2 = Convert.ToString(str);
             byte[] data = Encoding.GetEncoding(code).GetBytes(str2);
@@ -238,7 +242,7 @@ namespace Tinytools
             bool result = true;
             try
             {
-               // string path = "";
+                // string path = "";
                 if (Directory.Exists("C:/Windows/syswow64"))
                 {
                     Print("x64 dll： Windows/syswow64/libusb0.dll");
@@ -274,7 +278,7 @@ namespace Tinytools
             }
             catch (Exception ex) { Print(ex.ToString()); }
             return result;
-        }     
+        }
         private void loadOptions(string path)
         {
             try
@@ -285,13 +289,13 @@ namespace Tinytools
                 string str = srd.ReadLine();
                 string[] chara1 = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
                 if (chara1[0] == "pid") pid = chara1[1];
-                 str = srd.ReadLine();
+                str = srd.ReadLine();
                 chara1 = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
                 if (chara1[0] == "pid2") pid2 = chara1[1];
                 str = srd.ReadLine();
                 string[] chara2 = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
                 if (chara2[0] == "vid") vid = chara2[1];
-                 str = srd.ReadLine();
+                str = srd.ReadLine();
                 string[] chara3 = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
                 if (chara3[0] == "eepromsize") eepromsize = chara3[1];
                 while (srd.Peek() != -1)
@@ -318,7 +322,6 @@ namespace Tinytools
             }
             catch { }
         }
-
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -349,7 +352,6 @@ namespace Tinytools
                 Print(ex.ToString());
             }
         }
-
         private void uploadToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             //  try{
@@ -387,41 +389,87 @@ namespace Tinytools
             Print("Upload finished");
             //   }catch (Exception ex) { Print(ex.ToString()); }
         }
-
         private void openToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Clear();
-            try { 
-            HidDevice[] HidDeviceList= HidDevices.Enumerate(Convert.ToInt32(vid, 16), Convert.ToInt32(pid2, 16), (ushort)0xFF60).ToArray();
-            for(int i=0;i< HidDeviceList.Length; i++)
+            try
             {
-                Print(HidDeviceList[i].ToString());
+                HidDevice[] HidDeviceList = HidDevices.Enumerate(Convert.ToInt32(vid, 16), Convert.ToInt32(pid2, 16), (ushort)0xFF31).ToArray();
+                for (int i = 0; i < HidDeviceList.Length; i++)
+                {
+                    Print(HidDeviceList[i].ToString());
+                }
+                if (HidDeviceList[0] == null)
+                {
+                    Print("Connect usb device and install driver. Try open again");
+                    return;
+                }
+                HidDevice = HidDeviceList[0];
+                Print("Device OK");
+                Print("vid: 0x" + vid);
+                Print("pid2: 0x" + pid2);
             }
-            if (HidDeviceList[0] == null)
-            {
-                Print("Connect usb device and install driver. Try open again");             
-                return;
-            }
-            HidDevice = HidDeviceList[0];          
-            Print("Device OK");
-            Print("vid: 0x" + vid);
-            Print("pid2: 0x" + pid2);
-        }
             catch (Exception ex)
             {
                 Print(ex.ToString());
             }
-}
-
+        }
         private void uploadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            byte[] outdata = new byte[33];
-            outdata[0] = 0;
-            for (int i = 1; i < 33; i++) { outdata[i] = (byte)(33-i); }
-   
-            HidDevice.Write(outdata,50);
+            if (textBox2.Text == "")
+            {
+                Clear();
+                Print("Nothing to upload");
+                return;
+            }
+            string[] str = textBox2.Text.Split(',');
+            if (HidDevice == null)
+            {
+                Clear();
+                Print("Invalid device");
+                return;
+            }
+            Clear();
+            Print("Uploading");
+            byte[] outdata = new byte[9]; outdata[0] = 0;
+            byte[] a = new byte[2];
+            for (ushort i = 0; (i * 2)< Convert.ToInt32(eepromsize) ; i+=3)
+            {
+                a = BitConverter.GetBytes((ushort)(i*2));
+                outdata[1] = a[0]; outdata[2] = a[1];
+                if ((i + 2) < str.Length)
+                {
+                    ushort data3 = Convert.ToUInt16(str[i + 2]);
+                    //Print(data3);
+                    a = BitConverter.GetBytes(data3);
+                    outdata[7] = a[0]; outdata[8] = a[1];
+                }
+                if ((i + 1) < str.Length)
+                {
+                    ushort data2 = Convert.ToUInt16(str[i + 1]);
+                    //Print(data2);
+                    a = BitConverter.GetBytes(data2);
+                    outdata[5] = a[0]; outdata[6] = a[1];
+                }
+                if (i < str.Length)
+                {
+                    ushort data1 = Convert.ToUInt16(str[i]);
+                    //Print(data1);
+                    a = BitConverter.GetBytes(data1);
+                    outdata[3] = a[0]; outdata[4] = a[1];
+                }
+                else { break; }               
+                HidDevice.Write(outdata, 50);
+                string outdatastr = "";
+                for(int k = 1; k < outdata.Length; k++)
+                {
+                    outdatastr += outdata[k].ToString()+"/";
+                }
+                Print(outdatastr);
+                Thread.Sleep(50);
+            }
+            Print("Upload finished");
         }
-
         private void libusbToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (lisbusbdriver())
@@ -431,6 +479,6 @@ namespace Tinytools
             }
         }
 
-      
+
     }
 }

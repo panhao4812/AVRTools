@@ -101,28 +101,32 @@
             this.libusbToolStripMenuItem,
             this.openToolStripMenuItem,
             this.uploadToolStripMenuItem1});
+            this.Driver.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.Driver.Name = "Driver";
             this.Driver.Size = new System.Drawing.Size(69, 24);
             this.Driver.Text = "Libusb";
             // 
             // libusbToolStripMenuItem
             // 
+            this.libusbToolStripMenuItem.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.libusbToolStripMenuItem.Name = "libusbToolStripMenuItem";
-            this.libusbToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
+            this.libusbToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.libusbToolStripMenuItem.Text = "Driver";
             this.libusbToolStripMenuItem.Click += new System.EventHandler(this.libusbToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
+            this.openToolStripMenuItem.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // uploadToolStripMenuItem1
             // 
+            this.uploadToolStripMenuItem1.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.uploadToolStripMenuItem1.Name = "uploadToolStripMenuItem1";
-            this.uploadToolStripMenuItem1.Size = new System.Drawing.Size(137, 26);
+            this.uploadToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
             this.uploadToolStripMenuItem1.Text = "Upload";
             this.uploadToolStripMenuItem1.Click += new System.EventHandler(this.uploadToolStripMenuItem1_Click);
             // 
@@ -138,14 +142,14 @@
             // openToolStripMenuItem1
             // 
             this.openToolStripMenuItem1.Name = "openToolStripMenuItem1";
-            this.openToolStripMenuItem1.Size = new System.Drawing.Size(137, 26);
+            this.openToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
             this.openToolStripMenuItem1.Text = "Open";
             this.openToolStripMenuItem1.Click += new System.EventHandler(this.openToolStripMenuItem1_Click);
             // 
             // uploadToolStripMenuItem
             // 
             this.uploadToolStripMenuItem.Name = "uploadToolStripMenuItem";
-            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
+            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.uploadToolStripMenuItem.Text = "Upload";
             this.uploadToolStripMenuItem.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click);
             // 
@@ -160,14 +164,16 @@
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cMDToolsToolStripMenuItem});
+            this.toolsToolStripMenuItem.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // cMDToolsToolStripMenuItem
             // 
+            this.cMDToolsToolStripMenuItem.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.cMDToolsToolStripMenuItem.Name = "cMDToolsToolStripMenuItem";
-            this.cMDToolsToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
+            this.cMDToolsToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.cMDToolsToolStripMenuItem.Text = "CMD Tools";
             this.cMDToolsToolStripMenuItem.Click += new System.EventHandler(this.cMDToolsToolStripMenuItem_Click);
             // 

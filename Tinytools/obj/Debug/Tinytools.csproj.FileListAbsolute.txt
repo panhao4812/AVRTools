@@ -18,5 +18,4 @@ D:\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.MainWindow.resources
 D:\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.Properties.Resources.resources
 D:\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.csproj.GenerateResource.Cache
 D:\GitHub\Tinytools\Tinytools\bin\Debug\Tinytools.exe.config
-D:\GitHub\Tinytools\Tinytools\bin\Debug\HidLibrary.pdb
 D:\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.csprojResolveAssemblyReference.cache

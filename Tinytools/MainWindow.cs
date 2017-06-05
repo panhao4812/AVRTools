@@ -276,14 +276,12 @@ namespace Tinytools
             }
             wireshark_box.Text = wireshark_box.Text.Replace('\\', '/');
         }
-
         private void capture_Click(object sender, EventArgs e)
         {
             if (usbpcap_box.Text == ""|| wireshark_box.Text == ""||cap_box.Text=="") return;                    
             Main_box.Text = @"USBPcapCMD.exe -d \\.\" +
             cap_box.Text +@" -o - | "+ '"' + wireshark_box.Text+'"'+ @" -k -i -";
         }
-
         private void usbpcap_cd_Click(object sender, EventArgs e)
         {
             if (usbpcap_box.Text == "") return;
