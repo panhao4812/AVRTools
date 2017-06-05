@@ -433,6 +433,10 @@ namespace Tinytools
             Print("Uploading");
             byte[] outdata = new byte[9]; outdata[0] = 0;
             byte[] a = new byte[2];
+
+            outdata[1] = 0xFF; outdata[2] = 0xF1;
+            HidDevice.Write(outdata, 50); Thread.Sleep(50);
+
             for (ushort i = 0; (i * 2)< Convert.ToInt32(eepromsize) ; i+=3)
             {
                 a = BitConverter.GetBytes((ushort)(i*2));
@@ -468,6 +472,8 @@ namespace Tinytools
                 Print(outdatastr);
                 Thread.Sleep(50);
             }
+            outdata[1] = 0xFF; outdata[2] = 0xF2;
+            HidDevice.Write(outdata, 50); Thread.Sleep(50);
             Print("Upload finished");
         }
         private void libusbToolStripMenuItem_Click(object sender, EventArgs e)
