@@ -50,9 +50,10 @@ namespace TinyToolsLite
             else if (code == encodingtype[2])
             {
                 data = Encoding.Default.GetBytes(str2);
-                byte temple = data[0];
-                data[0] = data[1]; data[1] = temple;
-                a3 = BitConverter.ToUInt16(data, 0);
+                string Data1 = data[0].ToString("x"); if (Data1.Length == 1) Data1 = "0" + Data1;
+                string Data2 = data[1].ToString("x"); if (Data2.Length == 1) Data2 = "0" + Data2;
+                str2 = Data1 + Data2;
+                a3 = Convert.ToUInt16(str2, 16);
                 return a3;
             }
             else if (code == encodingtype[3])
@@ -64,13 +65,16 @@ namespace TinyToolsLite
             else if (code == encodingtype[6])
             {
                 data = Encoding.UTF8.GetBytes(str2);
-                byte temple = data[0];
-                data[0] = data[1]; data[1] = temple;
-                a3 = BitConverter.ToUInt16(data, 0);
+                string Data1 = data[0].ToString("x"); if (Data1.Length == 1) Data1 = "0" + Data1;
+                string Data2 = data[1].ToString("x"); if (Data2.Length == 1) Data2 = "0" + Data2;
+                str2 = Data1 + Data2;
+                a3 = Convert.ToUInt16(str2, 16);
                 return a3;
             }
             else { Print("encoding error"); return 0; }
-            str2 = data[1].ToString("x") + data[0].ToString("x");
+            string data1 = data[1].ToString("x"); if (data1.Length == 1) data1 = "0" + data1;
+            string data2 = data[0].ToString("x"); if (data2.Length == 1) data2 = "0" + data2;
+            str2 = data1 + data2;
             a3 = Convert.ToUInt16(str2, 16);
             return a3;
         }
@@ -78,9 +82,10 @@ namespace TinyToolsLite
         {
             string str2 = Convert.ToString(str);
             byte[] data = Encoding.GetEncoding(code).GetBytes(str2);
-            byte temple = data[0];
-            data[0] = data[1]; data[1] = temple;
-            ushort a3 = BitConverter.ToUInt16(data, 0);
+            string Data1 = data[0].ToString("x"); if (Data1.Length == 1) Data1 = "0" + Data1;
+            string Data2 = data[1].ToString("x"); if (Data2.Length == 1) Data2 = "0" + Data2;
+            str2 = Data1 + Data2;
+            ushort a3 = Convert.ToUInt16(str2, 16);
             return a3;
         }
         int encode_index = 0;
@@ -99,22 +104,22 @@ namespace TinyToolsLite
             textBox3.Text = encodingtype[encode_index];
             convertToolStripMenuItem.Text = encodingtype[encode_index];
         }
-       
+
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (textBox4.Text != "")
             {
                 string[] str = textBox4.Text.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
                 if (str.Length != 2) return;
-                 vid = (ushort)Convert.ToInt32(str[0], 16);
-                 pid = (ushort)Convert.ToInt32(str[1], 16);
+                vid = (ushort)Convert.ToInt32(str[0], 16);
+                pid = (ushort)Convert.ToInt32(str[1], 16);
             }
             Clear();
-            Print("0x"+vid.ToString("x"));
+            Print("0x" + vid.ToString("x"));
             Print("0x" + pid.ToString("x"));
             try
             {
-                HidDevice[] HidDeviceList = HidDevices.Enumerate(vid, pid,Convert.ToUInt16(0xFF31)).ToArray();
+                HidDevice[] HidDeviceList = HidDevices.Enumerate(vid, pid, Convert.ToUInt16(0xFF31)).ToArray();
                 if (HidDeviceList == null || HidDeviceList.Length == 0)
                 {
                     Print("Connect usb device and install driver. Try open again");
@@ -123,7 +128,7 @@ namespace TinyToolsLite
                 for (int i = 0; i < HidDeviceList.Length; i++)
                 {
                     Print(HidDeviceList[i].DevicePath);
-                    HidDevice = HidDeviceList[0]; break; 
+                    HidDevice = HidDeviceList[0]; break;
                 }
                 if (HidDevice == null)
                 {
@@ -252,6 +257,11 @@ namespace TinyToolsLite
                 textBox2.Text += output;
             }
             catch (Exception ex) { Print(ex.ToString()); }
+        }
+
+        private void TinyToolsLite_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
