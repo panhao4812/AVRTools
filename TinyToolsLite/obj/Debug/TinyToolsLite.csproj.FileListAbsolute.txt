@@ -7,3 +7,12 @@ C:\Users\Administrator\Documents\GitHub\Tinytools\TinyToolsLite\obj\Debug\TinyTo
 C:\Users\Administrator\Documents\GitHub\Tinytools\TinyToolsLite\obj\Debug\TinyToolsLite.csproj.GenerateResource.Cache
 C:\Users\Administrator\Documents\GitHub\Tinytools\TinyToolsLite\obj\Debug\TinyToolsLite.exe
 C:\Users\Administrator\Documents\GitHub\Tinytools\TinyToolsLite\obj\Debug\TinyToolsLite.pdb
+D:\GitHub\Tinytools\TinyToolsLite\bin\Debug\TinyToolsLite.exe.config
+D:\GitHub\Tinytools\TinyToolsLite\obj\Debug\TinyToolsLite.exe
+D:\GitHub\Tinytools\TinyToolsLite\obj\Debug\TinyToolsLite.pdb
+D:\GitHub\Tinytools\TinyToolsLite\bin\Debug\TinyToolsLite.exe
+D:\GitHub\Tinytools\TinyToolsLite\bin\Debug\TinyToolsLite.pdb
+D:\GitHub\Tinytools\TinyToolsLite\obj\Debug\TinyToolsLite.csprojResolveAssemblyReference.cache
+D:\GitHub\Tinytools\TinyToolsLite\obj\Debug\TinyToolsLite.TinyToolsLite.resources
+D:\GitHub\Tinytools\TinyToolsLite\obj\Debug\TinyToolsLite.Properties.Resources.resources
+D:\GitHub\Tinytools\TinyToolsLite\obj\Debug\TinyToolsLite.csproj.GenerateResource.Cache

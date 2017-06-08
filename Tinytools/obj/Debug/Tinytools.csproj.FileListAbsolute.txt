@@ -29,3 +29,5 @@ C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.
 C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.MainWindow.resources
 C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.Properties.Resources.resources
 C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.csproj.GenerateResource.Cache
+D:\GitHub\Tinytools\Tinytools\bin\Debug\HidLibrary.dll
+D:\GitHub\Tinytools\Tinytools\bin\Debug\HidLibrary.pdb

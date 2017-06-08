@@ -64,16 +64,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HIDBrowse.cs" />
-    <Compile Include="HIDDev.cs" />
-    <Compile Include="HIDInfo.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="HidAsyncState.cs" />
+    <Compile Include="HidDevice.cs" />
+    <Compile Include="HidDeviceAttributes.cs" />
+    <Compile Include="HidDeviceCapabilities.cs" />
+    <Compile Include="HidDeviceData.cs" />
+    <Compile Include="HidDeviceEventMonitor.cs" />
+    <Compile Include="HidDevices.cs" />
+    <Compile Include="HidFastReadDevice.cs" />
+    <Compile Include="HidFastReadEnumerator.cs" />
+    <Compile Include="HidReport.cs" />
     <Compile Include="HidTools.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HidTools.Designer.cs">
       <DependentUpon>HidTools.cs</DependentUpon>
     </Compile>
-    <Compile Include="Native.cs" />
+    <Compile Include="IHidDevice.cs" />
+    <Compile Include="IHidEnumerator.cs" />
+    <Compile Include="NativeMethods.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="HidTools.resx">

@@ -53,9 +53,6 @@
     <ApplicationIcon>zian.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HidLibrary">
-      <HintPath>C:\Users\Administrator\Desktop\src\HidLibrary\bin\Debug\HidLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="LibUsbDotNet">
       <HintPath>C:\Program Files\LibUsbDotNet\LibUsbDotNet.dll</HintPath>
     </Reference>
@@ -132,6 +129,12 @@
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HidLibrary\HidLibrary.csproj">
+      <Project>{9e8f1d50-74ea-4c60-bd5c-ab2c5b53bc66}</Project>
+      <Name>HidLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

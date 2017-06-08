@@ -9,9 +9,9 @@ namespace TinyToolsLite
 {
     public partial class TinyToolsLite : Form
     {
-        public static HIDDev HidDevice;
+        public static HidDevice HidDevice;
         ushort vid = 0xdddd;
-        ushort pid2 = 0x5678;
+        ushort pid = 0x5678;
         ushort eepromsize = 511;
         public void Clear()
         {
@@ -85,85 +85,71 @@ namespace TinyToolsLite
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            try
-            {
-                char[] ch = textBox1.Text.ToArray();
-
-                if (ch == null || ch.Length == 0)
-                {
-                    Clear();
-                    Print("Nothing to Convert");
-                    return;
-                }
-                Clear();
-                Print("English 0-127 GBK > " + 0x8080);
-
-                int length = Convert.ToInt32(eepromsize) / 2 - 1;
-                if (ch.Length < length) length = ch.Length;
-                string output = "";
-                int length2 = length;
-                for (int j = 0; j < length; j++)
-                {
-                    if (ch[j] < 127 && ch[j] >= 0)
-                    {
-                        int code = Program.ascii_to_scan_code_table[(int)ch[j]];
-                        if (code != 0)
-                        {
-                            output += code.ToString();
-                            if (j != length - 1) output += ",";
-                        }
-                        else
-                        {
-                            length2--;
-                        }
-                    }
-                    else if (ch[j] <= 0xFFFF)
-                    {
-                        //汉字                     
-                        ushort a3 = ConvertChinese1(ch[j], textBox3.Text);
-                        output += a3.ToString();
-                        //Printhex((int)a3);
-                        if (j != length - 1) output += ",";
-                    }
-                }
-                textBox2.Text = length2.ToString() + ",";
-                textBox2.Text += output;
-            }
-            catch (Exception ex) { Print(ex.ToString()); }
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+          
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        
+
+        }
+
+        int encode_index = 0;
+        private void button4_Click(object sender, EventArgs e)
+        {
+            encode_index--;
+            if (encode_index == -1) encode_index = 6;
+            textBox3.Text = encodingtype[encode_index];
+            convertToolStripMenuItem.Text = encodingtype[encode_index];
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            encode_index++;
+            if (encode_index == 7) encode_index = 0;
+            textBox3.Text = encodingtype[encode_index];
+            convertToolStripMenuItem.Text = encodingtype[encode_index];
+        }
+
+        private void TinyToolsLite_Load(object sender, EventArgs e)
+        {
+            if (textBox4.Text != "")
+            {
+                string[] str = textBox4.Text.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
+                if (str.Length != 2) return;
+                ushort vid = Convert.ToUInt16(str[0]);
+                ushort pid = Convert.ToUInt16(str[1]);
+            }
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             Clear();
             try
             {
-                List<HIDInfo> devs = HIDBrowse.Browse();
-                /* display VID and PID for every device found */
-                if (devs.Count == 0)
+                HidDevice[] HidDeviceList = HidDevices.Enumerate(vid, pid).ToArray();
+                if (HidDeviceList == null || HidDeviceList.Length == 0)
                 {
                     Print("Connect usb device and install driver. Try open again");
                     return;
                 }
-                HidDevice = new HIDDev(); bool sign1 = true;
-                foreach (HIDInfo dev in devs)
+                for (int i = 0; i < HidDeviceList.Length; i++)
                 {
-                    string path = dev.Path;
-                    if (path.Contains("vid_dddd&pid_5678&mi_02"))
-                    {
-                        Print(path);
-                        HidDevice.Open(dev);
-                        sign1 = false;
-                        break;
-                    }
+                    Print(HidDeviceList[i].DevicePath);
+                    if (HidDeviceList[i].DevicePath.Contains("&mi_02")) { HidDevice = HidDeviceList[i]; break; }
                 }
-                if (sign1)
+                if (HidDevice == null)
                 {
                     Print("Connect usb device and install driver. Try open again");
                     return;
                 }
                 Print("Device OK");
-                Print("vid: 0x" + vid.ToString("X"));
-                Print("pid: 0x" + pid2.ToString("X"));
             }
             catch (Exception ex)
             {
@@ -171,7 +157,7 @@ namespace TinyToolsLite
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void uploadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
@@ -238,21 +224,53 @@ namespace TinyToolsLite
             catch (Exception ex) { Print(ex.ToString()); }
         }
 
-        int encode_index = 0;
-        private void button4_Click(object sender, EventArgs e)
+        private void convertToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            encode_index--;
-            if (encode_index == -1) encode_index = 6;
-            textBox3.Text = encodingtype[encode_index];
-            button3.Text = encodingtype[encode_index];
-        }
+            try
+            {
+                char[] ch = textBox1.Text.ToArray();
 
-        private void button5_Click(object sender, EventArgs e)
-        {
-            encode_index++;
-            if (encode_index == 7) encode_index = 0;
-            textBox3.Text = encodingtype[encode_index];
-            button3.Text = encodingtype[encode_index];
+                if (ch == null || ch.Length == 0)
+                {
+                    Clear();
+                    Print("Nothing to Convert");
+                    return;
+                }
+                Clear();
+                Print("English 0-127 GBK > " + 0x8080);
+
+                int length = Convert.ToInt32(eepromsize) / 2 - 1;
+                if (ch.Length < length) length = ch.Length;
+                string output = "";
+                int length2 = length;
+                for (int j = 0; j < length; j++)
+                {
+                    if (ch[j] < 127 && ch[j] >= 0)
+                    {
+                        int code = Program.ascii_to_scan_code_table[(int)ch[j]];
+                        if (code != 0)
+                        {
+                            output += code.ToString();
+                            if (j != length - 1) output += ",";
+                        }
+                        else
+                        {
+                            length2--;
+                        }
+                    }
+                    else if (ch[j] <= 0xFFFF)
+                    {
+                        //汉字                     
+                        ushort a3 = ConvertChinese1(ch[j], textBox3.Text);
+                        output += a3.ToString();
+                        //Printhex((int)a3);
+                        if (j != length - 1) output += ",";
+                    }
+                }
+                textBox2.Text = length2.ToString() + ",";
+                textBox2.Text += output;
+            }
+            catch (Exception ex) { Print(ex.ToString()); }
         }
     }
 }
