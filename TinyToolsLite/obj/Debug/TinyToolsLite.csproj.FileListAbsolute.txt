@@ -15,3 +15,4 @@ D:\GitHub\Tinytools\TinyToolsLite\obj\Debug\TinyToolsLite.Properties.Resources.r
 D:\GitHub\Tinytools\TinyToolsLite\obj\Debug\TinyToolsLite.csproj.GenerateResource.Cache
 D:\GitHub\Tinytools\TinyToolsLite\obj\Debug\TinyToolsLite.exe
 D:\GitHub\Tinytools\TinyToolsLite\obj\Debug\TinyToolsLite.pdb
+D:\GitHub\Tinytools\TinyToolsLite\obj\Debug\TinyToolsLite.csprojResolveAssemblyReference.cache

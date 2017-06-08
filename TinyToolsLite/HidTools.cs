@@ -99,24 +99,22 @@ namespace TinyToolsLite
             textBox3.Text = encodingtype[encode_index];
             convertToolStripMenuItem.Text = encodingtype[encode_index];
         }
-
-        private void TinyToolsLite_Load(object sender, EventArgs e)
+       
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (textBox4.Text != "")
             {
                 string[] str = textBox4.Text.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
                 if (str.Length != 2) return;
-                ushort vid = (ushort)Convert.ToInt32(str[0], 16);
-                ushort pid = (ushort)Convert.ToInt32(str[1], 16);
+                 vid = (ushort)Convert.ToInt32(str[0], 16);
+                 pid = (ushort)Convert.ToInt32(str[1], 16);
             }
-        }
-
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        {
             Clear();
+            Print("0x"+vid.ToString("x"));
+            Print("0x" + pid.ToString("x"));
             try
             {
-                HidDevice[] HidDeviceList = HidDevices.Enumerate(vid, pid).ToArray();
+                HidDevice[] HidDeviceList = HidDevices.Enumerate(vid, pid,Convert.ToUInt16(0xFF31)).ToArray();
                 if (HidDeviceList == null || HidDeviceList.Length == 0)
                 {
                     Print("Connect usb device and install driver. Try open again");
@@ -125,7 +123,7 @@ namespace TinyToolsLite
                 for (int i = 0; i < HidDeviceList.Length; i++)
                 {
                     Print(HidDeviceList[i].DevicePath);
-                    if (HidDeviceList[i].DevicePath.Contains("&mi_02")) { HidDevice = HidDeviceList[i]; break; }
+                    HidDevice = HidDeviceList[0]; break; 
                 }
                 if (HidDevice == null)
                 {

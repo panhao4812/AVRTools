@@ -8,3 +8,8 @@ E:\ph\v-usb\hidlibrary\HidLibrary\bin\Debug\HidLibrary.pdb
 E:\ph\v-usb\hidlibrary\HidLibrary\obj\Debug\HidLibrary.csprojResolveAssemblyReference.cache
 E:\ph\v-usb\hidlibrary\HidLibrary\obj\Debug\HidLibrary.dll
 E:\ph\v-usb\hidlibrary\HidLibrary\obj\Debug\HidLibrary.pdb
+D:\GitHub\Tinytools\HidLibrary\bin\Debug\HidLibrary.dll
+D:\GitHub\Tinytools\HidLibrary\bin\Debug\HidLibrary.pdb
+D:\GitHub\Tinytools\HidLibrary\obj\Debug\HidLibrary.csprojResolveAssemblyReference.cache
+D:\GitHub\Tinytools\HidLibrary\obj\Debug\HidLibrary.dll
+D:\GitHub\Tinytools\HidLibrary\obj\Debug\HidLibrary.pdb
