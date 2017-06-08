@@ -83,23 +83,6 @@ namespace TinyToolsLite
             ushort a3 = BitConverter.ToUInt16(data, 0);
             return a3;
         }
-        private void button3_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-          
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        
-
-        }
-
         int encode_index = 0;
         private void button4_Click(object sender, EventArgs e)
         {
@@ -123,8 +106,8 @@ namespace TinyToolsLite
             {
                 string[] str = textBox4.Text.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
                 if (str.Length != 2) return;
-                ushort vid = Convert.ToUInt16(str[0]);
-                ushort pid = Convert.ToUInt16(str[1]);
+                ushort vid = (ushort)Convert.ToInt32(str[0], 16);
+                ushort pid = (ushort)Convert.ToInt32(str[1], 16);
             }
         }
 
