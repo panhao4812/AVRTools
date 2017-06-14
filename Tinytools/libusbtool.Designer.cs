@@ -43,42 +43,46 @@
             this.convertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cMDToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unicodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gBKToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
             // 
-            this.textBox1.BackColor = System.Drawing.Color.Azure;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.textBox1.Location = new System.Drawing.Point(2, 94);
+            this.textBox1.Location = new System.Drawing.Point(2, 147);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(385, 458);
+            this.textBox1.Size = new System.Drawing.Size(385, 405);
             this.textBox1.TabIndex = 0;
             // 
             // textBox2
             // 
-            this.textBox2.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBox2.ForeColor = System.Drawing.Color.Black;
-            this.textBox2.Location = new System.Drawing.Point(393, 94);
+            this.textBox2.Location = new System.Drawing.Point(393, 147);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox2.Size = new System.Drawing.Size(385, 458);
+            this.textBox2.Size = new System.Drawing.Size(385, 405);
             this.textBox2.TabIndex = 2;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(0, 31);
+            this.textBox3.BackColor = System.Drawing.Color.White;
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox3.Location = new System.Drawing.Point(2, 31);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
             this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox3.Size = new System.Drawing.Size(782, 57);
+            this.textBox3.Size = new System.Drawing.Size(776, 110);
             this.textBox3.TabIndex = 4;
             // 
             // menuStrip1
@@ -101,32 +105,32 @@
             this.libusbToolStripMenuItem,
             this.openToolStripMenuItem,
             this.uploadToolStripMenuItem1});
-            this.Driver.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.Driver.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.Driver.Name = "Driver";
             this.Driver.Size = new System.Drawing.Size(69, 24);
             this.Driver.Text = "Libusb";
             // 
             // libusbToolStripMenuItem
             // 
-            this.libusbToolStripMenuItem.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.libusbToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.libusbToolStripMenuItem.Name = "libusbToolStripMenuItem";
-            this.libusbToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
+            this.libusbToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.libusbToolStripMenuItem.Text = "Driver";
             this.libusbToolStripMenuItem.Click += new System.EventHandler(this.libusbToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
-            this.openToolStripMenuItem.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.openToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // uploadToolStripMenuItem1
             // 
-            this.uploadToolStripMenuItem1.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.uploadToolStripMenuItem1.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.uploadToolStripMenuItem1.Name = "uploadToolStripMenuItem1";
-            this.uploadToolStripMenuItem1.Size = new System.Drawing.Size(137, 26);
+            this.uploadToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
             this.uploadToolStripMenuItem1.Text = "Upload";
             this.uploadToolStripMenuItem1.Click += new System.EventHandler(this.uploadToolStripMenuItem1_Click);
             // 
@@ -137,8 +141,7 @@
             this.uploadToolStripMenuItem});
             this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
             this.connectToolStripMenuItem.Size = new System.Drawing.Size(77, 24);
-            this.connectToolStripMenuItem.Text = "HidRaw";
-            this.connectToolStripMenuItem.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
+            this.connectToolStripMenuItem.Text = "HidRaw";         
             // 
             // openToolStripMenuItem1
             // 
@@ -156,27 +159,43 @@
             // 
             // convertToolStripMenuItem
             // 
+            this.convertToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.unicodeToolStripMenuItem,
+            this.gBKToolStripMenuItem});
             this.convertToolStripMenuItem.Name = "convertToolStripMenuItem";
             this.convertToolStripMenuItem.Size = new System.Drawing.Size(79, 24);
             this.convertToolStripMenuItem.Text = "Convert";
-            this.convertToolStripMenuItem.Click += new System.EventHandler(this.convertToolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cMDToolsToolStripMenuItem});
-            this.toolsToolStripMenuItem.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.toolsToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
             this.toolsToolStripMenuItem.Text = "Tools";
             // 
             // cMDToolsToolStripMenuItem
             // 
-            this.cMDToolsToolStripMenuItem.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.cMDToolsToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.cMDToolsToolStripMenuItem.Name = "cMDToolsToolStripMenuItem";
-            this.cMDToolsToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
+            this.cMDToolsToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.cMDToolsToolStripMenuItem.Text = "CMD Tools";
             this.cMDToolsToolStripMenuItem.Click += new System.EventHandler(this.cMDToolsToolStripMenuItem_Click);
+            // 
+            // unicodeToolStripMenuItem
+            // 
+            this.unicodeToolStripMenuItem.Name = "unicodeToolStripMenuItem";
+            this.unicodeToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.unicodeToolStripMenuItem.Text = "Unicode";
+            this.unicodeToolStripMenuItem.Click += new System.EventHandler(this.unicodeToolStripMenuItem_Click);
+            // 
+            // gBKToolStripMenuItem
+            // 
+            this.gBKToolStripMenuItem.Name = "gBKToolStripMenuItem";
+            this.gBKToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.gBKToolStripMenuItem.Text = "GBK";
+            this.gBKToolStripMenuItem.Click += new System.EventHandler(this.gBKToolStripMenuItem_Click);
             // 
             // libusbtool
             // 
@@ -215,5 +234,7 @@
         private System.Windows.Forms.ToolStripMenuItem uploadToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem uploadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem unicodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gBKToolStripMenuItem;
     }
 }

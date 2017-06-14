@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -28,26 +27,19 @@ namespace TinyToolsLite
         string[] encodingtype =
        {
             "GBK",
-            "BigEndianUnicode",
             "Default",
             "Unicode",
-            "UTF32",
-            "UTF7",
             "UTF8"
         };
         public ushort ConvertChinese1(char str, string code)
         {
             string str2 = Convert.ToString(str);
             byte[] data; ushort a3;
-            if (code == encodingtype[0])
+            if (code == "GBK")
             {
                 return ConvertChinese2(str, code);
-            }
-            else if (code == encodingtype[1])
-            {
-                data = Encoding.BigEndianUnicode.GetBytes(str2);
-            }
-            else if (code == encodingtype[2])
+            }       
+            else if (code == "Default")
             {
                 data = Encoding.Default.GetBytes(str2);
                 string Data1 = data[0].ToString("x"); if (Data1.Length == 1) Data1 = "0" + Data1;
@@ -56,20 +48,13 @@ namespace TinyToolsLite
                 a3 = Convert.ToUInt16(str2, 16);
                 return a3;
             }
-            else if (code == encodingtype[3])
+            else if (code == "Unicode")
             {
                 data = Encoding.Unicode.GetBytes(str2);
-            }
-            else if (code == encodingtype[4]) data = Encoding.UTF32.GetBytes(str2);
-            else if (code == encodingtype[5]) data = Encoding.UTF7.GetBytes(str2);
-            else if (code == encodingtype[6])
+            }  
+            else if (code == "UTF8")
             {
-                data = Encoding.UTF8.GetBytes(str2);
-                string Data1 = data[0].ToString("x"); if (Data1.Length == 1) Data1 = "0" + Data1;
-                string Data2 = data[1].ToString("x"); if (Data2.Length == 1) Data2 = "0" + Data2;
-                str2 = Data1 + Data2;
-                a3 = Convert.ToUInt16(str2, 16);
-                return a3;
+                data = Encoding.UTF8.GetBytes(str2);               
             }
             else { Print("encoding error"); return 0; }
             string data1 = data[1].ToString("x"); if (data1.Length == 1) data1 = "0" + data1;
@@ -92,27 +77,23 @@ namespace TinyToolsLite
         private void button4_Click(object sender, EventArgs e)
         {
             encode_index--;
-            if (encode_index == -1) encode_index = 6;
-            textBox3.Text = encodingtype[encode_index];
-            convertToolStripMenuItem.Text = encodingtype[encode_index];
+            if (encode_index == -1) encode_index = encodingtype.Length-1;
+            button1.Text = encodingtype[encode_index];          
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             encode_index++;
-            if (encode_index == 7) encode_index = 0;
-            textBox3.Text = encodingtype[encode_index];
-            convertToolStripMenuItem.Text = encodingtype[encode_index];
+            if (encode_index == encodingtype.Length) encode_index = 0;
+            button1.Text = encodingtype[encode_index];
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (textBox4.Text != "")
+            if (textBox4.Text != "" && textBox3.Text != "")
             {
-                string[] str = textBox4.Text.Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
-                if (str.Length != 2) return;
-                vid = (ushort)Convert.ToInt32(str[0], 16);
-                pid = (ushort)Convert.ToInt32(str[1], 16);
+                vid = (ushort)Convert.ToInt32(textBox3.Text, 16);
+                pid = (ushort)Convert.ToInt32(textBox4.Text, 16);
             }
             Clear();
             Print("0x" + vid.ToString("x"));
@@ -208,9 +189,8 @@ namespace TinyToolsLite
                 Print("Upload finished");
             }
             catch (Exception ex) { Print(ex.ToString()); }
-        }
-
-        private void convertToolStripMenuItem_Click(object sender, EventArgs e)
+        }  
+        private void button1_Click(object sender, EventArgs e)
         {
             try
             {
@@ -247,7 +227,7 @@ namespace TinyToolsLite
                     else if (ch[j] <= 0xFFFF)
                     {
                         //汉字                     
-                        ushort a3 = ConvertChinese1(ch[j], textBox3.Text);
+                        ushort a3 = ConvertChinese1(ch[j], button1.Text);
                         output += a3.ToString();
                         //Printhex((int)a3);
                         if (j != length - 1) output += ",";
@@ -259,9 +239,14 @@ namespace TinyToolsLite
             catch (Exception ex) { Print(ex.ToString()); }
         }
 
-        private void TinyToolsLite_Load(object sender, EventArgs e)
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Print( "Author zian1");
+            Print( "step1: Click HidRaw-Open to Connect the device.");
+            Print( "step2: Copy or type something into textbox on the left.");
+            Print( "step3: Click GBK button to generate GBK code.");
+            Print( "step4: Click HidRaw-Upload to burn codes into device.");
+            Print("enjoy!");
         }
     }
 }

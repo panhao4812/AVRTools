@@ -97,54 +97,6 @@ namespace Tinytools
             Print(s);
             Print(Convert.ToString(str, 2));
         }
-        private void convertToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                char[] ch = textBox1.Text.ToArray();
-
-                if (ch == null || ch.Length == 0)
-                {
-                    Clear();
-                    Print("Nothing to Convert");
-                    return;
-                }
-                Clear();
-                Print("English 0-127 GBK > " + 0x8080);
-
-                int length = Convert.ToInt32(eepromsize) / 2 - 1;
-                if (ch.Length < length) length = ch.Length;
-                string output = "";
-                int length2 = length;
-                for (int j = 0; j < length; j++)
-                {
-                    if (ch[j] < 127 && ch[j] >= 0)
-                    {
-                        int code = Program.ascii_to_scan_code_table[(int)ch[j]];
-                        if (code != 0)
-                        {
-                            output += code.ToString();
-                            if (j != length - 1) output += ",";
-                        }
-                        else
-                        {
-                            length2--;
-                        }
-                    }
-                    else if (ch[j] <= 0xFFFF)
-                    {
-                        //汉字                     
-                        ushort a3 = ConvertChinese2(ch[j], "GBK");
-                        output += a3.ToString();
-                        //Printhex((int)a3);
-                        if (j != length - 1) output += ",";
-                    }
-                }
-                textBox2.Text = length2.ToString() + ",";
-                textBox2.Text += output;
-            }
-            catch (Exception ex) { Print(ex.ToString()); }
-        }
         public static int GetHexadecimalValue(String strColorValue)
         {
             char[] nums = strColorValue.ToCharArray();
@@ -195,19 +147,22 @@ namespace Tinytools
         {
             string str2 = Convert.ToString(str);
             byte[] data = Encoding.Unicode.GetBytes(str2);
-            str2 = data[1].ToString("x") + data[0].ToString("x");
+            string Data1 = data[0].ToString("x"); if (Data1.Length == 1) Data1 = "0" + Data1;
+            string Data2 = data[1].ToString("x"); if (Data2.Length == 1) Data2 = "0" + Data2;
+            str2 = Data2 + Data1;
             ushort a3 = Convert.ToUInt16(str2, 16);
             return a3;
         }
         public ushort ConvertChinese2(char str, string code)
-        {
+        {    
             string str2 = Convert.ToString(str);
             byte[] data = Encoding.GetEncoding(code).GetBytes(str2);
-            byte temple = data[0];
-            data[0] = data[1]; data[1] = temple;
-            ushort a3 = BitConverter.ToUInt16(data, 0);
-            return a3;
-        }
+            string Data1 = data[0].ToString("x"); if (Data1.Length == 1) Data1 = "0" + Data1;
+            string Data2 = data[1].ToString("x"); if (Data2.Length == 1) Data2 = "0" + Data2;
+            str2 = Data1 + Data2;
+            ushort a3 = Convert.ToUInt16(str2, 16);
+            return a3;     
+    }
         private void libusbinf()
         {
             try
@@ -419,11 +374,103 @@ namespace Tinytools
             {
                 Print(ex.ToString());
             }
+        }     
+        private void unicodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                char[] ch = textBox1.Text.ToArray();
+
+                if (ch == null || ch.Length == 0)
+                {
+                    Clear();
+                    Print("Nothing to Convert");
+                    return;
+                }
+                Clear();
+                Print("English 0-127 GBK > " + 0x8080);
+
+                int length = Convert.ToInt32(eepromsize) / 2 - 1;
+                if (ch.Length < length) length = ch.Length;
+                string output = "";
+                int length2 = length;
+                for (int j = 0; j < length; j++)
+                {
+                    if (ch[j] < 127 && ch[j] >= 0)
+                    {
+                        int code = Program.ascii_to_scan_code_table[(int)ch[j]];
+                        if (code != 0)
+                        {
+                            output += code.ToString();
+                            if (j != length - 1) output += ",";
+                        }
+                        else
+                        {
+                            length2--;
+                        }
+                    }
+                    else if (ch[j] <= 0xFFFF)
+                    {
+                        //汉字                     
+                        ushort a3 = ConvertChinese1(ch[j]);
+                        output += a3.ToString();
+                        //Printhex((int)a3);
+                        if (j != length - 1) output += ",";
+                    }
+                }
+                textBox2.Text = length2.ToString() + ",";
+                textBox2.Text += output;
+            }
+            catch (Exception ex) { Print(ex.ToString()); }
         }
 
-        private void connectToolStripMenuItem_Click(object sender, EventArgs e)
+        private void gBKToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            try
+            {
+                char[] ch = textBox1.Text.ToArray();
 
+                if (ch == null || ch.Length == 0)
+                {
+                    Clear();
+                    Print("Nothing to Convert");
+                    return;
+                }
+                Clear();
+                Print("English 0-127 GBK > " + 0x8080);
+
+                int length = Convert.ToInt32(eepromsize) / 2 - 1;
+                if (ch.Length < length) length = ch.Length;
+                string output = "";
+                int length2 = length;
+                for (int j = 0; j < length; j++)
+                {
+                    if (ch[j] < 127 && ch[j] >= 0)
+                    {
+                        int code = Program.ascii_to_scan_code_table[(int)ch[j]];
+                        if (code != 0)
+                        {
+                            output += code.ToString();
+                            if (j != length - 1) output += ",";
+                        }
+                        else
+                        {
+                            length2--;
+                        }
+                    }
+                    else if (ch[j] <= 0xFFFF)
+                    {
+                        //汉字                     
+                        ushort a3 = ConvertChinese2(ch[j], "GBK");
+                        output += a3.ToString();
+                        //Printhex((int)a3);
+                        if (j != length - 1) output += ",";
+                    }
+                }
+                textBox2.Text = length2.ToString() + ",";
+                textBox2.Text += output;
+            }
+            catch (Exception ex) { Print(ex.ToString()); }
         }
 
         private void uploadToolStripMenuItem_Click(object sender, EventArgs e)
@@ -498,7 +545,5 @@ namespace Tinytools
                 catch (Exception ex) { Print(ex.ToString()); }
             }
         }
-
-
     }
 }
