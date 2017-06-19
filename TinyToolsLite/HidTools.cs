@@ -248,5 +248,10 @@ namespace TinyToolsLite
             Print( "step4: Click HidRaw-Upload to burn codes into device.");
             Print("enjoy!");
         }
+
+        private void TinyToolsLite_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

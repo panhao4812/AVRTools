@@ -15,7 +15,7 @@ namespace Tinytools
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new libusbtool());
+            Application.Run(new MainWindow());
         }
         public static int[] ascii_to_scan_code_table = {
 	// /* ASCII:   0 */

@@ -238,6 +238,7 @@
             this.MaximizeBox = false;
             this.Name = "TinyToolsLite";
             this.Text = "TinyToolsLite v2.22";
+            this.Load += new System.EventHandler(this.TinyToolsLite_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
