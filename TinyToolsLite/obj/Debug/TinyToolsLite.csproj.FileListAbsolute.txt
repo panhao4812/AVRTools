@@ -16,3 +16,4 @@ D:\GitHub\Tinytools\TinyToolsLite\obj\Debug\TinyToolsLite.csproj.GenerateResourc
 D:\GitHub\Tinytools\TinyToolsLite\obj\Debug\TinyToolsLite.exe
 D:\GitHub\Tinytools\TinyToolsLite\obj\Debug\TinyToolsLite.pdb
 D:\GitHub\Tinytools\TinyToolsLite\obj\Debug\TinyToolsLite.csprojResolveAssemblyReference.cache
+D:\GitHub\Tinytools\TinyToolsLite\obj\Debug\TinyToolsLite.GH60_Tools.resources

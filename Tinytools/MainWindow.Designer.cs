@@ -70,14 +70,9 @@
             this.m_flash = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.usbpcap_box = new System.Windows.Forms.TextBox();
+            this.pstools_box = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.wireshark_box = new System.Windows.Forms.TextBox();
             this.usbpcap = new System.Windows.Forms.Button();
-            this.wireshark = new System.Windows.Forms.Button();
-            this.capture = new System.Windows.Forms.Button();
-            this.cap_box = new System.Windows.Forms.TextBox();
-            this.cap = new System.Windows.Forms.Label();
             this.usbpcap_cd = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -504,15 +499,15 @@
             this.label9.TabIndex = 53;
             this.label9.Text = "----------------------------------avrdude----------------------------------";
             // 
-            // usbpcap_box
+            // pstools_box
             // 
-            this.usbpcap_box.BackColor = System.Drawing.SystemColors.Menu;
-            this.usbpcap_box.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.usbpcap_box.Location = new System.Drawing.Point(118, 390);
-            this.usbpcap_box.Multiline = true;
-            this.usbpcap_box.Name = "usbpcap_box";
-            this.usbpcap_box.Size = new System.Drawing.Size(392, 30);
-            this.usbpcap_box.TabIndex = 54;
+            this.pstools_box.BackColor = System.Drawing.SystemColors.Menu;
+            this.pstools_box.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.pstools_box.Location = new System.Drawing.Point(118, 390);
+            this.pstools_box.Multiline = true;
+            this.pstools_box.Name = "pstools_box";
+            this.pstools_box.Size = new System.Drawing.Size(392, 30);
+            this.pstools_box.TabIndex = 54;
             // 
             // label10
             // 
@@ -522,17 +517,7 @@
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(607, 15);
             this.label10.TabIndex = 55;
-            this.label10.Text = "----------------------------------usbpcap----------------------------------";
-            // 
-            // wireshark_box
-            // 
-            this.wireshark_box.BackColor = System.Drawing.SystemColors.Menu;
-            this.wireshark_box.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.wireshark_box.Location = new System.Drawing.Point(118, 426);
-            this.wireshark_box.Multiline = true;
-            this.wireshark_box.Name = "wireshark_box";
-            this.wireshark_box.Size = new System.Drawing.Size(267, 30);
-            this.wireshark_box.TabIndex = 56;
+            this.label10.Text = "----------------------------------pstools----------------------------------";
             // 
             // usbpcap
             // 
@@ -542,53 +527,9 @@
             this.usbpcap.Name = "usbpcap";
             this.usbpcap.Size = new System.Drawing.Size(97, 30);
             this.usbpcap.TabIndex = 57;
-            this.usbpcap.Text = "usbpcap";
+            this.usbpcap.Text = "path";
             this.usbpcap.UseVisualStyleBackColor = true;
             this.usbpcap.Click += new System.EventHandler(this.usbpcap_Click);
-            // 
-            // wireshark
-            // 
-            this.wireshark.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.wireshark.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.wireshark.Location = new System.Drawing.Point(11, 426);
-            this.wireshark.Name = "wireshark";
-            this.wireshark.Size = new System.Drawing.Size(97, 30);
-            this.wireshark.TabIndex = 58;
-            this.wireshark.Text = "wireshark";
-            this.wireshark.UseVisualStyleBackColor = true;
-            this.wireshark.Click += new System.EventHandler(this.wireshark_Click);
-            // 
-            // capture
-            // 
-            this.capture.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.capture.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.capture.Location = new System.Drawing.Point(516, 426);
-            this.capture.Name = "capture";
-            this.capture.Size = new System.Drawing.Size(97, 30);
-            this.capture.TabIndex = 60;
-            this.capture.Text = "Capture";
-            this.capture.UseVisualStyleBackColor = true;
-            this.capture.Click += new System.EventHandler(this.capture_Click);
-            // 
-            // cap_box
-            // 
-            this.cap_box.BackColor = System.Drawing.SystemColors.Menu;
-            this.cap_box.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.cap_box.Location = new System.Drawing.Point(420, 426);
-            this.cap_box.Multiline = true;
-            this.cap_box.Name = "cap_box";
-            this.cap_box.Size = new System.Drawing.Size(90, 30);
-            this.cap_box.TabIndex = 62;
-            // 
-            // cap
-            // 
-            this.cap.AutoSize = true;
-            this.cap.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.cap.Location = new System.Drawing.Point(387, 434);
-            this.cap.Name = "cap";
-            this.cap.Size = new System.Drawing.Size(31, 15);
-            this.cap.TabIndex = 61;
-            this.cap.Text = "cap";
             // 
             // usbpcap_cd
             // 
@@ -598,7 +539,7 @@
             this.usbpcap_cd.Name = "usbpcap_cd";
             this.usbpcap_cd.Size = new System.Drawing.Size(97, 30);
             this.usbpcap_cd.TabIndex = 63;
-            this.usbpcap_cd.Text = "CD";
+            this.usbpcap_cd.Text = "PSTools";
             this.usbpcap_cd.UseVisualStyleBackColor = true;
             this.usbpcap_cd.Click += new System.EventHandler(this.usbpcap_cd_Click);
             // 
@@ -606,16 +547,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(625, 467);
+            this.ClientSize = new System.Drawing.Size(625, 431);
             this.Controls.Add(this.usbpcap_cd);
-            this.Controls.Add(this.cap_box);
-            this.Controls.Add(this.cap);
-            this.Controls.Add(this.capture);
-            this.Controls.Add(this.wireshark);
             this.Controls.Add(this.usbpcap);
-            this.Controls.Add(this.wireshark_box);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.usbpcap_box);
+            this.Controls.Add(this.pstools_box);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.m_path_flash);
@@ -708,14 +644,9 @@
         private System.Windows.Forms.Button m_flash;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox usbpcap_box;
+        private System.Windows.Forms.TextBox pstools_box;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox wireshark_box;
         private System.Windows.Forms.Button usbpcap;
-        private System.Windows.Forms.Button wireshark;
-        private System.Windows.Forms.Button capture;
-        private System.Windows.Forms.TextBox cap_box;
-        private System.Windows.Forms.Label cap;
         private System.Windows.Forms.Button usbpcap_cd;
     }
 }

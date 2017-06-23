@@ -1,0 +1,7 @@
+1、下载PStools工具包 https://technet.microsoft.com/en-us/sysinternals/bb897553.aspx
+
+2、 在cmd中用工具打开注册表 psexec.exe -i -d -s regedit.exe
+
+3、进入HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\USB\删除已知要删除的VID设备
+
+4、OK,此时再插入该Device，即被当做全新设备插入，装载驱动。

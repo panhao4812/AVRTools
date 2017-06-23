@@ -64,6 +64,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GH60_Tools.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GH60_Tools.Designer.cs">
+      <DependentUpon>GH60_Tools.cs</DependentUpon>
+    </Compile>
     <Compile Include="Hidlib\Extensions.cs" />
     <Compile Include="Hidlib\HidAsyncState.cs" />
     <Compile Include="Hidlib\HidDevice.cs" />
@@ -86,6 +92,10 @@
     <Compile Include="Hidlib\NativeMethods.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XD60\XD60.cs" />
+    <EmbeddedResource Include="GH60_Tools.resx">
+      <DependentUpon>GH60_Tools.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HidTools.resx">
       <DependentUpon>HidTools.cs</DependentUpon>
     </EmbeddedResource>

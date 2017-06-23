@@ -56,9 +56,7 @@ namespace Tinytools
                         else if (chara[0] == "lock") lock_box.Text = chara[1];
                         else if (chara[0] == "flash") flash_box.Text = chara[1];
                         else if (chara[0] == "eeprom") eeprom_box.Text = chara[1];
-                        else if (chara[0] == "usbpcap") usbpcap_box.Text = chara[1];
-                        else if (chara[0] == "wireshark") wireshark_box.Text = chara[1];
-                        else if (chara[0] == "cap") cap_box.Text = chara[1];
+                        else if (chara[0] == "pstools") pstools_box.Text = chara[1];
                     }
                 }
                 srd.Close();
@@ -84,9 +82,7 @@ namespace Tinytools
                 output += "efuse," + efuse_box.Text + "\r\n";
                 output += "lock," + lock_box.Text + "\r\n";
                 output += "eeprom," + eeprom_box.Text + "\r\n";
-                output += "usbpcap," + usbpcap_box.Text + "\r\n";
-                output += "wireshark," + wireshark_box.Text + "\r\n";
-                output += "cap," + cap_box.Text;
+                output += "pstools," + pstools_box.Text + "\r\n";  
                 stream.Write(output);
                 stream.Flush();
                 stream.Close();
@@ -262,34 +258,18 @@ namespace Tinytools
             of.Filter = "(*.exe)|*.exe";
             if (of.ShowDialog() == DialogResult.OK)
             {
-                usbpcap_box.Text = of.FileName.ToString();
+                pstools_box.Text = of.FileName.ToString();
             }
-            usbpcap_box.Text = usbpcap_box.Text.Replace('\\', '/');
-        }
-        private void wireshark_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog of = new OpenFileDialog();
-            of.Filter = "(*.exe)|*.exe";
-            if (of.ShowDialog() == DialogResult.OK)
-            {
-                wireshark_box.Text = of.FileName.ToString();
-            }
-            wireshark_box.Text = wireshark_box.Text.Replace('\\', '/');
-        }
-        private void capture_Click(object sender, EventArgs e)
-        {
-            if (usbpcap_box.Text == ""|| wireshark_box.Text == ""||cap_box.Text=="") return;                    
-            Main_box.Text = @"USBPcapCMD.exe -d \\.\" +
-            cap_box.Text +@" -o - | "+ '"' + wireshark_box.Text+'"'+ @" -k -i -";
-        }
+            pstools_box.Text = pstools_box.Text.Replace('\\', '/');
+        }      
         private void usbpcap_cd_Click(object sender, EventArgs e)
         {
-            if (usbpcap_box.Text == "") return;
-            Main_box.Text = "cd " + Path.GetDirectoryName(usbpcap_box.Text);
-            char c1 = usbpcap_box.Text.ToCharArray()[0];
-            char c2 = usbpcap_box.Text.ToCharArray()[1];
+            if (pstools_box.Text == "") return;
+            char c1 = pstools_box.Text.ToCharArray()[0];
+            char c2 = pstools_box.Text.ToCharArray()[1];
             char[] c3 = { c1, c2 };
             printw(new string(c3));
+            Main_box.Text = Path.GetDirectoryName(pstools_box.Text)+ "\\psexec.exe -i -d -s regedit.exe";
         }
     }
 }

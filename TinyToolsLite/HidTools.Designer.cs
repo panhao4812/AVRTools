@@ -123,7 +123,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(53, 20);
             this.textBox4.TabIndex = 12;
-            this.textBox4.Text = "3412";
+            this.textBox4.Text = "3414";
             this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // menuStrip1
@@ -194,7 +194,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(53, 20);
             this.textBox3.TabIndex = 15;
-            this.textBox3.Text = "DDDD";
+            this.textBox3.Text = "CCCC";
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label1
