@@ -1,103 +1,111 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TinyToolsLite
 {
     public partial class GH60_Tools : Form
     {
+        public void Clear()
+        {
+            Box2.Text = "";
+        }
+        public void Print(Object str)
+        {
+            Box2.Text += str.ToString() + "\r\n";
+        }
         XD60 _xd60 = new XD60();
-        double keycapsize = 11;
-        double keyunitsize =0.5;
-        static int _r=0;
-        static int _c=0;
         public GH60_Tools()
         {
             InitializeComponent();       
         }
-        private void GH60_Tools_Load(object sender, EventArgs e)
+        private void convertToolStripMenuItem_Click(object sender, EventArgs e)
         {
-                  
-        }
+            for (int r = 0; r < this.dataGridView1.RowCount; r++)
+            {
+                for (int c = 0; c < this.dataGridView1.ColumnCount; c++)
+                {
+                }
 
+            }
+            Clear();
+           Print( _xd60.ToEEP());
+        }
         private void xD60ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.panel1.Controls.Clear();
-            for (int r = 0; r < _xd60.ROWS; r++)
-            {
-                for (int c = 0; c < _xd60.COLS; c++)
+            for (int r = 0; r < this.dataGridView1.RowCount; r++)
+            {      
+                for (int c = 0; c < this.dataGridView1.ColumnCount; c++)
                 {
-                    byte mask = _xd60.keymask[r, c];
-                    if (mask != 0)
+                    string str1 = _xd60.hexaKeys0[r, c];   
+                    this.dataGridView1.Rows[r].Cells[c].Value = str1;
+                    if (str1.ToCharArray().Length > 9)
                     {
-                        MButton bu = new MButton(r,c);
-                        bu.FlatStyle = FlatStyle.Flat;
-                        bu.BackColor = Color.White;
-                        bu.Text = _xd60.hexaKeys0[r, c].ToString();
-                        bu.Location = new Point((int)(_xd60.posX[r, c] * keycapsize) + 60,
-                            (int)(keycapsize * 4 * _xd60.posY[r, c] + 10));
-                        bu.Size = new Size((int)(keycapsize * _xd60.lengthX[r, c] - keyunitsize), (int)(keycapsize * 4 - keyunitsize));
-                        this.panel1.Controls.Add(bu);
+                        this.dataGridView1.Rows[r].Cells[c].Style.Font = new Font("Area", 4);
                     }
-                }
-            }
-        }
-
-        private void layer2ToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            this.panel1.Controls.Clear();
-            for (int r = 0; r < _xd60.ROWS; r++)
-            {
-                for (int c = 0; c < _xd60.COLS; c++)
-                {
-                    byte mask = _xd60.keymask[r, c];
-                    if (mask != 0)
+                    else if (str1.ToCharArray().Length > 8)
                     {
-                        MButton bu = new MButton(r,c);
-                        bu.FlatStyle = FlatStyle.Flat;
-                        bu.BackColor = Color.White;
-                     
-                        bu.Text = _xd60.hexaKeys1[r, c].ToString();
-                        bu.Location = new Point((int)(_xd60.posX[r, c] * keycapsize) + 60,
-                            (int)(keycapsize * 4 * _xd60.posY[r, c] + 10));
-                        bu.Size = new Size((int)(keycapsize * _xd60.lengthX[r, c] - keyunitsize), (int)(keycapsize * 4 - keyunitsize));
-                        this.panel1.Controls.Add(bu);
+                        this.dataGridView1.Rows[r].Cells[c].Style.Font = new Font("Area", 5);
                     }
-                }
-            }
-        }
-      public class MButton : Button
-        {
-            int r,c;
-            public  MButton(int R,int C)
-            {
-                r = R;c = C;
-                this.Enter += new EventHandler(button1_Enter);
-                this.Leave += new EventHandler(button1_Leave);
-            }
-            private void button1_Enter(object sender, EventArgs e)
-            {
-                this.BackColor = Color.Pink;
-                GH60_Tools._c = c;
-                GH60_Tools._r = r;
+                    else if (str1.ToCharArray().Length > 4)
+                    {
+                        this.dataGridView1.Rows[r].Cells[c].Style.Font = new Font("Area", 8);
+                    }
+                    else
+                    {
+                        this.dataGridView1.Rows[r].Cells[c].Style.Font = new Font("Area", 10);
+                    }
 
-            }
-            private void button1_Leave(object sender, EventArgs e)
-            {
-                this.BackColor = Color.White;
+                    str1 = _xd60.hexaKeys1[r, c];
+                    this.dataGridView2.Rows[r].Cells[c].Value = str1;
+                    if (str1.ToCharArray().Length > 9)
+                    {
+                        this.dataGridView2.Rows[r].Cells[c].Style.Font = new Font("Area", 4);
+                    }
+                    else if (str1.ToCharArray().Length > 8)
+                    {
+                        this.dataGridView2.Rows[r].Cells[c].Style.Font = new Font("Area", 5);
+                    }
+                    else if (str1.ToCharArray().Length > 4)
+                    {
+                        this.dataGridView2.Rows[r].Cells[c].Style.Font = new Font("Area", 8);
+                    }
+                    else
+                    {
+                        this.dataGridView2.Rows[r].Cells[c].Style.Font = new Font("Area", 10);
+                    }
+                   
+                }
                
-            }
+            }       
         }
 
-        private void label2_Click(object sender, EventArgs e)
+      
+        private void GH60_Tools_Load(object sender, EventArgs e)
         {
-
+            textBox3.Text = "";
+            for (int i = 0; i < Program.KeyName.Length; i++)
+            {
+                textBox3.Text += Program.KeyName[i] + " ";
+            }
+            dataGridView1.RowCount = 5;  
+            dataGridView1.AutoResizeRows();
+            dataGridView2.RowCount = 5;
+            dataGridView2.AutoResizeRows();
+            for (int i = 0; i < this.dataGridView1.Columns.Count; i++)
+            {
+                this.dataGridView1.Columns[i].Width = 67;
+                this.dataGridView2.Columns[i].Width = 67;
+                this.dataGridView1.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
+                this.dataGridView2.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+            for (int i = 0; i < this.dataGridView1.Rows.Count; i++)
+            {
+                this.dataGridView1.Rows[i].HeaderCell.Value = "r" + i.ToString();
+                this.dataGridView1.Rows[i].Selected = false;
+                this.dataGridView2.Rows[i].HeaderCell.Value = "r" + i.ToString();
+                this.dataGridView2.Rows[i].Selected = false;
+            }                     
         }
     }
 }

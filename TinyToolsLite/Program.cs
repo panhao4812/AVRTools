@@ -18,6 +18,179 @@ namespace TinyToolsLite
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new GH60_Tools());
         }
+
+        public static int name2code(string name)
+        {if (name == "0x00") return 0;
+            for(int i=0;i< KeyName.Length; i++)
+            {
+                string name2 = "";
+                string[] str =KeyName[i].Split(new string[] { "_" }, StringSplitOptions.RemoveEmptyEntries);
+                if (str.Length < 2) return 0xFFFF;
+                for(int k = 1; k < str.Length; k++)
+                {
+                    name2 += str[k];
+                    if (k != str.Length - 1)
+                    { name2 += "_"; }
+                }
+                if (name == name2 || name == KeyName[i] )
+                {
+                    return Keycode[i];
+                }
+            }
+            return 0xFFFF;
+        }
+        public static int[] Keycode =
+        {
+            0x01,0x02,0x04,0x08,0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80,        
+           4,5,6,7,8,9,10,
+           11,12,13,14,15,16,17,18,19,20,
+           21,22,23,24,25,26,27,28,29,30,
+           31,32,33,34,35,36,37,38,39,40,
+           41,42,43,44,45,46,47,48,49,50,
+           51,52,53,54,55,56,57,58,59,60,
+           61,62,63,64,65,66,67,68,69,70,
+           71,72,73,74,75,76,77,78,79,80,
+           81,82,83,84,85,86,87,88,89,90,
+           91,92,93,94,95,96,97,98,99,
+        0x01,0x02,0x04,0x08,0x10,
+        0,
+        0xE2,0xE9,0xEA,0xB5,0xB6,0xB7,0xCC,0xCD,
+        0x81,0x82,0x83
+
+        };
+        public static string[] KeyName =
+        {
+        "KEY_CTRL" ,
+        "KEY_SHIFT" ,
+        "KEY_ALT" ,
+        "KEY_GUI" ,
+        "KEY_LEFT_CTRL" ,
+        "KEY_LEFT_SHIFT" ,
+        "KEY_LEFT_ALT" ,
+        "KEY_LEFT_GUI" ,
+        "KEY_RIGHT_CTRL" ,
+        "KEY_RIGHT_SHIFT" ,
+        "KEY_RIGHT_ALT" ,
+        "KEY_RIGHT_GUI",
+
+        "KEY_A" ,
+        "KEY_B" ,
+        "KEY_C" ,
+        "KEY_D" ,
+        "KEY_E" ,
+        "KEY_F" ,
+        "KEY_G" ,
+        "KEY_H" ,
+        "KEY_I" ,
+        "KEY_J" ,
+        "KEY_K" ,
+        "KEY_L" ,
+        "KEY_M" ,
+        "KEY_N" ,
+        "KEY_O" ,
+        "KEY_P" ,
+        "KEY_Q" ,
+        "KEY_R" ,
+        "KEY_S" ,
+        "KEY_T" ,
+        "KEY_U" ,
+        "KEY_V" ,
+        "KEY_W" ,
+        "KEY_X" ,
+        "KEY_Y" ,
+        "KEY_Z" ,
+        "KEY_1" ,
+        "KEY_2" ,
+        "KEY_3" ,
+        "KEY_4" ,
+        "KEY_5" ,
+        "KEY_6" ,
+        "KEY_7" ,
+        "KEY_8" ,
+        "KEY_9" ,
+        "KEY_0" ,
+        "KEY_ENTER" ,
+        "KEY_ESC" ,
+        "KEY_BACKSPACE" ,
+        "KEY_TAB" ,
+        "KEY_SPACE" ,
+        "KEY_MINUS" ,
+        "KEY_EQUAL" ,
+        "KEY_LEFT_BRACE" ,
+        "KEY_RIGHT_BRACE" ,
+        "KEY_BACKSLASH" ,
+        "KEY_NUMBER" ,
+        "KEY_SEMICOLON" ,
+        "KEY_QUOTE" ,
+        "KEY_TILDE" ,
+        "KEY_COMMA" ,
+        "KEY_PERIOD" ,
+        "KEY_SLASH" ,
+        "KEY_CAPS_LOCK" ,
+        "KEY_F1" ,
+        "KEY_F2" ,
+        "KEY_F3" ,
+        "KEY_F4" ,
+        "KEY_F5" ,
+        "KEY_F6" ,
+        "KEY_F7" ,
+        "KEY_F8" ,
+        "KEY_F9" ,
+        "KEY_F10" ,
+        "KEY_F11" ,
+        "KEY_F12" ,
+        "KEY_PRINTSCREEN" ,
+        "KEY_SCROLL_LOCK" ,
+        "KEY_PAUSE" ,
+        "KEY_INSERT" ,
+        "KEY_HOME" ,
+        "KEY_PAGE_UP" ,
+        "KEY_DELETE" ,
+        "KEY_END" ,
+        "KEY_PAGE_DOWN" ,
+        "KEY_RIGHT" ,
+        "KEY_LEFT" ,
+        "KEY_DOWN" ,
+        "KEY_UP" ,
+        "KEY_NUM_LOCK" ,
+        "KEYPAD_SLASH" ,
+        "KEYPAD_ASTERIX" ,
+        "KEYPAD_MINUS" ,
+        "KEYPAD_PLUS" ,
+        "KEYPAD_ENTER" ,
+        "KEYPAD_1" ,
+        "KEYPAD_2" ,
+        "KEYPAD_3" ,
+        "KEYPAD_4" ,
+        "KEYPAD_5" ,
+        "KEYPAD_6" ,
+        "KEYPAD_7" ,
+        "KEYPAD_8" ,
+        "KEYPAD_9" ,
+        "KEYPAD_0" ,
+        "KEYPAD_PERIOD" ,  //.
+  
+        "MOUSE_LEFT" ,
+        "MOUSE_RIGHT" ,
+        "MOUSE_MID" ,
+        "MOUSE_4" ,
+        "MOUSE_5" ,
+
+        "KEY_FN" ,
+ 
+        "AUDIO_MUTE" ,
+        "AUDIO_VOL_UP" ,
+        "AUDIO_VOL_DOWN" ,
+        "TRANSPORT_NEXT_TRACK" ,
+        "TRANSPORT_PREV_TRACK" ,
+        "TRANSPORT_STOP" ,
+        "TRANSPORT_STOP_EJECT" ,
+        "TRANSPORT_PLAY_PAUSE" ,
+        /* Generic Desktop Page(0x01) - system power control */
+        "SYSTEM_POWER_DOWN" ,
+        "SYSTEM_SLEEP" ,
+        "SYSTEM_WAKE_UP" 
+    };
         public static byte KEY_CTRL = 0x01;
         public static byte KEY_SHIFT = 0x02;
         public static byte KEY_ALT = 0x04;
