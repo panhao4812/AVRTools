@@ -20,19 +20,11 @@ namespace TinyToolsLite
         }
 
         public static int name2code(string name)
-        {if (name == "0x00") return 0;
-            for(int i=0;i< KeyName.Length; i++)
+        {
+            if (name == "0x00") return 0;
+            for (int i = 0; i < KeyName.Length; i++)
             {
-                string name2 = "";
-                string[] str =KeyName[i].Split(new string[] { "_" }, StringSplitOptions.RemoveEmptyEntries);
-                if (str.Length < 2) return 0xFFFF;
-                for(int k = 1; k < str.Length; k++)
-                {
-                    name2 += str[k];
-                    if (k != str.Length - 1)
-                    { name2 += "_"; }
-                }
-                if (name == name2 || name == KeyName[i] )
+                if (name == KeyName[i] || name == KeyName2[i])
                 {
                     return Keycode[i];
                 }
@@ -41,7 +33,7 @@ namespace TinyToolsLite
         }
         public static int[] Keycode =
         {
-            0x01,0x02,0x04,0x08,0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80,        
+            0x01,0x02,0x04,0x08,0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80,
            4,5,6,7,8,9,10,
            11,12,13,14,15,16,17,18,19,20,
            21,22,23,24,25,26,27,28,29,30,
@@ -58,6 +50,156 @@ namespace TinyToolsLite
         0x81,0x82,0x83
 
         };
+        public static int[] Keymask =
+        {
+            0x02,0x02,0x02,0x02,0x02,0x02,0x02,0x02,0x02,0x02,0x02,0x02,
+         1,1,1,1,1,1,1,
+         1,1,1,1,1,1,1,1,1,1,
+         1,1,1,1,1,1,1,1,1,1,
+         1,1,1,1,1,1,1,1,1,1,
+         1,1,1,1,1,1,1,1,1,1,
+         1,1,1,1,1,1,1,1,1,1,
+         1,1,1,1,1,1,1,1,1,1,
+         1,1,1,1,1,1,1,1,1,1,
+         1,1,1,1,1,1,1,1,1,1,
+         1,1,1,1,1,1,1,1,1,1,
+        3,3,3,3,3,
+        6,
+        5,5,5,5,5,5,5,5,
+        4,4,4
+
+        };
+        public static string[] KeyName2 =
+       {
+        "Ctrl" ,
+        "Shift" ,
+        "Alt" ,
+        "Gui" ,
+        "lCtrl" ,
+        "lShift" ,
+        "lAlt" ,
+        "lGui" ,
+        "rCtrl" ,
+        "rShift" ,
+        "rAlt" ,
+        "rGui",
+
+        "A" ,
+        "B" ,
+        "C" ,
+        "D" ,
+        "E" ,
+        "F" ,
+        "G" ,
+        "H" ,
+        "I" ,
+        "J" ,
+        "K" ,
+        "L" ,
+        "M" ,
+        "N" ,
+        "O" ,
+        "P" ,
+        "Q" ,
+        "R" ,
+        "S" ,
+        "T" ,
+        "U" ,
+        "V" ,
+        "W" ,
+        "X" ,
+        "Y" ,
+        "Z" ,
+        "1" ,
+        "2" ,
+        "3" ,
+        "4" ,
+        "5" ,
+        "6" ,
+        "7" ,
+        "8" ,
+        "9" ,
+        "0" ,
+        "Enter" ,
+        "Esc" ,
+        "<--" ,
+        "Tab" ,
+        "Space" ,
+        "-" ,
+        "=" ,
+        "[" ,
+        "]" ,
+        "、" ,
+        "Number" ,
+        ";" ,
+        "“" ,
+        "~" ,
+        "," ,
+        "." ,
+        "/" ,
+        "CapsLK" ,
+        "F1" ,
+        "F2" ,
+        "F3" ,
+        "F4" ,
+        "F5" ,
+        "F6" ,
+        "F7" ,
+        "F8" ,
+        "F9" ,
+        "F10" ,
+        "F11" ,
+        "F12" ,
+        "PrtSc" ,
+        "ScrLk" ,
+        "Pause" ,
+        "Insert" ,
+        "Home" ,
+        "PgUp" ,
+        "Delete" ,
+        "End" ,
+        "PgDn" ,
+        "Right" ,
+        "Left" ,
+        "Down" ,
+        "Up" ,
+        "NumLK" ,
+        "p/" ,
+        "pASTERIX" ,
+        "p-" ,
+        "p+" ,
+        "pENTER" ,
+        "p1" ,
+        "p2" ,
+        "p3" ,
+        "p4" ,
+        "p5" ,
+        "p6" ,
+        "p7" ,
+        "p8" ,
+        "p9" ,
+        "p0" ,
+        "p." ,  //.
+  
+        "mLeft" ,
+        "mRight" ,
+        "mMid" ,
+        "m4" ,
+        "m5" ,
+        "FN" ,
+        "VOL0" ,
+        "VOL+" ,
+        "VOL-" ,
+        "TRANSPORT_NEXT_TRACK" ,
+        "TRANSPORT_PREV_TRACK" ,
+        "TRANSPORT_STOP" ,
+        "TRANSPORT_STOP_EJECT" ,
+        "TRANSPORT_PLAY_PAUSE" ,
+        /* Generic Desktop Page(0x01) - system power control */
+        "POWERD" ,
+        "SLEEP" ,
+        "WAKEUP"
+    };
         public static string[] KeyName =
         {
         "KEY_CTRL" ,
@@ -177,7 +319,7 @@ namespace TinyToolsLite
         "MOUSE_5" ,
 
         "KEY_FN" ,
- 
+
         "AUDIO_MUTE" ,
         "AUDIO_VOL_UP" ,
         "AUDIO_VOL_DOWN" ,
@@ -189,7 +331,7 @@ namespace TinyToolsLite
         /* Generic Desktop Page(0x01) - system power control */
         "SYSTEM_POWER_DOWN" ,
         "SYSTEM_SLEEP" ,
-        "SYSTEM_WAKE_UP" 
+        "SYSTEM_WAKE_UP"
     };
         public static byte KEY_CTRL = 0x01;
         public static byte KEY_SHIFT = 0x02;
