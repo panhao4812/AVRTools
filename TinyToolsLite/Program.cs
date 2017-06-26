@@ -19,13 +19,15 @@ namespace TinyToolsLite
             Application.Run(new GH60_Tools());
         }
 
-        public static int name2code(string name)
+        public static int name2code(string name,out int mask)
         {
+            mask = 0;
             if (name == "0x00") return 0;
             for (int i = 0; i < KeyName.Length; i++)
             {
                 if (name == KeyName[i] || name == KeyName2[i])
                 {
+                    mask = Keymask[i];
                     return Keycode[i];
                 }
             }
@@ -62,12 +64,11 @@ namespace TinyToolsLite
          1,1,1,1,1,1,1,1,1,1,
          1,1,1,1,1,1,1,1,1,1,
          1,1,1,1,1,1,1,1,1,1,
-         1,1,1,1,1,1,1,1,1,1,
+         1,1,1,1,1,1,1,1,1,
         3,3,3,3,3,
         6,
         5,5,5,5,5,5,5,5,
         4,4,4
-
         };
         public static string[] KeyName2 =
        {

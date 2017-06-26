@@ -33,67 +33,7 @@ namespace TinyToolsLite
     {0x11,0x13,0x13,0x13,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x00,0x11},
     {0x22,0x00,0x11,0x11,0x11,0x11,0x10,0x10,0x10,0x15,0x15,0x00,0x10,0x11},
     {0x22,0x66,0x22,0x00,0x00,0x11,0x00,0x10,0x11,0x00,0x66,0x22,0x11,0x11}};
-        public string ushort2byte(ushort a)
-        {
-            byte[] output = BitConverter.GetBytes(a);
-            return output[0].ToString()+","+output[2].ToString();
-        }
-        public string short2byte(short a)
-        {
-            byte[] output = BitConverter.GetBytes(a);
-            return output[0].ToString() + "," + output[2].ToString();
-        }
-        public string byte2byte(byte a)
-        {
-            return a.ToString();
-        }
-        public string ToEEP()
-        {
-            ushort add1 = 10;
-            ushort add2 = (ushort)(add1 + 5);
-            ushort add3 = (ushort)(add2 + 14);
-            ushort add4 = (ushort)(add3 + 70);
-            ushort add5 = (ushort)(add4 + 70);
-            StringBuilder output = new StringBuilder();
-            output.Append(add1); output.Append(",");
-            output.Append(add2); output.Append(",");
-            output.Append(add3); output.Append(",");
-            output.Append(add4); output.Append(",");
-            output.Append(add5); output.Append(",");
-            for(int i = 0; i < ROWS; i++)
-            {
-                output.Append(rowPins[i]); output.Append(",");
-            }
-            for (int i = 0; i < COLS; i++)
-            {
-                output.Append(colPins[i]); output.Append(",");
-            }
-            for (int r = 0; r < ROWS; r++)
-            {
-                for (int c = 0; c < COLS; c++)
-                {
-                    int code = Program.name2code(hexaKeys0[r, c]);
-                    output.Append(code); output.Append(",");
-                }
-            }
-            for (int r = 0; r < ROWS; r++)
-            {
-                for (int c = 0; c < COLS; c++)
-                {
-                    int code = Program.name2code(hexaKeys1[r, c]);
-                    output.Append(code); output.Append(",");
-                }
-            }
-            for (int r = 0; r < ROWS; r++)
-            {
-                for (int c = 0; c < COLS; c++)
-                {
-                    output.Append(keymask[r, c]); output.Append(",");
-                }
-            }
-            output.Append((byte)0);
-            return output.ToString();
-        }
+      
 
 
     }
