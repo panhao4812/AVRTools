@@ -42,7 +42,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.Box2 = new System.Windows.Forms.TextBox();
+            this.Box1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,6 +74,7 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.Box2 = new System.Windows.Forms.TextBox();
             this.KeyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KeyNameShort = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KeyCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -94,7 +95,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1480, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1006, 28);
             this.menuStrip1.TabIndex = 9;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -111,21 +112,21 @@
             // openToolStripMenuItem1
             // 
             this.openToolStripMenuItem1.Name = "openToolStripMenuItem1";
-            this.openToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
+            this.openToolStripMenuItem1.Size = new System.Drawing.Size(142, 26);
             this.openToolStripMenuItem1.Text = "Open";
             this.openToolStripMenuItem1.Click += new System.EventHandler(this.openToolStripMenuItem1_Click);
             // 
             // convertToolStripMenuItem
             // 
             this.convertToolStripMenuItem.Name = "convertToolStripMenuItem";
-            this.convertToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.convertToolStripMenuItem.Size = new System.Drawing.Size(142, 26);
             this.convertToolStripMenuItem.Text = "Convert";
             this.convertToolStripMenuItem.Click += new System.EventHandler(this.convertToolStripMenuItem_Click);
             // 
             // uploadToolStripMenuItem
             // 
             this.uploadToolStripMenuItem.Name = "uploadToolStripMenuItem";
-            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(142, 26);
             this.uploadToolStripMenuItem.Text = "Upload";
             this.uploadToolStripMenuItem.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click);
             // 
@@ -210,20 +211,21 @@
             this.textBox2.Text = "3415";
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // Box2
+            // Box1
             // 
-            this.Box2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Box1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.Box2.BackColor = System.Drawing.Color.White;
-            this.Box2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Box2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Box2.Location = new System.Drawing.Point(0, 409);
-            this.Box2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Box2.Multiline = true;
-            this.Box2.Name = "Box2";
-            this.Box2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.Box2.Size = new System.Drawing.Size(500, 340);
-            this.Box2.TabIndex = 15;
+            this.Box1.BackColor = System.Drawing.Color.White;
+            this.Box1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Box1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Box1.Location = new System.Drawing.Point(2, 409);
+            this.Box1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Box1.Multiline = true;
+            this.Box1.Name = "Box1";
+            this.Box1.ReadOnly = true;
+            this.Box1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.Box1.Size = new System.Drawing.Size(330, 340);
+            this.Box1.TabIndex = 15;
             // 
             // dataGridView1
             // 
@@ -260,7 +262,7 @@
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView1.RowHeadersWidth = 55;
             this.dataGridView1.RowTemplate.Height = 30;
-            this.dataGridView1.Size = new System.Drawing.Size(1474, 185);
+            this.dataGridView1.Size = new System.Drawing.Size(1000, 185);
             this.dataGridView1.TabIndex = 19;
             this.dataGridView1.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEnter);
             this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
@@ -496,7 +498,7 @@
             this.dataGridView2.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView2.RowHeadersWidth = 55;
             this.dataGridView2.RowTemplate.Height = 30;
-            this.dataGridView2.Size = new System.Drawing.Size(1474, 185);
+            this.dataGridView2.Size = new System.Drawing.Size(1000, 185);
             this.dataGridView2.TabIndex = 20;
             this.dataGridView2.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellEnter);
             this.dataGridView2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView2_MouseClick);
@@ -518,7 +520,7 @@
             this.KeyNameShort,
             this.KeyCode,
             this.Keymask});
-            this.dataGridView3.Location = new System.Drawing.Point(506, 411);
+            this.dataGridView3.Location = new System.Drawing.Point(670, 409);
             this.dataGridView3.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView3.MultiSelect = false;
             this.dataGridView3.Name = "dataGridView3";
@@ -527,24 +529,39 @@
             this.dataGridView3.RowHeadersVisible = false;
             this.dataGridView3.RowTemplate.Height = 25;
             this.dataGridView3.RowTemplate.ReadOnly = true;
-            this.dataGridView3.Size = new System.Drawing.Size(500, 338);
+            this.dataGridView3.Size = new System.Drawing.Size(330, 338);
             this.dataGridView3.TabIndex = 21;
             this.dataGridView3.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellEnter);
             this.dataGridView3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView3_MouseClick);
+            // 
+            // Box2
+            // 
+            this.Box2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.Box2.BackColor = System.Drawing.Color.White;
+            this.Box2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Box2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Box2.Location = new System.Drawing.Point(336, 409);
+            this.Box2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Box2.Multiline = true;
+            this.Box2.Name = "Box2";
+            this.Box2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.Box2.Size = new System.Drawing.Size(330, 340);
+            this.Box2.TabIndex = 22;
             // 
             // KeyName
             // 
             this.KeyName.HeaderText = "KeyName";
             this.KeyName.Name = "KeyName";
             this.KeyName.ReadOnly = true;
-            this.KeyName.Width = 140;
+            this.KeyName.Width = 150;
             // 
             // KeyNameShort
             // 
-            this.KeyNameShort.HeaderText = "KeyNameShort";
+            this.KeyNameShort.HeaderText = "ShortName";
             this.KeyNameShort.Name = "KeyNameShort";
             this.KeyNameShort.ReadOnly = true;
-            this.KeyNameShort.Width = 140;
+            this.KeyNameShort.Width = 80;
             // 
             // KeyCode
             // 
@@ -552,6 +569,7 @@
             this.KeyCode.HeaderText = "KeyCode";
             this.KeyCode.Name = "KeyCode";
             this.KeyCode.ReadOnly = true;
+            this.KeyCode.Width = 50;
             // 
             // Keymask
             // 
@@ -559,17 +577,19 @@
             this.Keymask.HeaderText = "KeyMask";
             this.Keymask.Name = "Keymask";
             this.Keymask.ReadOnly = true;
+            this.Keymask.Width = 30;
             // 
             // GH60_Tools
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1480, 755);
+            this.ClientSize = new System.Drawing.Size(1006, 755);
+            this.Controls.Add(this.Box2);
             this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.Box2);
+            this.Controls.Add(this.Box1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
@@ -604,7 +624,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox Box2;
+        private System.Windows.Forms.TextBox Box1;
         private System.Windows.Forms.ToolStripMenuItem convertToolStripMenuItem;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
@@ -637,6 +657,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.TextBox Box2;
         private System.Windows.Forms.DataGridViewTextBoxColumn KeyName;
         private System.Windows.Forms.DataGridViewTextBoxColumn KeyNameShort;
         private System.Windows.Forms.DataGridViewTextBoxColumn KeyCode;

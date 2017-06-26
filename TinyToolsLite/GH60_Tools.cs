@@ -25,8 +25,8 @@ namespace TinyToolsLite
         }
         private void convertToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Clear();
-            Print(ToEEP());
+            Box1.Text = "";
+            Box1.Text = ToEEP();
         }
         private void xD60ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -51,10 +51,12 @@ namespace TinyToolsLite
             dataGridView2.Size = new Size(1002, 185);
             dataGridView1.Location = new Point(2, 30);
             dataGridView2.Location = new Point(2, 220);
-            Box2.Size = new Size(500, 340);
-            Box2.Location = new Point(2, 410);
-            dataGridView3.Size = new Size(500, 340);
-            dataGridView3.Location = new Point(504, 410);
+            Box1.Size = new Size(330, 340);
+            Box1.Location = new Point(2, 410);
+            Box2.Size = new Size(330, 340);
+            Box2.Location = new Point(334, 410);
+            dataGridView3.Size = new Size(338, 340);
+            dataGridView3.Location = new Point(666, 410);
             for (int i = 0; i < this.dataGridView3.Columns.Count; i++)
             {
                 this.dataGridView3.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -258,13 +260,13 @@ namespace TinyToolsLite
         {
             try
             {
-                if (Box2.Text == "")
+                if (Box1.Text == "")
                 {
                     Clear();
                     Print("Nothing to upload");
                     return;
                 }
-                string[] str = Box2.Text.Split(',');
+                string[] str = Box1.Text.Split(',');
                 if (HidDevice == null)
                 {
                     Clear();
