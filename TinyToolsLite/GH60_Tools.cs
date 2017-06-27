@@ -10,6 +10,7 @@ namespace TinyToolsLite
     public partial class GH60_Tools : Form
     {
         public static HidDevice HidDevice;
+        IMatrix _matrix = new IMatrix();
         public void Clear()
         {
             Box2.Text = "";
@@ -18,7 +19,7 @@ namespace TinyToolsLite
         {
             Box2.Text += str.ToString() + "\r\n";
         }
-        XD60 _xd60 = new XD60();
+    
         public GH60_Tools()
         {
             InitializeComponent();
@@ -30,19 +31,9 @@ namespace TinyToolsLite
         }
         private void xD60ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            _matrix = new XD60_A();
             initRows();
-            for (int r = 0; r < this.dataGridView1.RowCount; r++)
-            {
-                for (int c = 0; c < this.dataGridView1.ColumnCount; c++)
-                {
-                    string str1 = _xd60.hexaKeys0[r, c];
-                    this.dataGridView1.Rows[r].Cells[c].Value = str1;
-                    this.dataGridView1.Rows[r].Cells[c].Style.Font = new Font("Area", 10);
-                    str1 = _xd60.hexaKeys1[r, c];
-                    this.dataGridView2.Rows[r].Cells[c].Value = str1;
-                    this.dataGridView2.Rows[r].Cells[c].Style.Font = new Font("Area", 10);
-                }
-            }
+           
         }
         private void GH60_Tools_Load(object sender, EventArgs e)
         {
@@ -73,23 +64,42 @@ namespace TinyToolsLite
         }
         void initRows()
         {
-            dataGridView1.RowCount = _xd60.ROWS;
-            //dataGridView1.AutoResizeRows();
+            dataGridView1.ColumnCount = _matrix.COLS;
+            dataGridView1.RowCount = _matrix.ROWS;
+            dataGridView2.ColumnCount = dataGridView1.ColumnCount;
             dataGridView2.RowCount = dataGridView1.RowCount;
-            //dataGridView2.AutoResizeRows();
+
             for (int i = 0; i < this.dataGridView1.Columns.Count; i++)
             {
-                this.dataGridView1.Columns[i].Width = 67;
-                this.dataGridView2.Columns[i].Width = 67;
+                this.dataGridView1.Columns[i].Width =
+                    (1002 - dataGridView1.Rows[0].HeaderCell.Size.Width) / dataGridView1.ColumnCount ;
+            this.dataGridView2.Columns[i].Width =
+                    (1002 - dataGridView2.Rows[0].HeaderCell.Size.Width) / dataGridView2.ColumnCount;
                 this.dataGridView1.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
                 this.dataGridView2.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
             }
             for (int i = 0; i < this.dataGridView1.Rows.Count; i++)
             {
+                this.dataGridView1.Rows[i].Height =
+                  (  185-dataGridView1.Columns[0].HeaderCell.Size.Height )/ ( dataGridView1.RowCount);
+                this.dataGridView2.Rows[i].Height = 
+                    (185 - dataGridView2.Columns[0].HeaderCell.Size.Height) / (dataGridView2.RowCount);           
                 this.dataGridView1.Rows[i].HeaderCell.Value = "r" + (i + 1).ToString();
                 this.dataGridView1.Rows[i].Selected = false;
                 this.dataGridView2.Rows[i].HeaderCell.Value = "r" + (i + 1).ToString();
                 this.dataGridView2.Rows[i].Selected = false;
+            }
+            for (int r = 0; r < this.dataGridView1.RowCount; r++)
+            {
+                for (int c = 0; c < this.dataGridView1.ColumnCount; c++)
+                {
+                    string str1 = _matrix.hexaKeys0[r, c];
+                    this.dataGridView1.Rows[r].Cells[c].Value = str1;
+                    this.dataGridView1.Rows[r].Cells[c].Style.Font = new Font("Area", 10);
+                    str1 = _matrix.hexaKeys1[r, c];
+                    this.dataGridView2.Rows[r].Cells[c].Value = str1;
+                    this.dataGridView2.Rows[r].Cells[c].Style.Font = new Font("Area", 10);
+                }
             }
         }
         public string ushort2byte(ushort a)
@@ -126,18 +136,18 @@ namespace TinyToolsLite
                 output.Append(a[0]); output.Append(","); output.Append(a[1]); output.Append(",");
                 a = BitConverter.GetBytes(add5);
                 output.Append(a[0]); output.Append(","); output.Append(a[1]); output.Append(",");
-                for (int i = 0; i < _xd60.ROWS; i++)
+                for (int i = 0; i < _matrix.ROWS; i++)
                 {
-                    output.Append(_xd60.rowPins[i]); output.Append(",");
+                    output.Append(_matrix.rowPins[i]); output.Append(",");
                 }
-                for (int i = 0; i < _xd60.COLS; i++)
+                for (int i = 0; i < _matrix.COLS; i++)
                 {
-                    output.Append(_xd60.colPins[i]); output.Append(",");
+                    output.Append(_matrix.colPins[i]); output.Append(",");
                 }
-                int[,] mask = new int[_xd60.ROWS, _xd60.COLS];
-                for (int r = 0; r < _xd60.ROWS; r++)
+                int[,] mask = new int[_matrix.ROWS, _matrix.COLS];
+                for (int r = 0; r < _matrix.ROWS; r++)
                 {
-                    for (int c = 0; c < _xd60.COLS; c++)
+                    for (int c = 0; c < _matrix.COLS; c++)
                     {
                         string code1 = (string)this.dataGridView1.Rows[r].Cells[c].Value;
                         int mask1 = 0;
@@ -146,9 +156,9 @@ namespace TinyToolsLite
                         output.Append(code); output.Append(",");
                     }
                 }
-                for (int r = 0; r < _xd60.ROWS; r++)
+                for (int r = 0; r < _matrix.ROWS; r++)
                 {
-                    for (int c = 0; c < _xd60.COLS; c++)
+                    for (int c = 0; c < _matrix.COLS; c++)
                     {
                         string code2 = (string)this.dataGridView2.Rows[r].Cells[c].Value;
                         int mask2 = 0;
@@ -157,9 +167,9 @@ namespace TinyToolsLite
                         output.Append(code); output.Append(",");
                     }
                 }
-                for (int r = 0; r < _xd60.ROWS; r++)
+                for (int r = 0; r < _matrix.ROWS; r++)
                 {
-                    for (int c = 0; c < _xd60.COLS; c++)
+                    for (int c = 0; c < _matrix.COLS; c++)
                     {
                         output.Append(mask[r, c]); output.Append(",");
                     }

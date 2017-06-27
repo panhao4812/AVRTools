@@ -74,11 +74,11 @@
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.Box2 = new System.Windows.Forms.TextBox();
             this.KeyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KeyNameShort = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KeyCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Keymask = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Box2 = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -262,6 +262,7 @@
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView1.RowHeadersWidth = 55;
             this.dataGridView1.RowTemplate.Height = 30;
+            this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridView1.Size = new System.Drawing.Size(1000, 185);
             this.dataGridView1.TabIndex = 19;
             this.dataGridView1.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEnter);
@@ -498,6 +499,7 @@
             this.dataGridView2.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView2.RowHeadersWidth = 55;
             this.dataGridView2.RowTemplate.Height = 30;
+            this.dataGridView2.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dataGridView2.Size = new System.Drawing.Size(1000, 185);
             this.dataGridView2.TabIndex = 20;
             this.dataGridView2.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellEnter);
@@ -534,21 +536,6 @@
             this.dataGridView3.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellEnter);
             this.dataGridView3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView3_MouseClick);
             // 
-            // Box2
-            // 
-            this.Box2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.Box2.BackColor = System.Drawing.Color.White;
-            this.Box2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Box2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Box2.Location = new System.Drawing.Point(336, 409);
-            this.Box2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Box2.Multiline = true;
-            this.Box2.Name = "Box2";
-            this.Box2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.Box2.Size = new System.Drawing.Size(330, 340);
-            this.Box2.TabIndex = 22;
-            // 
             // KeyName
             // 
             this.KeyName.HeaderText = "KeyName";
@@ -578,6 +565,21 @@
             this.Keymask.Name = "Keymask";
             this.Keymask.ReadOnly = true;
             this.Keymask.Width = 30;
+            // 
+            // Box2
+            // 
+            this.Box2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.Box2.BackColor = System.Drawing.Color.White;
+            this.Box2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Box2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Box2.Location = new System.Drawing.Point(336, 409);
+            this.Box2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Box2.Multiline = true;
+            this.Box2.Name = "Box2";
+            this.Box2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.Box2.Size = new System.Drawing.Size(330, 340);
+            this.Box2.TabIndex = 22;
             // 
             // GH60_Tools
             // 
