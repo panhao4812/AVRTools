@@ -142,15 +142,16 @@
             // xD60ToolStripMenuItem
             // 
             this.xD60ToolStripMenuItem.Name = "xD60ToolStripMenuItem";
-            this.xD60ToolStripMenuItem.Size = new System.Drawing.Size(140, 26);
+            this.xD60ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.xD60ToolStripMenuItem.Text = "Matrix1";
             this.xD60ToolStripMenuItem.Click += new System.EventHandler(this.xD60ToolStripMenuItem_Click);
             // 
             // layer2ToolStripMenuItem1
             // 
             this.layer2ToolStripMenuItem1.Name = "layer2ToolStripMenuItem1";
-            this.layer2ToolStripMenuItem1.Size = new System.Drawing.Size(140, 26);
+            this.layer2ToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
             this.layer2ToolStripMenuItem1.Text = "Matrix2";
+            this.layer2ToolStripMenuItem1.Click += new System.EventHandler(this.layer2ToolStripMenuItem1_Click);
             // 
             // layer2ToolStripMenuItem
             // 
@@ -163,8 +164,9 @@
             // layer1ToolStripMenuItem1
             // 
             this.layer1ToolStripMenuItem1.Name = "layer1ToolStripMenuItem1";
-            this.layer1ToolStripMenuItem1.Size = new System.Drawing.Size(140, 26);
+            this.layer1ToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
             this.layer1ToolStripMenuItem1.Text = "Matrix1";
+            this.layer1ToolStripMenuItem1.Click += new System.EventHandler(this.layer1ToolStripMenuItem1_Click);
             // 
             // label1
             // 
@@ -217,7 +219,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.Box1.BackColor = System.Drawing.Color.White;
             this.Box1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Box1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Box1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Box1.Location = new System.Drawing.Point(2, 409);
             this.Box1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Box1.Multiline = true;
@@ -572,7 +574,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.Box2.BackColor = System.Drawing.Color.White;
             this.Box2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Box2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Box2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Box2.Location = new System.Drawing.Point(336, 409);
             this.Box2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Box2.Multiline = true;

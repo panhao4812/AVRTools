@@ -18,7 +18,18 @@ namespace TinyToolsLite
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new GH60_Tools());
         }
-       
+        public static string shortname(string name)
+        { 
+            if (name == "0x00") return "0x00";
+            for (int i = 0; i < KeyName.Length; i++)
+            {
+                if (name == KeyName[i] || name == KeyName2[i])
+                { 
+                    return KeyName2[i];
+                }
+            }
+            return "0xFFFF";
+        }
         public static int name2code(string name,out int mask)
         {
             mask = 0;

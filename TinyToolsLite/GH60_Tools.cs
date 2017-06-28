@@ -93,12 +93,12 @@ namespace TinyToolsLite
             {
                 for (int c = 0; c < this.dataGridView1.ColumnCount; c++)
                 {
-                    string str1 = _matrix.hexaKeys0[r, c];
+                    string str1 =Program.shortname( _matrix.hexaKeys0[r, c]);
                     this.dataGridView1.Rows[r].Cells[c].Value = str1;
-                    this.dataGridView1.Rows[r].Cells[c].Style.Font = new Font("Area", 10);
-                    str1 = _matrix.hexaKeys1[r, c];
+                    this.dataGridView1.Rows[r].Cells[c].Style.Font = new Font("Area", 9);
+                    str1 = Program.shortname(_matrix.hexaKeys1[r, c]);
                     this.dataGridView2.Rows[r].Cells[c].Value = str1;
-                    this.dataGridView2.Rows[r].Cells[c].Style.Font = new Font("Area", 10);
+                    this.dataGridView2.Rows[r].Cells[c].Style.Font = new Font("Area", 9);
                 }
             }
         }
@@ -314,6 +314,18 @@ namespace TinyToolsLite
                 Print("Upload finished");
             }
             catch (Exception ex) { Print(ex.ToString()); }
+        }
+
+        private void layer1ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            _matrix = new GH60_CNY();
+            initRows();
+        }
+
+        private void layer2ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            _matrix = new XD60_B();
+            initRows();
         }
     }
 }
