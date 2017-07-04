@@ -50,7 +50,7 @@ namespace TinyToolsLite
             dataGridView3.Location = new Point(666, 410);
             for (int i = 0; i < this.dataGridView3.Columns.Count; i++)
             {
-                this.dataGridView3.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
+                this.dataGridView3.Columns[i].SortMode = DataGridViewColumnSortMode.Automatic;
             }
             dataGridView3.RowCount = Program.KeyName.Length;
             for (int i = 0; i < dataGridView3.RowCount; i++)
@@ -77,6 +77,8 @@ namespace TinyToolsLite
                     (1002 - dataGridView2.Rows[0].HeaderCell.Size.Width) / dataGridView2.ColumnCount;
                 this.dataGridView1.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
                 this.dataGridView2.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridView1.Columns[i].HeaderCell.Value= "C" + (i + 1).ToString();
+                dataGridView2.Columns[i].HeaderCell.Value = "C" + (i + 1).ToString();
             }
             for (int i = 0; i < this.dataGridView1.Rows.Count; i++)
             {
@@ -84,9 +86,9 @@ namespace TinyToolsLite
                   (  185-dataGridView1.Columns[0].HeaderCell.Size.Height )/ ( dataGridView1.RowCount);
                 this.dataGridView2.Rows[i].Height = 
                     (185 - dataGridView2.Columns[0].HeaderCell.Size.Height) / (dataGridView2.RowCount);           
-                this.dataGridView1.Rows[i].HeaderCell.Value = "r" + (i + 1).ToString();
+                this.dataGridView1.Rows[i].HeaderCell.Value = "R" + (i + 1).ToString();
                 this.dataGridView1.Rows[i].Selected = false;
-                this.dataGridView2.Rows[i].HeaderCell.Value = "r" + (i + 1).ToString();
+                this.dataGridView2.Rows[i].HeaderCell.Value = "R" + (i + 1).ToString();
                 this.dataGridView2.Rows[i].Selected = false;
             }
             for (int r = 0; r < this.dataGridView1.RowCount; r++)
