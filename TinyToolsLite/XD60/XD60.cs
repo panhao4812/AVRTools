@@ -87,9 +87,10 @@ namespace TinyToolsLite
             {
                 this.ROWS = 5;
                 this.COLS = 14;
+
                 this.rowPins = new byte[5] { 5, 6, 7, 8, 23 };
-                this.colPins = new byte[14] { 21, 20, 24, 10, 9, 15, 22, 1, 4, 14, 13, 12, 11, 3 };
-             this.hexaKeys0=new string[5,14]{
+                this.colPins = new byte[14] { 21, 20, 24, 10, 9, 4, 22, 0, 1, 14, 13, 12, 11, 3 };
+                this.hexaKeys0=new string[5,14]{
 {"KEY_ESC","KEY_1","KEY_2","KEY_3","KEY_4","KEY_5","KEY_6","KEY_7","KEY_8","KEY_9","KEY_0","KEY_MINUS","KEY_EQUAL","KEY_BACKSPACE"},
 {"KEY_TAB","KEY_Q","KEY_W","KEY_E","KEY_R","KEY_T","KEY_Y","KEY_U","KEY_I","KEY_O","KEY_P","KEY_LEFT_BRACE","KEY_RIGHT_BRACE","KEY_BACKSLASH"},
 {"KEY_CAPS_LOCK","KEY_A","KEY_S","KEY_D","KEY_F","KEY_G","KEY_H","KEY_J","KEY_K","KEY_L","KEY_SEMICOLON","KEY_QUOTE","0x00","KEY_ENTER"},
