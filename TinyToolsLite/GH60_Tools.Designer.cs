@@ -31,7 +31,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.convertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uploadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.layer1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xD60ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,21 +41,26 @@
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.Box1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.matrix1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.c2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.KeyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KeyNameShort = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KeyCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Keymask = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Box2 = new System.Windows.Forms.TextBox();
-            this.matrix1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.c2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -77,7 +81,6 @@
             // 
             this.openToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem1,
-            this.convertToolStripMenuItem,
             this.uploadToolStripMenuItem});
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.Size = new System.Drawing.Size(48, 24);
@@ -86,21 +89,14 @@
             // openToolStripMenuItem1
             // 
             this.openToolStripMenuItem1.Name = "openToolStripMenuItem1";
-            this.openToolStripMenuItem1.Size = new System.Drawing.Size(142, 26);
+            this.openToolStripMenuItem1.Size = new System.Drawing.Size(137, 26);
             this.openToolStripMenuItem1.Text = "Open";
             this.openToolStripMenuItem1.Click += new System.EventHandler(this.openToolStripMenuItem1_Click);
-            // 
-            // convertToolStripMenuItem
-            // 
-            this.convertToolStripMenuItem.Name = "convertToolStripMenuItem";
-            this.convertToolStripMenuItem.Size = new System.Drawing.Size(142, 26);
-            this.convertToolStripMenuItem.Text = "Convert";
-            this.convertToolStripMenuItem.Click += new System.EventHandler(this.convertToolStripMenuItem_Click);
             // 
             // uploadToolStripMenuItem
             // 
             this.uploadToolStripMenuItem.Name = "uploadToolStripMenuItem";
-            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(142, 26);
+            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
             this.uploadToolStripMenuItem.Text = "Upload";
             this.uploadToolStripMenuItem.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click);
             // 
@@ -116,15 +112,15 @@
             // xD60ToolStripMenuItem
             // 
             this.xD60ToolStripMenuItem.Name = "xD60ToolStripMenuItem";
-            this.xD60ToolStripMenuItem.Size = new System.Drawing.Size(140, 26);
-            this.xD60ToolStripMenuItem.Text = "Matrix1";
+            this.xD60ToolStripMenuItem.Size = new System.Drawing.Size(156, 26);
+            this.xD60ToolStripMenuItem.Text = "1.75Xshift";
             this.xD60ToolStripMenuItem.Click += new System.EventHandler(this.xD60ToolStripMenuItem_Click);
             // 
             // layer2ToolStripMenuItem1
             // 
             this.layer2ToolStripMenuItem1.Name = "layer2ToolStripMenuItem1";
-            this.layer2ToolStripMenuItem1.Size = new System.Drawing.Size(140, 26);
-            this.layer2ToolStripMenuItem1.Text = "Matrix2";
+            this.layer2ToolStripMenuItem1.Size = new System.Drawing.Size(156, 26);
+            this.layer2ToolStripMenuItem1.Text = "2Xshift*2";
             this.layer2ToolStripMenuItem1.Click += new System.EventHandler(this.layer2ToolStripMenuItem1_Click);
             // 
             // layer2ToolStripMenuItem
@@ -132,14 +128,14 @@
             this.layer2ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.layer1ToolStripMenuItem1});
             this.layer2ToolStripMenuItem.Name = "layer2ToolStripMenuItem";
-            this.layer2ToolStripMenuItem.Size = new System.Drawing.Size(62, 24);
-            this.layer2ToolStripMenuItem.Text = "GH60";
+            this.layer2ToolStripMenuItem.Size = new System.Drawing.Size(52, 24);
+            this.layer2ToolStripMenuItem.Text = "CNY";
             // 
             // layer1ToolStripMenuItem1
             // 
             this.layer1ToolStripMenuItem1.Name = "layer1ToolStripMenuItem1";
-            this.layer1ToolStripMenuItem1.Size = new System.Drawing.Size(140, 26);
-            this.layer1ToolStripMenuItem1.Text = "Matrix1";
+            this.layer1ToolStripMenuItem1.Size = new System.Drawing.Size(156, 26);
+            this.layer1ToolStripMenuItem1.Text = "2.25Xshift";
             this.layer1ToolStripMenuItem1.Click += new System.EventHandler(this.layer1ToolStripMenuItem1_Click);
             // 
             // label1
@@ -187,22 +183,6 @@
             this.textBox2.Text = "3415";
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // Box1
-            // 
-            this.Box1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.Box1.BackColor = System.Drawing.Color.White;
-            this.Box1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Box1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Box1.Location = new System.Drawing.Point(2, 409);
-            this.Box1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Box1.Multiline = true;
-            this.Box1.Name = "Box1";
-            this.Box1.ReadOnly = true;
-            this.Box1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.Box1.Size = new System.Drawing.Size(330, 340);
-            this.Box1.TabIndex = 15;
-            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -230,6 +210,13 @@
             this.dataGridView1.TabIndex = 19;
             this.dataGridView1.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEnter);
             this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
+            // 
+            // matrix1
+            // 
+            this.matrix1.HeaderText = "Matrix keys";
+            this.matrix1.Name = "matrix1";
+            this.matrix1.ReadOnly = true;
+            this.matrix1.Width = 300;
             // 
             // dataGridView2
             // 
@@ -259,6 +246,13 @@
             this.dataGridView2.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellEnter);
             this.dataGridView2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView2_MouseClick);
             // 
+            // c2
+            // 
+            this.c2.HeaderText = "Matrix FN";
+            this.c2.Name = "c2";
+            this.c2.ReadOnly = true;
+            this.c2.Width = 300;
+            // 
             // dataGridView3
             // 
             this.dataGridView3.AllowUserToAddRows = false;
@@ -284,6 +278,7 @@
             this.dataGridView3.RowHeadersVisible = false;
             this.dataGridView3.RowTemplate.Height = 25;
             this.dataGridView3.RowTemplate.ReadOnly = true;
+            this.dataGridView3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView3.Size = new System.Drawing.Size(330, 338);
             this.dataGridView3.TabIndex = 21;
             this.dataGridView3.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView3_CellEnter);
@@ -291,7 +286,7 @@
             // 
             // KeyName
             // 
-            this.KeyName.HeaderText = "KeyName";
+            this.KeyName.HeaderText = "ConsumerKeys";
             this.KeyName.Name = "KeyName";
             this.KeyName.ReadOnly = true;
             this.KeyName.Width = 150;
@@ -326,7 +321,7 @@
             this.Box2.BackColor = System.Drawing.Color.White;
             this.Box2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Box2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Box2.Location = new System.Drawing.Point(336, 409);
+            this.Box2.Location = new System.Drawing.Point(0, 407);
             this.Box2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Box2.Multiline = true;
             this.Box2.Name = "Box2";
@@ -336,19 +331,66 @@
             this.Box2.Text = "1 select Matrix on the title\r\n2 Click Hid--Open to connect device\r\n3 Click Hid--U" +
     "pload to upload eeprom\r\n4 Enjoy";
             // 
-            // matrix1
+            // dataGridView4
             // 
-            this.matrix1.HeaderText = "Matrix keys";
-            this.matrix1.Name = "matrix1";
-            this.matrix1.ReadOnly = true;
-            this.matrix1.Width = 300;
+            this.dataGridView4.AllowUserToAddRows = false;
+            this.dataGridView4.AllowUserToDeleteRows = false;
+            this.dataGridView4.AllowUserToResizeColumns = false;
+            this.dataGridView4.AllowUserToResizeRows = false;
+            this.dataGridView4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridView4.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView4.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dataGridView4.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4});
+            this.dataGridView4.Location = new System.Drawing.Point(337, 409);
+            this.dataGridView4.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView4.MultiSelect = false;
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.ReadOnly = true;
+            this.dataGridView4.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dataGridView4.RowHeadersVisible = false;
+            this.dataGridView4.RowTemplate.Height = 25;
+            this.dataGridView4.RowTemplate.ReadOnly = true;
+            this.dataGridView4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridView4.Size = new System.Drawing.Size(330, 338);
+            this.dataGridView4.TabIndex = 23;
+            this.dataGridView4.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView4_CellEnter);
+            this.dataGridView4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView4_MouseClick);
             // 
-            // c2
+            // dataGridViewTextBoxColumn1
             // 
-            this.c2.HeaderText = "Matrix FN";
-            this.c2.Name = "c2";
-            this.c2.ReadOnly = true;
-            this.c2.Width = 300;
+            this.dataGridViewTextBoxColumn1.HeaderText = "KeyboardKeys";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "ShortName";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 80;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.FillWeight = 60F;
+            this.dataGridViewTextBoxColumn3.HeaderText = "KeyCode";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.FillWeight = 60F;
+            this.dataGridViewTextBoxColumn4.HeaderText = "KeyMask";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 30;
             // 
             // GH60_Tools
             // 
@@ -356,11 +398,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1006, 755);
+            this.Controls.Add(this.dataGridView4);
             this.Controls.Add(this.Box2);
             this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.Box1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
@@ -376,6 +418,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -395,17 +438,20 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox Box1;
-        private System.Windows.Forms.ToolStripMenuItem convertToolStripMenuItem;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.TextBox Box2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn matrix1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn c2;
+        private System.Windows.Forms.DataGridView dataGridView4;
         private System.Windows.Forms.DataGridViewTextBoxColumn KeyName;
         private System.Windows.Forms.DataGridViewTextBoxColumn KeyNameShort;
         private System.Windows.Forms.DataGridViewTextBoxColumn KeyCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn Keymask;
-        private System.Windows.Forms.DataGridViewTextBoxColumn matrix1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn c2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
     }
 }

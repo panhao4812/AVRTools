@@ -19,21 +19,15 @@ namespace TinyToolsLite
         {
             Box2.Text += str.ToString() + "\r\n";
         }
-    
         public GH60_Tools()
         {
             InitializeComponent();
-        }
-        private void convertToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Box1.Text = "";
-            Box1.Text = ToEEP();
         }
         private void xD60ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _matrix = new XD60_A();
             initRows();
-           
+
         }
         private void GH60_Tools_Load(object sender, EventArgs e)
         {
@@ -42,24 +36,40 @@ namespace TinyToolsLite
             dataGridView2.Size = new Size(1002, 185);
             dataGridView1.Location = new Point(2, 30);
             dataGridView2.Location = new Point(2, 220);
-            Box1.Size = new Size(330, 340);
-            Box1.Location = new Point(2, 410);
             Box2.Size = new Size(330, 340);
-            Box2.Location = new Point(334, 410);
+            Box2.Location = new Point(2, 410);
+            dataGridView4.Size = new Size(330, 340);
+            dataGridView4.Location = new Point(334, 410);
             dataGridView3.Size = new Size(338, 340);
             dataGridView3.Location = new Point(666, 410);
             for (int i = 0; i < this.dataGridView3.Columns.Count; i++)
             {
                 this.dataGridView3.Columns[i].SortMode = DataGridViewColumnSortMode.Automatic;
             }
-            dataGridView3.RowCount = Program.KeyName.Length;
-            for (int i = 0; i < dataGridView3.RowCount; i++)
+            for (int i = 0; i < this.dataGridView4.Columns.Count; i++)
             {
-                this.dataGridView3.Rows[i].Cells[0].Value = Program.KeyName[i];
-                this.dataGridView3.Rows[i].Cells[1].Value = Program.KeyName2[i];
-                this.dataGridView3.Rows[i].Cells[2].Value = Program.Keycode[i];
-                this.dataGridView3.Rows[i].Cells[3].Value = Program.Keymask[i];
+                this.dataGridView4.Columns[i].SortMode = DataGridViewColumnSortMode.Automatic;
             }
+            dataGridView4.RowCount = Program.KeyName.Length - 17;
+            int j = 0;
+            for (int i = 0; i < Program.KeyName.Length - 17; i++)
+            {
+                this.dataGridView4.Rows[j].Cells[0].Value = Program.KeyName[i];
+                this.dataGridView4.Rows[j].Cells[1].Value = Program.KeyName2[i];
+                this.dataGridView4.Rows[j].Cells[2].Value = Program.Keycode[i];
+                this.dataGridView4.Rows[j].Cells[3].Value = Program.Keymask[i]; j++;
+            }
+            dataGridView3.RowCount = 17;
+            j = 0;
+            for (int i = Program.KeyName.Length - 17; i < Program.KeyName.Length; i++)
+            {
+                this.dataGridView3.Rows[j].Cells[0].Value = Program.KeyName[i];
+                this.dataGridView3.Rows[j].Cells[1].Value = Program.KeyName2[i];
+                this.dataGridView3.Rows[j].Cells[2].Value = Program.Keycode[i];
+                this.dataGridView3.Rows[j].Cells[3].Value = Program.Keymask[i];
+                j++;
+            }
+
 
         }
         void initRows()
@@ -72,20 +82,20 @@ namespace TinyToolsLite
             for (int i = 0; i < this.dataGridView1.Columns.Count; i++)
             {
                 this.dataGridView1.Columns[i].Width =
-                    (1002 - dataGridView1.Rows[0].HeaderCell.Size.Width) / dataGridView1.ColumnCount ;
-            this.dataGridView2.Columns[i].Width =
-                    (1002 - dataGridView2.Rows[0].HeaderCell.Size.Width) / dataGridView2.ColumnCount;
+                    (1002 - dataGridView1.Rows[0].HeaderCell.Size.Width) / dataGridView1.ColumnCount;
+                this.dataGridView2.Columns[i].Width =
+                        (1002 - dataGridView2.Rows[0].HeaderCell.Size.Width) / dataGridView2.ColumnCount;
                 this.dataGridView1.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
                 this.dataGridView2.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
-                dataGridView1.Columns[i].HeaderCell.Value= "C" + (i + 1).ToString();
+                dataGridView1.Columns[i].HeaderCell.Value = "C" + (i + 1).ToString();
                 dataGridView2.Columns[i].HeaderCell.Value = "C" + (i + 1).ToString();
             }
             for (int i = 0; i < this.dataGridView1.Rows.Count; i++)
             {
                 this.dataGridView1.Rows[i].Height =
-                  (  185-dataGridView1.Columns[0].HeaderCell.Size.Height )/ ( dataGridView1.RowCount);
-                this.dataGridView2.Rows[i].Height = 
-                    (185 - dataGridView2.Columns[0].HeaderCell.Size.Height) / (dataGridView2.RowCount);           
+                  (185 - dataGridView1.Columns[0].HeaderCell.Size.Height) / (dataGridView1.RowCount);
+                this.dataGridView2.Rows[i].Height =
+                    (185 - dataGridView2.Columns[0].HeaderCell.Size.Height) / (dataGridView2.RowCount);
                 this.dataGridView1.Rows[i].HeaderCell.Value = "R" + (i + 1).ToString();
                 this.dataGridView1.Rows[i].Selected = false;
                 this.dataGridView2.Rows[i].HeaderCell.Value = "R" + (i + 1).ToString();
@@ -95,7 +105,7 @@ namespace TinyToolsLite
             {
                 for (int c = 0; c < this.dataGridView1.ColumnCount; c++)
                 {
-                    string str1 =Program.shortname( _matrix.hexaKeys0[r, c]);
+                    string str1 = Program.shortname(_matrix.hexaKeys0[r, c]);
                     this.dataGridView1.Rows[r].Cells[c].Value = str1;
                     this.dataGridView1.Rows[r].Cells[c].Style.Font = new Font("Area", 9);
                     str1 = Program.shortname(_matrix.hexaKeys1[r, c]);
@@ -198,6 +208,8 @@ namespace TinyToolsLite
             {
                 dataGridView1.ClearSelection();
                 dataGridView2.ClearSelection();
+              //  dataGridView3.ClearSelection();
+             //   dataGridView4.ClearSelection();
             }
         }
         private void dataGridView2_MouseClick(object sender, MouseEventArgs e)
@@ -206,17 +218,23 @@ namespace TinyToolsLite
             {
                 dataGridView1.ClearSelection();
                 dataGridView2.ClearSelection();
+             //   dataGridView3.ClearSelection();
+              //  dataGridView4.ClearSelection();
             }
         }
         private void dataGridView3_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
+              //  dataGridView1.ClearSelection();
+             //   dataGridView2.ClearSelection();
                 dataGridView3.ClearSelection();
+                dataGridView4.ClearSelection();
             }
         }
         private void dataGridView3_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
+             dataGridView4.ClearSelection();
             if (dataGridView1.CurrentCell != null && dataGridView1.SelectedCells.Count != 0)
             {
                 int i = dataGridView3.CurrentCell.RowIndex;
@@ -226,6 +244,30 @@ namespace TinyToolsLite
             {
                 int i = dataGridView3.CurrentCell.RowIndex;
                 this.dataGridView2.CurrentCell.Value = dataGridView3.Rows[i].Cells[1].Value;
+            }
+        }
+        private void dataGridView4_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+              //  dataGridView1.ClearSelection();
+              //  dataGridView2.ClearSelection();
+                dataGridView3.ClearSelection();
+                dataGridView4.ClearSelection();
+            }
+        }
+        private void dataGridView4_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridView3.ClearSelection();
+            if (dataGridView1.CurrentCell != null && dataGridView1.SelectedCells.Count != 0)
+            {
+                int i = dataGridView4.CurrentCell.RowIndex;
+                this.dataGridView1.CurrentCell.Value = dataGridView4.Rows[i].Cells[1].Value;
+            }
+            if (dataGridView2.CurrentCell != null && dataGridView2.SelectedCells.Count != 0)
+            {
+                int i = dataGridView4.CurrentCell.RowIndex;
+                this.dataGridView2.CurrentCell.Value = dataGridView4.Rows[i].Cells[1].Value;
             }
         }
         private void openToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -272,13 +314,14 @@ namespace TinyToolsLite
         {
             try
             {
-                if (Box1.Text == "")
+                string codeTemp = ToEEP();
+                if (codeTemp == "")
                 {
                     Clear();
                     Print("Nothing to upload");
                     return;
                 }
-                string[] str = Box1.Text.Split(',');
+                string[] str = codeTemp.Split(',');
                 if (HidDevice == null)
                 {
                     Clear();
@@ -317,17 +360,15 @@ namespace TinyToolsLite
             }
             catch (Exception ex) { Print(ex.ToString()); }
         }
-
         private void layer1ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             _matrix = new GH60_CNY();
             initRows();
         }
-
         private void layer2ToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             _matrix = new XD60_B();
             initRows();
-        }
+        }    
     }
 }
