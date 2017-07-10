@@ -32,9 +32,15 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.hIDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uploadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xD60ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gH60ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ps2avrUToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.matrix1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.matrix2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.templateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xD60AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xD60BToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -58,6 +64,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1006, 320);
             this.panel1.TabIndex = 0;
+            this.panel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseClick);
             // 
             // menuStrip1
             // 
@@ -66,8 +73,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.hIDToolStripMenuItem,
             this.xD60ToolStripMenuItem,
-            this.gH60ToolStripMenuItem,
-            this.ps2avrUToolStripMenuItem});
+            this.templateToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1006, 28);
@@ -76,27 +82,78 @@
             // 
             // hIDToolStripMenuItem
             // 
+            this.hIDToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openDeviceToolStripMenuItem,
+            this.uploadToolStripMenuItem});
             this.hIDToolStripMenuItem.Name = "hIDToolStripMenuItem";
-            this.hIDToolStripMenuItem.Size = new System.Drawing.Size(48, 24);
-            this.hIDToolStripMenuItem.Text = "HID";
+            this.hIDToolStripMenuItem.Size = new System.Drawing.Size(74, 24);
+            this.hIDToolStripMenuItem.Text = "System";
+            // 
+            // openDeviceToolStripMenuItem
+            // 
+            this.openDeviceToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
+            this.openDeviceToolStripMenuItem.Name = "openDeviceToolStripMenuItem";
+            this.openDeviceToolStripMenuItem.Size = new System.Drawing.Size(173, 26);
+            this.openDeviceToolStripMenuItem.Text = "OpenDevice";
+            // 
+            // uploadToolStripMenuItem
+            // 
+            this.uploadToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
+            this.uploadToolStripMenuItem.Name = "uploadToolStripMenuItem";
+            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(173, 26);
+            this.uploadToolStripMenuItem.Text = "Upload";
             // 
             // xD60ToolStripMenuItem
             // 
+            this.xD60ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.matrix1ToolStripMenuItem,
+            this.matrix2ToolStripMenuItem,
+            this.clearAllToolStripMenuItem});
             this.xD60ToolStripMenuItem.Name = "xD60ToolStripMenuItem";
-            this.xD60ToolStripMenuItem.Size = new System.Drawing.Size(60, 24);
-            this.xD60ToolStripMenuItem.Text = "XD60";
+            this.xD60ToolStripMenuItem.Size = new System.Drawing.Size(68, 24);
+            this.xD60ToolStripMenuItem.Text = "Matrix";
             // 
-            // gH60ToolStripMenuItem
+            // matrix1ToolStripMenuItem
             // 
-            this.gH60ToolStripMenuItem.Name = "gH60ToolStripMenuItem";
-            this.gH60ToolStripMenuItem.Size = new System.Drawing.Size(62, 24);
-            this.gH60ToolStripMenuItem.Text = "GH60";
+            this.matrix1ToolStripMenuItem.Name = "matrix1ToolStripMenuItem";
+            this.matrix1ToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
+            this.matrix1ToolStripMenuItem.Text = "OpenSetting";
             // 
-            // ps2avrUToolStripMenuItem
+            // matrix2ToolStripMenuItem
             // 
-            this.ps2avrUToolStripMenuItem.Name = "ps2avrUToolStripMenuItem";
-            this.ps2avrUToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
-            this.ps2avrUToolStripMenuItem.Text = "ps2avrU";
+            this.matrix2ToolStripMenuItem.Name = "matrix2ToolStripMenuItem";
+            this.matrix2ToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
+            this.matrix2ToolStripMenuItem.Text = "SaveSetting";
+            this.matrix2ToolStripMenuItem.Click += new System.EventHandler(this.matrix2ToolStripMenuItem_Click);
+            // 
+            // clearAllToolStripMenuItem
+            // 
+            this.clearAllToolStripMenuItem.Name = "clearAllToolStripMenuItem";
+            this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
+            this.clearAllToolStripMenuItem.Text = "ClearAll";
+            this.clearAllToolStripMenuItem.Click += new System.EventHandler(this.clearAllToolStripMenuItem_Click);
+            // 
+            // templateToolStripMenuItem
+            // 
+            this.templateToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.xD60AToolStripMenuItem,
+            this.xD60BToolStripMenuItem});
+            this.templateToolStripMenuItem.Name = "templateToolStripMenuItem";
+            this.templateToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
+            this.templateToolStripMenuItem.Text = "Templet";  
+            // 
+            // xD60AToolStripMenuItem
+            // 
+            this.xD60AToolStripMenuItem.Name = "xD60AToolStripMenuItem";
+            this.xD60AToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
+            this.xD60AToolStripMenuItem.Text = "XD60_A";
+            this.xD60AToolStripMenuItem.Click += new System.EventHandler(this.xD60AToolStripMenuItem_Click);
+            // 
+            // xD60BToolStripMenuItem
+            // 
+            this.xD60BToolStripMenuItem.Name = "xD60BToolStripMenuItem";
+            this.xD60BToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
+            this.xD60BToolStripMenuItem.Text = "XD60_B";
             // 
             // textBox1
             // 
@@ -179,6 +236,8 @@
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView1.Size = new System.Drawing.Size(330, 338);
             this.dataGridView1.TabIndex = 24;
+            this.dataGridView1.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEnter);
+            this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
             // 
             // KeyName
             // 
@@ -213,12 +272,14 @@
             // checkedListBox1
             // 
             this.checkedListBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.checkedListBox1.CheckOnClick = true;
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.Location = new System.Drawing.Point(348, 353);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.ScrollAlwaysVisible = true;
             this.checkedListBox1.Size = new System.Drawing.Size(318, 322);
             this.checkedListBox1.TabIndex = 26;
+            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
             // HidRawTools
             // 
@@ -254,8 +315,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem hIDToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem xD60ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gH60ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ps2avrUToolStripMenuItem;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
@@ -267,6 +326,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn KeyCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn Keymask;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.ToolStripMenuItem matrix1ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem matrix2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openDeviceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem uploadToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem templateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem xD60AToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem xD60BToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clearAllToolStripMenuItem;
     }
 }
 
