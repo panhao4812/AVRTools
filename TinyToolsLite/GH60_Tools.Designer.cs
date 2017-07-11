@@ -56,6 +56,8 @@
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hidToolsLiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -69,7 +71,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
             this.layer1ToolStripMenuItem,
-            this.layer2ToolStripMenuItem});
+            this.layer2ToolStripMenuItem,
+            this.toolsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -89,14 +92,14 @@
             // openToolStripMenuItem1
             // 
             this.openToolStripMenuItem1.Name = "openToolStripMenuItem1";
-            this.openToolStripMenuItem1.Size = new System.Drawing.Size(137, 26);
+            this.openToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
             this.openToolStripMenuItem1.Text = "Open";
             this.openToolStripMenuItem1.Click += new System.EventHandler(this.openToolStripMenuItem1_Click);
             // 
             // uploadToolStripMenuItem
             // 
             this.uploadToolStripMenuItem.Name = "uploadToolStripMenuItem";
-            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
+            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.uploadToolStripMenuItem.Text = "Upload";
             this.uploadToolStripMenuItem.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click);
             // 
@@ -392,6 +395,21 @@
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
             this.dataGridViewTextBoxColumn4.Width = 30;
             // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hidToolsLiteToolStripMenuItem});
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
+            this.toolsToolStripMenuItem.Text = "Tools";
+            // 
+            // hidToolsLiteToolStripMenuItem
+            // 
+            this.hidToolsLiteToolStripMenuItem.Name = "hidToolsLiteToolStripMenuItem";
+            this.hidToolsLiteToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.hidToolsLiteToolStripMenuItem.Text = "HidToolsLite";
+            this.hidToolsLiteToolStripMenuItem.Click += new System.EventHandler(this.hidToolsLiteToolStripMenuItem_Click);
+            // 
             // GH60_Tools
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -453,5 +471,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hidToolsLiteToolStripMenuItem;
     }
 }

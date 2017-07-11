@@ -41,6 +41,7 @@
             this.templateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xD60AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xD60BToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.layer1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -73,7 +74,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.hIDToolStripMenuItem,
             this.xD60ToolStripMenuItem,
-            this.templateToolStripMenuItem});
+            this.templateToolStripMenuItem,
+            this.layer1ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1006, 28);
@@ -118,6 +120,7 @@
             this.matrix1ToolStripMenuItem.Name = "matrix1ToolStripMenuItem";
             this.matrix1ToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
             this.matrix1ToolStripMenuItem.Text = "OpenSetting";
+            this.matrix1ToolStripMenuItem.Click += new System.EventHandler(this.matrix1ToolStripMenuItem_Click);
             // 
             // matrix2ToolStripMenuItem
             // 
@@ -140,20 +143,27 @@
             this.xD60BToolStripMenuItem});
             this.templateToolStripMenuItem.Name = "templateToolStripMenuItem";
             this.templateToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
-            this.templateToolStripMenuItem.Text = "Templet";  
+            this.templateToolStripMenuItem.Text = "Templet";
             // 
             // xD60AToolStripMenuItem
             // 
             this.xD60AToolStripMenuItem.Name = "xD60AToolStripMenuItem";
-            this.xD60AToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
-            this.xD60AToolStripMenuItem.Text = "XD60_A";
+            this.xD60AToolStripMenuItem.Size = new System.Drawing.Size(123, 26);
+            this.xD60AToolStripMenuItem.Text = "XD60";
             this.xD60AToolStripMenuItem.Click += new System.EventHandler(this.xD60AToolStripMenuItem_Click);
             // 
             // xD60BToolStripMenuItem
             // 
             this.xD60BToolStripMenuItem.Name = "xD60BToolStripMenuItem";
-            this.xD60BToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
-            this.xD60BToolStripMenuItem.Text = "XD60_B";
+            this.xD60BToolStripMenuItem.Size = new System.Drawing.Size(123, 26);
+            this.xD60BToolStripMenuItem.Text = "CNY";
+            // 
+            // layer1ToolStripMenuItem
+            // 
+            this.layer1ToolStripMenuItem.Name = "layer1ToolStripMenuItem";
+            this.layer1ToolStripMenuItem.Size = new System.Drawing.Size(124, 24);
+            this.layer1ToolStripMenuItem.Text = "CurrentLayer1";
+            this.layer1ToolStripMenuItem.Click += new System.EventHandler(this.layer1ToolStripMenuItem_Click);
             // 
             // textBox1
             // 
@@ -334,6 +344,7 @@
         private System.Windows.Forms.ToolStripMenuItem xD60AToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem xD60BToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem layer1ToolStripMenuItem;
     }
 }
 

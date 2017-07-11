@@ -369,6 +369,18 @@ namespace TinyToolsLite
         {
             _matrix = new XD60_B();
             initRows();
-        }    
+        }
+
+        private void hidToolsLiteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Thread t = new Thread(new ThreadStart(ThreadProc));
+            t.SetApartmentState(ApartmentState.STA);
+            t.Start();
+        }
+        public static void ThreadProc()
+        {
+            TinyToolsLite form = new TinyToolsLite();//第3个窗体
+            form.ShowDialog();
+        }
     }
 }

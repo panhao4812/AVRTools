@@ -18,6 +18,7 @@ namespace HidRawTools
         public byte[,] keymask = new byte[5, 14];
         public double[,] keycap;
         public string Name = "unamed";
+        public string[] keycode;
     }
     class XD60_A : IMatrix
     {
@@ -43,6 +44,11 @@ namespace HidRawTools
     { "Ctrl","FN","Alt","0x00","0x00","Space","0x00","0x00","Left","0x00","FN","rCtrl","Down","Right"}
                 };
             //x,y,length,row,col
+            keycode = new string[106*2]; 
+            for (int i = 0; i < keycode.Length; i++)
+            {
+                keycode[i] = ""; 
+            }
             this.keycap = new double[106, 5] {
         {0,0,1,0,0 },
         {1,0,1,0,1 },
