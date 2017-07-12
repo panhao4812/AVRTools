@@ -88,21 +88,21 @@
             this.openDeviceToolStripMenuItem,
             this.uploadToolStripMenuItem});
             this.hIDToolStripMenuItem.Name = "hIDToolStripMenuItem";
-            this.hIDToolStripMenuItem.Size = new System.Drawing.Size(74, 24);
-            this.hIDToolStripMenuItem.Text = "System";
+            this.hIDToolStripMenuItem.Size = new System.Drawing.Size(48, 24);
+            this.hIDToolStripMenuItem.Text = "HID";
             // 
             // openDeviceToolStripMenuItem
             // 
             this.openDeviceToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.openDeviceToolStripMenuItem.Name = "openDeviceToolStripMenuItem";
-            this.openDeviceToolStripMenuItem.Size = new System.Drawing.Size(173, 26);
+            this.openDeviceToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.openDeviceToolStripMenuItem.Text = "OpenDevice";
             // 
             // uploadToolStripMenuItem
             // 
             this.uploadToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.uploadToolStripMenuItem.Name = "uploadToolStripMenuItem";
-            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(173, 26);
+            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.uploadToolStripMenuItem.Text = "Upload";
             // 
             // xD60ToolStripMenuItem
@@ -112,27 +112,27 @@
             this.matrix2ToolStripMenuItem,
             this.clearAllToolStripMenuItem});
             this.xD60ToolStripMenuItem.Name = "xD60ToolStripMenuItem";
-            this.xD60ToolStripMenuItem.Size = new System.Drawing.Size(68, 24);
-            this.xD60ToolStripMenuItem.Text = "Matrix";
+            this.xD60ToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
+            this.xD60ToolStripMenuItem.Text = "Edit";
             // 
             // matrix1ToolStripMenuItem
             // 
             this.matrix1ToolStripMenuItem.Name = "matrix1ToolStripMenuItem";
-            this.matrix1ToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
+            this.matrix1ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.matrix1ToolStripMenuItem.Text = "OpenSetting";
             this.matrix1ToolStripMenuItem.Click += new System.EventHandler(this.matrix1ToolStripMenuItem_Click);
             // 
             // matrix2ToolStripMenuItem
             // 
             this.matrix2ToolStripMenuItem.Name = "matrix2ToolStripMenuItem";
-            this.matrix2ToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
+            this.matrix2ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.matrix2ToolStripMenuItem.Text = "SaveSetting";
             this.matrix2ToolStripMenuItem.Click += new System.EventHandler(this.matrix2ToolStripMenuItem_Click);
             // 
             // clearAllToolStripMenuItem
             // 
             this.clearAllToolStripMenuItem.Name = "clearAllToolStripMenuItem";
-            this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
+            this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.clearAllToolStripMenuItem.Text = "ClearAll";
             this.clearAllToolStripMenuItem.Click += new System.EventHandler(this.clearAllToolStripMenuItem_Click);
             // 
@@ -148,21 +148,21 @@
             // xD60AToolStripMenuItem
             // 
             this.xD60AToolStripMenuItem.Name = "xD60AToolStripMenuItem";
-            this.xD60AToolStripMenuItem.Size = new System.Drawing.Size(123, 26);
+            this.xD60AToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.xD60AToolStripMenuItem.Text = "XD60";
             this.xD60AToolStripMenuItem.Click += new System.EventHandler(this.xD60AToolStripMenuItem_Click);
             // 
             // xD60BToolStripMenuItem
             // 
             this.xD60BToolStripMenuItem.Name = "xD60BToolStripMenuItem";
-            this.xD60BToolStripMenuItem.Size = new System.Drawing.Size(123, 26);
+            this.xD60BToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.xD60BToolStripMenuItem.Text = "CNY";
             // 
             // layer1ToolStripMenuItem
             // 
             this.layer1ToolStripMenuItem.Name = "layer1ToolStripMenuItem";
-            this.layer1ToolStripMenuItem.Size = new System.Drawing.Size(124, 24);
-            this.layer1ToolStripMenuItem.Text = "CurrentLayer1";
+            this.layer1ToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
+            this.layer1ToolStripMenuItem.Text = "Layer1";
             this.layer1ToolStripMenuItem.Click += new System.EventHandler(this.layer1ToolStripMenuItem_Click);
             // 
             // textBox1
@@ -310,6 +310,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "HidRawTools";
             this.Text = "HidRawTools";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HidRawTools_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

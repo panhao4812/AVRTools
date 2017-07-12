@@ -12,3 +12,8 @@ C:\Users\Administrator\Documents\GitHub\Tinytools\HidLibrary\bin\Debug\HidLibrar
 C:\Users\Administrator\Documents\GitHub\Tinytools\HidLibrary\bin\Debug\HidLibrary.pdb
 C:\Users\Administrator\Documents\GitHub\Tinytools\HidLibrary\obj\Debug\HidLibrary.dll
 C:\Users\Administrator\Documents\GitHub\Tinytools\HidLibrary\obj\Debug\HidLibrary.pdb
+D:\GitHub\Tinytools\HidLibrary\bin\Debug\HidLibrary.dll
+D:\GitHub\Tinytools\HidLibrary\bin\Debug\HidLibrary.pdb
+D:\GitHub\Tinytools\HidLibrary\obj\Debug\HidLibrary.csprojResolveAssemblyReference.cache
+D:\GitHub\Tinytools\HidLibrary\obj\Debug\HidLibrary.dll
+D:\GitHub\Tinytools\HidLibrary\obj\Debug\HidLibrary.pdb

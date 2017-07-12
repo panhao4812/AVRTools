@@ -23,7 +23,7 @@ namespace HidRawTools
         double keycaplength = 48;
         double keycapoffset = 1;
         Button selectkey = null;
-        int layer = 1;
+        int layer = 0;
         private void Form1_Load(object sender, EventArgs e)
         {
             this.Size = new Size(1024, 800);
@@ -35,25 +35,29 @@ namespace HidRawTools
             checkedListBox1.Location = new Point(334, 428);
             dataGridView1.Size = new Size(338, 322);
             dataGridView1.Location = new Point(666, 428);
-            dataGridView1.RowCount = Program.KeyName.Length+1;
+            dataGridView1.RowCount = Program.KeyName.Length + 1;
             for (int i = 0; i < this.dataGridView1.Columns.Count; i++)
             {
                 this.dataGridView1.Columns[i].SortMode = DataGridViewColumnSortMode.Automatic;
             }
-            this.dataGridView1.Rows[0].Cells[0].Value ="Blank";
-            this.dataGridView1.Rows[0].Cells[1].Value ="";
+            this.dataGridView1.Rows[0].Cells[0].Value = "Blank";
+            this.dataGridView1.Rows[0].Cells[1].Value = "";
             this.dataGridView1.Rows[0].Cells[2].Value = 0;
             this.dataGridView1.Rows[0].Cells[3].Value = 0;
-            for (int i = 1; i < Program.KeyName.Length ; i++)
+            for (int i = 0; i < Program.KeyName.Length; i++)
             {
-                this.dataGridView1.Rows[i].Cells[0].Value = Program.KeyName[i];
-                this.dataGridView1.Rows[i].Cells[1].Value = Program.KeyName2[i];
-                this.dataGridView1.Rows[i].Cells[2].Value = Program.Keycode[i];
-                this.dataGridView1.Rows[i].Cells[3].Value = Program.Keymask[i];
+                this.dataGridView1.Rows[i + 1].Cells[0].Value = Program.KeyName[i];
+                this.dataGridView1.Rows[i + 1].Cells[1].Value = Program.KeyName2[i];
+                this.dataGridView1.Rows[i + 1].Cells[2].Value = Program.Keycode[i];
+                this.dataGridView1.Rows[i + 1].Cells[3].Value = Program.Keymask[i];
             }
         }
-       
+
         private void matrix2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            save();
+        }
+        void save()
         {
             try
             {
@@ -64,19 +68,23 @@ namespace HidRawTools
                 string output = "";
                 for (int i = 0; i < checkedListBox1.CheckedIndices.Count; i++)
                 {
+                    int index = checkedListBox1.CheckedIndices[i];
                     string str = checkedListBox1.CheckedIndices[i].ToString();
-                  //  string[] chara = str.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
-                    output += str+","+ panel1.Controls[i].Text+"\r\n";
+                    //  string[] chara = str.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+                    output += str + "," + matrix.keycode[index] + "," + matrix.keycode[index + matrix.keycap.GetUpperBound(0)] + "\r\n";
                 }
                 stream.Write(output);
                 stream.Flush();
                 stream.Close();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Print(ex.ToString());
+            }
         }
         private void xD60AToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            loadmatrix("XD60_A");
+            if (loadmatrix("XD60_A")) { Open(); }         
         }
         public bool loadmatrix(string _name)
         {
@@ -105,18 +113,21 @@ namespace HidRawTools
         }
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            changeButton();
+        }
+        void changeButton()
+        {
             Clear();
             panel1.Controls.Clear();
-            
+
             for (int i = 0; i < checkedListBox1.CheckedIndices.Count; i++)
             {
-                string str = checkedListBox1.CheckedIndices[i].ToString();              
-                int index = Convert.ToInt32(str);
-                AddButton(index, matrix.keycode[index*layer]);
+                string str = checkedListBox1.CheckedIndices[i].ToString();
+                int index = checkedListBox1.CheckedIndices[i];
+                AddButton(index, matrix.keycode[index + layer * matrix.keycap.GetUpperBound(0)]);
             }
         }
-        public void AddButton(int index,string str)
+        public void AddButton(int index, string str)
         {
             double x = matrix.keycap[index, 0];
             double y = matrix.keycap[index, 1];
@@ -135,18 +146,23 @@ namespace HidRawTools
         }
         private void clearAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
-             for (int i = 0; i < checkedListBox1.Items.Count; i++) {
+            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+            {
                 checkedListBox1.SetItemChecked(i, false);
-               }
+            }
             Clear();
             panel1.Controls.Clear();
+            for (int i = 0; i < matrix.keycode.Length; i++)
+            {
+                matrix.keycode[i] = "";
+            }
         }
 
         private void button1_Enter(object sender, EventArgs e)
         {
-            for(int i=0;i < panel1.Controls.Count; i++)
+            for (int i = 0; i < panel1.Controls.Count; i++)
             {
-              (  (Button)panel1.Controls[i]).BackColor = Color.White;
+                ((Button)panel1.Controls[i]).BackColor = Color.White;
             }
             ((Button)sender).BackColor = Color.LightSalmon;
             selectkey = ((Button)sender);
@@ -168,19 +184,92 @@ namespace HidRawTools
             if (selectkey != null)
             {
                 int i = dataGridView1.CurrentCell.RowIndex;
-                selectkey.Text= dataGridView1.Rows[i].Cells[1].Value.ToString();
-                matrix.keycode[Convert.ToInt32(selectkey.Name)*layer] = selectkey.Text;
+                selectkey.Text = dataGridView1.Rows[i].Cells[1].Value.ToString();
+                int index = Convert.ToInt32(selectkey.Name);
+                matrix.keycode[index + layer * matrix.keycap.GetUpperBound(0)] = selectkey.Text;
             }
         }
 
         private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
-            {           
+            {
                 dataGridView1.ClearSelection();
             }
         }
-
+        void Open()
+        {
+            try {
+                for (int i = 0; i < matrix.Defaultkeycode.Length; i++) {
+                    string str = matrix.Defaultkeycode[i];
+                    string[] chara = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                    if (chara.Length == 3)
+                    {
+                        int index = Convert.ToInt32(chara[0]);
+                        checkedListBox1.SetItemChecked(index, true);
+                        AddButton(index, chara[1]);
+                        matrix.keycode[index] = chara[1];
+                        matrix.keycode[index + matrix.keycap.GetUpperBound(0)] = chara[2];
+                    }
+                    else if (chara.Length == 2)
+                    {
+                        int index = Convert.ToInt32(chara[0]);
+                        checkedListBox1.SetItemChecked(index, true);
+                        AddButton(index, chara[1]);
+                        matrix.keycode[index] = chara[1];
+                    }
+                    else if (chara.Length == 1)
+                    {
+                        int index = Convert.ToInt32(chara[0]);
+                        checkedListBox1.SetItemChecked(index, true);
+                        AddButton(index, "");
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                Print(ex.ToString());
+            }
+        }
+        void Open(string path)
+        {
+            try
+            {
+                FileStream fs = new FileStream(path, FileMode.Open);
+                StreamReader srd = new StreamReader(fs);
+                while (srd.Peek() != -1)
+                {
+                    string str = srd.ReadLine();
+                    string[] chara = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                    if (chara.Length == 3)
+                    {
+                        int index = Convert.ToInt32(chara[0]);
+                        checkedListBox1.SetItemChecked(index, true);
+                        AddButton(index, chara[1]);
+                        matrix.keycode[index] = chara[1];
+                        matrix.keycode[index + matrix.keycap.GetUpperBound(0)] = chara[2];
+                    }
+                    else if (chara.Length == 2)
+                    {
+                        int index = Convert.ToInt32(chara[0]);
+                        checkedListBox1.SetItemChecked(index, true);
+                        AddButton(index, chara[1]);
+                        matrix.keycode[index] = chara[1];
+                    }
+                    else if (chara.Length == 1)
+                    {
+                        int index = Convert.ToInt32(chara[0]);
+                        checkedListBox1.SetItemChecked(index, true);
+                        AddButton(index, "");
+                    }
+                }
+                srd.Close();
+            }
+            catch (Exception ex)
+            {
+                Print(ex.ToString());
+            }
+        }
         private void matrix1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             String path = "";
@@ -190,44 +279,28 @@ namespace HidRawTools
                 path = ofd.FileName;
                 string Name = Path.GetFileNameWithoutExtension(path);
                 if (!loadmatrix(Name)) return;
-                try
-                {
-                    FileStream fs = new FileStream(path, FileMode.Open);
-                    StreamReader srd = new StreamReader(fs);
-                    while (srd.Peek() != -1)
-                    {
-                        string str = srd.ReadLine();
-                        string[] chara = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-                        if (chara.Length ==2)
-                        {
-                            int index = Convert.ToInt32(chara[0]);                          
-                                checkedListBox1.SetItemChecked(index, true);
-                            AddButton(index, chara[1]);
-                        }
-                        else if (chara.Length == 1)
-                        {
-                            int index = Convert.ToInt32(chara[0]);
-                            checkedListBox1.SetItemChecked(index, true);
-                            AddButton(index, "");
-                        }
-                    }
-                    srd.Close();
-                }        
-                catch { }
-            }           
+                Open(path);
+            }
         }
 
         private void layer1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (layer == 1)
+            if (layer == 0)
             {
-                layer = 2;
-                this.menuStrip1.Items[3].Text = "CurrentLayer2";
+                layer = 1;
+                this.menuStrip1.Items[3].Text = "Layer2";
+                changeButton();
             }
             else {
-                layer = 1;
-                this.menuStrip1.Items[3].Text = "CurrentLayer1";
+                layer = 0;
+                this.menuStrip1.Items[3].Text = "Layer1";
+                changeButton();
             }
-            }
+        }
+
+        private void HidRawTools_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            save();
+        }
     }
 }

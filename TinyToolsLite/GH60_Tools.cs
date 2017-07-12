@@ -292,7 +292,8 @@ namespace TinyToolsLite
                 for (int i = 0; i < HidDeviceList.Length; i++)
                 {
                     Print(HidDeviceList[i].DevicePath);
-                    HidDevice = HidDeviceList[0]; break;
+                    HidDevice = HidDeviceList[0];
+                    break;
                 }
                 if (HidDevice == null)
                 {

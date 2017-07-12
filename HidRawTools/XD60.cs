@@ -13,12 +13,13 @@ namespace HidRawTools
         public int COLS;
         public byte[] rowPins;
         public byte[] colPins;
-        public string[,] hexaKeys0;
-        public string[,] hexaKeys1;
+        public string[,] hexaKeys0 = new string[5, 14];
+        public string[,] hexaKeys1 = new string[5, 14];
         public byte[,] keymask = new byte[5, 14];
         public double[,] keycap;
         public string Name = "unamed";
         public string[] keycode;
+        public string[] Defaultkeycode;
     }
     class XD60_A : IMatrix
     {
@@ -43,8 +44,10 @@ namespace HidRawTools
     { "Shift","0x00","NumLK","ScrLk","Insert","PrtSc","0x00","0x00","0x00","VOL-","VOL+","0x00","0x00","Up"},
     { "Ctrl","FN","Alt","0x00","0x00","Space","0x00","0x00","Left","0x00","FN","rCtrl","Down","Right"}
                 };
-            //x,y,length,row,col
-            keycode = new string[106*2]; 
+            Defaultkeycode = new string[106];
+          
+             //x,y,length,row,col
+             keycode = new string[106*2]; 
             for (int i = 0; i < keycode.Length; i++)
             {
                 keycode[i] = ""; 
