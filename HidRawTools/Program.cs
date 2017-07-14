@@ -34,6 +34,7 @@ namespace HidRawTools
         {
             mask = 0;
             if (name == "0x00") return 0;
+            if (name == "") return 0;
             for (int i = 0; i < KeyName.Length; i++)
             {
                 if (name == KeyName[i] || name == KeyName2[i])

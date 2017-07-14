@@ -6,3 +6,4 @@ D:\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.Properties.Resources.resou
 D:\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.csproj.GenerateResource.Cache
 D:\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.exe
 D:\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.pdb
+D:\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.csprojResolveAssemblyReference.cache

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace HidRawTools
@@ -24,6 +27,7 @@ namespace HidRawTools
         double keycapoffset = 1;
         Button selectkey = null;
         int layer = 0;
+        public static HidDevice HidDevice;
         private void Form1_Load(object sender, EventArgs e)
         {
             this.Size = new Size(1024, 800);
@@ -301,6 +305,178 @@ namespace HidRawTools
         private void HidRawTools_FormClosing(object sender, FormClosingEventArgs e)
         {
             save();
+        }
+
+        private void openDeviceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ushort vid = 0, pid = 0;
+            if (textBox1.Text != "" && textBox2.Text != "")
+            {
+                vid = (ushort)Convert.ToInt32(textBox1.Text, 16);
+                pid = (ushort)Convert.ToInt32(textBox2.Text, 16);
+            }
+            Clear();
+            Print("0x" + vid.ToString("x"));
+            Print("0x" + pid.ToString("x"));
+            try
+            {
+                HidDevice[] HidDeviceList = HidDevices.Enumerate(vid, pid, Convert.ToUInt16(0xFF31)).ToArray();
+                if (HidDeviceList == null || HidDeviceList.Length == 0)
+                {
+                    Print("Connect usb device. Try open again");
+                    return;
+                }
+                for (int i = 0; i < HidDeviceList.Length; i++)
+                {
+                    Print(HidDeviceList[i].DevicePath);
+                    HidDevice = HidDeviceList[0];
+                    break;
+                }
+                if (HidDevice == null)
+                {
+                    Print("Connect usb device. Try open again");
+                    return;
+                }
+                Print("Device OK");
+            }
+            catch (Exception ex)
+            {
+                Print(ex.ToString());
+            }
+        }
+        public string ToEEP()
+        {
+            for(int r = 0; r < matrix.ROWS; r++)
+            {
+                for (int c = 0; c < matrix.COLS; c++)
+                {
+                    matrix.hexaKeys0[r, c] = "0x00";
+                    matrix.hexaKeys1[r, c] = "0x00";
+                }
+            }
+            for (int i = 0; i < checkedListBox1.CheckedIndices.Count; i++)
+            {
+                int index = checkedListBox1.CheckedIndices[i];
+                string str0 = matrix.keycode[index];
+                string str1= matrix.keycode[index + matrix.keycap.GetUpperBound(0)];
+                int r = (int)matrix.keycap[index, 3];
+                int c = (int)matrix.keycap[index, 4];
+                matrix.hexaKeys0[r, c] = str0;
+                matrix.hexaKeys1[r, c] = str1;
+            }
+                try
+            {
+                ushort add1 = 5 * 2;
+                ushort add2 = (ushort)(add1 + 5);
+                ushort add3 = (ushort)(add2 + 14);
+                ushort add4 = (ushort)(add3 + 70);
+                ushort add5 = (ushort)(add4 + 70);
+                StringBuilder output = new StringBuilder();
+                byte[] a = BitConverter.GetBytes(add1);
+                output.Append(a[0]); output.Append(","); output.Append(a[1]); output.Append(",");
+                a = BitConverter.GetBytes(add2);
+                output.Append(a[0]); output.Append(","); output.Append(a[1]); output.Append(",");
+                a = BitConverter.GetBytes(add3);
+                output.Append(a[0]); output.Append(","); output.Append(a[1]); output.Append(",");
+                a = BitConverter.GetBytes(add4);
+                output.Append(a[0]); output.Append(","); output.Append(a[1]); output.Append(",");
+                a = BitConverter.GetBytes(add5);
+                output.Append(a[0]); output.Append(","); output.Append(a[1]); output.Append(",");
+                for (int i = 0; i < matrix.ROWS; i++)
+                {
+                    output.Append(matrix.rowPins[i]); output.Append(",");
+                }
+                for (int i = 0; i < matrix.COLS; i++)
+                {
+                    output.Append(matrix.colPins[i]); output.Append(",");
+                }
+                int[,] mask = new int[matrix.ROWS, matrix.COLS];
+                for (int r = 0; r < matrix.ROWS; r++)
+                {
+                    for (int c = 0; c < matrix.COLS; c++)
+                    {
+                        string code1 = matrix.hexaKeys0[r,c];
+                        int mask1 = 0;
+                        int code = Program.name2code(code1, out mask1);
+                        mask[r, c] += mask1 * 16;
+                        output.Append(code); output.Append(",");
+                    }
+                }
+                for (int r = 0; r < matrix.ROWS; r++)
+                {
+                    for (int c = 0; c < matrix.COLS; c++)
+                    {
+                        string code2 = matrix.hexaKeys1[r, c];
+                        int mask2 = 0;
+                        int code = Program.name2code(code2, out mask2);
+                        mask[r, c] += mask2;
+                        output.Append(code); output.Append(",");
+                    }
+                }
+                for (int r = 0; r < matrix.ROWS; r++)
+                {
+                    for (int c = 0; c < matrix.COLS; c++)
+                    {
+                        output.Append(mask[r, c]); output.Append(",");
+                    }
+                }
+                output.Append((byte)0);
+                return output.ToString();
+            }
+            catch
+            {
+                return "Select a Matrix.Try again.";
+            }
+        }
+        private void uploadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string codeTemp = ToEEP();
+                if (codeTemp == "")
+                {
+                    Clear();
+                    Print("Nothing to upload");
+                    return;
+                }
+                string[] str = codeTemp.Split(',');
+                if (HidDevice == null)
+                {
+                    Clear();
+                    Print("Invalid device");
+                    return;
+                }
+                Clear();
+                Print("Uploading");
+                byte[] outdata = new byte[9]; outdata[0] = 0;
+                outdata[1] = 0xFF; outdata[2] = 0xF1;
+                HidDevice.Write(outdata); Thread.Sleep(60);
+                for (ushort i = 0; i < Convert.ToInt32(0x03FF); i += 6)
+                {
+                    outdata[0] = 0;
+                    byte[] a = BitConverter.GetBytes(i);
+                    outdata[1] = a[0]; outdata[2] = a[1];
+                    if ((i + 5) < str.Length) outdata[8] = Convert.ToByte(str[i + 5]);
+                    if ((i + 4) < str.Length) outdata[7] = Convert.ToByte(str[i + 4]);
+                    if ((i + 3) < str.Length) outdata[6] = Convert.ToByte(str[i + 3]);
+                    if ((i + 2) < str.Length) outdata[5] = Convert.ToByte(str[i + 2]);
+                    if ((i + 1) < str.Length) outdata[4] = Convert.ToByte(str[i + 1]);
+                    if (i < str.Length) outdata[3] = Convert.ToByte(str[i]);
+                    else { break; }
+                    HidDevice.Write(outdata);
+                    string outdatastr = "";
+                    for (int k = 1; k < outdata.Length; k++)
+                    {
+                        outdatastr += outdata[k].ToString() + "/";
+                    }
+                    Print(outdatastr);
+                    Thread.Sleep(60);
+                }
+                outdata[1] = 0xFF; outdata[2] = 0xF2;
+                HidDevice.Write(outdata); Thread.Sleep(60);
+                Print("Upload finished");
+            }
+            catch (Exception ex) { Print(ex.ToString()); }
         }
     }
 }
