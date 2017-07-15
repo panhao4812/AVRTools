@@ -62,15 +62,15 @@ namespace TinyToolsLite
     { "Esc","1","2","3","4","5","6","7","8","9","0","-","=","<--"},
     { "Tab","Q","W","E","R","T","Y","U","I","O","P","[","]","、"},
     { "CapsLK","A","S","D","F","G","H","J","K","L",";","“","0x00","Enter"},
-    { "Shift","0x00","Z","X","C","V","B","N","M",",",".","0x00", "/","Up"},
-    { "Ctrl","FN","Alt","0x00","0x00","Space","0x00","/","Left","0x00","FN","rCtrl","Down","Right"}
+    { "Shift","0x00","Z","X","C","V","B","N","M",",",".","/", "0x00","rShift"},
+    { "Ctrl","FN","Alt","0x00","0x00","Space","0x00","Up","Down","0x00","FN","Left","Right","rCtrl"}
                 };
                 this.hexaKeys1 = new string[5, 14]{
     { "~","F1","F2","F3","F4","F5","F6","F7","F8","F9","F10","F11","F12", "Delete"},
     { "Tab","p1","p2","p3","p4","p5","p6","p7","p8","p9","p0","p-","p+","、"},
     { "CapsLK", "mLeft","mMid","mRight","0x00","0x00","0x00","0x00","0x00","0x00","0x00","0x00","0x00","Enter"},
-    { "Shift","0x00","NumLK","ScrLk","Insert","PrtSc","0x00","0x00","0x00","VOL-","VOL+","0x00","0x00","Up"},
-    { "Ctrl","FN","Alt","0x00","0x00","Space","0x00","0x00","Left","0x00","FN","rCtrl","Down","Right"}
+    { "Shift","0x00","NumLK","ScrLk","Insert","PrtSc","0x00","0x00","0x00","VOL-","VOL+","0x00","0x00","rShift"},
+    { "Ctrl","FN","Alt","0x00","0x00","Space","0x00","Up","Down","0x00","FN","Left","Right","rCtrl"}
                 };          
             }
         }
