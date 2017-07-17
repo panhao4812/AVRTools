@@ -150,14 +150,14 @@
             // xD60AToolStripMenuItem
             // 
             this.xD60AToolStripMenuItem.Name = "xD60AToolStripMenuItem";
-            this.xD60AToolStripMenuItem.Size = new System.Drawing.Size(123, 26);
-            this.xD60AToolStripMenuItem.Text = "XD60";
+            this.xD60AToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
+            this.xD60AToolStripMenuItem.Text = "XD60_2.15XShift";
             this.xD60AToolStripMenuItem.Click += new System.EventHandler(this.xD60AToolStripMenuItem_Click);
             // 
             // xD60BToolStripMenuItem
             // 
             this.xD60BToolStripMenuItem.Name = "xD60BToolStripMenuItem";
-            this.xD60BToolStripMenuItem.Size = new System.Drawing.Size(123, 26);
+            this.xD60BToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
             this.xD60BToolStripMenuItem.Text = "CNY";
             // 
             // layer1ToolStripMenuItem

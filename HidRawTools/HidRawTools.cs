@@ -75,7 +75,7 @@ namespace HidRawTools
                     int index = checkedListBox1.CheckedIndices[i];
                     string str = checkedListBox1.CheckedIndices[i].ToString();
                     //  string[] chara = str.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
-                    output += str + "," + matrix.keycode[index] + "," + matrix.keycode[index + matrix.keycap.GetUpperBound(0)] + "\r\n";
+                    output +=str + "," + Program.longname(matrix.keycode[index]) + "," + Program.longname(matrix.keycode[index + matrix.keycap.GetUpperBound(0)]) + "\r\n";
                 }
                 stream.Write(output);
                 stream.Flush();
@@ -211,16 +211,16 @@ namespace HidRawTools
                     {
                         int index = Convert.ToInt32(chara[0]);
                         checkedListBox1.SetItemChecked(index, true);
-                        AddButton(index, chara[1]);
-                        matrix.keycode[index] = chara[1];
-                        matrix.keycode[index + matrix.keycap.GetUpperBound(0)] = chara[2];
+                        AddButton(index, Program.shortname(chara[1]));
+                        matrix.keycode[index] = Program.shortname(chara[1]);
+                        matrix.keycode[index + matrix.keycap.GetUpperBound(0)] = Program.shortname(chara[2]);
                     }
                     else if (chara.Length == 2)
                     {
                         int index = Convert.ToInt32(chara[0]);
                         checkedListBox1.SetItemChecked(index, true);
-                        AddButton(index, chara[1]);
-                        matrix.keycode[index] = chara[1];
+                        AddButton(index, Program.shortname(chara[1]));
+                        matrix.keycode[index] = Program.shortname(chara[1]);
                     }
                     else if (chara.Length == 1)
                     {
@@ -249,16 +249,16 @@ namespace HidRawTools
                     {
                         int index = Convert.ToInt32(chara[0]);
                         checkedListBox1.SetItemChecked(index, true);
-                        AddButton(index, chara[1]);
-                        matrix.keycode[index] = chara[1];
-                        matrix.keycode[index + matrix.keycap.GetUpperBound(0)] = chara[2];
+                        AddButton(index, Program.shortname(chara[1]));
+                        matrix.keycode[index] = Program.shortname(chara[1]);
+                        matrix.keycode[index + matrix.keycap.GetUpperBound(0)] = Program.shortname(chara[2]);
                     }
                     else if (chara.Length == 2)
                     {
                         int index = Convert.ToInt32(chara[0]);
                         checkedListBox1.SetItemChecked(index, true);
-                        AddButton(index, chara[1]);
-                        matrix.keycode[index] = chara[1];
+                        AddButton(index, Program.shortname(chara[1]));
+                        matrix.keycode[index] = Program.shortname(chara[1]);
                     }
                     else if (chara.Length == 1)
                     {
@@ -310,9 +310,9 @@ namespace HidRawTools
         private void openDeviceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ushort vid = 0, pid = 0;
-            if (textBox1.Text != "" && textBox2.Text != "")
+            if (textBox3.Text != "" && textBox2.Text != "")
             {
-                vid = (ushort)Convert.ToInt32(textBox1.Text, 16);
+                vid = (ushort)Convert.ToInt32(textBox3.Text, 16);
                 pid = (ushort)Convert.ToInt32(textBox2.Text, 16);
             }
             Clear();

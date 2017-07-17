@@ -28,7 +28,19 @@ namespace HidRawTools
                     return KeyName2[i];
                 }
             }
-            return "0xFFFF";
+            return "";
+        }
+        public static string longname(string name)
+        {
+            if (name == "0x00") return "0x00";
+            for (int i = 0; i < KeyName.Length; i++)
+            {
+                if (name == KeyName[i] || name == KeyName2[i])
+                {
+                    return KeyName[i];
+                }
+            }
+            return "";
         }
         public static int name2code(string name, out int mask)
         {
@@ -172,10 +184,10 @@ namespace HidRawTools
         "Delete" ,
         "End" ,
         "PgDn" ,
-        "Right" ,
-        "Left" ,
-        "Down" ,
-        "Up" ,
+        "→" ,
+        "←" ,
+        "↓" ,
+        "↑" ,
         "NumLK" ,
         "p/" ,
         "pASTERIX" ,
