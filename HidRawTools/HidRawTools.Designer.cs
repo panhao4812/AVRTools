@@ -95,7 +95,7 @@
             // 
             this.openDeviceToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.openDeviceToolStripMenuItem.Name = "openDeviceToolStripMenuItem";
-            this.openDeviceToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.openDeviceToolStripMenuItem.Size = new System.Drawing.Size(173, 26);
             this.openDeviceToolStripMenuItem.Text = "OpenDevice";
             this.openDeviceToolStripMenuItem.Click += new System.EventHandler(this.openDeviceToolStripMenuItem_Click);
             // 
@@ -103,7 +103,7 @@
             // 
             this.uploadToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.uploadToolStripMenuItem.Name = "uploadToolStripMenuItem";
-            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(173, 26);
             this.uploadToolStripMenuItem.Text = "Upload";
             this.uploadToolStripMenuItem.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click);
             // 
@@ -158,7 +158,8 @@
             // 
             this.xD60BToolStripMenuItem.Name = "xD60BToolStripMenuItem";
             this.xD60BToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
-            this.xD60BToolStripMenuItem.Text = "CNY";
+            this.xD60BToolStripMenuItem.Text = "XD60_2XShift";
+            this.xD60BToolStripMenuItem.Click += new System.EventHandler(this.xD60BToolStripMenuItem_Click);
             // 
             // layer1ToolStripMenuItem
             // 

@@ -96,6 +96,10 @@ namespace HidRawTools
             {
                 matrix = new XD60_A();
             }
+            else if(_name == "XD60_B")
+            {
+                matrix = new XD60_B();
+            }
             else return false;
             ////////////////////////////////////////
             checkedListBox1.Items.Clear();
@@ -105,12 +109,15 @@ namespace HidRawTools
             {
                 string name = ""; int length = 0;
                 name += "X:" + matrix.keycap[i, 0].ToString();
-                length = 10 - name.Length;
+                length = 8 - name.Length;
                 for (int j = 0; j < length; j++) { name += " "; }
                 name += "Y:" + matrix.keycap[i, 1].ToString();
-                length = 20 - name.Length;
+                length = 16 - name.Length;
                 for (int j = 0; j < length; j++) { name += " "; }
                 name += "L:" + matrix.keycap[i, 2].ToString();
+                length = 24 - name.Length;
+                for (int j = 0; j < length; j++) { name += " "; }
+                name += "M:" + matrix.keycap[i, 3].ToString()+"/"+ matrix.keycap[i, 4].ToString();
                 checkedListBox1.Items.Add(name);
             }
             return true;
@@ -477,6 +484,11 @@ namespace HidRawTools
                 Print("Upload finished");
             }
             catch (Exception ex) { Print(ex.ToString()); }
+        }
+
+        private void xD60BToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("XD60_B")) { Open(); }
         }
     }
 }
