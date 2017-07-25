@@ -74,6 +74,14 @@
             this.label10 = new System.Windows.Forms.Label();
             this.usbpcap = new System.Windows.Forms.Button();
             this.usbpcap_cd = new System.Windows.Forms.Button();
+            this.BLFlash = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.VID_box = new System.Windows.Forms.TextBox();
+            this.BLFlash_button = new System.Windows.Forms.Button();
+            this.BLFlash_box = new System.Windows.Forms.TextBox();
+            this.PID_box = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -523,7 +531,7 @@
             // 
             this.usbpcap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.usbpcap.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.usbpcap.Location = new System.Drawing.Point(11, 390);
+            this.usbpcap.Location = new System.Drawing.Point(12, 390);
             this.usbpcap.Name = "usbpcap";
             this.usbpcap.Size = new System.Drawing.Size(97, 30);
             this.usbpcap.TabIndex = 57;
@@ -543,11 +551,103 @@
             this.usbpcap_cd.UseVisualStyleBackColor = true;
             this.usbpcap_cd.Click += new System.EventHandler(this.usbpcap_cd_Click);
             // 
+            // BLFlash
+            // 
+            this.BLFlash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BLFlash.ForeColor = System.Drawing.Color.SteelBlue;
+            this.BLFlash.Location = new System.Drawing.Point(516, 441);
+            this.BLFlash.Name = "BLFlash";
+            this.BLFlash.Size = new System.Drawing.Size(97, 30);
+            this.BLFlash.TabIndex = 66;
+            this.BLFlash.Text = "Flash";
+            this.BLFlash.UseVisualStyleBackColor = true;
+            this.BLFlash.Click += new System.EventHandler(this.BLFlash_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label11.Location = new System.Drawing.Point(9, 423);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(607, 15);
+            this.label11.TabIndex = 65;
+            this.label11.Text = "--------------------------------HidBootFlash-------------------------------";
+            // 
+            // VID_box
+            // 
+            this.VID_box.BackColor = System.Drawing.SystemColors.Menu;
+            this.VID_box.ForeColor = System.Drawing.Color.SteelBlue;
+            this.VID_box.Location = new System.Drawing.Point(359, 441);
+            this.VID_box.Multiline = true;
+            this.VID_box.Name = "VID_box";
+            this.VID_box.Size = new System.Drawing.Size(55, 30);
+            this.VID_box.TabIndex = 64;
+            // 
+            // BLFlash_button
+            // 
+            this.BLFlash_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BLFlash_button.ForeColor = System.Drawing.Color.SteelBlue;
+            this.BLFlash_button.Location = new System.Drawing.Point(12, 441);
+            this.BLFlash_button.Name = "BLFlash_button";
+            this.BLFlash_button.Size = new System.Drawing.Size(97, 30);
+            this.BLFlash_button.TabIndex = 70;
+            this.BLFlash_button.Text = "path";
+            this.BLFlash_button.UseVisualStyleBackColor = true;
+            this.BLFlash_button.Click += new System.EventHandler(this.BLFlash_button_Click);
+            // 
+            // BLFlash_box
+            // 
+            this.BLFlash_box.BackColor = System.Drawing.SystemColors.Menu;
+            this.BLFlash_box.ForeColor = System.Drawing.Color.SteelBlue;
+            this.BLFlash_box.Location = new System.Drawing.Point(118, 441);
+            this.BLFlash_box.Multiline = true;
+            this.BLFlash_box.Name = "BLFlash_box";
+            this.BLFlash_box.Size = new System.Drawing.Size(198, 30);
+            this.BLFlash_box.TabIndex = 68;
+            // 
+            // PID_box
+            // 
+            this.PID_box.BackColor = System.Drawing.SystemColors.Menu;
+            this.PID_box.ForeColor = System.Drawing.Color.SteelBlue;
+            this.PID_box.Location = new System.Drawing.Point(455, 441);
+            this.PID_box.Multiline = true;
+            this.PID_box.Name = "PID_box";
+            this.PID_box.Size = new System.Drawing.Size(55, 30);
+            this.PID_box.TabIndex = 71;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label12.Location = new System.Drawing.Point(420, 449);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(31, 15);
+            this.label12.TabIndex = 72;
+            this.label12.Text = "PID";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label13.Location = new System.Drawing.Point(322, 449);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(31, 15);
+            this.label13.TabIndex = 73;
+            this.label13.Text = "VID";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(625, 431);
+            this.ClientSize = new System.Drawing.Size(625, 483);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.PID_box);
+            this.Controls.Add(this.BLFlash_button);
+            this.Controls.Add(this.BLFlash_box);
+            this.Controls.Add(this.BLFlash);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.VID_box);
             this.Controls.Add(this.usbpcap_cd);
             this.Controls.Add(this.usbpcap);
             this.Controls.Add(this.label10);
@@ -648,5 +748,13 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button usbpcap;
         private System.Windows.Forms.Button usbpcap_cd;
+        private System.Windows.Forms.Button BLFlash;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox VID_box;
+        private System.Windows.Forms.Button BLFlash_button;
+        private System.Windows.Forms.TextBox BLFlash_box;
+        private System.Windows.Forms.TextBox PID_box;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
     }
 }

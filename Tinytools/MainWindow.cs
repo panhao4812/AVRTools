@@ -57,6 +57,9 @@ namespace Tinytools
                         else if (chara[0] == "flash") flash_box.Text = chara[1];
                         else if (chara[0] == "eeprom") eeprom_box.Text = chara[1];
                         else if (chara[0] == "pstools") pstools_box.Text = chara[1];
+                        else if (chara[0] == "VID") VID_box.Text = chara[1];
+                        else if (chara[0] == "PID") PID_box.Text = chara[1];
+                        else if (chara[0] == "BLFlash") BLFlash_box.Text = chara[1];
                     }
                 }
                 srd.Close();
@@ -82,7 +85,10 @@ namespace Tinytools
                 output += "efuse," + efuse_box.Text + "\r\n";
                 output += "lock," + lock_box.Text + "\r\n";
                 output += "eeprom," + eeprom_box.Text + "\r\n";
-                output += "pstools," + pstools_box.Text + "\r\n";  
+                output += "pstools," + pstools_box.Text + "\r\n";
+                output += "VID," + VID_box.Text + "\r\n";
+                output += "PID," + PID_box.Text + "\r\n";
+                output += "BLFlash," + BLFlash_box.Text + "\r\n";
                 stream.Write(output);
                 stream.Flush();
                 stream.Close();
@@ -270,6 +276,28 @@ namespace Tinytools
             char[] c3 = { c1, c2 };
             printw(new string(c3));
             Main_box.Text = Path.GetDirectoryName(pstools_box.Text)+ "\\psexec.exe -i -d -s regedit.exe";
+        }
+
+        private void BLFlash_button_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog of = new OpenFileDialog();
+            of.Filter = "(*.hex)|*.hex";
+            if (of.ShowDialog() == DialogResult.OK)
+            {
+                BLFlash_box.Text = of.FileName.ToString();
+            }
+            BLFlash_box.Text = BLFlash_box.Text.Replace('\\', '/');
+        }
+
+        private void BLFlash_Click(object sender, EventArgs e)
+        {
+            if (VID_box.Text == "") return;
+            if (PID_box.Text == "") return;
+            if (BLFlash_box.Text == "") return;
+            string str = "bootloadHID.exe -r ";
+            str += BLFlash_box.Text+" ";
+            str += VID_box.Text + " "+PID_box.Text;
+            Main_box.Text = str;
         }
     }
 }
