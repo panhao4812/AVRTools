@@ -165,7 +165,7 @@
             // 
             this.layer1ToolStripMenuItem.Name = "layer1ToolStripMenuItem";
             this.layer1ToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
-            this.layer1ToolStripMenuItem.Text = "Layer1";
+            this.layer1ToolStripMenuItem.Text = "Layer0";
             this.layer1ToolStripMenuItem.Click += new System.EventHandler(this.layer1ToolStripMenuItem_Click);
             // 
             // textBox1
@@ -174,6 +174,7 @@
             this.textBox1.Location = new System.Drawing.Point(0, 357);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(342, 318);
             this.textBox1.TabIndex = 2;
             // 

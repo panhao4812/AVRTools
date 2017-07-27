@@ -299,12 +299,12 @@ namespace HidRawTools
             if (layer == 0)
             {
                 layer = 1;
-                this.menuStrip1.Items[3].Text = "Layer2";
+                this.menuStrip1.Items[3].Text = "Layer1";
                 changeButton();
             }
             else {
                 layer = 0;
-                this.menuStrip1.Items[3].Text = "Layer1";
+                this.menuStrip1.Items[3].Text = "Layer0";
                 changeButton();
             }
         }

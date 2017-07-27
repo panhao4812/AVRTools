@@ -126,7 +126,7 @@ namespace Tinytools
         }
         private void CMD_Click(object sender, EventArgs e)
         {
-            Process proc = Process.Start("CMD.Exe");
+            Process proc = Process.Start("CMD.exe");
         }
         IntPtr hCMD = IntPtr.Zero;
         void printw(string str)
