@@ -16,7 +16,7 @@ namespace TinyToolsLite
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GH60_Tools());
+            Application.Run(new TinyToolsLite());
         }
         public static string shortname(string name)
         { 
