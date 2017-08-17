@@ -75,7 +75,7 @@ namespace HidRawTools
                     int index = checkedListBox1.CheckedIndices[i];
                     string str = checkedListBox1.CheckedIndices[i].ToString();
                     //  string[] chara = str.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
-                    output +=str + "," + Program.longname(matrix.keycode[index]) + "," + Program.longname(matrix.keycode[index + matrix.keycap.GetUpperBound(0)]) + "\r\n";
+                    output +=str + "," + Program.longname(matrix.keycode[index]) + "," + Program.longname(matrix.keycode[index + keyCount]) + "\r\n";
                 }
                 stream.Write(output);
                 stream.Flush();
@@ -86,42 +86,7 @@ namespace HidRawTools
                 Print(ex.ToString());
             }
         }
-        private void xD60AToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (loadmatrix("XD60_A")) { Open(); }         
-        }
-        public bool loadmatrix(string _name)
-        {
-            if (_name == "XD60_A")
-            {
-                matrix = new XD60_A();
-            }
-            else if(_name == "XD60_B")
-            {
-                matrix = new XD60_B();
-            }
-            else return false;
-            ////////////////////////////////////////
-            checkedListBox1.Items.Clear();
-            panel1.Controls.Clear();
-            Clear();
-            for (int i = 0; i < matrix.keycap.GetUpperBound(0); i++)
-            {
-                string name = ""; int length = 0;
-                name += "X:" + matrix.keycap[i, 0].ToString();
-                length = 8 - name.Length;
-                for (int j = 0; j < length; j++) { name += " "; }
-                name += "Y:" + matrix.keycap[i, 1].ToString();
-                length = 16 - name.Length;
-                for (int j = 0; j < length; j++) { name += " "; }
-                name += "L:" + matrix.keycap[i, 2].ToString();
-                length = 24 - name.Length;
-                for (int j = 0; j < length; j++) { name += " "; }
-                name += "M:" + matrix.keycap[i, 3].ToString()+"/"+ matrix.keycap[i, 4].ToString();
-                checkedListBox1.Items.Add(name);
-            }
-            return true;
-        }
+     
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             changeButton();
@@ -135,7 +100,7 @@ namespace HidRawTools
             {
                 string str = checkedListBox1.CheckedIndices[i].ToString();
                 int index = checkedListBox1.CheckedIndices[i];
-                AddButton(index, matrix.keycode[index + layer * matrix.keycap.GetUpperBound(0)]);
+                AddButton(index, matrix.keycode[index + layer * keyCount]);
             }
         }
         public void AddButton(int index, string str)
@@ -197,7 +162,7 @@ namespace HidRawTools
                 int i = dataGridView1.CurrentCell.RowIndex;
                 selectkey.Text = dataGridView1.Rows[i].Cells[1].Value.ToString();
                 int index = Convert.ToInt32(selectkey.Name);
-                matrix.keycode[index + layer * matrix.keycap.GetUpperBound(0)] = selectkey.Text;
+                matrix.keycode[index + layer * keyCount] = selectkey.Text;
             }
         }
 
@@ -220,7 +185,7 @@ namespace HidRawTools
                         checkedListBox1.SetItemChecked(index, true);
                         AddButton(index, Program.shortname(chara[1]));
                         matrix.keycode[index] = Program.shortname(chara[1]);
-                        matrix.keycode[index + matrix.keycap.GetUpperBound(0)] = Program.shortname(chara[2]);
+                        matrix.keycode[index + keyCount] = Program.shortname(chara[2]);
                     }
                     else if (chara.Length == 2)
                     {
@@ -258,7 +223,7 @@ namespace HidRawTools
                         checkedListBox1.SetItemChecked(index, true);
                         AddButton(index, Program.shortname(chara[1]));
                         matrix.keycode[index] = Program.shortname(chara[1]);
-                        matrix.keycode[index + matrix.keycap.GetUpperBound(0)] = Program.shortname(chara[2]);
+                        matrix.keycode[index + keyCount] = Program.shortname(chara[2]);
                     }
                     else if (chara.Length == 2)
                     {
@@ -365,7 +330,7 @@ namespace HidRawTools
             {
                 int index = checkedListBox1.CheckedIndices[i];
                 string str0 = matrix.keycode[index];
-                string str1= matrix.keycode[index + matrix.keycap.GetUpperBound(0)];
+                string str1= matrix.keycode[index + keyCount];
                 int r = (int)matrix.keycap[index, 3];
                 int c = (int)matrix.keycap[index, 4];
                 matrix.hexaKeys0[r, c] = str0;
@@ -374,10 +339,10 @@ namespace HidRawTools
                 try
             {
                 ushort add1 = 5 * 2;
-                ushort add2 = (ushort)(add1 + 5);
-                ushort add3 = (ushort)(add2 + 14);
-                ushort add4 = (ushort)(add3 + 70);
-                ushort add5 = (ushort)(add4 + 70);
+                ushort add2 = (ushort)(add1 + matrix.ROWS);
+                ushort add3 = (ushort)(add2 + matrix.COLS);
+                ushort add4 = (ushort)(add3 + matrix.ROWS* matrix.COLS);
+                ushort add5 = (ushort)(add4 + matrix.ROWS * matrix.COLS);
                 StringBuilder output = new StringBuilder();
                 byte[] a = BitConverter.GetBytes(add1);
                 output.Append(a[0]); output.Append(","); output.Append(a[1]); output.Append(",");
@@ -489,6 +454,72 @@ namespace HidRawTools
         private void xD60BToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (loadmatrix("XD60_B")) { Open(); }
+            textBox3.Text = "CCCC";
+              textBox2.Text = "3415";
+        }
+
+        private void ps2avrUToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("ps2avrU")) { Open(); }
+            textBox3.Text = "CCCC";
+            textBox2.Text = "3512";
+        }
+
+        private void gH60revCNYToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("GH60_revCNY")) { Open(); }
+            textBox3.Text = "CCCC";
+            textBox2.Text = "3415";
+        }
+        private void xD60AToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("XD60_A")) { Open(); }
+            textBox3.Text = "CCCC";
+            textBox2.Text = "3415";
+        }
+        public int keyCount = 0;
+        public bool loadmatrix(string _name)
+        {
+            if (_name == "XD60_A")
+            {
+                matrix = new XD60_A();
+            }
+            else if (_name == "XD60_B")
+            {
+                matrix = new XD60_B();
+            }
+            else if (_name == "ps2avrU")
+            {
+                matrix = new ps2avrU();
+            }
+            else if (_name == "GH60_revCNY")
+            {
+                matrix = new GH60_revCNY();
+            }
+            else return false;
+            layer = 0;
+            this.menuStrip1.Items[3].Text = "Layer0";
+            keyCount = matrix.keycap.GetUpperBound(0) + 1;
+            ////////////////////////////////////////
+            checkedListBox1.Items.Clear();
+            panel1.Controls.Clear();
+            Clear();
+            for (int i = 0; i < keyCount; i++)
+            {
+                string name = ""; int length = 0;
+                name += "X:" + matrix.keycap[i, 0].ToString();
+                length = 8 - name.Length;
+                for (int j = 0; j < length; j++) { name += " "; }
+                name += "Y:" + matrix.keycap[i, 1].ToString();
+                length = 16 - name.Length;
+                for (int j = 0; j < length; j++) { name += " "; }
+                name += "L:" + matrix.keycap[i, 2].ToString();
+                length = 24 - name.Length;
+                for (int j = 0; j < length; j++) { name += " "; }
+                name += "M:" + matrix.keycap[i, 3].ToString() + "/" + matrix.keycap[i, 4].ToString();
+                checkedListBox1.Items.Add(name);
+            }
+            return true;
         }
     }
 }

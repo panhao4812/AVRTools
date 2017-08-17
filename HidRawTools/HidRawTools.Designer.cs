@@ -53,6 +53,8 @@
             this.KeyCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Keymask = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.ps2avrUToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gH60revCNYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -142,7 +144,9 @@
             // 
             this.templateToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.xD60AToolStripMenuItem,
-            this.xD60BToolStripMenuItem});
+            this.xD60BToolStripMenuItem,
+            this.gH60revCNYToolStripMenuItem,
+            this.ps2avrUToolStripMenuItem});
             this.templateToolStripMenuItem.Name = "templateToolStripMenuItem";
             this.templateToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
             this.templateToolStripMenuItem.Text = "Templet";
@@ -248,7 +252,7 @@
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.RowTemplate.ReadOnly = true;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView1.Size = new System.Drawing.Size(330, 338);
+            this.dataGridView1.Size = new System.Drawing.Size(330, 318);
             this.dataGridView1.TabIndex = 24;
             this.dataGridView1.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEnter);
             this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
@@ -294,6 +298,20 @@
             this.checkedListBox1.Size = new System.Drawing.Size(318, 322);
             this.checkedListBox1.TabIndex = 26;
             this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+            // 
+            // ps2avrUToolStripMenuItem
+            // 
+            this.ps2avrUToolStripMenuItem.Name = "ps2avrUToolStripMenuItem";
+            this.ps2avrUToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
+            this.ps2avrUToolStripMenuItem.Text = "ps2avrU_ISO";
+            this.ps2avrUToolStripMenuItem.Click += new System.EventHandler(this.ps2avrUToolStripMenuItem_Click);
+            // 
+            // gH60revCNYToolStripMenuItem
+            // 
+            this.gH60revCNYToolStripMenuItem.Name = "gH60revCNYToolStripMenuItem";
+            this.gH60revCNYToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
+            this.gH60revCNYToolStripMenuItem.Text = "GH60_revCNY";
+            this.gH60revCNYToolStripMenuItem.Click += new System.EventHandler(this.gH60revCNYToolStripMenuItem_Click);
             // 
             // HidRawTools
             // 
@@ -350,6 +368,8 @@
         private System.Windows.Forms.ToolStripMenuItem xD60BToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem layer1ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ps2avrUToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gH60revCNYToolStripMenuItem;
     }
 }
 

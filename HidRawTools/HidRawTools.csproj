@@ -68,7 +68,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XD60.cs" />
+    <Compile Include="keyboard.cs" />
     <EmbeddedResource Include="HidRawTools.resx">
       <DependentUpon>HidRawTools.cs</DependentUpon>
     </EmbeddedResource>
