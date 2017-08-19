@@ -187,20 +187,20 @@ namespace Tinytools
         {
             if (flash_box.Text == "") return;
             string str = "avrdude";
-            str += " -c " + c_box.Text;
-            str += " -p " + p_box.Text;
-            str += " -b " + b_box.Text;
-            str += " -P " + p_box2.Text;
+            if (c_box.Text.Length > 0) str += " -c " + c_box.Text;
+            if (p_box.Text.Length > 0) str += " -p " + p_box.Text;
+            if (b_box.Text.Length > 0) str += " -b " + b_box.Text;
+            if (p_box2.Text.Length > 0) str += " -P " + p_box2.Text;
             str += " -U flash:w:";
             Main_box.Text = str + flash_box.Text + ":i";
         }
         private void verify_Click(object sender, EventArgs e)
         {
             string str = "avrdude";
-            str += " -c " + c_box.Text;
-            str += " -p " + p_box.Text;
-            str += " -b " + b_box.Text;
-            str += " -P " + p_box2.Text;
+            if (c_box.Text.Length > 0) str += " -c " + c_box.Text;
+            if (p_box.Text.Length > 0) str += " -p " + p_box.Text;
+            if (b_box.Text.Length > 0) str += " -b " + b_box.Text;
+            if (p_box2.Text.Length>0) str += " -P " + p_box2.Text;
             Main_box.Text = str + " -q -v -F";
         }
         private void fuse_Click(object sender, EventArgs e)
