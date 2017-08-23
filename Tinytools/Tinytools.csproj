@@ -68,6 +68,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Hidlib\Extensions.cs" />
+    <Compile Include="Hidlib\HidAsyncState.cs" />
+    <Compile Include="Hidlib\HidDevice.cs" />
+    <Compile Include="Hidlib\HidDeviceAttributes.cs" />
+    <Compile Include="Hidlib\HidDeviceCapabilities.cs" />
+    <Compile Include="Hidlib\HidDeviceData.cs" />
+    <Compile Include="Hidlib\HidDeviceEventMonitor.cs" />
+    <Compile Include="Hidlib\HidDevices.cs" />
+    <Compile Include="Hidlib\HidFastReadDevice.cs" />
+    <Compile Include="Hidlib\HidFastReadEnumerator.cs" />
+    <Compile Include="Hidlib\HidReport.cs" />
+    <Compile Include="Hidlib\IHidDevice.cs" />
+    <Compile Include="Hidlib\IHidEnumerator.cs" />
+    <Compile Include="Hidlib\NativeMethods.cs" />
     <Compile Include="libusbtool.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,12 +142,6 @@
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\HidLibrary\HidLibrary.csproj">
-      <Project>{9e8f1d50-74ea-4c60-bd5c-ab2c5b53bc66}</Project>
-      <Name>HidLibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

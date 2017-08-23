@@ -41,6 +41,8 @@
             this.templateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xD60AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xD60BToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gH60revCNYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ps2avrUToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.layer1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -53,8 +55,7 @@
             this.KeyCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Keymask = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.ps2avrUToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gH60revCNYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ps2avrGB2XShiftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -146,7 +147,8 @@
             this.xD60AToolStripMenuItem,
             this.xD60BToolStripMenuItem,
             this.gH60revCNYToolStripMenuItem,
-            this.ps2avrUToolStripMenuItem});
+            this.ps2avrUToolStripMenuItem,
+            this.ps2avrGB2XShiftToolStripMenuItem});
             this.templateToolStripMenuItem.Name = "templateToolStripMenuItem";
             this.templateToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
             this.templateToolStripMenuItem.Text = "Templet";
@@ -164,6 +166,20 @@
             this.xD60BToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
             this.xD60BToolStripMenuItem.Text = "XD60_2XShift";
             this.xD60BToolStripMenuItem.Click += new System.EventHandler(this.xD60BToolStripMenuItem_Click);
+            // 
+            // gH60revCNYToolStripMenuItem
+            // 
+            this.gH60revCNYToolStripMenuItem.Name = "gH60revCNYToolStripMenuItem";
+            this.gH60revCNYToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
+            this.gH60revCNYToolStripMenuItem.Text = "GH60_revCNY";
+            this.gH60revCNYToolStripMenuItem.Click += new System.EventHandler(this.gH60revCNYToolStripMenuItem_Click);
+            // 
+            // ps2avrUToolStripMenuItem
+            // 
+            this.ps2avrUToolStripMenuItem.Name = "ps2avrUToolStripMenuItem";
+            this.ps2avrUToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
+            this.ps2avrUToolStripMenuItem.Text = "ps2avrU_ISO";
+            this.ps2avrUToolStripMenuItem.Click += new System.EventHandler(this.ps2avrUToolStripMenuItem_Click);
             // 
             // layer1ToolStripMenuItem
             // 
@@ -299,19 +315,11 @@
             this.checkedListBox1.TabIndex = 26;
             this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
-            // ps2avrUToolStripMenuItem
+            // ps2avrGB2XShiftToolStripMenuItem
             // 
-            this.ps2avrUToolStripMenuItem.Name = "ps2avrUToolStripMenuItem";
-            this.ps2avrUToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
-            this.ps2avrUToolStripMenuItem.Text = "ps2avrU_ISO";
-            this.ps2avrUToolStripMenuItem.Click += new System.EventHandler(this.ps2avrUToolStripMenuItem_Click);
-            // 
-            // gH60revCNYToolStripMenuItem
-            // 
-            this.gH60revCNYToolStripMenuItem.Name = "gH60revCNYToolStripMenuItem";
-            this.gH60revCNYToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
-            this.gH60revCNYToolStripMenuItem.Text = "GH60_revCNY";
-            this.gH60revCNYToolStripMenuItem.Click += new System.EventHandler(this.gH60revCNYToolStripMenuItem_Click);
+            this.ps2avrGB2XShiftToolStripMenuItem.Name = "ps2avrGB2XShiftToolStripMenuItem";
+            this.ps2avrGB2XShiftToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
+            this.ps2avrGB2XShiftToolStripMenuItem.Text = "bface60_2XShift";
             // 
             // HidRawTools
             // 
@@ -370,6 +378,7 @@
         private System.Windows.Forms.ToolStripMenuItem layer1ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ps2avrUToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gH60revCNYToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ps2avrGB2XShiftToolStripMenuItem;
     }
 }
 

@@ -299,5 +299,16 @@ namespace Tinytools
             str += VID_box.Text + " "+PID_box.Text;
             Main_box.Text = str;
         }
+        public static void ThreadProc()
+        {
+            libusbtool form = new libusbtool();//第2个窗体
+            form.ShowDialog();
+        }
+        private void usbUploadToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Thread t = new Thread(new ThreadStart(ThreadProc));
+            t.SetApartmentState(ApartmentState.STA);
+            t.Start();
+        }
     }
 }

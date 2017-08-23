@@ -5,10 +5,6 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tinytools", "Tinytools\Tinytools.csproj", "{34A509BE-E299-47A4-8ACC-B6018F434C3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TinyToolsLite", "TinyToolsLite\TinyToolsLite.csproj", "{BB82CB13-FF99-45A7-98A6-F70F2570BD09}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HidLibrary", "HidLibrary\HidLibrary.csproj", "{9E8F1D50-74EA-4C60-BD5C-AB2C5B53BC66}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HidRawTools", "HidRawTools\HidRawTools.csproj", "{B6BF41D3-B8F7-4E5B-B718-E7ED60F0A328}"
 EndProject
 Global
@@ -21,14 +17,6 @@ Global
 		{34A509BE-E299-47A4-8ACC-B6018F434C3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34A509BE-E299-47A4-8ACC-B6018F434C3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34A509BE-E299-47A4-8ACC-B6018F434C3C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BB82CB13-FF99-45A7-98A6-F70F2570BD09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BB82CB13-FF99-45A7-98A6-F70F2570BD09}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB82CB13-FF99-45A7-98A6-F70F2570BD09}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BB82CB13-FF99-45A7-98A6-F70F2570BD09}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9E8F1D50-74EA-4C60-BD5C-AB2C5B53BC66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E8F1D50-74EA-4C60-BD5C-AB2C5B53BC66}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E8F1D50-74EA-4C60-BD5C-AB2C5B53BC66}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E8F1D50-74EA-4C60-BD5C-AB2C5B53BC66}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B6BF41D3-B8F7-4E5B-B718-E7ED60F0A328}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B6BF41D3-B8F7-4E5B-B718-E7ED60F0A328}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6BF41D3-B8F7-4E5B-B718-E7ED60F0A328}.Release|Any CPU.ActiveCfg = Release|Any CPU

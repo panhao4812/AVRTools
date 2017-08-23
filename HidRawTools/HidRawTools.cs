@@ -113,7 +113,7 @@ namespace HidRawTools
             Button button = new Button();
             panel1.Controls.Add(button);
             button.Size = new Size((int)(keycaplength * length - keycapoffset * 2), (int)(keycaplength - keycapoffset * 2));
-            button.Location = new Point(80 + (int)(x * keycaplength), 50 + (int)(y * keycaplength));
+            button.Location = new Point(35 + (int)(x * keycaplength), 95 + (int)(y * keycaplength));
             button.FlatStyle = FlatStyle.Flat;
             button.BackColor = Color.White;
             button.Enter += new System.EventHandler(this.button1_Enter);
@@ -506,11 +506,11 @@ namespace HidRawTools
             Clear();
             for (int i = 0; i < keyCount; i++)
             {
-                string name = ""; int length = 0;
-                name += "X:" + matrix.keycap[i, 0].ToString();
-                length = 8 - name.Length;
+                string name = i.ToString(); int length = 0;
+                length = 4 - name.Length;
                 for (int j = 0; j < length; j++) { name += " "; }
-                name += "Y:" + matrix.keycap[i, 1].ToString();
+                name += "C:" + matrix.keycap[i, 0].ToString();
+                name += "/" + matrix.keycap[i, 1].ToString();
                 length = 16 - name.Length;
                 for (int j = 0; j < length; j++) { name += " "; }
                 name += "L:" + matrix.keycap[i, 2].ToString();

@@ -1,8 +1,6 @@
-﻿using HidLibrary;
-using LibUsbDotNet;
+﻿using LibUsbDotNet;
 using LibUsbDotNet.Main;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -15,7 +13,7 @@ namespace Tinytools
 {
     public partial class libusbtool : Form
     {
-        string vid, pid, pid2;
+        string vid, pid;
         string eepromsize = "511";
         public static UsbDevice MyUsbDevice;
         public static HidDevice HidDevice;
@@ -38,8 +36,7 @@ namespace Tinytools
             str = Environment.CurrentDirectory + "\\avrdude.conf"; 
             if (!File.Exists(str))          
             {
-                Driver.Enabled = false;
-                toolsToolStripMenuItem.Enabled = false;
+                Driver.Enabled = false;            
             }             
         }
         private void libusbtool_FormClosing(object sender, FormClosingEventArgs e)
@@ -79,17 +76,6 @@ namespace Tinytools
             pack.Length = 8;
             int lengthTransferred = 0;
             return MyUsbDevice.ControlTransfer(ref pack, IntPtr.Zero, 4, out lengthTransferred);
-        }
-        public static void ThreadProc()
-        {
-            MainWindow form = new MainWindow();//第2个窗体
-            form.ShowDialog();
-        }
-        private void cMDToolsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Thread t = new Thread(new ThreadStart(ThreadProc));
-            t.SetApartmentState(ApartmentState.STA);
-            t.Start();
         }
         void Printhex(int str)
         {
@@ -163,36 +149,6 @@ namespace Tinytools
             ushort a3 = Convert.ToUInt16(str2, 16);
             return a3;     
     }
-        private void libusbinf()
-        {
-            try
-            {
-                string output = "";
-                // Process proc = Process.Start("install-filter-win.exe");
-                System.Diagnostics.Process pExecuteEXE = new System.Diagnostics.Process();
-                pExecuteEXE.StartInfo.FileName = "CMD.exe";
-                pExecuteEXE.StartInfo.UseShellExecute = false;    //是否使用操作系统shell启动
-                pExecuteEXE.StartInfo.RedirectStandardInput = true;//接受来自调用程序的输入信息
-                pExecuteEXE.StartInfo.RedirectStandardOutput = true;//由调用程序获取输出信息
-                pExecuteEXE.StartInfo.RedirectStandardError = true;//重定向标准错误输出
-                pExecuteEXE.StartInfo.CreateNoWindow = true;//不显示程序窗口
-                string Arguments = "install-filter install --device=USB\\Vid_dddd.Pid_3412.Rev_0100" + "&exit";
-                pExecuteEXE.Start();
-                pExecuteEXE.StandardInput.WriteLine(Arguments);
-                pExecuteEXE.StandardInput.AutoFlush = true;
-                output = pExecuteEXE.StandardOutput.ReadToEnd();
-                pExecuteEXE.WaitForExit();//无限期等待完成
-                pExecuteEXE.Close();
-                Print(output);
-                //Print("select Install a device filter");
-                // Print("select vid=" + vid + " pid=" + pid);
-                // Print("press Install");
-            }
-            catch (Exception ex)
-            {
-                Print(ex.ToString());
-            }
-        }
         private bool lisbusbdriver()
         {
             bool result = true;
@@ -241,17 +197,7 @@ namespace Tinytools
             {
                 FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
                 StreamReader srd = new StreamReader(fs);
-
                 string str = srd.ReadLine();
-                string[] chara1 = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-                if (chara1[0] == "pid") pid = chara1[1];
-                str = srd.ReadLine();
-                chara1 = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-                if (chara1[0] == "pid2") pid2 = chara1[1];
-                str = srd.ReadLine();
-                string[] chara2 = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-                if (chara2[0] == "vid") vid = chara2[1];
-                str = srd.ReadLine();
                 string[] chara3 = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
                 if (chara3[0] == "eepromsize") eepromsize = chara3[1];
                 while (srd.Peek() != -1)
@@ -269,8 +215,6 @@ namespace Tinytools
                 FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
                 fs.SetLength(0);
                 StreamWriter stream = new StreamWriter(fs);
-                stream.WriteLine("pid," + pid); stream.WriteLine("pid2," + pid2);
-                stream.WriteLine("vid," + vid);
                 stream.WriteLine("eepromsize," + eepromsize);
                 stream.Write(textBox1.Text);
                 stream.Flush();
@@ -282,6 +226,14 @@ namespace Tinytools
         {
             try
             {
+                if (vidbox.Text.Length == 0|| pidbox.Text.Length == 0)
+                {
+                    Clear();
+                    Print("vid or pid error. Try open again");
+                    return;
+                }
+                vid = vidbox.Text;
+                pid = pidbox.Text;
                 // Find and open the usb device.
                 MyUsbDevice = UsbDevice.OpenUsbDevice(new UsbDeviceFinder(Convert.ToInt32(vid, 16), Convert.ToInt32(pid, 16)));
                 if (MyUsbDevice == null)
@@ -346,13 +298,21 @@ namespace Tinytools
               }catch (Exception ex) { Print(ex.ToString()); }
         }
         private void openToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            Clear();
+        {    
+            if (vidbox.Text.Length == 0 || pidbox.Text.Length == 0)
+            {
+                Clear();
+                Print("vid or pid error. Try open again");
+                return;
+            }
+            vid = vidbox.Text;
+            pid = pidbox.Text;
             try
             {
-                HidDevice[] HidDeviceList = HidDevices.Enumerate(Convert.ToInt32(vid, 16), Convert.ToInt32(pid2, 16), (ushort)0xFF31).ToArray();
+                HidDevice[] HidDeviceList = HidDevices.Enumerate(Convert.ToInt32(vid, 16), Convert.ToInt32(pid, 16), (ushort)0xFF31).ToArray();
                 if (HidDeviceList == null|| HidDeviceList.Length==0)
                 {
+                    Clear();
                     Print("Connect usb device and install driver. Try open again");
                     return;
                 }
@@ -362,13 +322,15 @@ namespace Tinytools
                 }
                 if (HidDeviceList[0] == null)
                 {
+                    Clear();
                     Print("Connect usb device and install driver. Try open again");
                     return;
                 }
                 HidDevice = HidDeviceList[0];
+                Clear();
                 Print("Device OK");
                 Print("vid: 0x" + vid);
-                Print("pid2: 0x" + pid2);
+                Print("pid: 0x" + pid);
             }
             catch (Exception ex)
             {
@@ -423,7 +385,6 @@ namespace Tinytools
             }
             catch (Exception ex) { Print(ex.ToString()); }
         }
-
         private void gBKToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -472,7 +433,6 @@ namespace Tinytools
             }
             catch (Exception ex) { Print(ex.ToString()); }
         }
-
         private void uploadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try { 

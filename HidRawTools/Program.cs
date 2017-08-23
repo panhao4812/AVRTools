@@ -6,6 +6,21 @@ using System.Windows.Forms;
 
 namespace HidRawTools
 {
+    public class IMatrix
+    {
+        public IMatrix() { }
+        public int ROWS;
+        public int COLS;
+        public byte[] rowPins;
+        public byte[] colPins;
+        public string[,] hexaKeys0 = new string[5, 14];
+        public string[,] hexaKeys1 = new string[5, 14];
+        public byte[,] keymask = new byte[5, 14];
+        public double[,] keycap;
+        public string Name = "unamed";
+        public string[] keycode;
+        public string[] Defaultkeycode;
+    }
     static class Program
     {
         /// <summary>
@@ -150,18 +165,18 @@ namespace HidRawTools
         "<--" ,
         "Tab" ,
         "Space" ,
-        "-" ,
-        "=" ,
-        "[" ,
-        "]" ,
-        "、" ,
+        "-_" ,
+        "=+" ,
+        "{[" ,
+        "]}" ,
+        "|" ,
         "Number" ,
-        ";" ,
-        "“" ,
+        ";:" ,
+        "“'" ,
         "~" ,
-        "," ,
-        "." ,
-        "/" ,
+        "<," ,
+        ".>" ,
+        "?/" ,
         "CapsLK" ,
         "F1" ,
         "F2" ,
