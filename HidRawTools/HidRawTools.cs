@@ -497,32 +497,32 @@ namespace HidRawTools
         private void xD60BToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (loadmatrix("XD60_B")) { Open(); }
-            textBox3.Text = "CCCC";
-              textBox2.Text = "3415";
+            textBox3.Text = "32C4";
+              textBox2.Text = "0160";
         }
         private void gH60revCNYToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (loadmatrix("GH60_revCNY")) { Open(); }
-            textBox3.Text = "CCCC";
-            textBox2.Text = "3415";
+            textBox3.Text = "32C4";
+            textBox2.Text = "0260";
         }
         private void xD60AToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (loadmatrix("XD60_A")) { Open(); }
-            textBox3.Text = "CCCC";
-            textBox2.Text = "3415";
+            textBox3.Text = "32C4";
+            textBox2.Text = "0160";
         }
         private void ps2avrUToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (loadmatrix("ps2avrU")) { Open(); }
-            textBox3.Text = "CCCC";
-            textBox2.Text = "3512";
+            textBox3.Text = "32A0";
+            textBox2.Text = "0160";
         }
         private void ps2avrGB2XShiftToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (loadmatrix("bface60")) { Open(); }
-            textBox3.Text = "CCCC";
-            textBox2.Text = "3512";
+            textBox3.Text = "32A0";
+            textBox2.Text = "0160";
         }
         public int keyCount = 0;
         public bool loadmatrix(string _name)
