@@ -17,7 +17,9 @@ $RECYCLE.BIN/
 *.resources
 *.exe
 *.Cache
+*.cache
 *.config
+*.Config
 # Windows shortcuts
 *.lnk
 
