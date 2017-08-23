@@ -205,7 +205,7 @@ namespace HidRawTools
         "↑" ,
         "NumLK" ,
         "p/" ,
-        "pASTERIX" ,
+        "p*" ,
         "p-" ,
         "p+" ,
         "pENTER" ,
