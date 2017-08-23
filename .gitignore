@@ -13,7 +13,11 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
-
+*.pdb
+*.resources
+*.exe
+*.Cache
+*.config
 # Windows shortcuts
 *.lnk
 
