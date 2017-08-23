@@ -43,6 +43,7 @@
             this.xD60BToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gH60revCNYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ps2avrUToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ps2avrGB2XShiftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.layer1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -55,7 +56,6 @@
             this.KeyCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Keymask = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
-            this.ps2avrGB2XShiftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -180,6 +180,12 @@
             this.ps2avrUToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
             this.ps2avrUToolStripMenuItem.Text = "ps2avrU_ISO";
             this.ps2avrUToolStripMenuItem.Click += new System.EventHandler(this.ps2avrUToolStripMenuItem_Click);
+            // 
+            // ps2avrGB2XShiftToolStripMenuItem
+            // 
+            this.ps2avrGB2XShiftToolStripMenuItem.Name = "ps2avrGB2XShiftToolStripMenuItem";
+            this.ps2avrGB2XShiftToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
+            this.ps2avrGB2XShiftToolStripMenuItem.Text = "bface60_2XShift";
             // 
             // layer1ToolStripMenuItem
             // 
@@ -314,12 +320,6 @@
             this.checkedListBox1.Size = new System.Drawing.Size(318, 322);
             this.checkedListBox1.TabIndex = 26;
             this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
-            // 
-            // ps2avrGB2XShiftToolStripMenuItem
-            // 
-            this.ps2avrGB2XShiftToolStripMenuItem.Name = "ps2avrGB2XShiftToolStripMenuItem";
-            this.ps2avrGB2XShiftToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
-            this.ps2avrGB2XShiftToolStripMenuItem.Text = "bface60_2XShift";
             // 
             // HidRawTools
             // 
