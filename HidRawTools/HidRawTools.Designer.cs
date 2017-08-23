@@ -56,6 +56,7 @@
             this.KeyCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Keymask = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -68,6 +69,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1006, 320);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             this.panel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseClick);
             // 
             // menuStrip1
@@ -90,6 +92,7 @@
             this.hIDToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openDeviceToolStripMenuItem,
             this.uploadToolStripMenuItem});
+            this.hIDToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.hIDToolStripMenuItem.Name = "hIDToolStripMenuItem";
             this.hIDToolStripMenuItem.Size = new System.Drawing.Size(48, 24);
             this.hIDToolStripMenuItem.Text = "HID";
@@ -98,7 +101,7 @@
             // 
             this.openDeviceToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.openDeviceToolStripMenuItem.Name = "openDeviceToolStripMenuItem";
-            this.openDeviceToolStripMenuItem.Size = new System.Drawing.Size(173, 26);
+            this.openDeviceToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.openDeviceToolStripMenuItem.Text = "OpenDevice";
             this.openDeviceToolStripMenuItem.Click += new System.EventHandler(this.openDeviceToolStripMenuItem_Click);
             // 
@@ -106,7 +109,7 @@
             // 
             this.uploadToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.uploadToolStripMenuItem.Name = "uploadToolStripMenuItem";
-            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(173, 26);
+            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.uploadToolStripMenuItem.Text = "Upload";
             this.uploadToolStripMenuItem.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click);
             // 
@@ -115,6 +118,7 @@
             this.xD60ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.matrix1ToolStripMenuItem,
             this.matrix2ToolStripMenuItem,
+            this.saveAsToolStripMenuItem,
             this.clearAllToolStripMenuItem});
             this.xD60ToolStripMenuItem.Name = "xD60ToolStripMenuItem";
             this.xD60ToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
@@ -123,21 +127,21 @@
             // matrix1ToolStripMenuItem
             // 
             this.matrix1ToolStripMenuItem.Name = "matrix1ToolStripMenuItem";
-            this.matrix1ToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
-            this.matrix1ToolStripMenuItem.Text = "OpenSetting";
+            this.matrix1ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.matrix1ToolStripMenuItem.Text = "OpenMatrix";
             this.matrix1ToolStripMenuItem.Click += new System.EventHandler(this.matrix1ToolStripMenuItem_Click);
             // 
             // matrix2ToolStripMenuItem
             // 
             this.matrix2ToolStripMenuItem.Name = "matrix2ToolStripMenuItem";
-            this.matrix2ToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
-            this.matrix2ToolStripMenuItem.Text = "SaveSetting";
+            this.matrix2ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.matrix2ToolStripMenuItem.Text = "SaveMatrix";
             this.matrix2ToolStripMenuItem.Click += new System.EventHandler(this.matrix2ToolStripMenuItem_Click);
             // 
             // clearAllToolStripMenuItem
             // 
             this.clearAllToolStripMenuItem.Name = "clearAllToolStripMenuItem";
-            this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(177, 26);
+            this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.clearAllToolStripMenuItem.Text = "ClearAll";
             this.clearAllToolStripMenuItem.Click += new System.EventHandler(this.clearAllToolStripMenuItem_Click);
             // 
@@ -150,8 +154,8 @@
             this.ps2avrUToolStripMenuItem,
             this.ps2avrGB2XShiftToolStripMenuItem});
             this.templateToolStripMenuItem.Name = "templateToolStripMenuItem";
-            this.templateToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
-            this.templateToolStripMenuItem.Text = "Templet";
+            this.templateToolStripMenuItem.Size = new System.Drawing.Size(92, 24);
+            this.templateToolStripMenuItem.Text = "Keyboard";
             // 
             // xD60AToolStripMenuItem
             // 
@@ -186,6 +190,7 @@
             this.ps2avrGB2XShiftToolStripMenuItem.Name = "ps2avrGB2XShiftToolStripMenuItem";
             this.ps2avrGB2XShiftToolStripMenuItem.Size = new System.Drawing.Size(204, 26);
             this.ps2avrGB2XShiftToolStripMenuItem.Text = "bface60_2XShift";
+            this.ps2avrGB2XShiftToolStripMenuItem.Click += new System.EventHandler(this.ps2avrGB2XShiftToolStripMenuItem_Click);
             // 
             // layer1ToolStripMenuItem
             // 
@@ -321,6 +326,13 @@
             this.checkedListBox1.TabIndex = 26;
             this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
+            // saveAsToolStripMenuItem
+            // 
+            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.saveAsToolStripMenuItem.Text = "SaveAsFile";
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
+            // 
             // HidRawTools
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -379,6 +391,7 @@
         private System.Windows.Forms.ToolStripMenuItem ps2avrUToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gH60revCNYToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ps2avrGB2XShiftToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
     }
 }
 

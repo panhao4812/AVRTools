@@ -13,6 +13,7 @@ namespace HidRawTools
         public HidRawTools()
         {
             InitializeComponent();
+          
         }
         public void Clear()
         {
@@ -54,12 +55,44 @@ namespace HidRawTools
                 this.dataGridView1.Rows[i + 1].Cells[1].Value = Program.KeyName2[i];
                 this.dataGridView1.Rows[i + 1].Cells[2].Value = Program.Keycode[i];
                 this.dataGridView1.Rows[i + 1].Cells[3].Value = Program.Keymask[i];
-            }
+            }         
         }
-
         private void matrix2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             save();
+        }
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string path = "";
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                sfd.FilterIndex = 2;
+                sfd.RestoreDirectory = true;
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    path = sfd.FileName;
+                    FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
+                    fs.SetLength(0);
+                    StreamWriter stream = new StreamWriter(fs);
+                    string output = "";
+                    for (int i = 0; i < checkedListBox1.CheckedIndices.Count; i++)
+                    {
+                        int index = checkedListBox1.CheckedIndices[i];
+                        string str = checkedListBox1.CheckedIndices[i].ToString();
+                        //  string[] chara = str.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+                        output += str + "," + Program.longname(matrix.keycode[index]) + "," + Program.longname(matrix.keycode[index + keyCount]) + "\r\n";
+                    }
+                    stream.Write(output);
+                    stream.Flush();
+                    stream.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Print(ex.ToString());
+            }
         }
         void save()
         {
@@ -113,12 +146,22 @@ namespace HidRawTools
             Button button = new Button();
             panel1.Controls.Add(button);
             button.Size = new Size((int)(keycaplength * length - keycapoffset * 2), (int)(keycaplength - keycapoffset * 2));
-            button.Location = new Point(35 + (int)(x * keycaplength), 95 + (int)(y * keycaplength));
+            button.Location = new Point(35 + (int)(x * keycaplength), 100 + (int)(y * keycaplength));
             button.FlatStyle = FlatStyle.Flat;
             button.BackColor = Color.White;
             button.Enter += new System.EventHandler(this.button1_Enter);
             button.Text = str;
             button.Name = index.ToString();
+        }
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = panel1.CreateGraphics();
+            Pen pen = new Pen(Color.FromArgb(220, 220, 230), 3);
+            g.DrawRectangle(pen, new Rectangle(30, 95, 727, 247));
+          //  pen.Color = Color.FromArgb(170, 170, 170);
+            g.DrawRectangle(pen, new Rectangle(30, 40, 727, 50));
+          //  pen.Color = Color.FromArgb(170, 170, 170);
+            g.DrawRectangle(pen, new Rectangle(762, 40, 210, 302));
         }
         private void clearAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -457,14 +500,6 @@ namespace HidRawTools
             textBox3.Text = "CCCC";
               textBox2.Text = "3415";
         }
-
-        private void ps2avrUToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (loadmatrix("ps2avrU")) { Open(); }
-            textBox3.Text = "CCCC";
-            textBox2.Text = "3512";
-        }
-
         private void gH60revCNYToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (loadmatrix("GH60_revCNY")) { Open(); }
@@ -476,6 +511,18 @@ namespace HidRawTools
             if (loadmatrix("XD60_A")) { Open(); }
             textBox3.Text = "CCCC";
             textBox2.Text = "3415";
+        }
+        private void ps2avrUToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("ps2avrU")) { Open(); }
+            textBox3.Text = "CCCC";
+            textBox2.Text = "3512";
+        }
+        private void ps2avrGB2XShiftToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("bface60")) { Open(); }
+            textBox3.Text = "CCCC";
+            textBox2.Text = "3512";
         }
         public int keyCount = 0;
         public bool loadmatrix(string _name)
@@ -495,6 +542,10 @@ namespace HidRawTools
             else if (_name == "GH60_revCNY")
             {
                 matrix = new GH60_revCNY();
+            }
+            else if (_name == "bface60")
+            {
+                matrix = new bface60();
             }
             else return false;
             layer = 0;
@@ -521,5 +572,7 @@ namespace HidRawTools
             }
             return true;
         }
+
+        
     }
 }
