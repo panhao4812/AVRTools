@@ -88,8 +88,8 @@ namespace HidRawTools
         0x01,0x02,0x04,0x08,0x10,
         0,
         0xE2,0xE9,0xEA,0xB5,0xB6,0xB7,0xCC,0xCD,
-        0x81,0x82,0x83
-
+        0x81,0x82,0x83,       
+        0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80
         };
         public static int[] Keymask =
         {
@@ -107,7 +107,8 @@ namespace HidRawTools
         3,3,3,3,3,
         6,
         5,5,5,5,5,5,5,5,
-        4,4,4
+        4,4,4,
+        7,7,7,7,7,7,7,7
         };
         public static string[] KeyName2 =
        {
@@ -238,7 +239,8 @@ namespace HidRawTools
         /* Generic Desktop Page(0x01) - system power control */
         "POWERD" ,
         "SLEEP" ,
-        "WAKEUP"
+        "WAKEUP",
+        "M0","M1","M2","M3","M4","M5","M6","M7"
     };
         public static string[] KeyName =
         {
@@ -371,7 +373,8 @@ namespace HidRawTools
         /* Generic Desktop Page(0x01) - system power control */
         "SYSTEM_POWER_DOWN" ,
         "SYSTEM_SLEEP" ,
-        "SYSTEM_WAKE_UP"
+        "SYSTEM_WAKE_UP",
+       "MACRO0","MACRO1","MACRO2","MACRO3","MACRO4","MACRO5","MACRO6","MACRO7"
     };
         public static byte KEY_CTRL = 0x01;
         public static byte KEY_SHIFT = 0x02;
@@ -506,6 +509,7 @@ namespace HidRawTools
         public static byte SYSTEM_POWER_DOWN = 0x81;
         public static byte SYSTEM_SLEEP = 0x82;
         public static byte SYSTEM_WAKE_UP = 0x83;
+
         public static int[] ascii_to_scan_code_table = {
 	// /* ASCII:   0 */
 	0,
