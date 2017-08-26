@@ -299,6 +299,8 @@ namespace HidRawTools
             {
                 path = ofd.FileName;
                 string Name = Path.GetFileNameWithoutExtension(path);
+                string[] chara = Name.Split(new string[] { "#" }, StringSplitOptions.RemoveEmptyEntries);
+                Name = chara[0];
                 if (!loadmatrix(Name)) return;
                 Open(path);
             }
