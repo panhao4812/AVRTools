@@ -40,21 +40,23 @@ namespace HidRawTools
             checkedListBox1.Location = new Point(334, 428);
             dataGridView1.Size = new Size(338, 322);
             dataGridView1.Location = new Point(666, 428);
-            dataGridView1.RowCount = Program.KeyName.Length + 1;
+            dataGridView1.RowCount = Program.KeyName.Length + 1;        
             for (int i = 0; i < this.dataGridView1.Columns.Count; i++)
             {
                 this.dataGridView1.Columns[i].SortMode = DataGridViewColumnSortMode.Automatic;
             }
-            this.dataGridView1.Rows[0].Cells[0].Value = "Blank";
-            this.dataGridView1.Rows[0].Cells[1].Value = "";
-            this.dataGridView1.Rows[0].Cells[2].Value = 0;
+            this.dataGridView1.Rows[0].Cells[0].Value = -1;
+            this.dataGridView1.Rows[0].Cells[1].Value = "Blank";
+            this.dataGridView1.Rows[0].Cells[2].Value = "";
             this.dataGridView1.Rows[0].Cells[3].Value = 0;
+            this.dataGridView1.Rows[0].Cells[4].Value = 0;
             for (int i = 0; i < Program.KeyName.Length; i++)
             {
-                this.dataGridView1.Rows[i + 1].Cells[0].Value = Program.KeyName[i];
-                this.dataGridView1.Rows[i + 1].Cells[1].Value = Program.KeyName2[i];
-                this.dataGridView1.Rows[i + 1].Cells[2].Value = Program.Keycode[i];
-                this.dataGridView1.Rows[i + 1].Cells[3].Value = Program.Keymask[i];
+                this.dataGridView1.Rows[i + 1].Cells[0].Value = i;
+                this.dataGridView1.Rows[i + 1].Cells[1].Value = Program.KeyName[i];
+                this.dataGridView1.Rows[i + 1].Cells[2].Value = Program.KeyName2[i];
+                this.dataGridView1.Rows[i + 1].Cells[3].Value = Program.Keycode[i];
+                this.dataGridView1.Rows[i + 1].Cells[4].Value = Program.Keymask[i];
             }         
         }
         private void matrix2ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -203,7 +205,7 @@ namespace HidRawTools
             if (selectkey != null)
             {
                 int i = dataGridView1.CurrentCell.RowIndex;
-                selectkey.Text = dataGridView1.Rows[i].Cells[1].Value.ToString();
+                selectkey.Text = dataGridView1.Rows[i].Cells[2].Value.ToString();
                 int index = Convert.ToInt32(selectkey.Name);
                 matrix.keycode[index + layer * keyCount] = selectkey.Text;
             }

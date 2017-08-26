@@ -240,7 +240,7 @@ namespace HidRawTools
         "POWERD" ,
         "SLEEP" ,
         "WAKEUP",
-        "M0","M1","M2","M3","M4","M5","M6","M7"
+        "LED","RGB","ESC~","Print","M4","M5","M6","M7"
     };
         public static string[] KeyName =
         {
