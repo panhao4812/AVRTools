@@ -209,7 +209,7 @@
             this.vidbox.Name = "vidbox";
             this.vidbox.Size = new System.Drawing.Size(53, 20);
             this.vidbox.TabIndex = 19;
-            this.vidbox.Text = "CCCC";
+            this.vidbox.Text = "D850";
             this.vidbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // pidbox
@@ -222,8 +222,9 @@
             this.pidbox.Name = "pidbox";
             this.pidbox.Size = new System.Drawing.Size(53, 20);
             this.pidbox.TabIndex = 18;
-            this.pidbox.Text = "3414";
+            this.pidbox.Text = "0102";
             this.pidbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.pidbox.TextChanged += new System.EventHandler(this.pidbox_TextChanged);
             // 
             // libusbtool
             // 
