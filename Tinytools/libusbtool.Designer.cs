@@ -224,7 +224,6 @@
             this.pidbox.TabIndex = 18;
             this.pidbox.Text = "0102";
             this.pidbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.pidbox.TextChanged += new System.EventHandler(this.pidbox_TextChanged);
             // 
             // libusbtool
             // 

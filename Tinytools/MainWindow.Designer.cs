@@ -35,6 +35,8 @@
             this.SaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uSBuploadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.usbUploadToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.CMD = new System.Windows.Forms.Button();
             this.cd = new System.Windows.Forms.Button();
             this.flash = new System.Windows.Forms.Button();
@@ -82,8 +84,7 @@
             this.PID_box = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.uSBuploadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.usbUploadToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.avrdudeHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,8 +93,8 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileToolStripMenuItem,
-            this.HelpToolStripMenuItem,
-            this.uSBuploadToolStripMenuItem});
+            this.uSBuploadToolStripMenuItem,
+            this.HelpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(625, 28);
@@ -112,21 +113,22 @@
             // OpenToolStripMenuItem
             // 
             this.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem";
-            this.OpenToolStripMenuItem.Size = new System.Drawing.Size(124, 26);
+            this.OpenToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.OpenToolStripMenuItem.Text = "Open";
             this.OpenToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
             // 
             // SaveToolStripMenuItem
             // 
             this.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem";
-            this.SaveToolStripMenuItem.Size = new System.Drawing.Size(124, 26);
+            this.SaveToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.SaveToolStripMenuItem.Text = "Save";
             this.SaveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
             // HelpToolStripMenuItem
             // 
             this.HelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.AboutToolStripMenuItem});
+            this.AboutToolStripMenuItem,
+            this.avrdudeHelpToolStripMenuItem});
             this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
             this.HelpToolStripMenuItem.Size = new System.Drawing.Size(56, 24);
             this.HelpToolStripMenuItem.Text = "Help";
@@ -134,9 +136,24 @@
             // AboutToolStripMenuItem
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(130, 26);
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(183, 26);
             this.AboutToolStripMenuItem.Text = "About";
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
+            // 
+            // uSBuploadToolStripMenuItem
+            // 
+            this.uSBuploadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.usbUploadToolStripMenuItem1});
+            this.uSBuploadToolStripMenuItem.Name = "uSBuploadToolStripMenuItem";
+            this.uSBuploadToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
+            this.uSBuploadToolStripMenuItem.Text = "Tools";
+            // 
+            // usbUploadToolStripMenuItem1
+            // 
+            this.usbUploadToolStripMenuItem1.Name = "usbUploadToolStripMenuItem1";
+            this.usbUploadToolStripMenuItem1.Size = new System.Drawing.Size(198, 26);
+            this.usbUploadToolStripMenuItem1.Text = "UsbUploadTool";
+            this.usbUploadToolStripMenuItem1.Click += new System.EventHandler(this.usbUploadToolStripMenuItem1_Click);
             // 
             // CMD
             // 
@@ -638,20 +655,12 @@
             this.label13.TabIndex = 73;
             this.label13.Text = "VID";
             // 
-            // uSBuploadToolStripMenuItem
+            // avrdudeHelpToolStripMenuItem
             // 
-            this.uSBuploadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.usbUploadToolStripMenuItem1});
-            this.uSBuploadToolStripMenuItem.Name = "uSBuploadToolStripMenuItem";
-            this.uSBuploadToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
-            this.uSBuploadToolStripMenuItem.Text = "Tools";
-            // 
-            // usbUploadToolStripMenuItem1
-            // 
-            this.usbUploadToolStripMenuItem1.Name = "usbUploadToolStripMenuItem1";
-            this.usbUploadToolStripMenuItem1.Size = new System.Drawing.Size(198, 26);
-            this.usbUploadToolStripMenuItem1.Text = "UsbUploadTool";
-            this.usbUploadToolStripMenuItem1.Click += new System.EventHandler(this.usbUploadToolStripMenuItem1_Click);
+            this.avrdudeHelpToolStripMenuItem.Name = "avrdudeHelpToolStripMenuItem";
+            this.avrdudeHelpToolStripMenuItem.Size = new System.Drawing.Size(183, 26);
+            this.avrdudeHelpToolStripMenuItem.Text = "avrdude Help";
+            this.avrdudeHelpToolStripMenuItem.Click += new System.EventHandler(this.avrdudeHelpToolStripMenuItem_Click);
             // 
             // MainWindow
             // 
@@ -776,5 +785,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ToolStripMenuItem uSBuploadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem usbUploadToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem avrdudeHelpToolStripMenuItem;
     }
 }

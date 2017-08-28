@@ -55,6 +55,7 @@ namespace Tinytools
                         else if (chara[0] == "efuse") efuse_box.Text = chara[1];
                         else if (chara[0] == "lock") lock_box.Text = chara[1];
                         else if (chara[0] == "flash") flash_box.Text = chara[1];
+                        else if (chara[0] == "mflash") m_flash_box.Text = chara[1];
                         else if (chara[0] == "eeprom") eeprom_box.Text = chara[1];
                         else if (chara[0] == "pstools") pstools_box.Text = chara[1];
                         else if (chara[0] == "VID") VID_box.Text = chara[1];
@@ -86,6 +87,7 @@ namespace Tinytools
                 output += "lock," + lock_box.Text + "\r\n";
                 output += "eeprom," + eeprom_box.Text + "\r\n";
                 output += "pstools," + pstools_box.Text + "\r\n";
+                output += "mflash," + m_flash_box.Text + "\r\n";
                 output += "VID," + VID_box.Text + "\r\n";
                 output += "PID," + PID_box.Text + "\r\n";
                 output += "BLFlash," + BLFlash_box.Text + "\r\n";
@@ -256,7 +258,7 @@ namespace Tinytools
         }
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("v1.00 by zian");
+            Main_box.Text="v1.00 by zian";
         }
         private void usbpcap_Click(object sender, EventArgs e)
         {
@@ -309,6 +311,14 @@ namespace Tinytools
             Thread t = new Thread(new ThreadStart(ThreadProc));
             t.SetApartmentState(ApartmentState.STA);
             t.Start();
+        }
+
+        private void avrdudeHelpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string str = "Format of eeprom number is '0xXX' !" + "\r\n";
+           str+="arduino 1280 => -c arduino" + "\r\n";
+           str += "arduino 328p => -c avrisp" + "\r\n";
+            Main_box.Text = str;
         }
     }
 }
