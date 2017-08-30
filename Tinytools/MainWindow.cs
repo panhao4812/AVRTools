@@ -208,10 +208,10 @@ namespace Tinytools
         private void fuse_Click(object sender, EventArgs e)
         {
             string str = "avrdude";
-            str += " -c " + c_box.Text;
-            str += " -p " + p_box.Text;
-            str += " -b " + b_box.Text;
-            str += " -P " + p_box2.Text;
+            if (c_box.Text.Length > 0) str += " -c " + c_box.Text;
+            if (p_box.Text.Length > 0) str += " -p " + p_box.Text;
+            if (b_box.Text.Length > 0) str += " -b " + b_box.Text;
+            if (p_box2.Text.Length > 0) str += " -P " + p_box2.Text;
             str += " -u";
             if (hfuse_box.Text != "") str += " -U hfuse:w:" + hfuse_box.Text + ":m";
             if (lfuse_box.Text != "") str += " -U lfuse:w:" + lfuse_box.Text + ":m";
