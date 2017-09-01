@@ -256,7 +256,7 @@ namespace HidRawTools
         {2.5,4,1.25,4,2 },//
         {2.5,4,1.5,4,2 },
         {3,4,1.25,4,2 },
-        {4.25,4,1.25,4,3 },  
+        {4.25,4,1.25,4,3 },
         {3.75,4,6.25,4,7 },//
         {3,4,7,4,5 },
         {4,4,7,4,5 },//
@@ -278,6 +278,14 @@ namespace HidRawTools
         {13.75,4,1.25,4,13 },
         {13.5,4,1.5,4,13 },
         {14,4,1,4,13 }};
+
+        }
+    }
+    class bface60_minila : bface60
+    {
+        public bface60_minila() : base()
+        {
+            this.Name = "bface60_minila";
             Defaultkeycode = new string[]{
 "0,KEY_ESC,KEY_TILDE",
 "1,KEY_1,KEY_F1",
@@ -342,6 +350,79 @@ namespace HidRawTools
 "97,KEY_FN,KEY_FN",
 "98,KEY_RIGHT_ALT,KEY_RIGHT_ALT",
 "101,KEY_RIGHT_GUI,KEY_RIGHT_CTRL",
+"106,KEY_LEFT,KEY_LEFT",
+"109,KEY_DOWN,KEY_DOWN",
+"112,KEY_RIGHT,KEY_RIGHT"
+};
+        }
+    }
+    class bface60_B : bface60
+    {
+        public bface60_B() : base()
+        {
+            this.Name = "bface60_minila";
+            Defaultkeycode = new string[]{
+"0,KEY_ESC,KEY_TILDE",
+"1,KEY_1,KEY_F1",
+"2,KEY_2,KEY_F2",
+"3,KEY_3,KEY_F3",
+"4,KEY_4,KEY_F4",
+"5,KEY_5,KEY_F5",
+"6,KEY_6,KEY_F6",
+"7,KEY_7,KEY_F7",
+"8,KEY_8,KEY_F8",
+"9,KEY_9,KEY_F9",
+"10,KEY_0,KEY_F10",
+"11,KEY_MINUS,KEY_F11",
+"12,KEY_EQUAL,KEY_F12",
+"14,KEY_BACKSPACE,KEY_DELETE",
+"16,KEY_TAB,KEY_TAB",
+"17,KEY_Q,KEYPAD_1",
+"18,KEY_W,KEYPAD_2",
+"19,KEY_E,KEYPAD_3",
+"20,KEY_R,KEYPAD_4",
+"21,KEY_T,KEYPAD_5",
+"22,KEY_Y,KEYPAD_6",
+"23,KEY_U,KEYPAD_7",
+"24,KEY_I,KEYPAD_8",
+"25,KEY_O,KEYPAD_9",
+"26,KEY_P,KEYPAD_0",
+"27,KEY_LEFT_BRACE,KEYPAD_MINUS",
+"28,KEY_RIGHT_BRACE,KEYPAD_PLUS",
+"29,KEY_BACKSLASH,KEY_BACKSLASH",
+"30,KEY_CAPS_LOCK,KEY_CAPS_LOCK",
+"31,KEY_A,MOUSE_LEFT",
+"32,KEY_S,MOUSE_MID",
+"33,KEY_D,MOUSE_RIGHT",
+"34,KEY_F,",
+"35,KEY_G,",
+"36,KEY_H,",
+"37,KEY_J,",
+"38,KEY_K,",
+"39,KEY_L,",
+"40,KEY_SEMICOLON,",
+"41,KEY_QUOTE,",
+"43,KEY_ENTER,KEY_ENTER",
+"63,KEY_SHIFT,KEY_SHIFT",
+"66,KEY_Z,KEY_NUM_LOCK",
+"67,KEY_X,KEY_SCROLL_LOCK",
+"68,KEY_C,KEY_INSERT",
+"69,KEY_V,KEY_PRINTSCREEN",
+"70,KEY_B,",
+"71,KEY_N,",
+"72,KEY_M,",
+"73,KEY_COMMA,AUDIO_VOL_DOWN",
+"74,KEY_PERIOD,AUDIO_VOL_UP",
+"75,KEY_SLASH,AUDIO_MUTE",
+"77,KEY_SHIFT,KEY_PAGE_UP",
+"78,KEY_UP,KEY_UP",
+"80,KEY_RIGHT_CTRL,KEY_PAGE_DOWN",
+"82,KEY_CTRL,KEY_CTRL",
+"84,KEY_FN,KEY_FN",
+"88,KEY_ALT,KEY_ALT",
+"92,KEY_SPACE,KEY_SPACE",
+"99,KEY_FN,KEY_FN",
+"101,KEY_FN,KEY_FN",
 "106,KEY_LEFT,KEY_LEFT",
 "109,KEY_DOWN,KEY_DOWN",
 "112,KEY_RIGHT,KEY_RIGHT"

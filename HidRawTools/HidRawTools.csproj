@@ -73,6 +73,7 @@
     <Compile Include="HidRawTools.Designer.cs">
       <DependentUpon>HidRawTools.cs</DependentUpon>
     </Compile>
+    <Compile Include="keyboard\staryu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="keyboard\GH60.cs" />

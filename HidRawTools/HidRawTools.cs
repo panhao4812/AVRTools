@@ -12,8 +12,7 @@ namespace HidRawTools
     {
         public HidRawTools()
         {
-            InitializeComponent();
-          
+            InitializeComponent();        
         }
         public void Clear()
         {
@@ -23,11 +22,12 @@ namespace HidRawTools
         {
             textBox1.Text += str.ToString() + "\r\n";
         }
-        IMatrix matrix;
+        IMatrix matrix=null;
         double keycaplength = 48;
         double keycapoffset = 1;
         Button selectkey = null;
         int layer = 0;
+        string matrixname = "";
         public static HidDevice HidDevice;
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -61,56 +61,53 @@ namespace HidRawTools
         }
         private void matrix2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            save();
+            save(matrixname);
         }
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string path = "";
-                SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-                sfd.FilterIndex = 2;
-                sfd.RestoreDirectory = true;
-                if (sfd.ShowDialog() == DialogResult.OK)
-                {
-                    path = sfd.FileName;
-                    FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
-                    fs.SetLength(0);
-                    StreamWriter stream = new StreamWriter(fs);
-                    string output = "";
-                    for (int i = 0; i < checkedListBox1.CheckedIndices.Count; i++)
-                    {
-                        int index = checkedListBox1.CheckedIndices[i];
-                        string str = checkedListBox1.CheckedIndices[i].ToString();
-                        //  string[] chara = str.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
-                        output += str + "," + Program.longname(matrix.keycode[index]) + "," + Program.longname(matrix.keycode[index + keyCount]) + "\r\n";
-                    }
-                    stream.Write(output);
-                    stream.Flush();
-                    stream.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                Print(ex.ToString());
-            }
+            save("");
         }
-        void save()
+        private void HidRawTools_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (matrixname != "") save(matrixname);
+        }
+        void save(string path)
         {
             try
             {
-                String path = Environment.CurrentDirectory + "/" + matrix.Name.ToString() + ".txt";
+                if (matrix == null)
+                {
+                    Clear();
+                    Print("Open a keyboard templet and try again!");
+                    return;
+                }
+                if (path == "")
+                {
+                    SaveFileDialog sfd = new SaveFileDialog();
+                    sfd.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                    sfd.FilterIndex = 2;
+                    sfd.RestoreDirectory = true;
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        path = sfd.FileName;
+                        matrixname = path;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
                 FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
                 fs.SetLength(0);
                 StreamWriter stream = new StreamWriter(fs);
-                string output = "";
+                string output = "matrix,"+matrix.Name+"\r\n";
                 for (int i = 0; i < checkedListBox1.CheckedIndices.Count; i++)
                 {
                     int index = checkedListBox1.CheckedIndices[i];
-                    string str = checkedListBox1.CheckedIndices[i].ToString();
+                    string str = index.ToString();
                     //  string[] chara = str.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
-                    output +=str + "," + Program.longname(matrix.keycode[index]) + "," + Program.longname(matrix.keycode[index + keyCount]) + "\r\n";
+                    output +=str + "," + Program.longname(matrix.keycode[index]) 
+                        + "," + Program.longname(matrix.keycode[index + keyCount]) + "\r\n";
                 }
                 stream.Write(output);
                 stream.Flush();
@@ -120,8 +117,7 @@ namespace HidRawTools
             {
                 Print(ex.ToString());
             }
-        }
-     
+        } 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             changeButton();
@@ -147,11 +143,21 @@ namespace HidRawTools
             double col = matrix.keycap[index, 4];
             Button button = new Button();
             panel1.Controls.Add(button);
-            button.Size = new Size((int)(keycaplength * length - keycapoffset * 2), (int)(keycaplength - keycapoffset * 2));
-            button.Location = new Point(35 + (int)(x * keycaplength), 100 + (int)(y * keycaplength));
+            Size size1 = new Size((int)(keycaplength * length - keycapoffset * 2), (int)(keycaplength - keycapoffset * 2));
+            Point Point1 = new Point(40 + (int)(x * keycaplength), 100 + (int)(y * keycaplength));
+            if (x > 14)
+            {
+                Point1.X += 12;
+            }
+            if (y<0)
+            {
+                Point1.Y -= 9;
+            }
+            button.Size = size1;
+            button.Location = Point1;
             button.FlatStyle = FlatStyle.Flat;
-            button.BackColor = Color.White;
-            button.Enter += new System.EventHandler(this.button1_Enter);
+            button.BackColor = Color.White;    
+            button.MouseDown+=new MouseEventHandler(this.button1_MouseClick);
             button.Text = str;
             button.Name = index.ToString();
         }
@@ -159,11 +165,11 @@ namespace HidRawTools
         {
             Graphics g = panel1.CreateGraphics();
             Pen pen = new Pen(Color.FromArgb(220, 220, 230), 3);
-            g.DrawRectangle(pen, new Rectangle(30, 95, 727, 247));
+            g.DrawRectangle(pen, new Rectangle(35, 95, 727, 247));
           //  pen.Color = Color.FromArgb(170, 170, 170);
-            g.DrawRectangle(pen, new Rectangle(30, 40, 727, 50));
+            g.DrawRectangle(pen, new Rectangle(35, 40, 727, 50));
           //  pen.Color = Color.FromArgb(170, 170, 170);
-            g.DrawRectangle(pen, new Rectangle(762, 40, 210, 302));
+            g.DrawRectangle(pen, new Rectangle(767, 40, 199, 302));
         }
         private void clearAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -178,28 +184,27 @@ namespace HidRawTools
                 matrix.keycode[i] = "";
             }
         }
-
-        private void button1_Enter(object sender, EventArgs e)
+        private void button1_MouseClick(object sender, MouseEventArgs e)
         {
-            for (int i = 0; i < panel1.Controls.Count; i++)
-            {
-                ((Button)panel1.Controls[i]).BackColor = Color.White;
+            if (selectkey != null) selectkey.BackColor = Color.White;
+            if (e.Button == MouseButtons.Right)
+            {               
+                selectkey = null;
             }
-            ((Button)sender).BackColor = Color.LightSalmon;
-            selectkey = ((Button)sender);
+            else
+            {
+                ((Button)sender).BackColor = Color.LightSalmon;
+                selectkey = ((Button)sender);
+            }
         }
         private void panel1_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
-                for (int i = 0; i < panel1.Controls.Count; i++)
-                {
-                    ((Button)panel1.Controls[i]).BackColor = Color.White;
-                }
+                if (selectkey != null) selectkey.BackColor = Color.White;          
                 selectkey = null;
             }
         }
-
         private void dataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (selectkey != null)
@@ -210,7 +215,6 @@ namespace HidRawTools
                 matrix.keycode[index + layer * keyCount] = selectkey.Text;
             }
         }
-
         private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -251,17 +255,31 @@ namespace HidRawTools
             {
                 Print(ex.ToString());
             }
-        }
-        void Open(string path)
+        }       
+        private void matrix1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            String path = "";
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                path = ofd.FileName;
+                matrixname = path;
+            }
+            else
+            {
+                return;
+            }
             try
             {
                 FileStream fs = new FileStream(path, FileMode.Open);
                 StreamReader srd = new StreamReader(fs);
+                string str = srd.ReadLine();
+                string[] chara = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                if(!loadmatrix(chara[1]))return;
                 while (srd.Peek() != -1)
                 {
-                    string str = srd.ReadLine();
-                    string[] chara = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                     str = srd.ReadLine();
+                     chara = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
                     if (chara.Length == 3)
                     {
                         int index = Convert.ToInt32(chara[0]);
@@ -291,21 +309,6 @@ namespace HidRawTools
                 Print(ex.ToString());
             }
         }
-        private void matrix1ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            String path = "";
-            OpenFileDialog ofd = new OpenFileDialog();
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                path = ofd.FileName;
-                string Name = Path.GetFileNameWithoutExtension(path);
-                string[] chara = Name.Split(new string[] { "#" }, StringSplitOptions.RemoveEmptyEntries);
-                Name = chara[0];
-                if (!loadmatrix(Name)) return;
-                Open(path);
-            }
-        }
-
         private void layer1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (layer == 0)
@@ -320,12 +323,6 @@ namespace HidRawTools
                 changeButton();
             }
         }
-
-        private void HidRawTools_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            save();
-        }
-
         private void openDeviceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ushort vid = 0, pid = 0;
@@ -496,37 +493,11 @@ namespace HidRawTools
                 Print("Upload finished");
             }
             catch (Exception ex) { Print(ex.ToString()); }
-        }
-
-        private void xD60BToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (loadmatrix("XD60_B")) { Open(); }
-            textBox3.Text = "32C4";
-              textBox2.Text = "0160";
-        }
-        private void gH60revCNYToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (loadmatrix("GH60_revCNY")) { Open(); }
-            textBox3.Text = "32C4";
-            textBox2.Text = "0260";
-        }
-        private void xD60AToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (loadmatrix("XD60_A")) { Open(); }
-            textBox3.Text = "32C4";
-            textBox2.Text = "0160";
-        }
-        private void ps2avrUToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (loadmatrix("ps2avrU")) { Open(); }
-            textBox3.Text = "32A0";
-            textBox2.Text = "0160";
-        }
+        }     
+        
         private void ps2avrGB2XShiftToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (loadmatrix("bface60")) { Open(); }
-            textBox3.Text = "32A0";
-            textBox2.Text = "0160";
+           
         }
         public int keyCount = 0;
         public bool loadmatrix(string _name)
@@ -547,9 +518,17 @@ namespace HidRawTools
             {
                 matrix = new GH60_revCNY();
             }
-            else if (_name == "bface60")
+            else if (_name == "bface60_minila")
             {
-                matrix = new bface60();
+                matrix = new bface60_minila();
+            }
+            else if (_name == "bface60_B")
+            {
+                matrix = new bface60_B();
+            }
+            else if (_name == "staryu")
+            {
+                matrix = new staryu();
             }
             else return false;
             layer = 0;
@@ -576,7 +555,48 @@ namespace HidRawTools
             }
             return true;
         }
+        private void xShiftToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("XD60_A")) { Open(); }
+            textBox3.Text = "32C4";
+            textBox2.Text = "0160";
+        }
+        private void xShiftToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("XD60_B")) { Open(); }
+            textBox3.Text = "32C4";
+            textBox2.Text = "0160";
+        }
+        private void xshiftToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("bface60_B")) { Open(); }
+            textBox3.Text = "32A0";
+            textBox2.Text = "0160";
+        }
+        private void minilaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("bface60_minila")) { Open(); }
+            textBox3.Text = "32A0";
+            textBox2.Text = "0160";
+        }
 
-        
+        private void staryuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("staryu")) { Open(); }
+            textBox3.Text = "32C4";
+            textBox2.Text = "0105";
+        }
+        private void gH60revCNYToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("GH60_revCNY")) { Open(); }
+            textBox3.Text = "32C4";
+            textBox2.Text = "0260";
+        }
+        private void ps2avrUToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("ps2avrU")) { Open(); }
+            textBox3.Text = "32A0";
+            textBox2.Text = "0160";
+        }
     }
 }
