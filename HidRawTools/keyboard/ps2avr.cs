@@ -287,7 +287,7 @@ namespace HidRawTools
         {
             this.Name = "bface60_minila";
             Defaultkeycode = new string[]{
-"0,KEY_ESC,KEY_TILDE",
+"0,MACRO2,KEY_TILDE",
 "1,KEY_1,KEY_F1",
 "2,KEY_2,KEY_F2",
 "3,KEY_3,KEY_F3",
@@ -333,8 +333,8 @@ namespace HidRawTools
 "67,KEY_X,KEY_SCROLL_LOCK",
 "68,KEY_C,KEY_INSERT",
 "69,KEY_V,KEY_PRINTSCREEN",
-"70,KEY_B,",
-"71,KEY_N,",
+"70,KEY_B,MACRO0",
+"71,KEY_N,MACRO1",
 "72,KEY_M,",
 "73,KEY_COMMA,AUDIO_VOL_DOWN",
 "74,KEY_PERIOD,AUDIO_VOL_UP",
@@ -362,7 +362,7 @@ namespace HidRawTools
         {
             this.Name = "bface60_minila";
             Defaultkeycode = new string[]{
-"0,KEY_ESC,KEY_TILDE",
+"0,MACRO2,KEY_TILDE",
 "1,KEY_1,KEY_F1",
 "2,KEY_2,KEY_F2",
 "3,KEY_3,KEY_F3",
@@ -408,8 +408,8 @@ namespace HidRawTools
 "67,KEY_X,KEY_SCROLL_LOCK",
 "68,KEY_C,KEY_INSERT",
 "69,KEY_V,KEY_PRINTSCREEN",
-"70,KEY_B,",
-"71,KEY_N,",
+"70,KEY_B,MACRO0",
+"71,KEY_N,MACRO1",
 "72,KEY_M,",
 "73,KEY_COMMA,AUDIO_VOL_DOWN",
 "74,KEY_PERIOD,AUDIO_VOL_UP",

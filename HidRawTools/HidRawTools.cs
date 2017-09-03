@@ -583,7 +583,7 @@ namespace HidRawTools
         private void staryuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (loadmatrix("staryu")) { Open(); }
-            textBox3.Text = "32C4";
+            textBox3.Text = "32C2";
             textBox2.Text = "0105";
         }
         private void gH60revCNYToolStripMenuItem_Click(object sender, EventArgs e)
