@@ -530,6 +530,10 @@ namespace HidRawTools
             {
                 matrix = new staryu();
             }
+            else if (_name == "Tinykey")
+            {
+                matrix = new Tinykey();
+            }
             else return false;
             layer = 0;
             this.menuStrip1.Items[3].Text = "Layer0";
@@ -597,6 +601,25 @@ namespace HidRawTools
             if (loadmatrix("ps2avrU")) { Open(); }
             textBox3.Text = "32A0";
             textBox2.Text = "0160";
+        }
+
+        private void tinykeyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("Tinykey")) { Open(); }
+            textBox3.Text = "D850";
+            textBox2.Text = "0102";
+        }
+
+        private void eEPToolToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           Thread t = new Thread(new ThreadStart(ThreadProc));
+            t.SetApartmentState(ApartmentState.STA);
+            t.Start();
+        }
+        public static void ThreadProc()
+        {
+            TinyToolsLite form = new TinyToolsLite();//第2个窗体
+            form.ShowDialog();
         }
     }
 }

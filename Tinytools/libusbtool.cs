@@ -30,14 +30,14 @@ namespace Tinytools
             textBox3.Text += str.ToString() + "\r\n";
         }
         private void libusbtool_Load(object sender, EventArgs e)
-        {           
+        {
             string str = Environment.CurrentDirectory + "\\tinytools.conf";
             loadOptions(str);
-            str = Environment.CurrentDirectory + "\\avrdude.conf"; 
-            if (!File.Exists(str))          
+            str = Environment.CurrentDirectory + "\\avrdude.conf";
+            if (!File.Exists(str))
             {
-                Driver.Enabled = false;            
-            }             
+                Driver.Enabled = false;
+            }
         }
         private void libusbtool_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -140,15 +140,15 @@ namespace Tinytools
             return a3;
         }
         public ushort ConvertChinese2(char str, string code)
-        {    
+        {
             string str2 = Convert.ToString(str);
             byte[] data = Encoding.GetEncoding(code).GetBytes(str2);
             string Data1 = data[0].ToString("x"); if (Data1.Length == 1) Data1 = "0" + Data1;
             string Data2 = data[1].ToString("x"); if (Data2.Length == 1) Data2 = "0" + Data2;
             str2 = Data1 + Data2;
             ushort a3 = Convert.ToUInt16(str2, 16);
-            return a3;     
-    }
+            return a3;
+        }
         private bool lisbusbdriver()
         {
             bool result = true;
@@ -226,7 +226,7 @@ namespace Tinytools
         {
             try
             {
-                if (vidbox.Text.Length == 0|| pidbox.Text.Length == 0)
+                if (vidbox.Text.Length == 0 || pidbox.Text.Length == 0)
                 {
                     Clear();
                     Print("vid or pid error. Try open again");
@@ -262,43 +262,45 @@ namespace Tinytools
         }
         private void uploadToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-              try{
-            if (textBox2.Text == "")
+            try
             {
+                if (textBox2.Text == "")
+                {
+                    Clear();
+                    Print("Nothing to upload");
+                    return;
+                }
+                string[] str = textBox2.Text.Split(',');
+                if (MyUsbDevice == null)
+                {
+                    Clear();
+                    Print("Invalid device");
+                    return;
+                }
                 Clear();
-                Print("Nothing to upload");
-                return;
-            }
-            string[] str = textBox2.Text.Split(',');
-            if (MyUsbDevice == null)
-            {
-                Clear();
-                Print("Invalid device");
-                return;
-            }
-            Clear();
-            Print("Uploading");
-            while (!uploadempty(0x01))
-            {
-                Thread.Sleep(5);
-            }
-            for (int i = 0; i < str.Length; i++)
-            {
-                if ((i * 2) > Convert.ToInt32(eepromsize)) break;
-                while (!uploadshort(Convert.ToUInt16(str[i]), Convert.ToUInt16(i * 2)))
+                Print("Uploading");
+                while (!uploadempty(0x01))
                 {
                     Thread.Sleep(5);
                 }
+                for (int i = 0; i < str.Length; i++)
+                {
+                    if ((i * 2) > Convert.ToInt32(eepromsize)) break;
+                    while (!uploadshort(Convert.ToUInt16(str[i]), Convert.ToUInt16(i * 2)))
+                    {
+                        Thread.Sleep(5);
+                    }
+                }
+                while (!uploadempty(0x03))
+                {
+                    Thread.Sleep(5);
+                }
+                Print("Upload finished");
             }
-            while (!uploadempty(0x03))
-            {
-                Thread.Sleep(5);
-            }
-            Print("Upload finished");
-              }catch (Exception ex) { Print(ex.ToString()); }
+            catch (Exception ex) { Print(ex.ToString()); }
         }
         private void openToolStripMenuItem1_Click(object sender, EventArgs e)
-        {    
+        {
             if (vidbox.Text.Length == 0 || pidbox.Text.Length == 0)
             {
                 Clear();
@@ -310,7 +312,7 @@ namespace Tinytools
             try
             {
                 HidDevice[] HidDeviceList = HidDevices.Enumerate(Convert.ToInt32(vid, 16), Convert.ToInt32(pid, 16), (ushort)0xFF31).ToArray();
-                if (HidDeviceList == null|| HidDeviceList.Length==0)
+                if (HidDeviceList == null || HidDeviceList.Length == 0)
                 {
                     Clear();
                     Print("Connect usb device and install driver. Try open again");
@@ -336,7 +338,7 @@ namespace Tinytools
             {
                 Print(ex.ToString());
             }
-        }     
+        }
         private void unicodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -435,68 +437,70 @@ namespace Tinytools
         }
         private void uploadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try { 
-            if (textBox2.Text == "")
+            try
             {
+                if (textBox2.Text == "")
+                {
+                    Clear();
+                    Print("Nothing to upload");
+                    return;
+                }
+                string[] str = textBox2.Text.Split(',');
+                if (HidDevice == null)
+                {
+                    Clear();
+                    Print("Invalid device");
+                    return;
+                }
                 Clear();
-                Print("Nothing to upload");
-                return;
-            }
-            string[] str = textBox2.Text.Split(',');
-            if (HidDevice == null)
-            {
-                Clear();
-                Print("Invalid device");
-                return;
-            }
-            Clear();
-            Print("Uploading");
-            byte[] outdata = new byte[9]; outdata[0] = 0;
-            byte[] a = new byte[2];
+                Print("Uploading");
+                byte[] outdata = new byte[9]; outdata[0] = 0;
+                byte[] a = new byte[2];
 
-            outdata[1] = 0xFF; outdata[2] = 0xF1;
-            HidDevice.Write(outdata, 50); Thread.Sleep(50);
+                outdata[1] = 0xFF; outdata[2] = 0xF1;
+                HidDevice.Write(outdata, 50); Thread.Sleep(50);
 
-            for (ushort i = 0; (i * 2)< Convert.ToInt32(eepromsize) ; i+=3)
-            {
-                a = BitConverter.GetBytes((ushort)(i*2));
-                outdata[1] = a[0]; outdata[2] = a[1];
-                if ((i + 2) < str.Length)
+                for (ushort i = 0; (i * 2) < Convert.ToInt32(eepromsize); i += 3)
                 {
-                    ushort data3 = Convert.ToUInt16(str[i + 2]);
-                    //Print(data3);
-                    a = BitConverter.GetBytes(data3);
-                    outdata[7] = a[0]; outdata[8] = a[1];
+                    a = BitConverter.GetBytes((ushort)(i * 2));
+                    outdata[1] = a[0]; outdata[2] = a[1];
+                    if ((i + 2) < str.Length)
+                    {
+                        ushort data3 = Convert.ToUInt16(str[i + 2]);
+                        //Print(data3);
+                        a = BitConverter.GetBytes(data3);
+                        outdata[7] = a[0]; outdata[8] = a[1];
+                    }
+                    if ((i + 1) < str.Length)
+                    {
+                        ushort data2 = Convert.ToUInt16(str[i + 1]);
+                        //Print(data2);
+                        a = BitConverter.GetBytes(data2);
+                        outdata[5] = a[0]; outdata[6] = a[1];
+                    }
+                    if (i < str.Length)
+                    {
+                        ushort data1 = Convert.ToUInt16(str[i]);
+                        //Print(data1);
+                        a = BitConverter.GetBytes(data1);
+                        outdata[3] = a[0]; outdata[4] = a[1];
+                    }
+                    else { break; }
+                    HidDevice.Write(outdata, 50);
+                    string outdatastr = "";
+                    for (int k = 1; k < outdata.Length; k++)
+                    {
+                        outdatastr += outdata[k].ToString() + "/";
+                    }
+                    Print(outdatastr);
+                    Thread.Sleep(50);
                 }
-                if ((i + 1) < str.Length)
-                {
-                    ushort data2 = Convert.ToUInt16(str[i + 1]);
-                    //Print(data2);
-                    a = BitConverter.GetBytes(data2);
-                    outdata[5] = a[0]; outdata[6] = a[1];
-                }
-                if (i < str.Length)
-                {
-                    ushort data1 = Convert.ToUInt16(str[i]);
-                    //Print(data1);
-                    a = BitConverter.GetBytes(data1);
-                    outdata[3] = a[0]; outdata[4] = a[1];
-                }
-                else { break; }               
-                HidDevice.Write(outdata, 50);
-                string outdatastr = "";
-                for(int k = 1; k < outdata.Length; k++)
-                {
-                    outdatastr += outdata[k].ToString()+"/";
-                }
-                Print(outdatastr);
-                Thread.Sleep(50);
+                outdata[1] = 0xFF; outdata[2] = 0xF2;
+                HidDevice.Write(outdata, 50); Thread.Sleep(50);
+                Print("Upload finished");
             }
-            outdata[1] = 0xFF; outdata[2] = 0xF2;
-            HidDevice.Write(outdata, 50); Thread.Sleep(50);
-            Print("Upload finished");
-        }catch (Exception ex) { Print(ex.ToString()); }
-}
+            catch (Exception ex) { Print(ex.ToString()); }
+        }
         private void libusbToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (lisbusbdriver())

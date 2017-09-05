@@ -34,6 +34,8 @@
             this.hIDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openDeviceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uploadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.eEPToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xD60ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.matrix1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.matrix2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,6 +51,7 @@
             this.xshiftToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.minilaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.staryuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tinykeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.layer1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -86,7 +89,8 @@
             this.hIDToolStripMenuItem,
             this.xD60ToolStripMenuItem,
             this.templateToolStripMenuItem,
-            this.layer1ToolStripMenuItem});
+            this.layer1ToolStripMenuItem,
+            this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -119,6 +123,21 @@
             this.uploadToolStripMenuItem.Size = new System.Drawing.Size(173, 26);
             this.uploadToolStripMenuItem.Text = "Upload";
             this.uploadToolStripMenuItem.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.eEPToolToolStripMenuItem});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(61, 24);
+            this.toolStripMenuItem1.Text = "Tools";
+            // 
+            // eEPToolToolStripMenuItem
+            // 
+            this.eEPToolToolStripMenuItem.Name = "eEPToolToolStripMenuItem";
+            this.eEPToolToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.eEPToolToolStripMenuItem.Text = "EEP_Tool";
+            this.eEPToolToolStripMenuItem.Click += new System.EventHandler(this.eEPToolToolStripMenuItem_Click);
             // 
             // xD60ToolStripMenuItem
             // 
@@ -167,7 +186,8 @@
             this.gH60revCNYToolStripMenuItem,
             this.ps2avrUToolStripMenuItem,
             this.ps2avrGB2XShiftToolStripMenuItem,
-            this.staryuToolStripMenuItem});
+            this.staryuToolStripMenuItem,
+            this.tinykeyToolStripMenuItem});
             this.templateToolStripMenuItem.Name = "templateToolStripMenuItem";
             this.templateToolStripMenuItem.Size = new System.Drawing.Size(92, 24);
             this.templateToolStripMenuItem.Text = "Keyboard";
@@ -184,14 +204,14 @@
             // xShiftToolStripMenuItem
             // 
             this.xShiftToolStripMenuItem.Name = "xShiftToolStripMenuItem";
-            this.xShiftToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.xShiftToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
             this.xShiftToolStripMenuItem.Text = "2.15XShift";
             this.xShiftToolStripMenuItem.Click += new System.EventHandler(this.xShiftToolStripMenuItem_Click);
             // 
             // xShiftToolStripMenuItem1
             // 
             this.xShiftToolStripMenuItem1.Name = "xShiftToolStripMenuItem1";
-            this.xShiftToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
+            this.xShiftToolStripMenuItem1.Size = new System.Drawing.Size(158, 26);
             this.xShiftToolStripMenuItem1.Text = "2XShift";
             this.xShiftToolStripMenuItem1.Click += new System.EventHandler(this.xShiftToolStripMenuItem1_Click);
             // 
@@ -239,6 +259,13 @@
             this.staryuToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
             this.staryuToolStripMenuItem.Text = "Staryua_kaiyu";
             this.staryuToolStripMenuItem.Click += new System.EventHandler(this.staryuToolStripMenuItem_Click);
+            // 
+            // tinykeyToolStripMenuItem
+            // 
+            this.tinykeyToolStripMenuItem.Name = "tinykeyToolStripMenuItem";
+            this.tinykeyToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.tinykeyToolStripMenuItem.Text = "Tinykey";
+            this.tinykeyToolStripMenuItem.Click += new System.EventHandler(this.tinykeyToolStripMenuItem_Click);
             // 
             // layer1ToolStripMenuItem
             // 
@@ -447,6 +474,9 @@
         private System.Windows.Forms.ToolStripMenuItem staryuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem xshiftToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem minilaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tinykeyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem eEPToolToolStripMenuItem;
     }
 }
 

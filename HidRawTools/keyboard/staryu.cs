@@ -57,5 +57,32 @@ namespace HidRawTools
             };
         }
     }
+    class Tinykey : IMatrix
+    {
+        public Tinykey()
+        {
+            this.Name = "Tinykey";
+            this.ROWS = 1;
+            this.COLS = 2;
+            this.rowPins = new byte[1] { 0xFF };
+            this.colPins = new byte[2] { 0,1 };
+            this.hexaKeys0 = new string[1, 2];
+            this.hexaKeys1 = new string[1, 2];
+            keycode = new string[2 * 2];
+            for (int i = 0; i < keycode.Length; i++)
+            {
+                keycode[i] = "";
+            }
+            this.keycap = new double[2, 5] {                        
+                {16,4,1,0,0 },
+                {17,4,1,0,1 },                  
+            };
+            Defaultkeycode = new string[]{
+"0,KEY_Z,MACRO1",
+"1,KEY_X,MACRO3",
+
+            };
+        }
+    }
 }
 

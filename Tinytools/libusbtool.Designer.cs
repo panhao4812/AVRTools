@@ -240,7 +240,6 @@
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "libusbtool";
-            this.Text = "libusbtool";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.libusbtool_FormClosing);
             this.Load += new System.EventHandler(this.libusbtool_Load);
             this.menuStrip1.ResumeLayout(false);
