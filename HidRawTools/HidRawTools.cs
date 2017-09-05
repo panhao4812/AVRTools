@@ -621,5 +621,10 @@ namespace HidRawTools
             TinyToolsLite form = new TinyToolsLite();//第2个窗体
             form.ShowDialog();
         }
+
+        private void xD60AToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

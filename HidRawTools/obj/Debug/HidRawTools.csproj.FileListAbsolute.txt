@@ -17,3 +17,4 @@ D:\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.exe
 D:\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.pdb
 D:\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.TinyToolsLite.resources
 D:\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.TinyToolsLite.resources

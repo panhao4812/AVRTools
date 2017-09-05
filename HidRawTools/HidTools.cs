@@ -257,15 +257,5 @@ namespace HidRawTools
             Print( "step4: Click HidRaw-Upload to burn codes into device.");
             Print("enjoy!");
         }
-
-        private void TinyToolsLite_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
