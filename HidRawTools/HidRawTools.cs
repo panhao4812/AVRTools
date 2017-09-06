@@ -322,7 +322,7 @@ namespace HidRawTools
                 this.menuStrip1.Items[3].Text = "Layer0";
                 changeButton();
             }
-        }
+        }      
         private void openDeviceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ushort vid = 0, pid = 0;
@@ -354,6 +354,12 @@ namespace HidRawTools
                     return;
                 }
                 Print("Device OK");
+                byte[] outdata = new byte[9]; outdata[0] = 0;
+                outdata[1] = 0xFF; outdata[2] = 0xFA;
+                HidDevice.Write(outdata); Thread.Sleep(60);
+                // 0xFFFA是open的flag
+                // 0xFFF1是upload的flag
+                // 0xFFF2是end的flag
             }
             catch (Exception ex)
             {
@@ -626,5 +632,7 @@ namespace HidRawTools
         {
 
         }
+
+       
     }
 }

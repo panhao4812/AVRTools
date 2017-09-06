@@ -17,43 +17,24 @@ namespace HidRawTools
             this.colPins = new byte[5] { 16, 17, 18, 19, 20 };
             this.hexaKeys0 = new string[1, 5];
             this.hexaKeys1 = new string[1, 5];
-            keycode = new string[24 * 2];
+            keycode = new string[5 * 2];
             for (int i = 0; i < keycode.Length; i++)
             {
                 keycode[i] = "";
             }
-            this.keycap = new double[24, 5] {
-                {15,0,1,-1,-1 },
-                {16,0,1,-1,-1 },
-                {17,0,1,-1,-1 },
-                {18,0,1,-1,-1 },
-                {15,1,1,-1,-1 },
-                {16,1,1,-1,-1 },
-                {17,1,1,-1,-1 },
-                {18,1,1,-1,-1 },
-                {15,2,1,-1,-1 },
-                {16,2,1,-1,-1 },
-                {17,2,1,-1,-1 },
-                {18,2,1,-1,-1 },
-                {15,3,1,-1,-1 },
+            this.keycap = new double[5, 5] {
                 {16,3,1,0,0 },
                 {17,3,1,0,1 },
-                {18,3,1,-1,-1 },
                 {15,4,1,0,4 },
                 {16,4,1,0,3 },
                 {17,4,1,0,2 },
-                {18,4,1,-1,-1 },
-                {15,-1,1,-1,-1 },
-                {16,-1,1,-1,-1 },
-                {17,-1,1,-1,-1 },
-                {18,-1,1,-1,-1 }
             };
             Defaultkeycode = new string[]{
-"13,KEY_UP,MACRO4",
-"14,KEY_FN,KEY_FN",
-"16,KEY_LEFT,MACRO5",
-"17,KEY_DOWN,MACRO6",
-"18,KEY_RIGHT,MACRO7"
+"0,KEY_UP,MACRO4",
+"1,KEY_FN,KEY_FN",
+"2,KEY_LEFT,MACRO5",
+"3,KEY_DOWN,MACRO6",
+"4,KEY_RIGHT,MACRO7"
             };
         }
     }
