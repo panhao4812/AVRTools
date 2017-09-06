@@ -59,8 +59,8 @@ namespace HidRawTools
                 {17,4,1,0,1 },                  
             };
             Defaultkeycode = new string[]{
-"0,KEY_Z,MACRO1",
-"1,KEY_X,MACRO3",
+"0,MACRO1,MACRO1",
+"1,MACRO3,MACRO3",
 
             };
         }

@@ -14,6 +14,7 @@ namespace HidRawTools
         ushort pid = 0;
         ushort eepromsize = 511;
         string CodeTemp = "";
+        string iencode = "Default";
         public void Clear()
         {
             textBox2.Text = "";
@@ -107,6 +108,7 @@ namespace HidRawTools
         {
             try
             {
+                Encode(iencode);
                 int addr=24;          
                 if (CodeTemp == "")
                 {
@@ -121,7 +123,6 @@ namespace HidRawTools
                     Print("Invalid device");
                     return;
                 }
-                Clear();
                 Print("Uploading address=" + addr);
                 byte[] outdata = new byte[9]; outdata[0] = 0;
                 byte[] a = new byte[2];
@@ -174,15 +175,36 @@ namespace HidRawTools
         {
             try
             {
+                if (this.checkBox1.Checked)
+                {
+                    CodeTemp = "2,";
+                }
+                else { CodeTemp = "0,"; }
+                CodeTemp += this.hScrollBar1.Value.ToString() + ",";
+                CodeTemp += this.hScrollBar2.Value.ToString() + ",";
+                if (textBox7.Text == "" || textBox7.Text == string.Empty)
+                {
+                    CodeTemp += "0,";
+                }
+                else
+                {
+                    int rate = Convert.ToInt32(textBox7.Text);
+                    if (rate < 0) rate = 0;
+                    if (rate > 31) rate = 31;
+                    textBox7.Text = rate.ToString();
+                    if (rate != 0) rate = 32 - rate;
+                    rate *= 0x0800;
+                    CodeTemp += rate.ToString() + ",";
+                }
+                Clear();
                 char[] ch = textBox1.Text.ToArray();
 
                 if (ch == null || ch.Length == 0)
                 {
-                    Clear();
-                    Print("Nothing to Convert");
+                    CodeTemp += "0";                
+                    Print("Uploading RGB parameter!Nothing for printing!");
                     return;
                 }
-                Clear();
                 Print("English 0-127 GBK > " + 0x8080);
 
                 int length = Convert.ToInt32(eepromsize) / 2 - 1;
@@ -213,29 +235,10 @@ namespace HidRawTools
                         if (j != length - 1) output += ",";
                     }
                 }
-                if (this.checkBox1.Checked)
-                {
-                    CodeTemp = "2,";
-                }
-                else { CodeTemp = "0,"; }
-                CodeTemp += this.hScrollBar1.Value.ToString() + ",";
-                CodeTemp += this.hScrollBar2.Value.ToString() + ",";
-                if (textBox7.Text == "" || textBox7.Text == string.Empty)
-                {
-                    CodeTemp += "0,";
-                }
-                else {
-                    int rate = Convert.ToInt32(textBox7.Text);
-                    if (rate < 0) rate = 0;
-                    if (rate > 0x0FF) rate = 0x0FF;               
-                    textBox7.Text = rate.ToString();
-                    if (rate != 0) rate = 0x0100 - rate;
-                        rate *= 0x0100;
-                    CodeTemp += rate.ToString()+",";
-                }
+            
              CodeTemp += length2.ToString() + ",";
                 CodeTemp += output;
-                Print(CodeTemp);
+              //  Print(CodeTemp);
             }
             catch (Exception ex) { Print(ex.ToString()); }
         }
@@ -251,19 +254,23 @@ namespace HidRawTools
         }
         private void gBKToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Encode("GBK");
+            iencode="GBK";
+            this.encodeToolStripMenuItem.Text = "Encode(" + iencode+ ")";
         }
         private void unicodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Encode("Unicode");
+            iencode = "Unicode";
+            this.encodeToolStripMenuItem.Text = "Encode(" + iencode + ")";
         }
         private void utiToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Encode("UTF8");
+            iencode = "UTF8";
+            this.encodeToolStripMenuItem.Text = "Encode(" + iencode + ")";
         }
         private void defaultToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Encode("Default");
+            iencode = "Default";
+            this.encodeToolStripMenuItem.Text = "Encode(" + iencode + ")";
         }
 
         private void TinyToolsLite_Load(object sender, EventArgs e)
