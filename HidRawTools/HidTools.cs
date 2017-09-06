@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -9,28 +10,22 @@ namespace HidRawTools
     public partial class TinyToolsLite : Form
     {
         public static HidDevice HidDevice;
-        ushort vid = 0xdddd;
-        ushort pid = 0x5678;
+        ushort vid = 0;
+        ushort pid = 0;
         ushort eepromsize = 511;
+        string CodeTemp = "";
         public void Clear()
         {
-            Box1.Text = "";
+            textBox2.Text = "";
         }
         public void Print(Object str)
         {
-            Box1.Text += str.ToString() + "\r\n";
+            textBox2.Text += str.ToString() + "\r\n";
         }
         public TinyToolsLite()
         {
             InitializeComponent();
-        }
-        string[] encodingtype =
-       {
-            "GBK",
-            "Default",
-            "Unicode",
-            "UTF8"
-        };
+        }    
         public ushort ConvertChinese1(char str, string code)
         {
             string str2 = Convert.ToString(str);
@@ -38,7 +33,7 @@ namespace HidRawTools
             if (code == "GBK")
             {
                 return ConvertChinese2(str, code);
-            }       
+            }
             else if (code == "Default")
             {
                 data = Encoding.Default.GetBytes(str2);
@@ -51,10 +46,10 @@ namespace HidRawTools
             else if (code == "Unicode")
             {
                 data = Encoding.Unicode.GetBytes(str2);
-            }  
+            }
             else if (code == "UTF8")
             {
-                data = Encoding.UTF8.GetBytes(str2);               
+                data = Encoding.UTF8.GetBytes(str2);
             }
             else { Print("encoding error"); return 0; }
             string data1 = data[1].ToString("x"); if (data1.Length == 1) data1 = "0" + data1;
@@ -73,28 +68,10 @@ namespace HidRawTools
             ushort a3 = Convert.ToUInt16(str2, 16);
             return a3;
         }
-        int encode_index = 0;
-        private void button4_Click(object sender, EventArgs e)
-        {
-            encode_index--;
-            if (encode_index == -1) encode_index = encodingtype.Length-1;
-            button1.Text = encodingtype[encode_index];          
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            encode_index++;
-            if (encode_index == encodingtype.Length) encode_index = 0;
-            button1.Text = encodingtype[encode_index];
-        }
-
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (textBox4.Text != "" && textBox3.Text != "")
-            {
-                vid = (ushort)Convert.ToInt32(textBox3.Text, 16);
-                pid = (ushort)Convert.ToInt32(textBox4.Text, 16);
-            }
+            if (textBox3.Text != "") vid = (ushort)Convert.ToInt32(textBox3.Text, 16);
+            if (textBox4.Text != "") pid = (ushort)Convert.ToInt32(textBox4.Text, 16);
             Clear();
             Print("0x" + vid.ToString("x"));
             Print("0x" + pid.ToString("x"));
@@ -117,33 +94,27 @@ namespace HidRawTools
                     return;
                 }
                 Print("Device OK");
+                byte[] outdata = new byte[9]; outdata[0] = 0;
+                outdata[1] = 0xFF; outdata[2] = 0xFA;
+                HidDevice.Write(outdata); Thread.Sleep(60);
             }
             catch (Exception ex)
             {
                 Print(ex.ToString());
             }
         }
-
         private void uploadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
             {
-                int addr = 0;
-                if (textBox5.Text == "")
-                {
-                    addr = 0;
-                }
-                else
-                {
-                    addr = Convert.ToInt32(textBox5.Text);
-                }
-                if (textBox2.Text == "")
+                int addr=24;          
+                if (CodeTemp == "")
                 {
                     Clear();
                     Print("Nothing to upload");
                     return;
                 }
-                string[] str = textBox2.Text.Split(',');
+                string[] str = CodeTemp.Split(',');
                 if (HidDevice == null)
                 {
                     Clear();
@@ -151,7 +122,7 @@ namespace HidRawTools
                     return;
                 }
                 Clear();
-                Print("Uploading address="+addr);
+                Print("Uploading address=" + addr);
                 byte[] outdata = new byte[9]; outdata[0] = 0;
                 byte[] a = new byte[2];
 
@@ -160,7 +131,7 @@ namespace HidRawTools
 
                 for (ushort i = 0; (i * 2) < Convert.ToInt32(eepromsize); i += 3)
                 {
-                    a = BitConverter.GetBytes((ushort)(i * 2+addr));
+                    a = BitConverter.GetBytes((ushort)(i * 2 + addr));
                     outdata[1] = a[0]; outdata[2] = a[1];
                     if ((i + 2) < str.Length)
                     {
@@ -198,8 +169,8 @@ namespace HidRawTools
                 Print("Upload finished");
             }
             catch (Exception ex) { Print(ex.ToString()); }
-        }  
-        private void button1_Click(object sender, EventArgs e)
+        }
+        private void Encode(string _code)
         {
             try
             {
@@ -236,26 +207,86 @@ namespace HidRawTools
                     else if (ch[j] <= 0xFFFF)
                     {
                         //汉字                     
-                        ushort a3 = ConvertChinese1(ch[j], button1.Text);
+                        ushort a3 = ConvertChinese1(ch[j], _code);
                         output += a3.ToString();
                         //Printhex((int)a3);
                         if (j != length - 1) output += ",";
                     }
                 }
-                textBox2.Text = length2.ToString() + ",";
-                textBox2.Text += output;
+                if (this.checkBox1.Checked)
+                {
+                    CodeTemp = "2,";
+                }
+                else { CodeTemp = "0,"; }
+                CodeTemp += this.hScrollBar1.Value.ToString() + ",";
+                CodeTemp += this.hScrollBar2.Value.ToString() + ",";
+                if (textBox7.Text == "" || textBox7.Text == string.Empty)
+                {
+                    CodeTemp += "0,";
+                }
+                else {
+                    int rate = Convert.ToInt32(textBox7.Text);
+                    if (rate < 0) rate = 0;
+                    if (rate > 0x0FF) rate = 0x0FF;               
+                    textBox7.Text = rate.ToString();
+                    if (rate != 0) rate = 0x0100 - rate;
+                        rate *= 0x0100;
+                    CodeTemp += rate.ToString()+",";
+                }
+             CodeTemp += length2.ToString() + ",";
+                CodeTemp += output;
+                Print(CodeTemp);
             }
             catch (Exception ex) { Print(ex.ToString()); }
         }
-
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Print( "Author zian1");
-            Print( "step1: Click HidRaw-Open to Connect the device.");
-            Print( "step2: Copy or type something into textbox on the left.");
-            Print( "step3: Click GBK button to generate GBK code.");
-            Print( "step4: Click HidRaw-Upload to burn codes into device.");
+            Clear();
+            Print("Author zian1");
+            Print("step1: Click Hid-OpenDevice to Connect the device.");
+            Print("step2: Copy or type something into the textbox on the left.");
+            Print("step3: Click Encode-GBK to generate GBK code.");
+            Print("step4: Click Hid-Upload to burn codes into device.");
             Print("enjoy!");
+        }
+        private void gBKToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Encode("GBK");
+        }
+        private void unicodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Encode("Unicode");
+        }
+        private void utiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Encode("UTF8");
+        }
+        private void defaultToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Encode("Default");
+        }
+
+        private void TinyToolsLite_Load(object sender, EventArgs e)
+        {
+
+        }     
+        private void hScrollBar1_ValueChanged(object sender, EventArgs e)
+        {
+            int index = this.hScrollBar1.Value;
+            int r = Program.Rcolors[index];
+            int g = Program.Gcolors[index];
+            int b = Program.Bcolors[index];
+            label3.BackColor = Color.FromArgb(r, g, b);
+            rgb1.Text= this.hScrollBar1.Value.ToString();
+        }
+        private void hScrollBar2_ValueChanged(object sender, EventArgs e)
+        {
+            int index = this.hScrollBar2.Value;
+            int r = Program.Rcolors[index];
+            int g = Program.Gcolors[index];
+            int b = Program.Bcolors[index];
+            label4.BackColor = Color.FromArgb(r, g, b);
+            rgb2.Text = this.hScrollBar2.Value.ToString();
         }
     }
 }

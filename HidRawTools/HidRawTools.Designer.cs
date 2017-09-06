@@ -192,8 +192,7 @@
             this.minilaToolStripMenuItem});
             this.ps2avrGB2XShiftToolStripMenuItem.Name = "ps2avrGB2XShiftToolStripMenuItem";
             this.ps2avrGB2XShiftToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
-            this.ps2avrGB2XShiftToolStripMenuItem.Text = "Bface60_ver2.1";
-            this.ps2avrGB2XShiftToolStripMenuItem.Click += new System.EventHandler(this.ps2avrGB2XShiftToolStripMenuItem_Click);
+            this.ps2avrGB2XShiftToolStripMenuItem.Text = "Bface60_ver2.1";     
             // 
             // xshiftToolStripMenuItem2
             // 

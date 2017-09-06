@@ -499,12 +499,7 @@ namespace HidRawTools
                 Print("Upload finished");
             }
             catch (Exception ex) { Print(ex.ToString()); }
-        }     
-        
-        private void ps2avrGB2XShiftToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-           
-        }
+        }      
         public int keyCount = 0;
         public bool loadmatrix(string _name)
         {
