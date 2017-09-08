@@ -248,7 +248,7 @@ namespace HidRawTools
             Print("Author zian1");
             Print("step1: Click Hid-OpenDevice to Connect the device.");
             Print("step2: Copy or type something into the textbox on the left.");
-            Print("step3: Click Encode-GBK to generate GBK code.");
+            Print("step3: Click Encode-Unicode for QQ.Click Encode-GBK for text box.");
             Print("step4: Click Hid-Upload to burn codes into device.");
             Print("enjoy!");
         }
@@ -294,6 +294,14 @@ namespace HidRawTools
             int b = Program.Bcolors[index];
             label4.BackColor = Color.FromArgb(r, g, b);
             rgb2.Text = this.hScrollBar2.Value.ToString();
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.A)
+            {
+                ((TextBox)sender).SelectAll();
+            }
         }
     }
 }

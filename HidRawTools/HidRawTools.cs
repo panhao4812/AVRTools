@@ -609,11 +609,7 @@ namespace HidRawTools
             if (loadmatrix("Tinykey")) { Open(); }
             textBox3.Text = "D850";
             textBox2.Text = "0102";
-        }
-
-        private void eEPToolToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-           Thread t = new Thread(new ThreadStart(ThreadProc));
+            Thread t = new Thread(new ThreadStart(ThreadProc));
             t.SetApartmentState(ApartmentState.STA);
             t.Start();
         }
@@ -623,11 +619,16 @@ namespace HidRawTools
             form.ShowDialog();
         }
 
-        private void xD60AToolStripMenuItem_Click(object sender, EventArgs e)
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
+            Clear();
+            Print("Author zian1");
+            Print("step1: Click Hid-OpenDevice to Connect the device.");
+            Print("step2: Click keyboard to select your templet.");
+            Print("step3: Click keycap button and then click keycode list on the right-down side to edit your keymap.");
+            Print("step4: Click layer0/layer1 to Edit page FN0/FN1.");
+            Print("step5: Click Hid-Upload to burn codes into device.");
+            Print("enjoy!");
         }
-
-       
     }
 }

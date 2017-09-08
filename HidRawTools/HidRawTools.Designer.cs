@@ -52,7 +52,6 @@
             this.tinykeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.layer1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.eEPToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -103,25 +102,24 @@
             this.hIDToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openDeviceToolStripMenuItem,
             this.uploadToolStripMenuItem});
-            this.hIDToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
+            this.hIDToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.hIDToolStripMenuItem.Name = "hIDToolStripMenuItem";
             this.hIDToolStripMenuItem.Size = new System.Drawing.Size(48, 24);
             this.hIDToolStripMenuItem.Text = "HID";
-        
             // 
             // openDeviceToolStripMenuItem
             // 
             this.openDeviceToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.openDeviceToolStripMenuItem.Name = "openDeviceToolStripMenuItem";
-            this.openDeviceToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.openDeviceToolStripMenuItem.Size = new System.Drawing.Size(173, 26);
             this.openDeviceToolStripMenuItem.Text = "OpenDevice";
             this.openDeviceToolStripMenuItem.Click += new System.EventHandler(this.openDeviceToolStripMenuItem_Click);
             // 
             // uploadToolStripMenuItem
             // 
-            this.uploadToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
+            this.uploadToolStripMenuItem.ForeColor = System.Drawing.Color.DodgerBlue;
             this.uploadToolStripMenuItem.Name = "uploadToolStripMenuItem";
-            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(173, 26);
             this.uploadToolStripMenuItem.Text = "Upload";
             this.uploadToolStripMenuItem.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click);
             // 
@@ -192,7 +190,7 @@
             this.minilaToolStripMenuItem});
             this.ps2avrGB2XShiftToolStripMenuItem.Name = "ps2avrGB2XShiftToolStripMenuItem";
             this.ps2avrGB2XShiftToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
-            this.ps2avrGB2XShiftToolStripMenuItem.Text = "Bface60_ver2.1";     
+            this.ps2avrGB2XShiftToolStripMenuItem.Text = "Bface60_ver2.1";
             // 
             // xshiftToolStripMenuItem2
             // 
@@ -216,7 +214,6 @@
             this.xD60AToolStripMenuItem.Name = "xD60AToolStripMenuItem";
             this.xD60AToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
             this.xD60AToolStripMenuItem.Text = "XD60_ver2.0";
-            this.xD60AToolStripMenuItem.Click += new System.EventHandler(this.xD60AToolStripMenuItem_Click);
             // 
             // xShiftToolStripMenuItem
             // 
@@ -262,18 +259,10 @@
             // 
             // toolStripMenuItem1
             // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.eEPToolToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(61, 24);
-            this.toolStripMenuItem1.Text = "Tools";
-            // 
-            // eEPToolToolStripMenuItem
-            // 
-            this.eEPToolToolStripMenuItem.Name = "eEPToolToolStripMenuItem";
-            this.eEPToolToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
-            this.eEPToolToolStripMenuItem.Text = "XD002 Tools";
-            this.eEPToolToolStripMenuItem.Click += new System.EventHandler(this.eEPToolToolStripMenuItem_Click);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(56, 24);
+            this.toolStripMenuItem1.Text = "Help";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // textBox1
             // 
@@ -346,7 +335,7 @@
             this.KeyCode,
             this.Keymask});
             this.dataGridView1.Location = new System.Drawing.Point(673, 358);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -477,7 +466,6 @@
         private System.Windows.Forms.ToolStripMenuItem minilaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tinykeyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem eEPToolToolStripMenuItem;
     }
 }
 
