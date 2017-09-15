@@ -308,21 +308,7 @@ namespace HidRawTools
             {
                 Print(ex.ToString());
             }
-        }
-        private void layer1ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (layer == 0)
-            {
-                layer = 1;
-                this.menuStrip1.Items[3].Text = "Layer1";
-                changeButton();
-            }
-            else {
-                layer = 0;
-                this.menuStrip1.Items[3].Text = "Layer0";
-                changeButton();
-            }
-        }      
+        }         
         private void openDeviceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ushort vid = 0, pid = 0;
@@ -537,7 +523,7 @@ namespace HidRawTools
             }
             else return false;
             layer = 0;
-            this.menuStrip1.Items[3].Text = "Layer0";
+            radioButton1.Checked = true;
             keyCount = matrix.keycap.GetUpperBound(0) + 1;
             ////////////////////////////////////////
             checkedListBox1.Items.Clear();
@@ -629,6 +615,24 @@ namespace HidRawTools
             Print("step4: Click layer0/layer1 to Edit page FN0/FN1.");
             Print("step5: Click Hid-Upload to burn codes into device.");
             Print("enjoy!");
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (layer != 0)
+            {
+                layer = 0;
+                changeButton();
+            }
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (layer != 1)
+            {
+                layer = 1;
+                changeButton();
+            }
         }
     }
 }

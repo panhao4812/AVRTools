@@ -50,7 +50,6 @@
             this.gH60revCNYToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.staryuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tinykeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.layer1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -64,6 +63,8 @@
             this.KeyCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Keymask = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -88,7 +89,6 @@
             this.hIDToolStripMenuItem,
             this.xD60ToolStripMenuItem,
             this.templateToolStripMenuItem,
-            this.layer1ToolStripMenuItem,
             this.toolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -250,13 +250,6 @@
             this.tinykeyToolStripMenuItem.Text = "XD002_ver1.0";
             this.tinykeyToolStripMenuItem.Click += new System.EventHandler(this.tinykeyToolStripMenuItem_Click);
             // 
-            // layer1ToolStripMenuItem
-            // 
-            this.layer1ToolStripMenuItem.Name = "layer1ToolStripMenuItem";
-            this.layer1ToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
-            this.layer1ToolStripMenuItem.Text = "Layer0";
-            this.layer1ToolStripMenuItem.Click += new System.EventHandler(this.layer1ToolStripMenuItem_Click);
-            // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
@@ -399,12 +392,38 @@
             this.checkedListBox1.TabIndex = 26;
             this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(265, 6);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(76, 19);
+            this.radioButton1.TabIndex = 29;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Layer0";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(351, 6);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(76, 19);
+            this.radioButton2.TabIndex = 30;
+            this.radioButton2.Text = "Layer1";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            // 
             // HidRawTools
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1005, 675);
+            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.textBox2);
@@ -449,7 +468,6 @@
         private System.Windows.Forms.ToolStripMenuItem templateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem xD60AToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearAllToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem layer1ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ps2avrUToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gH60revCNYToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ps2avrGB2XShiftToolStripMenuItem;
@@ -466,6 +484,8 @@
         private System.Windows.Forms.ToolStripMenuItem minilaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tinykeyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
     }
 }
 
