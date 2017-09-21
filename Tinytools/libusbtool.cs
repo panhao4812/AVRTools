@@ -439,7 +439,12 @@ namespace Tinytools
         {
             try
             {
-                if (textBox2.Text == "")
+                int addr = 0;
+                if (textBox4.Text != ""|| textBox4.Text !=null)
+                {
+                    addr = Convert.ToInt32(textBox4.Text);
+                }
+                    if (textBox2.Text == "")
                 {
                     Clear();
                     Print("Nothing to upload");
@@ -453,7 +458,7 @@ namespace Tinytools
                     return;
                 }
                 Clear();
-                Print("Uploading");
+                Print("Uploading address=" + addr);
                 byte[] outdata = new byte[9]; outdata[0] = 0;
                 byte[] a = new byte[2];
 
@@ -462,7 +467,7 @@ namespace Tinytools
 
                 for (ushort i = 0; (i * 2) < Convert.ToInt32(eepromsize); i += 3)
                 {
-                    a = BitConverter.GetBytes((ushort)(i * 2));
+                    a = BitConverter.GetBytes((ushort)(i * 2+addr));
                     outdata[1] = a[0]; outdata[2] = a[1];
                     if ((i + 2) < str.Length)
                     {
@@ -501,6 +506,15 @@ namespace Tinytools
             }
             catch (Exception ex) { Print(ex.ToString()); }
         }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.A)
+            {
+                ((TextBox)sender).SelectAll();
+            }
+        }
+
         private void libusbToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (lisbusbdriver())

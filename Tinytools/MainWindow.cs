@@ -23,10 +23,26 @@ namespace Tinytools
         {
             InitializeComponent();
         }
+        private void box_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.A)
+            {
+                ((TextBox)sender).SelectAll();
+            }
+        }
         private void MainWindow_Load(object sender, EventArgs e)
         {
             string str = Environment.CurrentDirectory + "\\cmdtools.conf";
             loadOptions(str);
+            foreach (Control ctl in Controls)
+            {
+                //this.Main_box.Text += ctl.GetType().Name + "\r\n";
+                if(ctl.GetType().Name== "TextBox")
+                {
+                    TextBox box = ctl as TextBox;
+                    box.KeyDown += new System.Windows.Forms.KeyEventHandler(this.box_KeyDown);
+                }
+            }
         }
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -320,5 +336,7 @@ namespace Tinytools
            str += "arduino 328p => -c avrisp" + "\r\n";
             Main_box.Text = str;
         }
+
+       
     }
 }
