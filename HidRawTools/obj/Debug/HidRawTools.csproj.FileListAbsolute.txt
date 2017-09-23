@@ -3,7 +3,6 @@ C:\Users\Administrator\Documents\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTo
 C:\Users\Administrator\Documents\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.pdb
 C:\Users\Administrator\Documents\GitHub\Tinytools\HidRawTools\bin\Debug\HidRawTools.exe
 C:\Users\Administrator\Documents\GitHub\Tinytools\HidRawTools\bin\Debug\HidRawTools.pdb
-C:\Users\Administrator\Documents\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Documents\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.HidRawTools.resources
 C:\Users\Administrator\Documents\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.Properties.Resources.resources
 C:\Users\Administrator\Documents\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.csproj.GenerateResource.Cache
@@ -18,3 +17,4 @@ D:\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.pdb
 D:\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.TinyToolsLite.resources
 C:\Users\Administrator\Documents\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.TinyToolsLite.resources
 D:\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.libusbtool.resources

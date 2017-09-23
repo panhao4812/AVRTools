@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -275,7 +276,8 @@ namespace HidRawTools
 
         private void TinyToolsLite_Load(object sender, EventArgs e)
         {
-
+            string str = Environment.CurrentDirectory + "\\XD002tools.conf";
+            loadOptions(str);
         }     
         private void hScrollBar1_ValueChanged(object sender, EventArgs e)
         {
@@ -302,6 +304,48 @@ namespace HidRawTools
             {
                 ((TextBox)sender).SelectAll();
             }
+        }
+        private void loadOptions(string path)
+        {
+            try
+            {
+                FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
+                StreamReader srd = new StreamReader(fs);
+                for (int k = 0; k < 2; k++)
+                {
+                    string str = srd.ReadLine();
+                    string[] chara3 = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                    if (chara3[0] == "vid") textBox3.Text = chara3[1];
+                    if (chara3[0] == "pid") textBox4.Text = chara3[1];
+                }
+                while (srd.Peek() != -1)
+                {
+                    textBox1.Text += srd.ReadLine() + "\r\n";
+                }
+                srd.Close();
+            }
+            catch { }
+        }
+        private void saveOptions(string path)
+        {
+            try
+            {
+                FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
+                fs.SetLength(0);
+                StreamWriter stream = new StreamWriter(fs);
+                stream.WriteLine("vid," + textBox3.Text);
+                stream.WriteLine("pid," + textBox4.Text);
+                stream.Write(textBox1.Text);
+                stream.Flush();
+                stream.Close();
+            }
+            catch { }
+        }
+
+        private void TinyToolsLite_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string str = Environment.CurrentDirectory + "\\XD002tools.conf";
+            saveOptions(str);
         }
     }
 }

@@ -80,6 +80,12 @@
       <DependentUpon>HidTools.cs</DependentUpon>
     </Compile>
     <Compile Include="keyboard\staryu.cs" />
+    <Compile Include="libusbtool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="libusbtool.Designer.cs">
+      <DependentUpon>libusbtool.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="keyboard\GH60.cs" />
@@ -89,6 +95,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HidTools.resx">
       <DependentUpon>HidTools.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="libusbtool.resx">
+      <DependentUpon>libusbtool.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

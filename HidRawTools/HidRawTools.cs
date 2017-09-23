@@ -32,13 +32,13 @@ namespace HidRawTools
         private void Form1_Load(object sender, EventArgs e)
         {
             this.Size = new Size(1024, 800);
-            this.panel1.Location = new Point(0, 31);
-            panel1.Size = new Size(1006, 395);
+            this.panel1.Location = new Point(2, 25);
+            panel1.Size = new Size(1004, 401);
             textBox1.Size = new Size(330, 322);
             textBox1.Location = new Point(2, 428);
             this.checkedListBox1.Size = new Size(330, 322);
             checkedListBox1.Location = new Point(334, 428);
-            dataGridView1.Size = new Size(338, 322);
+            dataGridView1.Size = new Size(340, 322);
             dataGridView1.Location = new Point(666, 428);
             dataGridView1.RowCount = Program.KeyName.Length + 1;        
             for (int i = 0; i < this.dataGridView1.Columns.Count; i++)
@@ -595,16 +595,17 @@ namespace HidRawTools
             if (loadmatrix("Tinykey")) { Open(); }
             textBox3.Text = "D850";
             textBox2.Text = "0102";
-            Thread t = new Thread(new ThreadStart(ThreadProc));
-            t.SetApartmentState(ApartmentState.STA);
-            t.Start();
         }
         public static void ThreadProc()
         {
             TinyToolsLite form = new TinyToolsLite();//第2个窗体
             form.ShowDialog();
         }
-
+        public static void ThreadProc2()
+        {
+            libusbtool form = new libusbtool();//第3个窗体
+            form.ShowDialog();
+        }
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Clear();
@@ -633,6 +634,20 @@ namespace HidRawTools
                 layer = 1;
                 changeButton();
             }
+        }
+
+        private void xD002ToolsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Thread t = new Thread(new ThreadStart(ThreadProc));
+            t.SetApartmentState(ApartmentState.STA);
+            t.Start();
+        }
+
+        private void eEPROMToolsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Thread t = new Thread(new ThreadStart(ThreadProc2));
+            t.SetApartmentState(ApartmentState.STA);
+            t.Start();
         }
     }
 }
