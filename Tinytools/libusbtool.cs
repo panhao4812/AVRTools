@@ -197,9 +197,15 @@ namespace Tinytools
             {
                 FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
                 StreamReader srd = new StreamReader(fs);
-                string str = srd.ReadLine();
-                string[] chara3 = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-                if (chara3[0] == "eepromsize") eepromsize = chara3[1];
+                for (int k = 0; k < 4; k++)
+                {
+                    string str = srd.ReadLine();
+                    string[] chara3 = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                    if (chara3[0] == "eepromsize") eepromsize = chara3[1];
+                    if (chara3[0] == "address") textBox4.Text = chara3[1];
+                    if (chara3[0] == "vid") vidbox.Text = chara3[1];
+                    if (chara3[0] == "pid") pidbox.Text = chara3[1];
+                }
                 while (srd.Peek() != -1)
                 {
                     textBox1.Text += srd.ReadLine() + "\r\n";
@@ -216,6 +222,9 @@ namespace Tinytools
                 fs.SetLength(0);
                 StreamWriter stream = new StreamWriter(fs);
                 stream.WriteLine("eepromsize," + eepromsize);
+                stream.WriteLine("address," + textBox4.Text);
+                stream.WriteLine("vid," + vidbox.Text);
+                stream.WriteLine("pid," + pidbox.Text);
                 stream.Write(textBox1.Text);
                 stream.Flush();
                 stream.Close();
