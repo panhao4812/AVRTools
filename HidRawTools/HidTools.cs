@@ -15,7 +15,7 @@ namespace HidRawTools
         ushort pid = 0;
         ushort eepromsize = 511;
         string CodeTemp = "";
-        string iencode = "Default";
+        string iencode = "GBK";
         public void Clear()
         {
             textBox2.Text = "";
@@ -249,29 +249,29 @@ namespace HidRawTools
             Print("Author zian1");
             Print("step1: Click Hid-OpenDevice to Connect the device.");
             Print("step2: Copy or type something into the textbox on the left.");
-            Print("step3: Click Encode-Unicode for QQ.Click Encode-GBK for text box.");
+            Print("step3: Click Encode->Unicode for QQ.Click Encode->GBK for text box.");
             Print("step4: Click Hid-Upload to burn codes into device.");
             Print("enjoy!");
         }
         private void gBKToolStripMenuItem_Click(object sender, EventArgs e)
         {
             iencode="GBK";
-            this.encodeToolStripMenuItem.Text = "Encode(" + iencode+ ")";
+            this.encodeToolStripMenuItem.Text = iencode;
         }
         private void unicodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             iencode = "Unicode";
-            this.encodeToolStripMenuItem.Text = "Encode(" + iencode + ")";
+            this.encodeToolStripMenuItem.Text = iencode;
         }
         private void utiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             iencode = "UTF8";
-            this.encodeToolStripMenuItem.Text = "Encode(" + iencode + ")";
+            this.encodeToolStripMenuItem.Text = iencode;
         }
         private void defaultToolStripMenuItem_Click(object sender, EventArgs e)
         {
             iencode = "Default";
-            this.encodeToolStripMenuItem.Text = "Encode(" + iencode + ")";
+            this.encodeToolStripMenuItem.Text = iencode;
         }
 
         private void TinyToolsLite_Load(object sender, EventArgs e)
@@ -346,6 +346,11 @@ namespace HidRawTools
         {
             string str = Environment.CurrentDirectory + "\\XD002tools.conf";
             saveOptions(str);
+        }
+
+        private void encodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

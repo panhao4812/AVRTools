@@ -53,12 +53,12 @@
             this.textBox1.BackColor = System.Drawing.Color.White;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.textBox1.Location = new System.Drawing.Point(2, 27);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox1.Location = new System.Drawing.Point(3, 34);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(214, 318);
+            this.textBox1.Size = new System.Drawing.Size(285, 397);
             this.textBox1.TabIndex = 0;
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
@@ -68,25 +68,25 @@
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBox2.ForeColor = System.Drawing.Color.Black;
-            this.textBox2.Location = new System.Drawing.Point(220, 185);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox2.Location = new System.Drawing.Point(293, 233);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox2.Size = new System.Drawing.Size(213, 159);
+            this.textBox2.Size = new System.Drawing.Size(283, 197);
             this.textBox2.TabIndex = 2;
             // 
             // textBox3
             // 
             this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox3.Location = new System.Drawing.Point(220, 25);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox3.Location = new System.Drawing.Point(293, 34);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
             this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox3.Size = new System.Drawing.Size(213, 159);
+            this.textBox3.Size = new System.Drawing.Size(283, 197);
             this.textBox3.TabIndex = 4;
             // 
             // menuStrip1
@@ -98,8 +98,8 @@
             this.convertToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(436, 25);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(581, 28);
             this.menuStrip1.TabIndex = 5;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -109,20 +109,22 @@
             this.openToolStripMenuItem1,
             this.uploadToolStripMenuItem});
             this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
-            this.connectToolStripMenuItem.Size = new System.Drawing.Size(64, 21);
-            this.connectToolStripMenuItem.Text = "HidRaw";
+            this.connectToolStripMenuItem.Size = new System.Drawing.Size(48, 24);
+            this.connectToolStripMenuItem.Text = "HID";
             // 
             // openToolStripMenuItem1
             // 
+            this.openToolStripMenuItem1.ForeColor = System.Drawing.Color.Red;
             this.openToolStripMenuItem1.Name = "openToolStripMenuItem1";
-            this.openToolStripMenuItem1.Size = new System.Drawing.Size(119, 22);
-            this.openToolStripMenuItem1.Text = "Open";
+            this.openToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
+            this.openToolStripMenuItem1.Text = "OpenDevice";
             this.openToolStripMenuItem1.Click += new System.EventHandler(this.openToolStripMenuItem1_Click);
             // 
             // uploadToolStripMenuItem
             // 
+            this.uploadToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.uploadToolStripMenuItem.Name = "uploadToolStripMenuItem";
-            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.uploadToolStripMenuItem.Text = "Upload";
             this.uploadToolStripMenuItem.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click);
             // 
@@ -132,20 +134,20 @@
             this.unicodeToolStripMenuItem,
             this.gBKToolStripMenuItem});
             this.convertToolStripMenuItem.Name = "convertToolStripMenuItem";
-            this.convertToolStripMenuItem.Size = new System.Drawing.Size(65, 21);
+            this.convertToolStripMenuItem.Size = new System.Drawing.Size(79, 24);
             this.convertToolStripMenuItem.Text = "Convert";
             // 
             // unicodeToolStripMenuItem
             // 
             this.unicodeToolStripMenuItem.Name = "unicodeToolStripMenuItem";
-            this.unicodeToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.unicodeToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.unicodeToolStripMenuItem.Text = "Unicode";
             this.unicodeToolStripMenuItem.Click += new System.EventHandler(this.unicodeToolStripMenuItem_Click);
             // 
             // gBKToolStripMenuItem
             // 
             this.gBKToolStripMenuItem.Name = "gBKToolStripMenuItem";
-            this.gBKToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.gBKToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.gBKToolStripMenuItem.Text = "GBK";
             this.gBKToolStripMenuItem.Click += new System.EventHandler(this.gBKToolStripMenuItem_Click);
             // 
@@ -153,10 +155,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(368, 7);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(491, 8);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(23, 12);
+            this.label2.Size = new System.Drawing.Size(31, 15);
             this.label2.TabIndex = 21;
             this.label2.Text = "pid";
             // 
@@ -164,10 +165,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(299, 7);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(399, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(23, 12);
+            this.label1.Size = new System.Drawing.Size(31, 15);
             this.label1.TabIndex = 20;
             this.label1.Text = "vid";
             // 
@@ -175,11 +175,11 @@
             // 
             this.vidbox.BackColor = System.Drawing.Color.White;
             this.vidbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.vidbox.Location = new System.Drawing.Point(324, 5);
-            this.vidbox.Margin = new System.Windows.Forms.Padding(2);
+            this.vidbox.Location = new System.Drawing.Point(432, 5);
+            this.vidbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.vidbox.Multiline = true;
             this.vidbox.Name = "vidbox";
-            this.vidbox.Size = new System.Drawing.Size(40, 16);
+            this.vidbox.Size = new System.Drawing.Size(53, 20);
             this.vidbox.TabIndex = 19;
             this.vidbox.Text = "16C2";
             this.vidbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -188,11 +188,11 @@
             // 
             this.pidbox.BackColor = System.Drawing.Color.White;
             this.pidbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pidbox.Location = new System.Drawing.Point(393, 5);
-            this.pidbox.Margin = new System.Windows.Forms.Padding(2);
+            this.pidbox.Location = new System.Drawing.Point(524, 5);
+            this.pidbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pidbox.Multiline = true;
             this.pidbox.Name = "pidbox";
-            this.pidbox.Size = new System.Drawing.Size(40, 16);
+            this.pidbox.Size = new System.Drawing.Size(53, 20);
             this.pidbox.TabIndex = 18;
             this.pidbox.Text = "0105";
             this.pidbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -201,10 +201,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(224, 7);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(299, 8);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 12);
+            this.label3.Size = new System.Drawing.Size(39, 15);
             this.label3.TabIndex = 23;
             this.label3.Text = "addr";
             // 
@@ -212,20 +211,20 @@
             // 
             this.textBox4.BackColor = System.Drawing.Color.White;
             this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox4.Location = new System.Drawing.Point(255, 5);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox4.Location = new System.Drawing.Point(340, 5);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(40, 16);
+            this.textBox4.Size = new System.Drawing.Size(53, 20);
             this.textBox4.TabIndex = 22;
             this.textBox4.Text = "32";
             this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // libusbtool
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(436, 348);
+            this.ClientSize = new System.Drawing.Size(581, 435);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.label2);
@@ -237,7 +236,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.Name = "libusbtool";
             this.Text = "EEPROM tools";

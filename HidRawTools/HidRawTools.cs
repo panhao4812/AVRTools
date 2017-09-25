@@ -32,13 +32,13 @@ namespace HidRawTools
         private void Form1_Load(object sender, EventArgs e)
         {
             this.Size = new Size(1024, 800);
-            this.panel1.Location = new Point(2, 25);
-            panel1.Size = new Size(1004, 401);
+            this.panel1.Location = new Point(2, 30);
+            panel1.Size = new Size(1002, 396);
             textBox1.Size = new Size(330, 322);
             textBox1.Location = new Point(2, 428);
             this.checkedListBox1.Size = new Size(330, 322);
             checkedListBox1.Location = new Point(334, 428);
-            dataGridView1.Size = new Size(340, 322);
+            dataGridView1.Size = new Size(338, 322);
             dataGridView1.Location = new Point(666, 428);
             dataGridView1.RowCount = Program.KeyName.Length + 1;        
             for (int i = 0; i < this.dataGridView1.Columns.Count; i++)

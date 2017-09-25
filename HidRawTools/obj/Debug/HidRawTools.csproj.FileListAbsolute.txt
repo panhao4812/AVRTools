@@ -18,3 +18,4 @@ D:\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.TinyToolsLite.resources
 C:\Users\Administrator\Documents\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.TinyToolsLite.resources
 D:\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Documents\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.libusbtool.resources
+D:\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.libusbtool.resources
