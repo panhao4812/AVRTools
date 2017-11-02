@@ -15,7 +15,6 @@ $RECYCLE.BIN/
 *.msp
 *.pdb
 *.resources
-*.exe
 *.Cache
 *.cache
 *.config
