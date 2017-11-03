@@ -13,6 +13,7 @@ namespace DuplicateTools
 {   
     public partial class DuplicatTools : Form
     {
+        Random rnd = new Random();
         public class M_File
         {
             public string path_ = "";
@@ -32,7 +33,7 @@ namespace DuplicateTools
             {if (MD5 != "") return;
                 try
                 {
-                    FileStream file = new FileStream(this.path_, FileMode.Open);
+                    FileStream file = new FileStream(this.path_, FileMode.Open,FileAccess.Read);
                     System.Security.Cryptography.MD5 md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
                     byte[] retVal = md5.ComputeHash(file);
                     file.Close();
@@ -185,7 +186,19 @@ namespace DuplicateTools
             for(int i = 0; i < dumplsit.Count; i++)
             {
                 try {
-                    File.Move(files[dumplsit[i]].path_, path +"\\"+ files[dumplsit[i]].name_);
+                    string pathout = path + files[dumplsit[i]].shortpath_;
+                    string folderout=Path.GetDirectoryName(pathout);
+                    string ext = Path.GetExtension(pathout);
+                    string name = Path.GetFileNameWithoutExtension(pathout);
+                    if (!Directory.Exists(folderout)) Directory.CreateDirectory(folderout);
+                    int step = 1;
+                    while(File.Exists(pathout))
+                    {
+                        pathout = folderout + "\\" + name + "-"+ step.ToString()+ ext;
+                        step++;
+                    }
+
+                    File.Move(files[dumplsit[i]].path_, pathout);
                 }
                 catch (Exception ex) { 
                 Print("==>"+files[dumplsit[i]].path_);
