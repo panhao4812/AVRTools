@@ -311,12 +311,20 @@ namespace HidRawTools
             {
                 FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
                 StreamReader srd = new StreamReader(fs);
-                for (int k = 0; k < 2; k++)
+                for (int k = 0; k < 6; k++)
                 {
                     string str = srd.ReadLine();
                     string[] chara3 = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-                    if (chara3[0] == "vid") textBox3.Text = chara3[1];
-                    if (chara3[0] == "pid") textBox4.Text = chara3[1];
+                    if (chara3[0] == "RGB1") { rgb1.Text = chara3[1];
+                        hScrollBar1.Value = Convert.ToInt32(rgb1.Text);
+                        continue; }
+                    if (chara3[0] == "RGB2") { rgb2.Text = chara3[1];
+                        hScrollBar2.Value = Convert.ToInt32(rgb2.Text);
+                        continue; }
+                    if (chara3[0] == "RGB_Rate") { textBox7.Text = chara3[1]; continue; }
+                    if (chara3[0] == "RGB_ON") { checkBox1.Checked =Convert.ToBoolean( chara3[1]); continue; }
+                    if (chara3[0] == "vid") { textBox3.Text = chara3[1]; continue; }
+                    if (chara3[0] == "pid") { textBox4.Text = chara3[1]; continue; }
                 }
                 while (srd.Peek() != -1)
                 {
@@ -333,6 +341,10 @@ namespace HidRawTools
                 FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
                 fs.SetLength(0);
                 StreamWriter stream = new StreamWriter(fs);
+                stream.WriteLine("RGB1," + rgb1.Text);
+                stream.WriteLine("RGB2," + rgb2.Text);
+                stream.WriteLine("RGB_Rate," + textBox7.Text);
+                stream.WriteLine("RGB_ON," + checkBox1.Checked.ToString());
                 stream.WriteLine("vid," + textBox3.Text);
                 stream.WriteLine("pid," + textBox4.Text);
                 stream.Write(textBox1.Text);
