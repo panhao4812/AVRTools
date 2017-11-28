@@ -34,6 +34,78 @@ namespace HidRawTools
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new HidRawTools());
         }
+        public static string Arabit2Roman(int arabic)
+        {
+            string[] alpha = { "I", "V", "X", "L", "C", "D", "M" };
+            string roman = "";
+            int bit = 0;
+            while (arabic > 0)
+            {
+                int tempnum = arabic % 10;
+                switch (tempnum)
+                {
+                    case 3:
+                        {
+                            roman = alpha[bit] + roman;
+                            tempnum--;
+                            break;
+                        }
+                    case 2:
+                        {
+                            roman = alpha[bit] + roman;
+                            tempnum--;
+                            break;
+                        }
+                    case 1:
+                        {
+                            roman = alpha[bit] + roman;
+                            break;
+                        }
+                    case 4:
+                        {
+                            roman = alpha[bit + 1] + roman;
+                            roman = alpha[bit] + roman;
+                            break;
+                        }
+                    case 8:
+                        {
+                            roman = alpha[bit] + roman;
+                            tempnum--;
+                            break;
+                        }
+                    case 7:
+                        {
+                            roman = alpha[bit] + roman;
+                            tempnum--;
+                            break;
+                        }
+                    case 6:
+                        {
+                            roman = alpha[bit] + roman;
+                            tempnum--;
+                            break;
+                        }
+                    case 5:
+                        {
+                            roman = alpha[bit + 1] + roman;
+                            break;
+                        }
+                    case 9:
+                        {
+                            roman = alpha[bit + 2] + roman;
+                            roman = alpha[bit] + roman;
+                            break;
+                        }
+                    default:
+                        {
+                            break;
+                        }
+                }
+                bit += 2;
+                arabic = arabic / 10;
+            }
+            return roman;
+        }
         public static string shortname(string name)
         {
             if (name == "0x00") return "0x00";

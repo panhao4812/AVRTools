@@ -54,7 +54,6 @@
             this.gBKToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unicodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rGBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.oFFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rainfullToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,17 +63,17 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.index = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KeyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KeyNameShort = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KeyCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Keymask = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.PrintBox = new System.Windows.Forms.TextBox();
-            this.index = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.KeyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.KeyNameShort = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.KeyCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Keymask = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -106,7 +105,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(335, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(427, 25);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -124,7 +123,7 @@
             // 
             this.openDeviceToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.openDeviceToolStripMenuItem.Name = "openDeviceToolStripMenuItem";
-            this.openDeviceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openDeviceToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.openDeviceToolStripMenuItem.Text = "OpenDevice";
             this.openDeviceToolStripMenuItem.Click += new System.EventHandler(this.openDeviceToolStripMenuItem_Click);
             // 
@@ -132,7 +131,7 @@
             // 
             this.uploadToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.uploadToolStripMenuItem.Name = "uploadToolStripMenuItem";
-            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.uploadToolStripMenuItem.Text = "Upload";
             this.uploadToolStripMenuItem.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click);
             // 
@@ -170,7 +169,7 @@
             // 
             // clearAllToolStripMenuItem
             // 
-            this.clearAllToolStripMenuItem.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.clearAllToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.clearAllToolStripMenuItem.Name = "clearAllToolStripMenuItem";
             this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.clearAllToolStripMenuItem.Text = "ClearAll";
@@ -231,14 +230,14 @@
             // xShiftToolStripMenuItem
             // 
             this.xShiftToolStripMenuItem.Name = "xShiftToolStripMenuItem";
-            this.xShiftToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xShiftToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.xShiftToolStripMenuItem.Text = "2.15XShift";
             this.xShiftToolStripMenuItem.Click += new System.EventHandler(this.xShiftToolStripMenuItem_Click);
             // 
             // xShiftToolStripMenuItem1
             // 
             this.xShiftToolStripMenuItem1.Name = "xShiftToolStripMenuItem1";
-            this.xShiftToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.xShiftToolStripMenuItem1.Size = new System.Drawing.Size(133, 22);
             this.xShiftToolStripMenuItem1.Text = "2XShift";
             this.xShiftToolStripMenuItem1.Click += new System.EventHandler(this.xShiftToolStripMenuItem1_Click);
             // 
@@ -291,30 +290,25 @@
             // rGBToolStripMenuItem
             // 
             this.rGBToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.oFFToolStripMenuItem,
             this.editToolStripMenuItem,
             this.rainfullToolStripMenuItem});
             this.rGBToolStripMenuItem.Name = "rGBToolStripMenuItem";
             this.rGBToolStripMenuItem.Size = new System.Drawing.Size(63, 21);
             this.rGBToolStripMenuItem.Text = "ws2812";
             // 
-            // oFFToolStripMenuItem
-            // 
-            this.oFFToolStripMenuItem.Name = "oFFToolStripMenuItem";
-            this.oFFToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.oFFToolStripMenuItem.Text = "OFF";
-            // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.editToolStripMenuItem.Text = "FixedColor";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // rainfullToolStripMenuItem
             // 
             this.rainfullToolStripMenuItem.Name = "rainfullToolStripMenuItem";
             this.rainfullToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.rainfullToolStripMenuItem.Text = "Rainbow";
+            this.rainfullToolStripMenuItem.Click += new System.EventHandler(this.rainfullToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -413,6 +407,43 @@
             this.dataGridView1.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEnter);
             this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
             // 
+            // index
+            // 
+            this.index.HeaderText = "Index";
+            this.index.Name = "index";
+            this.index.ReadOnly = true;
+            this.index.Width = 30;
+            // 
+            // KeyName
+            // 
+            this.KeyName.HeaderText = "ConsumerKeys";
+            this.KeyName.Name = "KeyName";
+            this.KeyName.ReadOnly = true;
+            this.KeyName.Width = 120;
+            // 
+            // KeyNameShort
+            // 
+            this.KeyNameShort.HeaderText = "ShortName";
+            this.KeyNameShort.Name = "KeyNameShort";
+            this.KeyNameShort.ReadOnly = true;
+            this.KeyNameShort.Width = 80;
+            // 
+            // KeyCode
+            // 
+            this.KeyCode.FillWeight = 60F;
+            this.KeyCode.HeaderText = "KeyCode";
+            this.KeyCode.Name = "KeyCode";
+            this.KeyCode.ReadOnly = true;
+            this.KeyCode.Width = 50;
+            // 
+            // Keymask
+            // 
+            this.Keymask.FillWeight = 60F;
+            this.Keymask.HeaderText = "KeyMask";
+            this.Keymask.Name = "Keymask";
+            this.Keymask.ReadOnly = true;
+            this.Keymask.Width = 30;
+            // 
             // checkedListBox1
             // 
             this.checkedListBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -486,43 +517,6 @@
             this.PrintBox.Size = new System.Drawing.Size(225, 322);
             this.PrintBox.TabIndex = 33;
             this.PrintBox.Text = "PrintBox";
-            // 
-            // index
-            // 
-            this.index.HeaderText = "Index";
-            this.index.Name = "index";
-            this.index.ReadOnly = true;
-            this.index.Width = 30;
-            // 
-            // KeyName
-            // 
-            this.KeyName.HeaderText = "ConsumerKeys";
-            this.KeyName.Name = "KeyName";
-            this.KeyName.ReadOnly = true;
-            this.KeyName.Width = 120;
-            // 
-            // KeyNameShort
-            // 
-            this.KeyNameShort.HeaderText = "ShortName";
-            this.KeyNameShort.Name = "KeyNameShort";
-            this.KeyNameShort.ReadOnly = true;
-            this.KeyNameShort.Width = 80;
-            // 
-            // KeyCode
-            // 
-            this.KeyCode.FillWeight = 60F;
-            this.KeyCode.HeaderText = "KeyCode";
-            this.KeyCode.Name = "KeyCode";
-            this.KeyCode.ReadOnly = true;
-            this.KeyCode.Width = 50;
-            // 
-            // Keymask
-            // 
-            this.Keymask.FillWeight = 60F;
-            this.Keymask.HeaderText = "KeyMask";
-            this.Keymask.Name = "Keymask";
-            this.Keymask.ReadOnly = true;
-            this.Keymask.Width = 30;
             // 
             // HidRawTools
             // 
@@ -598,7 +592,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.ToolStripMenuItem rGBToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem oFFToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rainfullToolStripMenuItem;
         private System.Windows.Forms.TextBox PrintBox;

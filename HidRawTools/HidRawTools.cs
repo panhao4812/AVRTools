@@ -26,6 +26,7 @@ namespace HidRawTools
         double keycaplength = 48;
         double keycapoffset = 1;
         Button selectkey = null;
+        Button selectkey2 = null;
         public int keyCount = 0;
         int layer = 0;
         string matrixname = "";
@@ -82,7 +83,7 @@ namespace HidRawTools
         }
         void changeButton()
         {
-            Clear();
+            //Clear();
             panel1.Controls.Clear();
 
             for (int i = 0; i < checkedListBox1.CheckedIndices.Count; i++)
@@ -206,7 +207,21 @@ namespace HidRawTools
                         output.Append(mask[r, c]); output.Append(",");
                     }
                 }
-                output.Append((byte)0);
+                ushort addRGB = 0;
+                if (matrix != null)
+                {
+                    if (matrix.RGB != null && matrix.RGB.GetUpperBound(0) >= 0)
+                    {
+                        for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
+                        {
+                            output.Append(matrix.RGB[i, 3]); output.Append(",");
+                            output.Append(matrix.RGB[i, 4]); output.Append(",");
+                            output.Append(matrix.RGB[i, 5]); output.Append(",");
+                        }
+                        addRGB = (ushort)(add5 + matrix.ROWS * matrix.COLS + matrix.RGB.GetUpperBound(0) + 1);
+                    }
+                }         
+                output.Append(addRGB);
                 return output.ToString();
             }
             catch
@@ -432,6 +447,7 @@ namespace HidRawTools
         }
         public void AddRGBButton()
         {
+            if (matrix == null) return;
             if (matrix.RGB == null || matrix.RGB.GetUpperBound(0) < 0) return;
             for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
             {
@@ -443,8 +459,11 @@ namespace HidRawTools
                 button.Location = Point1;
                 button.FlatStyle = FlatStyle.Flat;
                 button.BackColor = Color.FromArgb(matrix.RGB[i, 3], matrix.RGB[i, 4], matrix.RGB[i, 5]);
-                button.Text = i.ToString();
-                button.Name = "RGB" + i.ToString();
+               if( matrix.RGB[i, 2]==0) button.Text = i.ToString();
+               else { button.Text = "R"; }
+                button.Font = new Font(button.Font.Name, 7);
+                button.Name =  i.ToString();
+                button.MouseDown += new MouseEventHandler(this.button2_MouseClick);
             }
         }
         public void AddButton(int index, string str)
@@ -556,6 +575,30 @@ namespace HidRawTools
             {
                 ((Button)sender).BackColor = Color.LightSalmon;
                 selectkey = ((Button)sender);
+            }
+        }
+        private void button2_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (selectkey != null) selectkey.BackColor = Color.White;
+            if (e.Button == MouseButtons.Right)
+            {
+                selectkey = null;
+            }
+            else
+            {
+                ColorDialog myColorDialog = new ColorDialog();
+                Color c = Color.White;
+                if (myColorDialog.ShowDialog() == DialogResult.OK)
+                {
+                     c= myColorDialog.Color;
+
+                }
+                 ((Button)sender).BackColor = c;
+                selectkey2 = ((Button)sender);
+                int index = Convert.ToInt32(selectkey2.Name);
+                matrix.RGB[index, 3] = c.R;
+                matrix.RGB[index, 4] = c.G;
+                matrix.RGB[index, 5] = c.B;
             }
         }
         private void panel1_MouseClick(object sender, MouseEventArgs e)
@@ -821,6 +864,31 @@ namespace HidRawTools
         {
             iencode = "Unicode";
             UploadPrintBox();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (matrix == null) return;
+            if (matrix.RGB == null || matrix.RGB.GetUpperBound(0) < 0) return;
+            for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
+            {
+                matrix.RGB[i, 2] = 0;
+            }
+            changeButton();
+        }
+
+        private void rainfullToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (matrix == null) return;
+            if (matrix.RGB == null || matrix.RGB.GetUpperBound(0) < 0) return;
+            for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
+            {
+                matrix.RGB[i, 2] = 1;
+                matrix.RGB[i, 3] = 255;
+                matrix.RGB[i, 4] = 255;
+                matrix.RGB[i, 5] = 255;
+            }
+            changeButton();
         }
     }
 }
