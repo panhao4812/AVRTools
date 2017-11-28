@@ -20,6 +20,7 @@ namespace HidRawTools
         public string Name = "unamed";
         public string[] keycode;
         public string[] Defaultkeycode;
+        public int[,] RGB=new int[0,6];
     }
     static class Program
     {

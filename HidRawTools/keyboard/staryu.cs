@@ -60,8 +60,12 @@ namespace HidRawTools
             };
             Defaultkeycode = new string[]{
 "0,MACRO1,MACRO1",
-"1,MACRO3,MACRO3",
-
+"1,MACRO3,MACRO3"
+            };
+            RGB = new int[2,6]{
+                //x,y,type,r,g,b
+ {832,355,0,255,255,255},
+ {878,355,0,255,255,255}
             };
         }
     }
