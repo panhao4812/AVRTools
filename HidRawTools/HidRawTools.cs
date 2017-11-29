@@ -12,7 +12,7 @@ namespace HidRawTools
     {
         public HidRawTools()
         {
-            InitializeComponent();        
+            InitializeComponent();
         }
         public void Clear()
         {
@@ -22,7 +22,7 @@ namespace HidRawTools
         {
             textBox1.Text += str.ToString() + "\r\n";
         }
-        IMatrix matrix=null;
+        IMatrix matrix = null;
         double keycaplength = 48;
         double keycapoffset = 1;
         Button selectkey = null;
@@ -33,6 +33,7 @@ namespace HidRawTools
         ushort eepromsize = 511;
         string CodeTemp = "";
         string iencode = "GBK";
+        byte RGB_Type = 0x01;
         public static HidDevice HidDevice;
         void save(string path)
         {
@@ -207,7 +208,6 @@ namespace HidRawTools
                         output.Append(mask[r, c]); output.Append(",");
                     }
                 }
-                ushort addRGB = 0;
                 if (matrix != null)
                 {
                     if (matrix.RGB != null && matrix.RGB.GetUpperBound(0) >= 0)
@@ -218,10 +218,9 @@ namespace HidRawTools
                             output.Append(matrix.RGB[i, 4]); output.Append(",");
                             output.Append(matrix.RGB[i, 5]); output.Append(",");
                         }
-                        addRGB = (ushort)(add5 + matrix.ROWS * matrix.COLS + matrix.RGB.GetUpperBound(0) + 1);
                     }
-                }         
-                output.Append(addRGB);
+                }
+                output.Append(RGB_Type);
                 return output.ToString();
             }
             catch
@@ -333,7 +332,7 @@ namespace HidRawTools
         private void Encode(string _code)
         {
             try
-            {         
+            {
                 Clear();
                 char[] ch = PrintBox.Text.ToArray();
                 if (ch == null || ch.Length == 0)
@@ -390,7 +389,7 @@ namespace HidRawTools
                 }
                 Print("Uploading address=" + addr.ToString());
                 if (CodeTemp == "")
-                {                
+                {
                     Print("Nothing to upload");
                     return;
                 }
@@ -399,7 +398,7 @@ namespace HidRawTools
                 {
                     Print("Invalid device");
                     return;
-                }               
+                }
                 byte[] outdata = new byte[9]; outdata[0] = 0;
                 byte[] a = new byte[2];
                 outdata[1] = 0xFF; outdata[2] = 0xF1;
@@ -454,15 +453,17 @@ namespace HidRawTools
                 Button button = new Button();
                 panel1.Controls.Add(button);
                 Size size1 = new Size(25, 25);
-                Point Point1 = new Point(matrix.RGB[i,0], matrix.RGB[i, 1]);
+                Point Point1 = new Point(matrix.RGB[i, 0], matrix.RGB[i, 1]);
                 button.Size = size1;
                 button.Location = Point1;
                 button.FlatStyle = FlatStyle.Flat;
                 button.BackColor = Color.FromArgb(matrix.RGB[i, 3], matrix.RGB[i, 4], matrix.RGB[i, 5]);
-               if( matrix.RGB[i, 2]==0) button.Text = i.ToString();
-               else { button.Text = "R"; }
+                if ((matrix.RGB[i, 2]& (byte)0x0F) == 0) button.Text = i.ToString();
+                else if ((matrix.RGB[i, 2] & (byte)0x0F) == 0x01) { button.Text = "R"; }
+                if ((matrix.RGB[i, 2] & (byte)0xF0) == 0x10) { button.ForeColor = Color.Gold; }
+                else if((matrix.RGB[i, 2] & (byte)0xF0) == 0x00) { button.ForeColor = Color.Black; }
                 button.Font = new Font(button.Font.Name, 7);
-                button.Name =  i.ToString();
+                button.Name = i.ToString();
                 button.MouseDown += new MouseEventHandler(this.button2_MouseClick);
             }
         }
@@ -506,7 +507,7 @@ namespace HidRawTools
             checkedListBox1.Location = new Point(444, 428);
             dataGridView1.Size = new Size(338, 322);
             dataGridView1.Location = new Point(666, 428);
-            dataGridView1.RowCount = Program.KeyName.Length + 1;        
+            dataGridView1.RowCount = Program.KeyName.Length + 1;
             for (int i = 0; i < this.dataGridView1.Columns.Count; i++)
             {
                 this.dataGridView1.Columns[i].SortMode = DataGridViewColumnSortMode.Automatic;
@@ -523,7 +524,7 @@ namespace HidRawTools
                 this.dataGridView1.Rows[i + 1].Cells[2].Value = Program.KeyName2[i];
                 this.dataGridView1.Rows[i + 1].Cells[3].Value = Program.Keycode[i];
                 this.dataGridView1.Rows[i + 1].Cells[4].Value = Program.Keymask[i];
-            }         
+            }
         }
         private void matrix2ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -536,19 +537,19 @@ namespace HidRawTools
         private void HidRawTools_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (matrixname != "") save(matrixname);
-        }     
+        }
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             changeButton();
-        }        
+        }
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = panel1.CreateGraphics();
             Pen pen = new Pen(Color.FromArgb(220, 220, 230), 3);
             g.DrawRectangle(pen, new Rectangle(35, 95, 727, 247));
-          //  pen.Color = Color.FromArgb(170, 170, 170);
+            //  pen.Color = Color.FromArgb(170, 170, 170);
             g.DrawRectangle(pen, new Rectangle(35, 40, 727, 50));
-          //  pen.Color = Color.FromArgb(170, 170, 170);
+            //  pen.Color = Color.FromArgb(170, 170, 170);
             g.DrawRectangle(pen, new Rectangle(767, 40, 199, 302));
         }
         private void clearAllToolStripMenuItem_Click(object sender, EventArgs e)
@@ -568,7 +569,7 @@ namespace HidRawTools
         {
             if (selectkey != null) selectkey.BackColor = Color.White;
             if (e.Button == MouseButtons.Right)
-            {               
+            {
                 selectkey = null;
             }
             else
@@ -590,7 +591,7 @@ namespace HidRawTools
                 Color c = Color.White;
                 if (myColorDialog.ShowDialog() == DialogResult.OK)
                 {
-                     c= myColorDialog.Color;
+                    c = myColorDialog.Color;
 
                 }
                  ((Button)sender).BackColor = c;
@@ -605,7 +606,7 @@ namespace HidRawTools
         {
             if (e.Button == MouseButtons.Right)
             {
-                if (selectkey != null) selectkey.BackColor = Color.White;          
+                if (selectkey != null) selectkey.BackColor = Color.White;
                 selectkey = null;
             }
         }
@@ -645,11 +646,11 @@ namespace HidRawTools
                 StreamReader srd = new StreamReader(fs);
                 string str = srd.ReadLine();
                 string[] chara = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-                if(!loadmatrix(chara[1]))return;
+                if (!loadmatrix(chara[1])) return;
                 while (srd.Peek() != -1)
                 {
-                     str = srd.ReadLine();
-                     chara = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                    str = srd.ReadLine();
+                    chara = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
                     if (chara.Length == 3)
                     {
                         int index = Convert.ToInt32(chara[0]);
@@ -678,7 +679,7 @@ namespace HidRawTools
             {
                 Print(ex.ToString());
             }
-        }         
+        }
         private void openDeviceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ushort vid = 0, pid = 0;
@@ -771,7 +772,7 @@ namespace HidRawTools
                 Print("Upload finished");
             }
             catch (Exception ex) { Print(ex.ToString()); }
-        }      
+        }
         private void xShiftToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (loadmatrix("XD60_A")) { Open(); }
@@ -791,21 +792,21 @@ namespace HidRawTools
             if (loadmatrix("bface60_B")) { Open(); }
             textBox3.Text = "32A0";
             textBox2.Text = "0160";
-            textBox4.Text = "";
+            textBox4.Text = "297";
         }
         private void minilaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (loadmatrix("bface60_minila")) { Open(); }
             textBox3.Text = "32A0";
             textBox2.Text = "0160";
-            textBox4.Text = "";
+            textBox4.Text = "297";
         }
         private void staryuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (loadmatrix("staryu")) { Open(); }
             textBox3.Text = "32C2";
             textBox2.Text = "0105";
-            textBox4.Text = "32";
+            textBox4.Text = "";
         }
         private void gH60revCNYToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -826,7 +827,7 @@ namespace HidRawTools
             if (loadmatrix("Tinykey")) { Open(); }
             textBox3.Text = "D850";
             textBox2.Text = "0102";
-            textBox4.Text = "24";
+            textBox4.Text = "31";
         }
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -854,7 +855,7 @@ namespace HidRawTools
                 layer = 1;
                 changeButton();
             }
-        }           
+        }
         private void gBKToolStripMenuItem_Click(object sender, EventArgs e)
         {
             iencode = "GBK";
@@ -865,7 +866,6 @@ namespace HidRawTools
             iencode = "Unicode";
             UploadPrintBox();
         }
-
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (matrix == null) return;
@@ -874,9 +874,9 @@ namespace HidRawTools
             {
                 matrix.RGB[i, 2] = 0;
             }
+            RGB_Type &= (byte)0x00;
             changeButton();
         }
-
         private void rainfullToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (matrix == null) return;
@@ -888,6 +888,19 @@ namespace HidRawTools
                 matrix.RGB[i, 4] = 255;
                 matrix.RGB[i, 5] = 255;
             }
+            RGB_Type &= (byte)0x01;
+            changeButton();
+        }
+
+        private void oNOFFToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (matrix == null) return;
+            if (matrix.RGB == null || matrix.RGB.GetUpperBound(0) < 0) return;
+            for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
+            {
+                matrix.RGB[i, 2] ^= (byte)0x10;
+            }
+            RGB_Type ^= (byte)0x10;
             changeButton();
         }
     }

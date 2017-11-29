@@ -74,6 +74,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.PrintBox = new System.Windows.Forms.TextBox();
+            this.oNOFFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -123,7 +124,7 @@
             // 
             this.openDeviceToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.openDeviceToolStripMenuItem.Name = "openDeviceToolStripMenuItem";
-            this.openDeviceToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.openDeviceToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openDeviceToolStripMenuItem.Text = "OpenDevice";
             this.openDeviceToolStripMenuItem.Click += new System.EventHandler(this.openDeviceToolStripMenuItem_Click);
             // 
@@ -131,7 +132,7 @@
             // 
             this.uploadToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.uploadToolStripMenuItem.Name = "uploadToolStripMenuItem";
-            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.uploadToolStripMenuItem.Text = "Upload";
             this.uploadToolStripMenuItem.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click);
             // 
@@ -149,21 +150,21 @@
             // matrix1ToolStripMenuItem
             // 
             this.matrix1ToolStripMenuItem.Name = "matrix1ToolStripMenuItem";
-            this.matrix1ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.matrix1ToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.matrix1ToolStripMenuItem.Text = "OpenMatrix";
             this.matrix1ToolStripMenuItem.Click += new System.EventHandler(this.matrix1ToolStripMenuItem_Click);
             // 
             // matrix2ToolStripMenuItem
             // 
             this.matrix2ToolStripMenuItem.Name = "matrix2ToolStripMenuItem";
-            this.matrix2ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.matrix2ToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.matrix2ToolStripMenuItem.Text = "SaveMatrix";
             this.matrix2ToolStripMenuItem.Click += new System.EventHandler(this.matrix2ToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.saveAsToolStripMenuItem.Text = "SaveAsFile";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
@@ -171,7 +172,7 @@
             // 
             this.clearAllToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.clearAllToolStripMenuItem.Name = "clearAllToolStripMenuItem";
-            this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.clearAllToolStripMenuItem.Text = "ClearAll";
             this.clearAllToolStripMenuItem.Click += new System.EventHandler(this.clearAllToolStripMenuItem_Click);
             // 
@@ -275,7 +276,7 @@
             // 
             this.gBKToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.gBKToolStripMenuItem.Name = "gBKToolStripMenuItem";
-            this.gBKToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.gBKToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.gBKToolStripMenuItem.Text = "GBK";
             this.gBKToolStripMenuItem.Click += new System.EventHandler(this.gBKToolStripMenuItem_Click);
             // 
@@ -283,13 +284,14 @@
             // 
             this.unicodeToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.unicodeToolStripMenuItem.Name = "unicodeToolStripMenuItem";
-            this.unicodeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.unicodeToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.unicodeToolStripMenuItem.Text = "Unicode";
             this.unicodeToolStripMenuItem.Click += new System.EventHandler(this.unicodeToolStripMenuItem_Click);
             // 
             // rGBToolStripMenuItem
             // 
             this.rGBToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.oNOFFToolStripMenuItem,
             this.editToolStripMenuItem,
             this.rainfullToolStripMenuItem});
             this.rGBToolStripMenuItem.Name = "rGBToolStripMenuItem";
@@ -319,6 +321,8 @@
             // 
             // textBox1
             // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Location = new System.Drawing.Point(229, 428);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
@@ -446,6 +450,8 @@
             // 
             // checkedListBox1
             // 
+            this.checkedListBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.checkedListBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.checkedListBox1.CheckOnClick = true;
             this.checkedListBox1.FormattingEnabled = true;
@@ -453,12 +459,13 @@
             this.checkedListBox1.Margin = new System.Windows.Forms.Padding(2);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.ScrollAlwaysVisible = true;
-            this.checkedListBox1.Size = new System.Drawing.Size(205, 322);
+            this.checkedListBox1.Size = new System.Drawing.Size(205, 290);
             this.checkedListBox1.TabIndex = 26;
             this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
             // radioButton1
             // 
+            this.radioButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
             this.radioButton1.Location = new System.Drawing.Point(649, 4);
@@ -473,6 +480,7 @@
             // 
             // radioButton2
             // 
+            this.radioButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButton2.AutoSize = true;
             this.radioButton2.Location = new System.Drawing.Point(713, 4);
             this.radioButton2.Margin = new System.Windows.Forms.Padding(2);
@@ -485,6 +493,7 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Location = new System.Drawing.Point(786, 6);
@@ -496,6 +505,7 @@
             // 
             // textBox4
             // 
+            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox4.BackColor = System.Drawing.Color.White;
             this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox4.Location = new System.Drawing.Point(819, 4);
@@ -508,6 +518,8 @@
             // 
             // PrintBox
             // 
+            this.PrintBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.PrintBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PrintBox.Location = new System.Drawing.Point(0, 428);
             this.PrintBox.Margin = new System.Windows.Forms.Padding(2);
@@ -517,6 +529,13 @@
             this.PrintBox.Size = new System.Drawing.Size(225, 322);
             this.PrintBox.TabIndex = 33;
             this.PrintBox.Text = "PrintBox";
+            // 
+            // oNOFFToolStripMenuItem
+            // 
+            this.oNOFFToolStripMenuItem.Name = "oNOFFToolStripMenuItem";
+            this.oNOFFToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.oNOFFToolStripMenuItem.Text = "ON/OFF";
+            this.oNOFFToolStripMenuItem.Click += new System.EventHandler(this.oNOFFToolStripMenuItem_Click);
             // 
             // HidRawTools
             // 
@@ -600,6 +619,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn KeyNameShort;
         private System.Windows.Forms.DataGridViewTextBoxColumn KeyCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn Keymask;
+        private System.Windows.Forms.ToolStripMenuItem oNOFFToolStripMenuItem;
     }
 }
 
