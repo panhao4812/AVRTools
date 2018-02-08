@@ -74,6 +74,11 @@ namespace HidRawTools
                     output += str + "," + Program.longname(matrix.keycode[index])
                         + "," + Program.longname(matrix.keycode[index + keyCount]) + "\r\n";
                 }
+                for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
+                {
+                    output +=i.ToString()+ "," + matrix.RGB[i, 2].ToString()+ "," + matrix.RGB[i, 3].ToString()
+                        + "," + matrix.RGB[i, 4].ToString() + "," + matrix.RGB[i, 5].ToString() + "\r\n";
+                }
                 stream.Write(output);
                 stream.Flush();
                 stream.Close();
@@ -125,8 +130,52 @@ namespace HidRawTools
                         checkedListBox1.SetItemChecked(index, true);
                         AddButton(index, "");
                     }
+                    
                 }
                 AddRGBButton();
+            }
+            catch (Exception ex)
+            {
+                Print(ex.ToString());
+            }
+        }
+        private void OpenDevice()
+        {
+            ushort vid = 0, pid = 0;
+            if (textBox3.Text != "" && textBox2.Text != "")
+            {
+                vid = (ushort)Convert.ToInt32(textBox3.Text, 16);
+                pid = (ushort)Convert.ToInt32(textBox2.Text, 16);
+            }
+            Clear();
+            Print("0x" + vid.ToString("x"));
+            Print("0x" + pid.ToString("x"));
+            try
+            {
+                HidDevice[] HidDeviceList = HidDevices.Enumerate(vid, pid, Convert.ToUInt16(0xFF31)).ToArray();
+                if (HidDeviceList == null || HidDeviceList.Length == 0)
+                {
+                    Print("Connect usb device. Try open again");
+                    return;
+                }
+                for (int i = 0; i < HidDeviceList.Length; i++)
+                {
+                    Print(HidDeviceList[i].DevicePath);
+                    HidDevice = HidDeviceList[0];
+                    break;
+                }
+                if (HidDevice == null)
+                {
+                    Print("Connect usb device. Try open again");
+                    return;
+                }
+                Print("Device OK");
+                byte[] outdata = new byte[9]; outdata[0] = 0;
+                outdata[1] = 0xFF; outdata[2] = 0xFA;
+                HidDevice.Write(outdata); Thread.Sleep(60);
+                // 0xFFFA是open的flag
+                // 0xFFF1是upload的flag
+                // 0xFFF2是end的flag
             }
             catch (Exception ex)
             {
@@ -388,6 +437,7 @@ namespace HidRawTools
         {
             OpenDevice();
             Encode(iencode);
+            Print("eepromsize="+eepromsize.ToString());
             try
             {
                 if (CodeTemp == "")
@@ -405,7 +455,7 @@ namespace HidRawTools
                 byte[] a = new byte[2];
                 outdata[1] = 0xFF; outdata[2] = 0xF1;
                 HidDevice.Write(outdata); Thread.Sleep(60);
-                for (ushort i = 0; (i * 2 + 4 + addr) < Convert.ToInt32(eepromsize); i += 3)
+                for (ushort i = 0; (i * 2 + 4 + addr) < eepromsize; i += 3)
                 {
                     a = BitConverter.GetBytes((ushort)(i * 2 + addr));
                     outdata[1] = a[0]; outdata[2] = a[1];
@@ -445,6 +495,32 @@ namespace HidRawTools
                 Print("Upload finished");
             }
             catch (Exception ex) { Print(ex.ToString()); }
+        }
+        public void AddRGBButton(int i, Color c)
+        {
+            AddRGBButton(i,0, c.R, c.G, c.B);
+        }
+        public void AddRGBButton(int i,int style,int R,int G,int B)
+        {
+            if (matrix == null) return;
+            if (matrix.RGB == null || matrix.RGB.GetUpperBound(0) < 0) return;
+            matrix.RGB[i, 2] = style;
+            matrix.RGB[i, 3] = R; matrix.RGB[i, 4] = G; matrix.RGB[i, 5] = B;
+            Button button = new Button();
+            panel1.Controls.Add(button);
+            Size size1 = new Size(25, 25);
+            Point Point1 = new Point(matrix.RGB[i, 0], matrix.RGB[i, 1]);
+            button.Size = size1;
+            button.Location = Point1;
+            button.FlatStyle = FlatStyle.Flat;
+            button.BackColor = Color.FromArgb(matrix.RGB[i, 3], matrix.RGB[i, 4], matrix.RGB[i, 5]);
+            if ((matrix.RGB[i, 2] & (byte)0x0F) == 0) button.Text = i.ToString();
+            else if ((matrix.RGB[i, 2] & (byte)0x0F) == 0x01) { button.Text = "R"; }
+            if ((matrix.RGB[i, 2] & (byte)0xF0) == 0x10) { button.ForeColor = Color.Black; }
+            else if ((matrix.RGB[i, 2] & (byte)0xF0) == 0x00) { button.ForeColor = Color.Gray; }
+            button.Font = new Font(button.Font.Name, 7);
+            button.Name = i.ToString();
+            button.MouseDown += new MouseEventHandler(this.button2_MouseClick);
         }
         public void AddRGBButton()
         {
@@ -528,11 +604,11 @@ namespace HidRawTools
                 this.dataGridView1.Rows[i + 1].Cells[4].Value = Program.Keymask[i];
             }
         }
-        private void matrix2ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SaveMatrix_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             save(matrixname);
         }
-        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SaveAsFile_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             save("");
         }
@@ -554,7 +630,7 @@ namespace HidRawTools
             //  pen.Color = Color.FromArgb(170, 170, 170);
             g.DrawRectangle(pen, new Rectangle(767, 40, 199, 302));
         }
-        private void clearAllToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ClearAll_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < checkedListBox1.Items.Count; i++)
             {
@@ -629,7 +705,7 @@ namespace HidRawTools
                 dataGridView1.ClearSelection();
             }
         }
-        private void matrix1ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenMatrix_StripMenuItem_Click(object sender, EventArgs e)
         {
             String path = "";
             OpenFileDialog ofd = new OpenFileDialog();
@@ -674,51 +750,14 @@ namespace HidRawTools
                         checkedListBox1.SetItemChecked(index, true);
                         AddButton(index, "");
                     }
+                    else if (chara.Length == 5)
+                    {
+                        int index = Convert.ToInt32(chara[0]);
+                        AddRGBButton(index, Convert.ToInt32(chara[1]),
+                            Convert.ToInt32(chara[2]), Convert.ToInt32(chara[3]), Convert.ToInt32(chara[4]));
+                    }
                 }
                 srd.Close();
-            }
-            catch (Exception ex)
-            {
-                Print(ex.ToString());
-            }
-        }
-        void OpenDevice()
-        {
-            ushort vid = 0, pid = 0;
-            if (textBox3.Text != "" && textBox2.Text != "")
-            {
-                vid = (ushort)Convert.ToInt32(textBox3.Text, 16);
-                pid = (ushort)Convert.ToInt32(textBox2.Text, 16);
-            }
-            Clear();
-            Print("0x" + vid.ToString("x"));
-            Print("0x" + pid.ToString("x"));
-            try
-            {
-                HidDevice[] HidDeviceList = HidDevices.Enumerate(vid, pid, Convert.ToUInt16(0xFF31)).ToArray();
-                if (HidDeviceList == null || HidDeviceList.Length == 0)
-                {
-                    Print("Connect usb device. Try open again");
-                    return;
-                }
-                for (int i = 0; i < HidDeviceList.Length; i++)
-                {
-                    Print(HidDeviceList[i].DevicePath);
-                    HidDevice = HidDeviceList[0];
-                    break;
-                }
-                if (HidDevice == null)
-                {
-                    Print("Connect usb device. Try open again");
-                    return;
-                }
-                Print("Device OK");
-                byte[] outdata = new byte[9]; outdata[0] = 0;
-                outdata[1] = 0xFF; outdata[2] = 0xFA;
-                HidDevice.Write(outdata); Thread.Sleep(60);
-                // 0xFFFA是open的flag
-                // 0xFFF1是upload的flag
-                // 0xFFF2是end的flag
             }
             catch (Exception ex)
             {
@@ -781,40 +820,22 @@ namespace HidRawTools
             }
             catch (Exception ex) { Print(ex.ToString()); return; }
         }
-        private void xShiftToolStripMenuItem_Click(object sender, EventArgs e)
+        /*
+        private void ps2avrUToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (loadmatrix("XD60_A")) { Open(); }
-            textBox3.Text = "32C4";
-            textBox2.Text = "0160";
-            textBox4.Text = "";
-        }
-        private void xShiftToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            if (loadmatrix("XD60_B")) { Open(); }
-            textBox3.Text = "32C4";
-            textBox2.Text = "0160";
-            textBox4.Text = "";
-        }
-        private void xshiftToolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            if (loadmatrix("bface60_B")) { Open(); }
+            if (loadmatrix("ps2avrU")) { Open(); }
             textBox3.Text = "32A0";
             textBox2.Text = "0160";
-            textBox4.Text = "297";
-        }
-        private void minilaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (loadmatrix("bface60_minila")) { Open(); }
-            textBox3.Text = "32A0";
-            textBox2.Text = "0160";
-            textBox4.Text = "297";
-        }
+            textBox4.Text = "";
+            eepromsize = 2048;
+        }      
         private void staryuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (loadmatrix("staryu")) { Open(); }
             textBox3.Text = "32C2";
             textBox2.Text = "0105";
             textBox4.Text = "";
+            eepromsize = 1024;
         }
         private void gH60revCNYToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -822,13 +843,24 @@ namespace HidRawTools
             textBox3.Text = "32C4";
             textBox2.Text = "0260";
             textBox4.Text = "";
-        }
-        private void ps2avrUToolStripMenuItem_Click(object sender, EventArgs e)
+            eepromsize = 2048;
+        }   
+        */
+        private void xShiftToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (loadmatrix("ps2avrU")) { Open(); }
-            textBox3.Text = "32A0";
+            if (loadmatrix("XD60_A")) { Open(); }
+            textBox3.Text = "32C4";
             textBox2.Text = "0160";
-            textBox4.Text = "";
+            textBox4.Text = "297";
+            eepromsize = 1024;
+        }
+        private void xShiftToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("XD60_B")) { Open(); }
+            textBox3.Text = "32C4";
+            textBox2.Text = "0160";
+            textBox4.Text = "297";
+            eepromsize = 1024;
         }
         private void tinykeyToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -836,10 +868,27 @@ namespace HidRawTools
             textBox3.Text = "D850";
             textBox2.Text = "0102";
             textBox4.Text = "31";
+            eepromsize = 512;
+        }
+        private void xshiftToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("bface60_B")) { Open(); }
+            textBox3.Text = "32A0";
+            textBox2.Text = "0160";
+            textBox4.Text = "297";
+            eepromsize = 1024;
+        }
+        private void minilaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("bface60_minila")) { Open(); }
+            textBox3.Text = "32A0";
+            textBox2.Text = "0160";
+            textBox4.Text = "297";
+            eepromsize = 1024;
         }
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Clear();          
+            Clear();
             Print("step1: Click keyboard to select your templet.");
             Print("step2: Edit keycap buttos and LED buttons.");
             Print("step3: Click layer0/layer1 to Edit page FN0/FN1.");
@@ -873,15 +922,16 @@ namespace HidRawTools
             iencode = "Unicode";
             UploadPrintBox();
         }
-        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        private void FixedRGBStripMenuItem_Click(object sender, EventArgs e)
         {
             if (matrix == null) return;
             if (matrix.RGB == null || matrix.RGB.GetUpperBound(0) < 0) return;
+            RGB_Type &= (byte)0x10;
             for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
             {
-                matrix.RGB[i, 2] = 0x10;
+                matrix.RGB[i, 2] = RGB_Type;
             }
-            RGB_Type = (byte)0x10;
+            
             Print("RGB_Type = " + RGB_Type);
             changeButton();
         }
@@ -889,14 +939,14 @@ namespace HidRawTools
         {
             if (matrix == null) return;
             if (matrix.RGB == null || matrix.RGB.GetUpperBound(0) < 0) return;
+            RGB_Type |= (byte)0x01;
             for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
             {
-                matrix.RGB[i, 2] = 0x11;
+                matrix.RGB[i, 2] = RGB_Type;
                 matrix.RGB[i, 3] = 255;
                 matrix.RGB[i, 4] = 255;
                 matrix.RGB[i, 5] = 255;
-            }
-            RGB_Type = (byte)0x11;
+            }            
             Print("RGB_Type = " + RGB_Type);
             changeButton();
         }
@@ -904,11 +954,11 @@ namespace HidRawTools
         {
             if (matrix == null) return;
             if (matrix.RGB == null || matrix.RGB.GetUpperBound(0) < 0) return;
+            RGB_Type ^= (byte)0x10;
             for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
             {
-                matrix.RGB[i, 2] ^= (byte)0x10;
-            }
-            RGB_Type ^= (byte)0x10;
+                matrix.RGB[i, 2] = RGB_Type;
+            }            
             Print("RGB_Type = " + RGB_Type);
             changeButton();
         }
