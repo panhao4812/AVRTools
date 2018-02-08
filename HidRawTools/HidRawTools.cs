@@ -30,10 +30,11 @@ namespace HidRawTools
         public int keyCount = 0;
         int layer = 0;
         string matrixname = "";
-        ushort eepromsize = 511;
+        ushort eepromsize = 512;
         string CodeTemp = "";
         string iencode = "GBK";
-        byte RGB_Type = 0x01;
+        byte RGB_Type = 0;
+        int addr = 0;
         public static HidDevice HidDevice;
         void save(string path)
         {
@@ -334,6 +335,7 @@ namespace HidRawTools
             try
             {
                 Clear();
+                CodeTemp = "";
                 char[] ch = PrintBox.Text.ToArray();
                 if (ch == null || ch.Length == 0)
                 {
@@ -342,8 +344,13 @@ namespace HidRawTools
                     return;
                 }
                 Print("English 0-127 GBK > " + 0x8080);
-                int length = Convert.ToInt32(eepromsize) / 2 - 1;
-                if (ch.Length < length) length = ch.Length;
+                addr = 0;
+                if (textBox4.Text != "" && textBox4.Text != null)
+                {
+                    addr = Convert.ToInt32(textBox4.Text);
+                }
+                Print("Uploading address=" + addr.ToString());
+                int length = ch.Length;
                 string output = "";
                 int length2 = length;
                 for (int j = 0; j < length; j++)
@@ -379,15 +386,10 @@ namespace HidRawTools
         }
         private void UploadPrintBox()
         {
+            OpenDevice();
+            Encode(iencode);
             try
             {
-                Encode(iencode);
-                int addr = 0;
-                if (textBox4.Text != "" && textBox4.Text != null)
-                {
-                    addr = Convert.ToInt32(textBox4.Text);
-                }
-                Print("Uploading address=" + addr.ToString());
                 if (CodeTemp == "")
                 {
                     Print("Nothing to upload");
@@ -403,7 +405,7 @@ namespace HidRawTools
                 byte[] a = new byte[2];
                 outdata[1] = 0xFF; outdata[2] = 0xF1;
                 HidDevice.Write(outdata); Thread.Sleep(60);
-                for (ushort i = 0; (i * 2) < Convert.ToInt32(eepromsize); i += 3)
+                for (ushort i = 0; (i * 2 + 4 + addr) < Convert.ToInt32(eepromsize); i += 3)
                 {
                     a = BitConverter.GetBytes((ushort)(i * 2 + addr));
                     outdata[1] = a[0]; outdata[2] = a[1];
@@ -458,10 +460,10 @@ namespace HidRawTools
                 button.Location = Point1;
                 button.FlatStyle = FlatStyle.Flat;
                 button.BackColor = Color.FromArgb(matrix.RGB[i, 3], matrix.RGB[i, 4], matrix.RGB[i, 5]);
-                if ((matrix.RGB[i, 2]& (byte)0x0F) == 0) button.Text = i.ToString();
+                if ((matrix.RGB[i, 2] & (byte)0x0F) == 0) button.Text = i.ToString();
                 else if ((matrix.RGB[i, 2] & (byte)0x0F) == 0x01) { button.Text = "R"; }
-                if ((matrix.RGB[i, 2] & (byte)0xF0) == 0x10) { button.ForeColor = Color.Gold; }
-                else if((matrix.RGB[i, 2] & (byte)0xF0) == 0x00) { button.ForeColor = Color.Black; }
+                if ((matrix.RGB[i, 2] & (byte)0xF0) == 0x10) { button.ForeColor = Color.Black; }
+                else if ((matrix.RGB[i, 2] & (byte)0xF0) == 0x00) { button.ForeColor = Color.Gray; }
                 button.Font = new Font(button.Font.Name, 7);
                 button.Name = i.ToString();
                 button.MouseDown += new MouseEventHandler(this.button2_MouseClick);
@@ -680,7 +682,7 @@ namespace HidRawTools
                 Print(ex.ToString());
             }
         }
-        private void openDeviceToolStripMenuItem_Click(object sender, EventArgs e)
+        void OpenDevice()
         {
             ushort vid = 0, pid = 0;
             if (textBox3.Text != "" && textBox2.Text != "")
@@ -725,8 +727,15 @@ namespace HidRawTools
         }
         private void uploadToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            OpenDevice();
             try
             {
+                if (HidDevice == null)
+                {
+                    Clear();
+                    Print("Invalid device");
+                    return;
+                }
                 string codeTemp = ToEEP();
                 if (codeTemp == "")
                 {
@@ -735,35 +744,34 @@ namespace HidRawTools
                     return;
                 }
                 string[] str = codeTemp.Split(',');
-                if (HidDevice == null)
-                {
-                    Clear();
-                    Print("Invalid device");
-                    return;
-                }
+
                 Clear();
                 Print("Uploading");
                 byte[] outdata = new byte[9]; outdata[0] = 0;
                 outdata[1] = 0xFF; outdata[2] = 0xF1;
                 HidDevice.Write(outdata); Thread.Sleep(60);
-                for (ushort i = 0; i < Convert.ToInt32(0x03FF); i += 6)
+                for (ushort i = 0; i < eepromsize; i += 6)
                 {
                     outdata[0] = 0;
                     byte[] a = BitConverter.GetBytes(i);
                     outdata[1] = a[0]; outdata[2] = a[1];
-                    if ((i + 5) < str.Length) outdata[8] = Convert.ToByte(str[i + 5]);
-                    if ((i + 4) < str.Length) outdata[7] = Convert.ToByte(str[i + 4]);
-                    if ((i + 3) < str.Length) outdata[6] = Convert.ToByte(str[i + 3]);
-                    if ((i + 2) < str.Length) outdata[5] = Convert.ToByte(str[i + 2]);
-                    if ((i + 1) < str.Length) outdata[4] = Convert.ToByte(str[i + 1]);
-                    if (i < str.Length) outdata[3] = Convert.ToByte(str[i]);
+                    if ((i + 5) < str.Length) { outdata[8] = Convert.ToByte(str[i + 5]); }
+                    if ((i + 4) < str.Length) { outdata[7] = Convert.ToByte(str[i + 4]); }
+                    if ((i + 3) < str.Length) { outdata[6] = Convert.ToByte(str[i + 3]); }
+                    if ((i + 2) < str.Length) { outdata[5] = Convert.ToByte(str[i + 2]); }
+                    if ((i + 1) < str.Length) { outdata[4] = Convert.ToByte(str[i + 1]); }
+                    if (i < str.Length) { outdata[3] = Convert.ToByte(str[i]); }
                     else { break; }
                     HidDevice.Write(outdata);
                     string outdatastr = "";
-                    for (int k = 1; k < outdata.Length; k++)
-                    {
-                        outdatastr += outdata[k].ToString() + "/";
-                    }
+                    outdatastr += outdata[1].ToString() + "/";
+                    outdatastr += outdata[2].ToString() + "--";
+                    outdatastr += outdata[3].ToString() + "/";
+                    outdatastr += outdata[4].ToString() + "/";
+                    outdatastr += outdata[5].ToString() + "/";
+                    outdatastr += outdata[6].ToString() + "/";
+                    outdatastr += outdata[7].ToString() + "/";
+                    outdatastr += outdata[8].ToString();
                     Print(outdatastr);
                     Thread.Sleep(60);
                 }
@@ -771,7 +779,7 @@ namespace HidRawTools
                 HidDevice.Write(outdata); Thread.Sleep(60);
                 Print("Upload finished");
             }
-            catch (Exception ex) { Print(ex.ToString()); }
+            catch (Exception ex) { Print(ex.ToString()); return; }
         }
         private void xShiftToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -831,14 +839,13 @@ namespace HidRawTools
         }
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Clear();
-            Print("Author zian1");
-            Print("step1: Click Hid-OpenDevice to Connect the device.");
-            Print("step2: Click keyboard to select your templet.");
-            Print("step3: Click keycap button and then click keycode list on the right-down side to edit your keymap.");
-            Print("step4: Click layer0/layer1 to Edit page FN0/FN1.");
-            Print("step5: Click Hid-Upload to burn codes into device.");
-            Print("enjoy!");
+            Clear();          
+            Print("step1: Click keyboard to select your templet.");
+            Print("step2: Edit keycap buttos and LED buttons.");
+            Print("step3: Click layer0/layer1 to Edit page FN0/FN1.");
+            Print("step4: Click Matrix-Upload to transfer data to your device.");
+            Print("Enjoy!");
+            Print("Author zian1  QQ 29347213");
         }
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
@@ -872,9 +879,10 @@ namespace HidRawTools
             if (matrix.RGB == null || matrix.RGB.GetUpperBound(0) < 0) return;
             for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
             {
-                matrix.RGB[i, 2] = 0;
+                matrix.RGB[i, 2] = 0x10;
             }
-            RGB_Type &= (byte)0x00;
+            RGB_Type = (byte)0x10;
+            Print("RGB_Type = " + RGB_Type);
             changeButton();
         }
         private void rainfullToolStripMenuItem_Click(object sender, EventArgs e)
@@ -883,15 +891,15 @@ namespace HidRawTools
             if (matrix.RGB == null || matrix.RGB.GetUpperBound(0) < 0) return;
             for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
             {
-                matrix.RGB[i, 2] = 1;
+                matrix.RGB[i, 2] = 0x11;
                 matrix.RGB[i, 3] = 255;
                 matrix.RGB[i, 4] = 255;
                 matrix.RGB[i, 5] = 255;
             }
-            RGB_Type &= (byte)0x01;
+            RGB_Type = (byte)0x11;
+            Print("RGB_Type = " + RGB_Type);
             changeButton();
         }
-
         private void oNOFFToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (matrix == null) return;
@@ -901,6 +909,7 @@ namespace HidRawTools
                 matrix.RGB[i, 2] ^= (byte)0x10;
             }
             RGB_Type ^= (byte)0x10;
+            Print("RGB_Type = " + RGB_Type);
             changeButton();
         }
     }
