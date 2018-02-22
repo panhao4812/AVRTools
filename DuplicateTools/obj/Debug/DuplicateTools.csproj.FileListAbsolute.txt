@@ -6,3 +6,9 @@ C:\Users\Administrator\Documents\GitHub\Tinytools\DuplicateTools\obj\Debug\Dupli
 C:\Users\Administrator\Documents\GitHub\Tinytools\DuplicateTools\obj\Debug\DuplicateTools.csproj.GenerateResource.Cache
 C:\Users\Administrator\Documents\GitHub\Tinytools\DuplicateTools\obj\Debug\DuplicateTools.exe
 C:\Users\Administrator\Documents\GitHub\Tinytools\DuplicateTools\obj\Debug\DuplicateTools.pdb
+C:\Users\Administrator\Documents\GitHub\Tinytools\DuplicateTools\obj\Debug\Interop.AcroPDFLib.dll
+C:\Users\Administrator\Documents\GitHub\Tinytools\DuplicateTools\obj\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\Administrator\Documents\GitHub\Tinytools\DuplicateTools\obj\Debug\DuplicateTools.csproj.ResolveComReference.cache
+C:\Users\Administrator\Documents\GitHub\Tinytools\DuplicateTools\bin\Debug\Interop.AcroPDFLib.dll
+C:\Users\Administrator\Documents\GitHub\Tinytools\DuplicateTools\bin\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\Administrator\Documents\GitHub\Tinytools\DuplicateTools\obj\Debug\DuplicateTools.PDFReader.resources

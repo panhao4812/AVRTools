@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,57 +15,8 @@ namespace DuplicateTools
     public partial class DuplicatTools : Form
     {
         Random rnd = new Random();
-        public class M_File
-        {
-            public string path_ = "";
-            public string shortpath_ = "";
-            public string name_ = "";
-            public long size_ = 0;
-            public string MD5 = "";   
-            public M_File(string path, string Folder)
-            {
-                path_ = path;
-                name_ = Path.GetFileName(path);
-                FileInfo MyFileInfo = new FileInfo(path);
-                size_ = MyFileInfo.Length;
-                shortpath_ = path.Remove(0, Folder.Length);
-            }
-            public void GetMD5HashFromFile()
-            {if (MD5 != "") return;
-                try
-                {
-                    FileStream file = new FileStream(this.path_, FileMode.Open,FileAccess.Read);
-                    System.Security.Cryptography.MD5 md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
-                    byte[] retVal = md5.ComputeHash(file);
-                    file.Close();
-                    StringBuilder sb = new StringBuilder();
-                    for (int i = 0; i < retVal.Length; i++)
-                    {
-                        sb.Append(retVal[i].ToString("x2"));
-                    }
-                    MD5= sb.ToString();
-                }
-                catch 
-                {                   
-                    MD5 = "null";
-                    return;
-                }
-            }
-            public bool equalto(M_File f1)
-            {
-                if (f1.size_ != this.size_) return false;
-                else
-                {
-                    this.GetMD5HashFromFile();
-                    f1.GetMD5HashFromFile();
-                    if (this.MD5 == "null" || f1.MD5 == "null") return false;
-                    if (this.MD5 == f1.MD5) return true;
-                     return false;
-                }
-               
-            }
-        }
-        List<M_File> files = new List<M_File>();
+  
+       public List<M_File> files = new List<M_File>();
         List<int> dumplsit = new List<int>();
         List<int> newlist = new List<int>();
         public void Clear()
@@ -283,6 +235,73 @@ namespace DuplicateTools
             {
                 dataGridView2.Rows[i].Cells[0].Value = files[dumplsit[i]].shortpath_;
             }
+        }
+        public static void ThreadProc()
+        {
+            PDFReader form = new PDFReader();//第2个窗体 
+            form.ShowDialog();
+        }
+        private void testPDFToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            /*
+            Thread t = new Thread(new ThreadStart(ThreadProc));
+            t.SetApartmentState(ApartmentState.STA);
+            t.Start();
+            */
+            PDFReader form = new PDFReader();//第2个窗体 
+            form.files = this.files;
+            form.ShowDialog();
+        }
+    }
+    public class M_File
+    {
+        public string path_ = "";
+        public string shortpath_ = "";
+        public string name_ = "";
+        public long size_ = 0;
+        public string MD5 = "";
+        public M_File(string path, string Folder)
+        {
+            path_ = path;
+            name_ = Path.GetFileName(path);
+            FileInfo MyFileInfo = new FileInfo(path);
+            size_ = MyFileInfo.Length;
+            shortpath_ = path.Remove(0, Folder.Length);
+        }
+        public void GetMD5HashFromFile()
+        {
+            if (MD5 != "") return;
+            try
+            {
+                FileStream file = new FileStream(this.path_, FileMode.Open, FileAccess.Read);
+                System.Security.Cryptography.MD5 md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
+                byte[] retVal = md5.ComputeHash(file);
+                file.Close();
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < retVal.Length; i++)
+                {
+                    sb.Append(retVal[i].ToString("x2"));
+                }
+                MD5 = sb.ToString();
+            }
+            catch
+            {
+                MD5 = "null";
+                return;
+            }
+        }
+        public bool equalto(M_File f1)
+        {
+            if (f1.size_ != this.size_) return false;
+            else
+            {
+                this.GetMD5HashFromFile();
+                f1.GetMD5HashFromFile();
+                if (this.MD5 == "null" || f1.MD5 == "null") return false;
+                if (this.MD5 == f1.MD5) return true;
+                return false;
+            }
+
         }
     }
 }
