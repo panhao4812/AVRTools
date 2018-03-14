@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HidRawTools));
-            this.panel1 = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.xD60ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.matrix1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,7 +46,6 @@
             this.rGBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.oNOFFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rainfullToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hIDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uploadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,21 +69,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.PrintBox = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Location = new System.Drawing.Point(3, 34);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1338, 498);
-            this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-            this.panel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseClick);
             // 
             // menuStrip1
             // 
@@ -102,7 +89,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(422, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(397, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -120,21 +107,21 @@
             // matrix1ToolStripMenuItem
             // 
             this.matrix1ToolStripMenuItem.Name = "matrix1ToolStripMenuItem";
-            this.matrix1ToolStripMenuItem.Size = new System.Drawing.Size(171, 26);
+            this.matrix1ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.matrix1ToolStripMenuItem.Text = "OpenMatrix";
             this.matrix1ToolStripMenuItem.Click += new System.EventHandler(this.OpenMatrix_StripMenuItem_Click);
             // 
             // matrix2ToolStripMenuItem
             // 
             this.matrix2ToolStripMenuItem.Name = "matrix2ToolStripMenuItem";
-            this.matrix2ToolStripMenuItem.Size = new System.Drawing.Size(171, 26);
+            this.matrix2ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.matrix2ToolStripMenuItem.Text = "SaveMatrix";
             this.matrix2ToolStripMenuItem.Click += new System.EventHandler(this.SaveMatrix_ToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(171, 26);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.saveAsToolStripMenuItem.Text = "SaveAsFile";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.SaveAsFile_ToolStripMenuItem_Click);
             // 
@@ -142,7 +129,7 @@
             // 
             this.clearAllToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.clearAllToolStripMenuItem.Name = "clearAllToolStripMenuItem";
-            this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(171, 26);
+            this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.clearAllToolStripMenuItem.Text = "ClearAll";
             this.clearAllToolStripMenuItem.Click += new System.EventHandler(this.ClearAll_ToolStripMenuItem_Click);
             // 
@@ -213,32 +200,24 @@
             // 
             this.rGBToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.oNOFFToolStripMenuItem,
-            this.editToolStripMenuItem,
-            this.rainfullToolStripMenuItem});
+            this.editToolStripMenuItem});
             this.rGBToolStripMenuItem.Name = "rGBToolStripMenuItem";
-            this.rGBToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
-            this.rGBToolStripMenuItem.Text = "ws2812";
+            this.rGBToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
+            this.rGBToolStripMenuItem.Text = "RGB";
             // 
             // oNOFFToolStripMenuItem
             // 
             this.oNOFFToolStripMenuItem.Name = "oNOFFToolStripMenuItem";
-            this.oNOFFToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
-            this.oNOFFToolStripMenuItem.Text = "ON/OFF";
+            this.oNOFFToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.oNOFFToolStripMenuItem.Text = "Default ON";
             this.oNOFFToolStripMenuItem.Click += new System.EventHandler(this.oNOFFToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
-            this.editToolStripMenuItem.Text = "FixedColor";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.editToolStripMenuItem.Text = "Rainbow";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.FixedRGBStripMenuItem_Click);
-            // 
-            // rainfullToolStripMenuItem
-            // 
-            this.rainfullToolStripMenuItem.Name = "rainfullToolStripMenuItem";
-            this.rainfullToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
-            this.rainfullToolStripMenuItem.Text = "Rainbow";
-            this.rainfullToolStripMenuItem.Click += new System.EventHandler(this.rainfullToolStripMenuItem_Click);
             // 
             // hIDToolStripMenuItem
             // 
@@ -253,8 +232,8 @@
             // 
             this.uploadToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.uploadToolStripMenuItem.Name = "uploadToolStripMenuItem";
-            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(137, 26);
-            this.uploadToolStripMenuItem.Text = "Upload";
+            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(188, 26);
+            this.uploadToolStripMenuItem.Text = "Upload Matrix";
             this.uploadToolStripMenuItem.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
@@ -271,16 +250,16 @@
             // 
             this.gBKToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.gBKToolStripMenuItem.Name = "gBKToolStripMenuItem";
-            this.gBKToolStripMenuItem.Size = new System.Drawing.Size(145, 26);
-            this.gBKToolStripMenuItem.Text = "GBK";
+            this.gBKToolStripMenuItem.Size = new System.Drawing.Size(237, 26);
+            this.gBKToolStripMenuItem.Text = "Upload with GBK";
             this.gBKToolStripMenuItem.Click += new System.EventHandler(this.gBKToolStripMenuItem_Click);
             // 
             // unicodeToolStripMenuItem
             // 
             this.unicodeToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.unicodeToolStripMenuItem.Name = "unicodeToolStripMenuItem";
-            this.unicodeToolStripMenuItem.Size = new System.Drawing.Size(145, 26);
-            this.unicodeToolStripMenuItem.Text = "Unicode";
+            this.unicodeToolStripMenuItem.Size = new System.Drawing.Size(237, 26);
+            this.unicodeToolStripMenuItem.Text = "Upload with Unicode";
             this.unicodeToolStripMenuItem.Click += new System.EventHandler(this.unicodeToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
@@ -294,6 +273,7 @@
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBox1.BackColor = System.Drawing.Color.White;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Location = new System.Drawing.Point(305, 535);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -367,7 +347,7 @@
             this.KeyNameShort,
             this.KeyCode,
             this.Keymask});
-            this.dataGridView1.Location = new System.Drawing.Point(888, 535);
+            this.dataGridView1.Location = new System.Drawing.Point(907, 535);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
@@ -377,7 +357,7 @@
             this.dataGridView1.RowTemplate.Height = 25;
             this.dataGridView1.RowTemplate.ReadOnly = true;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView1.Size = new System.Drawing.Size(453, 402);
+            this.dataGridView1.Size = new System.Drawing.Size(434, 402);
             this.dataGridView1.TabIndex = 24;
             this.dataGridView1.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEnter);
             this.dataGridView1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseClick);
@@ -423,14 +403,15 @@
             // 
             this.checkedListBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.checkedListBox1.BackColor = System.Drawing.Color.White;
             this.checkedListBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.checkedListBox1.CheckOnClick = true;
             this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(612, 535);
+            this.checkedListBox1.Location = new System.Drawing.Point(610, 535);
             this.checkedListBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.ScrollAlwaysVisible = true;
-            this.checkedListBox1.Size = new System.Drawing.Size(273, 362);
+            this.checkedListBox1.Size = new System.Drawing.Size(290, 402);
             this.checkedListBox1.TabIndex = 26;
             this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
@@ -490,6 +471,7 @@
             // 
             this.PrintBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.PrintBox.BackColor = System.Drawing.Color.White;
             this.PrintBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PrintBox.Location = new System.Drawing.Point(0, 535);
             this.PrintBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -500,11 +482,23 @@
             this.PrintBox.TabIndex = 33;
             this.PrintBox.Text = "PrintBox";
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Location = new System.Drawing.Point(3, 34);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1338, 498);
+            this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            this.panel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseClick);
+            // 
             // HidRawTools
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1344, 951);
             this.Controls.Add(this.PrintBox);
             this.Controls.Add(this.label3);
@@ -571,7 +565,6 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.ToolStripMenuItem rGBToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem rainfullToolStripMenuItem;
         private System.Windows.Forms.TextBox PrintBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn index;
         private System.Windows.Forms.DataGridViewTextBoxColumn KeyName;

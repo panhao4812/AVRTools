@@ -76,7 +76,7 @@ namespace HidRawTools
                 }
                 for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
                 {
-                    output +=i.ToString()+ "," + matrix.RGB[i, 2].ToString()+ "," + matrix.RGB[i, 3].ToString()
+                    output += i.ToString() + "," + matrix.RGB[i, 2].ToString() + "," + matrix.RGB[i, 3].ToString()
                         + "," + matrix.RGB[i, 4].ToString() + "," + matrix.RGB[i, 5].ToString() + "\r\n";
                 }
                 stream.Write(output);
@@ -130,9 +130,26 @@ namespace HidRawTools
                         checkedListBox1.SetItemChecked(index, true);
                         AddButton(index, "");
                     }
-                    
+
                 }
                 AddRGBButton();
+                RGB_Type = (Byte)matrix.RGB[0, 2];
+                if ((RGB_Type & 0x0F) == 0x01)
+                {
+                    this.editToolStripMenuItem.Text = "FixedColor";
+                }
+                else
+                {
+                    this.editToolStripMenuItem.Text = "Rainbow";
+                }
+                if ((RGB_Type & 0xF0) == 0x10)
+                {
+                    this.oNOFFToolStripMenuItem.Text = "Default OFF";
+                }
+                else
+                {
+                    this.oNOFFToolStripMenuItem.Text = "Default ON";
+                }
             }
             catch (Exception ex)
             {
@@ -437,7 +454,7 @@ namespace HidRawTools
         {
             OpenDevice();
             Encode(iencode);
-            Print("eepromsize="+eepromsize.ToString());
+            Print("eepromsize=" + eepromsize.ToString());
             try
             {
                 if (CodeTemp == "")
@@ -498,9 +515,9 @@ namespace HidRawTools
         }
         public void AddRGBButton(int i, Color c)
         {
-            AddRGBButton(i,0, c.R, c.G, c.B);
+            AddRGBButton(i, 0, c.R, c.G, c.B);
         }
-        public void AddRGBButton(int i,int style,int R,int G,int B)
+        public void AddRGBButton(int i, int style, int R, int G, int B)
         {
             if (matrix == null) return;
             if (matrix.RGB == null || matrix.RGB.GetUpperBound(0) < 0) return;
@@ -581,7 +598,7 @@ namespace HidRawTools
             PrintBox.Location = new Point(2, 428);
             textBox1.Size = new Size(220, 322);
             textBox1.Location = new Point(222, 428);
-            this.checkedListBox1.Size = new Size(220, 322);
+            this.checkedListBox1.Size = new Size(220, 323);
             checkedListBox1.Location = new Point(444, 428);
             dataGridView1.Size = new Size(338, 322);
             dataGridView1.Location = new Point(666, 428);
@@ -889,11 +906,22 @@ namespace HidRawTools
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Clear();
-            Print("step1: Click keyboard to select your templet.");
-            Print("step2: Edit keycap buttos and LED buttons.");
-            Print("step3: Click layer0/layer1 to Edit page FN0/FN1.");
-            Print("step4: Click Matrix-Upload to transfer data to your device.");
-            Print("Enjoy!");
+            Print("修改按键和灯");
+            Print("");
+            Print("步骤1: 点击标题栏keyboard，选择对应的键盘型号。"); Print("");
+            Print("步骤2: 点击按键图标再点击右下角键值表编辑键值。");
+            Print("点击RGB灯图标编辑灯的颜色。"); Print("");
+            Print("步骤3: 点击Layer0/Layer1切换编辑第二层矩阵的键值。");
+            Print("点击RGB编辑灯的模式。Rainbow表示彩虹渐变。FixColor表示单色。"); Print("");
+            Print("步骤4: 点击标题栏Matrix上传修改内容。");
+            Print("");
+            Print("修改[打字机]内容");
+            Print("");
+            Print("步骤1: PrintBox输入中英文文本。"); Print("");
+            Print("步骤2: 点击标题栏Printer - Upload with GBK上传修改内容。");
+            Print("要切换中文编码则换成Printer - Upload with Unicode。");
+            Print("");
+            Print("enjoy!");
             Print("Author zian1  QQ 29347213");
         }
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -926,12 +954,27 @@ namespace HidRawTools
         {
             if (matrix == null) return;
             if (matrix.RGB == null || matrix.RGB.GetUpperBound(0) < 0) return;
-            RGB_Type &= (byte)0x10;
-            for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
+            if ((RGB_Type & 0x0F) == 0x01)
             {
-                matrix.RGB[i, 2] = RGB_Type;
+                this.editToolStripMenuItem.Text = "Rainbow";
+                RGB_Type &= (byte)0xF0;
+                for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
+                {
+                    matrix.RGB[i, 2] = RGB_Type;
+                }
             }
-            
+            else
+            {
+                this.editToolStripMenuItem.Text = "FixedColor";
+                RGB_Type |= (byte)0x01;
+                for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
+                {
+                    matrix.RGB[i, 2] = RGB_Type;
+                    matrix.RGB[i, 3] = 255;
+                    matrix.RGB[i, 4] = 255;
+                    matrix.RGB[i, 5] = 255;
+                }
+            }
             Print("RGB_Type = " + RGB_Type);
             changeButton();
         }
@@ -946,19 +989,22 @@ namespace HidRawTools
                 matrix.RGB[i, 3] = 255;
                 matrix.RGB[i, 4] = 255;
                 matrix.RGB[i, 5] = 255;
-            }            
+            }
             Print("RGB_Type = " + RGB_Type);
             changeButton();
         }
         private void oNOFFToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (matrix == null) return;
-            if (matrix.RGB == null || matrix.RGB.GetUpperBound(0) < 0) return;
-            RGB_Type ^= (byte)0x10;
+          
+           if (matrix == null) return;
+           if (matrix.RGB == null || matrix.RGB.GetUpperBound(0) < 0) return;
+
+            if ((RGB_Type & 0xF0) == 0) { this.oNOFFToolStripMenuItem.Text = "Default OFF"; RGB_Type ^= (byte)0x10; }
+            else { this.oNOFFToolStripMenuItem.Text = "Default ON"; RGB_Type ^= (byte)0x10; }
             for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
             {
                 matrix.RGB[i, 2] = RGB_Type;
-            }            
+            }
             Print("RGB_Type = " + RGB_Type);
             changeButton();
         }
