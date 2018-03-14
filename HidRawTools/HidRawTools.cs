@@ -172,18 +172,19 @@ namespace HidRawTools
                 HidDevice[] HidDeviceList = HidDevices.Enumerate(vid, pid, Convert.ToUInt16(0xFF31)).ToArray();
                 if (HidDeviceList == null || HidDeviceList.Length == 0)
                 {
-                    Print("Connect usb device. Try open again");
+                    Print("Connect usb device. Try open again or select a keyboard templet!");
+                    HidDevice = null;
                     return;
                 }
                 for (int i = 0; i < HidDeviceList.Length; i++)
                 {
-                    Print(HidDeviceList[i].DevicePath);
+                    //Print(HidDeviceList[i].DevicePath);
                     HidDevice = HidDeviceList[0];
                     break;
                 }
                 if (HidDevice == null)
                 {
-                    Print("Connect usb device. Try open again");
+                    Print("Connect usb device. Try open again.");
                     return;
                 }
                 Print("Device OK");
@@ -400,7 +401,7 @@ namespace HidRawTools
         {
             try
             {
-                Clear();
+                //Clear();
                 CodeTemp = "";
                 char[] ch = PrintBox.Text.ToArray();
                 if (ch == null || ch.Length == 0)
@@ -409,7 +410,7 @@ namespace HidRawTools
                     Print("Uploading RGB parameter!Nothing for printing!");
                     return;
                 }
-                Print("English 0-127 GBK > " + 0x8080);
+               // Print("English 0-127 GBK > " + 0x8080);
                 addr = 0;
                 if (textBox4.Text != "" && textBox4.Text != null)
                 {
@@ -788,20 +789,20 @@ namespace HidRawTools
             {
                 if (HidDevice == null)
                 {
-                    Clear();
+                    //Clear();
                     Print("Invalid device");
                     return;
                 }
                 string codeTemp = ToEEP();
                 if (codeTemp == "")
                 {
-                    Clear();
+                    //Clear();
                     Print("Nothing to upload");
                     return;
                 }
                 string[] str = codeTemp.Split(',');
 
-                Clear();
+                //Clear();
                 Print("Uploading");
                 byte[] outdata = new byte[9]; outdata[0] = 0;
                 outdata[1] = 0xFF; outdata[2] = 0xF1;
