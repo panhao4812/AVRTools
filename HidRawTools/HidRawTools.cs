@@ -591,7 +591,7 @@ namespace HidRawTools
             button.Name = index.ToString();
         }
         private void Form1_Load(object sender, EventArgs e)
-        {
+        {       
             this.Size = new Size(1024, 800);
             this.panel1.Location = new Point(2, 30);
             panel1.Size = new Size(1002, 396);
@@ -640,13 +640,15 @@ namespace HidRawTools
         }
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
+            
             Graphics g = panel1.CreateGraphics();
-            Pen pen = new Pen(Color.FromArgb(220, 220, 230), 3);
+            Pen pen = new Pen(Color.FromArgb(220, 220, 230), 1);
             g.DrawRectangle(pen, new Rectangle(35, 95, 727, 247));
             //  pen.Color = Color.FromArgb(170, 170, 170);
             g.DrawRectangle(pen, new Rectangle(35, 40, 727, 50));
             //  pen.Color = Color.FromArgb(170, 170, 170);
             g.DrawRectangle(pen, new Rectangle(767, 40, 199, 302));
+            
         }
         private void ClearAll_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -866,6 +868,7 @@ namespace HidRawTools
         */
         private void xShiftToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            panel1.BackgroundImage = null;
             if (loadmatrix("XD60_A")) { Open(); }
             textBox3.Text = "32C4";
             textBox2.Text = "0160";
@@ -874,6 +877,7 @@ namespace HidRawTools
         }
         private void xShiftToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            panel1.BackgroundImage = null;
             if (loadmatrix("XD60_B")) { Open(); }
             textBox3.Text = "32C4";
             textBox2.Text = "0160";
@@ -882,14 +886,17 @@ namespace HidRawTools
         }
         private void tinykeyToolStripMenuItem_Click(object sender, EventArgs e)
         {
+           
             if (loadmatrix("Tinykey")) { Open(); }
             textBox3.Text = "D850";
             textBox2.Text = "0102";
             textBox4.Text = "31";
             eepromsize = 512;
+            panel1.BackgroundImage = Properties.Resources.tinykey;
         }
         private void xshiftToolStripMenuItem2_Click(object sender, EventArgs e)
         {
+            panel1.BackgroundImage = null;
             if (loadmatrix("bface60_B")) { Open(); }
             textBox3.Text = "32A0";
             textBox2.Text = "0160";
@@ -898,6 +905,7 @@ namespace HidRawTools
         }
         private void minilaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            panel1.BackgroundImage = null;
             if (loadmatrix("bface60_minila")) { Open(); }
             textBox3.Text = "32A0";
             textBox2.Text = "0160";
@@ -907,21 +915,34 @@ namespace HidRawTools
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Clear();
-            Print("修改按键和灯");
-            Print("");
-            Print("步骤1: 点击标题栏keyboard，选择对应的键盘型号。"); Print("");
-            Print("步骤2: 点击按键图标再点击右下角键值表编辑键值。");
-            Print("点击RGB灯图标编辑灯的颜色。"); Print("");
-            Print("步骤3: 点击Layer0/Layer1切换编辑第二层矩阵的键值。");
-            Print("点击RGB编辑灯的模式。Rainbow表示彩虹渐变。FixColor表示单色。"); Print("");
-            Print("步骤4: 点击标题栏Matrix上传修改内容。");
-            Print("");
-            Print("修改[打字机]内容");
-            Print("");
-            Print("步骤1: PrintBox输入中英文文本。"); Print("");
-            Print("步骤2: 点击标题栏Printer - Upload with GBK上传修改内容。");
-            Print("要切换中文编码则换成Printer - Upload with Unicode。");
-            Print("");
+            /*
+          Print("How to change key values and LED color:");
+Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (Keyboard->XD002)");
+          Print("2.Click on the button icon that you want to change, and then select the desire key value from the chart at lower right corner.Click RGB on the title to change color config.If you want to use Rainbow LED, select RGB->Rainbow on the title bar.Otherwise, choose RGB->Fixed color.");
+          Print("3.XD002 provide two layers(layer 0 and layer 1), you can click radio button on the title bar to alter the key values of another layer.");
+          Print("4.Click on “Matrix” and select “Upload Matrix” to save changes.");
+          Print("");
+          Print("How to alter the printer content:");
+          Print("1.Input the text content in Print Box.  The print box is at the lower left corner.");
+          Print("2.Click on “Printer” on the title bar, select “Upload with GBK” to save the changes. Try to select “Upload with Unicode” If print garbled Korea.");
+          Print("");
+
+          Print("修改按键和灯");
+          Print("");
+          Print("步骤1: 点击标题栏keyboard，选择对应的键盘型号。"); Print("");
+          Print("步骤2: 点击按键图标再点击右下角键值表编辑键值。");
+          Print("点击RGB灯图标编辑灯的颜色。"); Print("");
+          Print("步骤3: 点击Layer0/Layer1切换编辑第二层矩阵的键值。");
+          Print("点击RGB编辑灯的模式。Rainbow表示彩虹渐变。FixColor表示单色。"); Print("");
+          Print("步骤4: 点击标题栏Matrix上传修改内容。");
+          Print("");
+          Print("修改[打字机]内容");
+          Print("");
+          Print("步骤1: PrintBox输入中英文文本。"); Print("");
+          Print("步骤2: 点击标题栏Printer - Upload with GBK上传修改内容。");
+          Print("要切换中文编码则换成Printer - Upload with Unicode。");
+          Print("");
+          */
             Print("enjoy!");
             Print("Author zian1  QQ 29347213");
         }
@@ -1009,5 +1030,7 @@ namespace HidRawTools
             Print("RGB_Type = " + RGB_Type);
             changeButton();
         }
+
+      
     }
 }
