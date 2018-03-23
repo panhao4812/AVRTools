@@ -140,6 +140,7 @@
   <ItemGroup>
     <Content Include="2.ico" />
     <Content Include="favicon.ico" />
+    <None Include="Resources\tinykey2.jpg" />
     <None Include="Resources\tinykey.jpg" />
     <None Include="Resources\ico1.ico" />
   </ItemGroup>

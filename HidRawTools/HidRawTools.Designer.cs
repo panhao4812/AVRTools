@@ -282,7 +282,7 @@
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(225, 322);
             this.textBox1.TabIndex = 2;
-            this.textBox1.Text = "Console\r\n\r\nDownload manual http://xiudi.fun/xd002/Manual.html";
+            this.textBox1.Text = "Console\r\n\r\nClick on “Keyboard” button on the title bar to select your templet.";
             // 
             // textBox2
             // 

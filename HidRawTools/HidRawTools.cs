@@ -35,6 +35,7 @@ namespace HidRawTools
         string iencode = "GBK";
         byte RGB_Type = 0;
         int addr = 0;
+        Image img = null;
         public static HidDevice HidDevice;
         void save(string path)
         {
@@ -91,8 +92,10 @@ namespace HidRawTools
         void changeButton()
         {
             //Clear();
+            img = panel1.BackgroundImage;
+            panel1.BackgroundImage = null;
             panel1.Controls.Clear();
-
+            panel1.BackgroundImage = img; 
             for (int i = 0; i < checkedListBox1.CheckedIndices.Count; i++)
             {
                 string str = checkedListBox1.CheckedIndices[i].ToString();
@@ -331,8 +334,7 @@ namespace HidRawTools
                 matrix = new Tinykey();
             }
             else return false;
-            layer = 0;
-            radioButton1.Checked = true;
+            layer = 0;         
             keyCount = matrix.keycap.GetUpperBound(0) + 1;
             ////////////////////////////////////////
             checkedListBox1.Items.Clear();
@@ -353,6 +355,8 @@ namespace HidRawTools
                 name += "M:" + matrix.keycap[i, 3].ToString() + "/" + matrix.keycap[i, 4].ToString();
                 checkedListBox1.Items.Add(name);
             }
+             radioButton2.Checked = false;
+             radioButton1.Checked = true;
             return true;
         }
         public ushort ConvertChinese1(char str, string code)
@@ -520,6 +524,8 @@ namespace HidRawTools
         }
         public void AddRGBButton(int i, int style, int R, int G, int B)
         {
+             img = panel1.BackgroundImage;
+            panel1.BackgroundImage = null;
             if (matrix == null) return;
             if (matrix.RGB == null || matrix.RGB.GetUpperBound(0) < 0) return;
             matrix.RGB[i, 2] = style;
@@ -539,9 +545,12 @@ namespace HidRawTools
             button.Font = new Font(button.Font.Name, 7);
             button.Name = i.ToString();
             button.MouseDown += new MouseEventHandler(this.button2_MouseClick);
+            panel1.BackgroundImage = img;
         }
         public void AddRGBButton()
         {
+             img = panel1.BackgroundImage;
+            panel1.BackgroundImage = null;
             if (matrix == null) return;
             if (matrix.RGB == null || matrix.RGB.GetUpperBound(0) < 0) return;
             for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
@@ -562,9 +571,12 @@ namespace HidRawTools
                 button.Name = i.ToString();
                 button.MouseDown += new MouseEventHandler(this.button2_MouseClick);
             }
+            panel1.BackgroundImage = img;
         }
         public void AddButton(int index, string str)
         {
+            img = panel1.BackgroundImage;
+            panel1.BackgroundImage = null;
             double x = matrix.keycap[index, 0];
             double y = matrix.keycap[index, 1];
             double length = matrix.keycap[index, 2];
@@ -589,6 +601,7 @@ namespace HidRawTools
             button.MouseDown += new MouseEventHandler(this.button1_MouseClick);
             button.Text = str;
             button.Name = index.ToString();
+            panel1.BackgroundImage = img;
         }
         private void Form1_Load(object sender, EventArgs e)
         {       
@@ -886,7 +899,7 @@ namespace HidRawTools
         }
         private void tinykeyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+            panel1.BackgroundImage = null;
             if (loadmatrix("Tinykey")) { Open(); }
             textBox3.Text = "D850";
             textBox2.Text = "0102";
@@ -902,6 +915,7 @@ namespace HidRawTools
             textBox2.Text = "0160";
             textBox4.Text = "297";
             eepromsize = 1024;
+            panel1.BackgroundImage = Properties.Resources.tinykey2;
         }
         private void minilaToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -911,6 +925,7 @@ namespace HidRawTools
             textBox2.Text = "0160";
             textBox4.Text = "297";
             eepromsize = 1024;
+            panel1.BackgroundImage = Properties.Resources.tinykey2;
         }
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -943,7 +958,10 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
           Print("要切换中文编码则换成Printer - Upload with Unicode。");
           Print("");
           */
-            Print("enjoy!");
+            Print("Click on “Keyboard” button on the title bar to select your templet."); Print("");
+            Print("Detailed tutorial http://xiudi.fun/xd002/Manual.html "); Print("");
+
+            Print("Enjoy!");
             Print("Author zian1  QQ 29347213");
         }
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
