@@ -5,14 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-
-
 namespace HidRawTools
 {
     public partial class libusbtool : Form
     {
-        string vid, pid;
-        string eepromsize = "511";
+        string vid, pid, eepromsize;
         public static HidDevice HidDevice;
         public libusbtool()
         {
@@ -31,14 +28,36 @@ namespace HidRawTools
             string str = Environment.CurrentDirectory + "\\EEPROMtools.conf";
             saveOptions(str);
         }
-        public ushort ConvertChinese1(char str)
+        public ushort ConvertChinese1(char str, string code)
         {
             string str2 = Convert.ToString(str);
-            byte[] data = Encoding.Unicode.GetBytes(str2);
-            string Data1 = data[0].ToString("x"); if (Data1.Length == 1) Data1 = "0" + Data1;
-            string Data2 = data[1].ToString("x"); if (Data2.Length == 1) Data2 = "0" + Data2;
-            str2 = Data2 + Data1;
-            ushort a3 = Convert.ToUInt16(str2, 16);
+            byte[] data; ushort a3;
+            if (code == "GBK")
+            {
+                return ConvertChinese2(str, code);
+            }
+            else if (code == "Default")
+            {
+                data = Encoding.Default.GetBytes(str2);
+                string Data1 = data[0].ToString("x"); if (Data1.Length == 1) Data1 = "0" + Data1;
+                string Data2 = data[1].ToString("x"); if (Data2.Length == 1) Data2 = "0" + Data2;
+                str2 = Data1 + Data2;
+                a3 = Convert.ToUInt16(str2, 16);
+                return a3;
+            }
+            else if (code == "Unicode")
+            {
+                data = Encoding.Unicode.GetBytes(str2);
+            }
+            else if (code == "UTF8")
+            {
+                data = Encoding.UTF8.GetBytes(str2);
+            }
+            else { Print("encoding error"); return 0; }
+            string data1 = data[1].ToString("x"); if (data1.Length == 1) data1 = "0" + data1;
+            string data2 = data[0].ToString("x"); if (data2.Length == 1) data2 = "0" + data2;
+            str2 = data1 + data2;
+            a3 = Convert.ToUInt16(str2, 16);
             return a3;
         }
         public ushort ConvertChinese2(char str, string code)
@@ -61,8 +80,8 @@ namespace HidRawTools
                 {
                     string str = srd.ReadLine();
                     string[] chara3 = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-                    if (chara3[0] == "eepromsize") eepromsize = chara3[1];
-                    if (chara3[0] == "address") textBox4.Text = chara3[1];
+                    if (chara3[0] == "eepromsize") eepbox.Text = chara3[1];
+                    if (chara3[0] == "address") addbox.Text = chara3[1];
                     if (chara3[0] == "vid") vidbox.Text = chara3[1];
                     if (chara3[0] == "pid") pidbox.Text = chara3[1];
                 }
@@ -81,8 +100,8 @@ namespace HidRawTools
                 FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
                 fs.SetLength(0);
                 StreamWriter stream = new StreamWriter(fs);
-                stream.WriteLine("eepromsize," + eepromsize);
-                stream.WriteLine("address," + textBox4.Text);
+                stream.WriteLine("eepromsize," + eepbox.Text);
+                stream.WriteLine("address," + addbox.Text);
                 stream.WriteLine("vid," + vidbox.Text);
                 stream.WriteLine("pid," + pidbox.Text);
                 stream.Write(textBox1.Text);
@@ -91,9 +110,10 @@ namespace HidRawTools
             }
             catch { }
         }
-        private void openToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void OpenDevice()
         {
-            if (vidbox.Text.Length == 0 || pidbox.Text.Length == 0)
+            if (vidbox.Text.Length == 0 || pidbox.Text.Length == 0||
+                eepbox.Text.Length==0||addbox.Text.Length==0)
             {
                 Clear();
                 Print("vid or pid error. Try open again");
@@ -101,13 +121,17 @@ namespace HidRawTools
             }
             vid = vidbox.Text;
             pid = pidbox.Text;
+            eepromsize = eepbox.Text;
+            Print("vid:" + vidbox.Text.ToString());
+            Print("pid:" + pidbox.Text.ToString());
+            Print("eepromsize=" + eepromsize.ToString());
             try
             {
                 HidDevice[] HidDeviceList = HidDevices.Enumerate(Convert.ToInt32(vid, 16), Convert.ToInt32(pid, 16), (ushort)0xFF31).ToArray();
                 if (HidDeviceList == null || HidDeviceList.Length == 0)
                 {
                     Clear();
-                    Print("Connect usb device and install driver. Try open again");
+                    Print("Device not found.Try open again!");
                     return;
                 }
                 for (int i = 0; i < HidDeviceList.Length; i++)
@@ -117,7 +141,7 @@ namespace HidRawTools
                 if (HidDeviceList[0] == null)
                 {
                     Clear();
-                    Print("Connect usb device and install driver. Try open again");
+                    Print("Device not found. Try open again!");
                     return;
                 }
                 HidDevice = HidDeviceList[0];
@@ -131,8 +155,8 @@ namespace HidRawTools
                 Print(ex.ToString());
             }
         }
-        private void unicodeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        void encode(string _code)
+        {            
             try
             {
                 char[] ch = textBox1.Text.ToArray();
@@ -144,8 +168,9 @@ namespace HidRawTools
                     return;
                 }
                 Clear();
-                Print("English 0-127 GBK > " + 0x8080);
-
+                eepromsize = eepbox.Text;
+                Print("eepromsize=" + eepromsize.ToString());
+                Print("Encoding-->" + _code);
                 int length = Convert.ToInt32(eepromsize) / 2 - 1;
                 if (ch.Length < length) length = ch.Length;
                 string output = "";
@@ -168,7 +193,7 @@ namespace HidRawTools
                     else if (ch[j] <= 0xFFFF)
                     {
                         //汉字                     
-                        ushort a3 = ConvertChinese1(ch[j]);
+                        ushort a3 = ConvertChinese1(ch[j], _code);
                         output += a3.ToString();
                         //Printhex((int)a3);
                         if (j != length - 1) output += ",";
@@ -178,74 +203,40 @@ namespace HidRawTools
                 textBox2.Text += output;
             }
             catch (Exception ex) { Print(ex.ToString()); }
+        }
+        private void unicodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            encode("Unicode");
         }
         private void gBKToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                char[] ch = textBox1.Text.ToArray();
-
-                if (ch == null || ch.Length == 0)
-                {
-                    Clear();
-                    Print("Nothing to Convert");
-                    return;
-                }
-                Clear();
-                Print("English 0-127 GBK > " + 0x8080);
-
-                int length = Convert.ToInt32(eepromsize) / 2 - 1;
-                if (ch.Length < length) length = ch.Length;
-                string output = "";
-                int length2 = length;
-                for (int j = 0; j < length; j++)
-                {
-                    if (ch[j] < 127 && ch[j] >= 0)
-                    {
-                        int code = Program.ascii_to_scan_code_table[(int)ch[j]];
-                        if (code != 0)
-                        {
-                            output += code.ToString();
-                            if (j != length - 1) output += ",";
-                        }
-                        else
-                        {
-                            length2--;
-                        }
-                    }
-                    else if (ch[j] <= 0xFFFF)
-                    {
-                        //汉字                     
-                        ushort a3 = ConvertChinese2(ch[j], "GBK");
-                        output += a3.ToString();
-                        //Printhex((int)a3);
-                        if (j != length - 1) output += ",";
-                    }
-                }
-                textBox2.Text = length2.ToString() + ",";
-                textBox2.Text += output;
-            }
-            catch (Exception ex) { Print(ex.ToString()); }
+            encode("GBK");
+        }
+        private void UTF8ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            encode("UTF8");
         }
         private void uploadToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            OpenDevice();         
+           
             try
             {
                 int addr = 0;
-                if (textBox4.Text != ""|| textBox4.Text !=null)
+                if (addbox.Text != ""|| addbox.Text !=null)
                 {
-                    addr = Convert.ToInt32(textBox4.Text);
+                    addr = Convert.ToInt32(addbox.Text);
                 }
                     if (textBox2.Text == "")
                 {
-                    Clear();
+                    
                     Print("Nothing to upload");
                     return;
                 }
                 string[] str = textBox2.Text.Split(',');
                 if (HidDevice == null)
                 {
-                    Clear();
+                   
                     Print("Invalid device");
                     return;
                 }
@@ -299,7 +290,7 @@ namespace HidRawTools
             catch (Exception ex) { Print(ex.ToString()); }
         }
 
-        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        private void textBox2_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Modifiers == Keys.Control && e.KeyCode == Keys.A)
             {
@@ -307,6 +298,15 @@ namespace HidRawTools
             }
         }
 
+       
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.A)
+            {
+                ((TextBox)sender).SelectAll();
+            }
+        }     
         private void libusbtool_Load(object sender, EventArgs e)
         {
             string str = Environment.CurrentDirectory + "\\EEPROMtools.conf";

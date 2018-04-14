@@ -88,12 +88,6 @@
     <Compile Include="HidRawTools.Designer.cs">
       <DependentUpon>HidRawTools.cs</DependentUpon>
     </Compile>
-    <Compile Include="HidTools.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="HidTools.Designer.cs">
-      <DependentUpon>HidTools.cs</DependentUpon>
-    </Compile>
     <Compile Include="keyboard\staryu.cs" />
     <Compile Include="libusbtool.cs">
       <SubType>Form</SubType>
@@ -107,9 +101,6 @@
     <Compile Include="keyboard\ps2avr.cs" />
     <EmbeddedResource Include="HidRawTools.resx">
       <DependentUpon>HidRawTools.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HidTools.resx">
-      <DependentUpon>HidTools.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="libusbtool.resx">
       <DependentUpon>libusbtool.cs</DependentUpon>
@@ -138,7 +129,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="2.ico" />
     <Content Include="favicon.ico" />
     <None Include="Resources\tinykey2.jpg" />
     <None Include="Resources\tinykey.jpg" />

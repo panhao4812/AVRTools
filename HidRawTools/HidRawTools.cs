@@ -566,7 +566,7 @@ namespace HidRawTools
                 if ((matrix.RGB[i, 2] & (byte)0x0F) == 0) button.Text = i.ToString();
                 else if ((matrix.RGB[i, 2] & (byte)0x0F) == 0x01) { button.Text = "R"; }
                 if ((matrix.RGB[i, 2] & (byte)0xF0) == 0x10) { button.ForeColor = Color.Black; }
-                else if ((matrix.RGB[i, 2] & (byte)0xF0) == 0x00) { button.ForeColor = Color.Gray; }
+                else if ((matrix.RGB[i, 2] & (byte)0xF0) == 0x00) { button.ForeColor = Color.FromArgb(200,200,200); }
                 button.Font = new Font(button.Font.Name, 7);
                 button.Name = i.ToString();
                 button.MouseDown += new MouseEventHandler(this.button2_MouseClick);
@@ -670,11 +670,14 @@ namespace HidRawTools
                 checkedListBox1.SetItemChecked(i, false);
             }
             Clear();
+            panel1.BackgroundImage = null;
             panel1.Controls.Clear();
             for (int i = 0; i < matrix.keycode.Length; i++)
             {
                 matrix.keycode[i] = "";
             }
+            checkedListBox1.Items.Clear();
+            matrix = null;
         }
         private void button1_MouseClick(object sender, MouseEventArgs e)
         {
@@ -927,7 +930,7 @@ namespace HidRawTools
             eepromsize = 1024;
             panel1.BackgroundImage = Properties.Resources.tinykey2;
         }
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        private void AboutText()
         {
             Clear();
             /*
@@ -1049,6 +1052,36 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
             changeButton();
         }
 
-      
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutText();
+        }
+        private void eEPROMToolsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Thread t = new Thread(new ThreadStart(ThreadProc));
+            t.SetApartmentState(ApartmentState.STA);
+            t.Start();
+        }
+        public static void ThreadProc()
+        {
+            libusbtool form = new libusbtool();//第2个窗体
+            form.ShowDialog();
+        }
+
+        private void PrintBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.A)
+            {
+                ((TextBox)sender).SelectAll();
+            }
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.A)
+            {
+                ((TextBox)sender).SelectAll();
+            }
+        }
     }
 }

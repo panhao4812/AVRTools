@@ -22,6 +22,7 @@ D:\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.csprojResolveAssemblyReference
 C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\bin\Debug\Tinytools.exe.config
 C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\bin\Debug\Tinytools.exe
 C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\bin\Debug\Tinytools.pdb
+C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.libusbtool.resources
 C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.MainWindow.resources
 C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.Properties.Resources.resources
