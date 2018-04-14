@@ -129,7 +129,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="favicon.ico" />
     <None Include="Resources\tinykey2.jpg" />
     <None Include="Resources\tinykey.jpg" />
     <None Include="Resources\ico1.ico" />
@@ -145,6 +144,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tinykey3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tinykey3_2.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
