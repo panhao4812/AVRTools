@@ -11,3 +11,4 @@ C:\Users\Administrator\Documents\GitHub\Tinytools\DuplicateTools\obj\Debug\Dupli
 C:\Users\Administrator\Documents\GitHub\Tinytools\DuplicateTools\obj\Debug\DuplicateTools.csproj.GenerateResource.Cache
 C:\Users\Administrator\Documents\GitHub\Tinytools\DuplicateTools\obj\Debug\DuplicateTools.exe
 C:\Users\Administrator\Documents\GitHub\Tinytools\DuplicateTools\obj\Debug\DuplicateTools.pdb
+C:\Users\Administrator\Documents\GitHub\Tinytools\DuplicateTools\obj\Debug\DuplicateTools.csprojResolveAssemblyReference.cache
