@@ -35,7 +35,7 @@ namespace HidRawTools
         string iencode = "GBK";
         byte RGB_Type = 0;
         int addr = 0;
-        Image img = null;
+        Image img = null; Image img2 = null;
         public static HidDevice HidDevice;
         void save(string path)
         {
@@ -92,10 +92,10 @@ namespace HidRawTools
         void changeButton()
         {
             //Clear();
-            img = panel1.BackgroundImage;
+            img2 = panel1.BackgroundImage;
             panel1.BackgroundImage = null;
             panel1.Controls.Clear();
-            panel1.BackgroundImage = img; 
+            panel1.BackgroundImage = img2; 
             for (int i = 0; i < checkedListBox1.CheckedIndices.Count; i++)
             {
                 string str = checkedListBox1.CheckedIndices[i].ToString();
@@ -153,10 +153,12 @@ namespace HidRawTools
                 {
                     this.oNOFFToolStripMenuItem.Text = "Default ON";
                 }
+                panel1.BackgroundImage = img;
             }
             catch (Exception ex)
             {
                 Print(ex.ToString());
+                panel1.BackgroundImage = img;
             }
         }
         private void OpenDevice()
@@ -304,14 +306,16 @@ namespace HidRawTools
             if (_name == "XD60_A")
             {
                 matrix = new XD60_A();
+                img = Properties.Resources.tinykey3_2;
             }
             else if (_name == "XD60_B")
             {
                 matrix = new XD60_B();
+                img = Properties.Resources.tinykey3_2;
             }
             else if (_name == "ps2avrU")
             {
-                matrix = new ps2avrU();
+                matrix = new ps2avrU();             
             }
             else if (_name == "GH60_revCNY")
             {
@@ -320,10 +324,12 @@ namespace HidRawTools
             else if (_name == "bface60_minila")
             {
                 matrix = new bface60_minila();
+                img = Properties.Resources.tinykey2;
             }
             else if (_name == "bface60_B")
             {
                 matrix = new bface60_B();
+                img = Properties.Resources.tinykey2;
             }
             else if (_name == "staryu")
             {
@@ -332,11 +338,13 @@ namespace HidRawTools
             else if (_name == "Tinykey")
             {
                 matrix = new Tinykey();
+                img = Properties.Resources.tinykey;
             }
             else return false;
             layer = 0;         
             keyCount = matrix.keycap.GetUpperBound(0) + 1;
             ////////////////////////////////////////
+            panel1.BackgroundImage = null;
             checkedListBox1.Items.Clear();
             panel1.Controls.Clear();
             Clear();
@@ -524,7 +532,7 @@ namespace HidRawTools
         }
         public void AddRGBButton(int i, int style, int R, int G, int B)
         {
-             img = panel1.BackgroundImage;
+             img2 = panel1.BackgroundImage;
             panel1.BackgroundImage = null;
             if (matrix == null) return;
             if (matrix.RGB == null || matrix.RGB.GetUpperBound(0) < 0) return;
@@ -545,11 +553,11 @@ namespace HidRawTools
             button.Font = new Font(button.Font.Name, 7);
             button.Name = i.ToString();
             button.MouseDown += new MouseEventHandler(this.button2_MouseClick);
-            panel1.BackgroundImage = img;
+            panel1.BackgroundImage = img2;
         }
         public void AddRGBButton()
         {
-             img = panel1.BackgroundImage;
+             img2 = panel1.BackgroundImage;
             panel1.BackgroundImage = null;
             if (matrix == null) return;
             if (matrix.RGB == null || matrix.RGB.GetUpperBound(0) < 0) return;
@@ -571,11 +579,11 @@ namespace HidRawTools
                 button.Name = i.ToString();
                 button.MouseDown += new MouseEventHandler(this.button2_MouseClick);
             }
-            panel1.BackgroundImage = img;
+            panel1.BackgroundImage = img2;
         }
         public void AddButton(int index, string str)
         {
-            img = panel1.BackgroundImage;
+            img2 = panel1.BackgroundImage;
             panel1.BackgroundImage = null;
             double x = matrix.keycap[index, 0];
             double y = matrix.keycap[index, 1];
@@ -601,7 +609,7 @@ namespace HidRawTools
             button.MouseDown += new MouseEventHandler(this.button1_MouseClick);
             button.Text = str;
             button.Name = index.ToString();
-            panel1.BackgroundImage = img;
+            panel1.BackgroundImage = img2;
         }
         private void Form1_Load(object sender, EventArgs e)
         {       
@@ -753,7 +761,7 @@ namespace HidRawTools
             else
             {
                 return;
-            }
+            }          
             try
             {
                 FileStream fs = new FileStream(path, FileMode.Open);
@@ -794,10 +802,12 @@ namespace HidRawTools
                     }
                 }
                 srd.Close();
+                panel1.BackgroundImage = img;
             }
             catch (Exception ex)
             {
                 Print(ex.ToString());
+                panel1.BackgroundImage = img;
             }
         }
         private void uploadToolStripMenuItem_Click(object sender, EventArgs e)
@@ -884,53 +894,43 @@ namespace HidRawTools
         */
         private void xShiftToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            panel1.BackgroundImage = null;
             if (loadmatrix("XD60_A")) { Open(); }
             textBox3.Text = "32C4";
             textBox2.Text = "0160";
             textBox4.Text = "297";
             eepromsize = 1024;
-            panel1.BackgroundImage = Properties.Resources.tinykey3_2;
         }
         private void xShiftToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            panel1.BackgroundImage = null;
             if (loadmatrix("XD60_B")) { Open(); }
             textBox3.Text = "32C4";
             textBox2.Text = "0160";
             textBox4.Text = "297";
-            eepromsize = 1024;
-            panel1.BackgroundImage = Properties.Resources.tinykey3_2;
+            eepromsize = 1024;           
         }
         private void tinykeyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            panel1.BackgroundImage = null;
             if (loadmatrix("Tinykey")) { Open(); }
             textBox3.Text = "D850";
             textBox2.Text = "0102";
             textBox4.Text = "31";
             eepromsize = 512;
-            panel1.BackgroundImage = Properties.Resources.tinykey;
         }
         private void xshiftToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            panel1.BackgroundImage = null;
             if (loadmatrix("bface60_B")) { Open(); }
             textBox3.Text = "32A0";
             textBox2.Text = "0160";
             textBox4.Text = "297";
             eepromsize = 1024;
-            panel1.BackgroundImage = Properties.Resources.tinykey2;
         }
         private void minilaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            panel1.BackgroundImage = null;
             if (loadmatrix("bface60_minila")) { Open(); }
             textBox3.Text = "32A0";
             textBox2.Text = "0160";
             textBox4.Text = "297";
             eepromsize = 1024;
-            panel1.BackgroundImage = Properties.Resources.tinykey2;
         }
         private void AboutText()
         {
@@ -1053,7 +1053,6 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
             Print("RGB_Type = " + RGB_Type);
             changeButton();
         }
-
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AboutText();
@@ -1069,7 +1068,6 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
             libusbtool form = new libusbtool();//第2个窗体
             form.ShowDialog();
         }
-
         private void PrintBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Modifiers == Keys.Control && e.KeyCode == Keys.A)
@@ -1077,7 +1075,6 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
                 ((TextBox)sender).SelectAll();
             }
         }
-
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Modifiers == Keys.Control && e.KeyCode == Keys.A)
