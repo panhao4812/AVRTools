@@ -313,7 +313,7 @@ namespace HidRawTools
         "POWERD" ,
         "SLEEP" ,
         "WAKEUP",
-        "LED","RGB","ESC~","Print","Ctrl+A","Ctrl+X","Ctrl+C","Ctrl+V"
+        "LED","RGB","ESC~","PrintEEP","PrintFlash","user","user","user"
     };
         public static string[] KeyName =
         {
