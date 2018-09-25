@@ -306,12 +306,12 @@ namespace HidRawTools
             if (_name == "XD60_A")
             {
                 matrix = new XD60_A();
-                img = Properties.Resources.tinykey3_2;
+                img = Properties.Resources.tinykey3;
             }
             else if (_name == "XD60_B")
             {
                 matrix = new XD60_B();
-                img = Properties.Resources.tinykey3_2;
+                img = Properties.Resources.tinykey3;
             }
             else if (_name == "ps2avrU")
             {
@@ -339,6 +339,11 @@ namespace HidRawTools
             {
                 matrix = new Tinykey();
                 img = Properties.Resources.tinykey;
+            }
+            else if (_name == "XD75_Re")
+            {
+                matrix = new XD75_Re();
+                img = Properties.Resources.tinykey4;
             }
             else return false;
             layer = 0;         
@@ -932,6 +937,14 @@ namespace HidRawTools
             textBox4.Text = "297";
             eepromsize = 1024;
         }
+        private void xD75ReToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("XD75_Re")) { Open(); }
+            textBox3.Text = "32C4";
+            textBox2.Text = "0375";
+            textBox4.Text = "279";
+            eepromsize = 1024;
+        }
         private void AboutText()
         {
             Clear();
@@ -1082,5 +1095,7 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
                 ((TextBox)sender).SelectAll();
             }
         }
+
+       
     }
 }

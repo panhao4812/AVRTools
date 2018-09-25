@@ -93,9 +93,9 @@ namespace HidRawTools.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap tinykey3_2 {
+        internal static System.Drawing.Bitmap tinykey4 {
             get {
-                object obj = ResourceManager.GetObject("tinykey3_2", resourceCulture);
+                object obj = ResourceManager.GetObject("tinykey4", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
