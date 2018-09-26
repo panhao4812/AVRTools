@@ -149,9 +149,6 @@
     <None Include="Resources\tinykey3.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\tinykey3_2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Resources\tinykey4.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

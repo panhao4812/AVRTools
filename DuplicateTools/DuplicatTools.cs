@@ -236,22 +236,6 @@ namespace DuplicateTools
                 dataGridView2.Rows[i].Cells[0].Value = files[dumplsit[i]].shortpath_;
             }
         }
-        public static void ThreadProc()
-        {
-            PDFReader form = new PDFReader();//第2个窗体 
-            form.ShowDialog();
-        }
-        private void testPDFToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            /*
-            Thread t = new Thread(new ThreadStart(ThreadProc));
-            t.SetApartmentState(ApartmentState.STA);
-            t.Start();
-            */
-            PDFReader form = new PDFReader();//第2个窗体 
-            form.files = this.files;
-            form.ShowDialog();
-        }
     }
     public class M_File
     {

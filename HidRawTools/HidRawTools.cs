@@ -902,7 +902,7 @@ namespace HidRawTools
             if (loadmatrix("XD60_A")) { Open(); }
             textBox3.Text = "32C4";
             textBox2.Text = "0160";
-            textBox4.Text = "297";
+            textBox4.Text = "281";
             eepromsize = 1024;
         }
         private void xShiftToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -910,7 +910,7 @@ namespace HidRawTools
             if (loadmatrix("XD60_B")) { Open(); }
             textBox3.Text = "32C4";
             textBox2.Text = "0160";
-            textBox4.Text = "297";
+            textBox4.Text = "281";
             eepromsize = 1024;           
         }
         private void tinykeyToolStripMenuItem_Click(object sender, EventArgs e)

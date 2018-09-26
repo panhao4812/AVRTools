@@ -43,6 +43,7 @@
             this.xShiftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xShiftToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tinykeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xD75ReToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rGBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.oNOFFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,7 +73,6 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.PrintBox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.xD75ReToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -92,7 +92,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(427, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(335, 25);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -199,6 +199,13 @@
             this.tinykeyToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.tinykeyToolStripMenuItem.Text = "XD002_ver1.0";
             this.tinykeyToolStripMenuItem.Click += new System.EventHandler(this.tinykeyToolStripMenuItem_Click);
+            // 
+            // xD75ReToolStripMenuItem
+            // 
+            this.xD75ReToolStripMenuItem.Name = "xD75ReToolStripMenuItem";
+            this.xD75ReToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.xD75ReToolStripMenuItem.Text = "XD75_Re";
+            this.xD75ReToolStripMenuItem.Click += new System.EventHandler(this.xD75ReToolStripMenuItem_Click);
             // 
             // rGBToolStripMenuItem
             // 
@@ -518,13 +525,6 @@
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             this.panel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseClick);
             // 
-            // xD75ReToolStripMenuItem
-            // 
-            this.xD75ReToolStripMenuItem.Name = "xD75ReToolStripMenuItem";
-            this.xD75ReToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.xD75ReToolStripMenuItem.Text = "XD75_Re";
-            this.xD75ReToolStripMenuItem.Click += new System.EventHandler(this.xD75ReToolStripMenuItem_Click);
-            // 
             // HidRawTools
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -549,7 +549,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "HidRawTools";
-            this.Text = "HidRawTools";
+            this.Text = "        ";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HidRawTools_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
