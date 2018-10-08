@@ -1096,6 +1096,21 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
             }
         }
 
-       
+        private void writeToHexToolStripMenuItem_Click(object sender, EventArgs e)
+        {    
+            Encode(iencode);           
+            try
+            {
+                if (CodeTemp == "")
+                {
+                    Print("Nothing to write");
+                    return;
+                }
+                string[] str = CodeTemp.Split(',');
+                Hex hex1 = new Hex(str);
+                Print(hex1.Write(0x0000));
+            }
+            catch (Exception ex) { Print(ex.ToString()); }
+        }
     }
 }

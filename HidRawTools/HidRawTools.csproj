@@ -68,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HexFiles.cs" />
     <Compile Include="Hidlib\Extensions.cs" />
     <Compile Include="Hidlib\HidAsyncState.cs" />
     <Compile Include="Hidlib\HidDevice.cs" />
@@ -129,6 +130,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\ATmega32U2_16U2_test4.hex" />
     <None Include="Resources\tinykey2.jpg" />
     <None Include="Resources\tinykey.jpg" />
     <None Include="Resources\ico1.ico" />
