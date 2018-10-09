@@ -61,16 +61,6 @@ namespace HidRawTools.Properties {
         }
         
         /// <summary>
-        ///   查找 System.Byte[] 类型的本地化资源。
-        /// </summary>
-        internal static byte[] ATmega32U2_16U2_test4 {
-            get {
-                object obj = ResourceManager.GetObject("ATmega32U2_16U2_test4", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
         internal static System.Drawing.Bitmap tinykey {
@@ -107,6 +97,16 @@ namespace HidRawTools.Properties {
             get {
                 object obj = ResourceManager.GetObject("tinykey4", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Byte[] 类型的本地化资源。
+        /// </summary>
+        internal static byte[] XD004 {
+            get {
+                object obj = ResourceManager.GetObject("XD004", resourceCulture);
+                return ((byte[])(obj));
             }
         }
     }

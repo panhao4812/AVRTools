@@ -38,6 +38,40 @@ namespace HidRawTools
             };
         }
     }
+    class XD004 : IMatrix
+    {
+        public XD004()
+        {
+            this.Name = "XD004";
+            this.ROWS = 1;
+            this.COLS = 4;
+            this.rowPins = new byte[1] { 0xFF };
+            this.colPins = new byte[4] { 19, 16, 12, 4 };
+            this.hexaKeys0 = new string[1, 4];
+            this.hexaKeys1 = new string[1, 4];
+            keycode = new string[4 * 2];
+            for (int i = 0; i < keycode.Length; i++)
+            {
+                keycode[i] = "";
+            }
+            this.keycap = new double[4, 5] {
+                {0,-1,1,0,0 },
+                {1,-1,1,0,1 },
+                {2,-1,1,0,2 },
+                {3,-1,1,0,3 },
+            };
+            Defaultkeycode = new string[]{
+"0,KEY_1,MACRO0",
+"1,KEY_2,MACRO1",
+"2,KEY_3,MACRO2",
+"3,KEY_FN,KEY_FN",
+            };
+            RGB = new int[2, 6]{
+                //x,y,type,r,g,b
+                 {75,12,1,255,255,255},
+                 {170,12,1,255,255,255} };
+        }
+    }
     class Tinykey : IMatrix
     {
         public Tinykey()
@@ -46,7 +80,7 @@ namespace HidRawTools
             this.ROWS = 1;
             this.COLS = 2;
             this.rowPins = new byte[1] { 0xFF };
-            this.colPins = new byte[2] { 0,1 };
+            this.colPins = new byte[2] { 0, 1 };
             this.hexaKeys0 = new string[1, 2];
             this.hexaKeys1 = new string[1, 2];
             keycode = new string[2 * 2];
@@ -54,15 +88,15 @@ namespace HidRawTools
             {
                 keycode[i] = "";
             }
-            this.keycap = new double[2, 5] {                        
+            this.keycap = new double[2, 5] {
                 {16,4,1,0,0 },
-                {17,4,1,0,1 },                  
+                {17,4,1,0,1 },
             };
             Defaultkeycode = new string[]{
 "0,MACRO1,MACRO1",
 "1,MACRO3,MACRO3"
             };
-            RGB = new int[2,6]{
+            RGB = new int[2, 6]{
                 //x,y,type,r,g,b
  {832,355,0,255,255,255},
  {878,355,0,255,255,255}

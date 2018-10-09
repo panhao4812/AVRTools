@@ -130,7 +130,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ATmega32U2_16U2_test4.hex" />
+    <None Include="Resources\XD004.hex" />
     <None Include="Resources\tinykey2.jpg" />
     <None Include="Resources\tinykey.jpg" />
     <None Include="Resources\ico1.ico" />

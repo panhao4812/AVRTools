@@ -302,7 +302,7 @@ namespace HidRawTools
             }
         }
         public bool loadmatrix(string _name)
-        {
+        {           
             if (_name == "XD60_A")
             {
                 matrix = new XD60_A();
@@ -334,6 +334,10 @@ namespace HidRawTools
             else if (_name == "staryu")
             {
                 matrix = new staryu();
+            }
+            if (_name == "XD004")
+            {
+                matrix = new XD004();             
             }
             else if (_name == "Tinykey")
             {
@@ -945,6 +949,14 @@ namespace HidRawTools
             textBox4.Text = "279";
             eepromsize = 1024;
         }
+        private void xD004ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("XD004")) { Open(); }
+            textBox3.Text = "16C2";
+            textBox2.Text = "0204";
+            textBox4.Text = "39";
+            eepromsize = 512;
+        }
         private void AboutText()
         {
             Clear();
@@ -1095,9 +1107,8 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
                 ((TextBox)sender).SelectAll();
             }
         }
-
         private void writeToHexToolStripMenuItem_Click(object sender, EventArgs e)
-        {    
+        {           
             Encode(iencode);           
             try
             {
@@ -1108,9 +1119,44 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
                 }
                 string[] str = CodeTemp.Split(',');
                 Hex hex1 = new Hex(str);
-                Print(hex1.Write(0x0000));
+                string hex0 = "";
+                if (matrix == null) { Print("Select a keyboard templet!"); return; }
+
+               else if(matrix.Name == "XD004"){
+                    hex0 = Encoding.Default.GetString(Properties.Resources.XD004);
+                    hex0 += hex1.Write(0x0000);
+                }
+                else if (matrix.Name == "staryu")
+                {
+                    hex0 = Encoding.Default.GetString(Properties.Resources.staryu);
+                    hex0 += hex1.Write(0x0000);
+                }
+                else { return; }
+
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "hex files (*.hex)|*.hex|All files (*.*)|*.*";
+                sfd.FilterIndex = 2;
+                sfd.RestoreDirectory = true;
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    FileStream fs = new FileStream(sfd.FileName, FileMode.OpenOrCreate);
+                    fs.SetLength(0);
+                    StreamWriter stream = new StreamWriter(fs); 
+                    stream.Write(hex0);
+                    stream.Flush();
+                    stream.Close();
+                }
+                else
+                {
+                    return;
+                }               
             }
-            catch (Exception ex) { Print(ex.ToString()); }
+            catch (Exception ex) { Print(ex.ToString()); }               
+        }
+
+        private void staryuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
