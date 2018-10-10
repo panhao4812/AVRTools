@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace HidRawTools
 {
-    class staryu : IMatrix
+    class Staryu : IMatrix
     {
-        public staryu()
+        public Staryu()
         {
-            this.Name = "staryu";
+            this.Name = "Staryu";
             this.ROWS = 1;
             this.COLS = 5;
             this.rowPins = new byte[1] { 0xFF };
@@ -36,6 +36,7 @@ namespace HidRawTools
 "3,KEY_DOWN,MACRO6",
 "4,KEY_RIGHT,MACRO7"
             };
+            RGB = new int[1, 6]{ {782,255,0,255,255,255} };
         }
     }
     class XD004 : IMatrix

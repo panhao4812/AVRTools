@@ -95,7 +95,7 @@ namespace HidRawTools
             img2 = panel1.BackgroundImage;
             panel1.BackgroundImage = null;
             panel1.Controls.Clear();
-            panel1.BackgroundImage = img2; 
+            panel1.BackgroundImage = img2;
             for (int i = 0; i < checkedListBox1.CheckedIndices.Count; i++)
             {
                 string str = checkedListBox1.CheckedIndices[i].ToString();
@@ -302,7 +302,7 @@ namespace HidRawTools
             }
         }
         public bool loadmatrix(string _name)
-        {           
+        {
             if (_name == "XD60_A")
             {
                 matrix = new XD60_A();
@@ -315,7 +315,7 @@ namespace HidRawTools
             }
             else if (_name == "ps2avrU")
             {
-                matrix = new ps2avrU();             
+                matrix = new ps2avrU();
             }
             else if (_name == "GH60_revCNY")
             {
@@ -331,13 +331,13 @@ namespace HidRawTools
                 matrix = new bface60_B();
                 img = Properties.Resources.tinykey2;
             }
-            else if (_name == "staryu")
+            else if (_name == "Staryu")
             {
-                matrix = new staryu();
+                matrix = new Staryu();
             }
-            if (_name == "XD004")
+            else if (_name == "XD004")
             {
-                matrix = new XD004();             
+                matrix = new XD004();
             }
             else if (_name == "Tinykey")
             {
@@ -350,7 +350,7 @@ namespace HidRawTools
                 img = Properties.Resources.tinykey4;
             }
             else return false;
-            layer = 0;         
+            layer = 0;
             keyCount = matrix.keycap.GetUpperBound(0) + 1;
             ////////////////////////////////////////
             panel1.BackgroundImage = null;
@@ -372,103 +372,54 @@ namespace HidRawTools
                 name += "M:" + matrix.keycap[i, 3].ToString() + "/" + matrix.keycap[i, 4].ToString();
                 checkedListBox1.Items.Add(name);
             }
-             radioButton2.Checked = false;
-             radioButton1.Checked = true;
+            radioButton2.Checked = false;
+            radioButton1.Checked = true;
             return true;
-        }
-        public ushort ConvertChinese1(char str, string code)
+        }           
+        private void WriteToHex()
         {
-            string str2 = Convert.ToString(str);
-            byte[] data; ushort a3;
-            if (code == "GBK")
-            {
-                return ConvertChinese2(str, code);
-            }
-            else if (code == "Default")
-            {
-                data = Encoding.Default.GetBytes(str2);
-                string Data1 = data[0].ToString("x"); if (Data1.Length == 1) Data1 = "0" + Data1;
-                string Data2 = data[1].ToString("x"); if (Data2.Length == 1) Data2 = "0" + Data2;
-                str2 = Data1 + Data2;
-                a3 = Convert.ToUInt16(str2, 16);
-                return a3;
-            }
-            else if (code == "Unicode")
-            {
-                data = Encoding.Unicode.GetBytes(str2);
-            }
-            else if (code == "UTF8")
-            {
-                data = Encoding.UTF8.GetBytes(str2);
-            }
-            else { Print("encoding error"); return 0; }
-            string data1 = data[1].ToString("x"); if (data1.Length == 1) data1 = "0" + data1;
-            string data2 = data[0].ToString("x"); if (data2.Length == 1) data2 = "0" + data2;
-            str2 = data1 + data2;
-            a3 = Convert.ToUInt16(str2, 16);
-            return a3;
-        }
-        public ushort ConvertChinese2(char str, string code)
-        {
-            string str2 = Convert.ToString(str);
-            byte[] data = Encoding.GetEncoding(code).GetBytes(str2);
-            string Data1 = data[0].ToString("x"); if (Data1.Length == 1) Data1 = "0" + Data1;
-            string Data2 = data[1].ToString("x"); if (Data2.Length == 1) Data2 = "0" + Data2;
-            str2 = Data1 + Data2;
-            ushort a3 = Convert.ToUInt16(str2, 16);
-            return a3;
-        }
-        private void Encode(string _code)
-        {
+            Encode(iencode);
             try
             {
-                //Clear();
-                CodeTemp = "";
-                char[] ch = PrintBox.Text.ToArray();
-                if (ch == null || ch.Length == 0)
+                if (CodeTemp == "")
                 {
-                    CodeTemp += "0";
-                    Print("Uploading RGB parameter!Nothing for printing!");
+                    Print("Nothing to write");
                     return;
                 }
-               // Print("English 0-127 GBK > " + 0x8080);
-                addr = 0;
-                if (textBox4.Text != "" && textBox4.Text != null)
-                {
-                    addr = Convert.ToInt32(textBox4.Text);
-                }
-                Print("Uploading address=" + addr.ToString());
-                int length = ch.Length;
-                string output = "";
-                int length2 = length;
-                for (int j = 0; j < length; j++)
-                {
-                    if (ch[j] < 127 && ch[j] >= 0)
-                    {
-                        int code = Program.ascii_to_scan_code_table[(int)ch[j]];
-                        if (code != 0)
-                        {
-                            output += code.ToString();
-                            if (j != length - 1) output += ",";
-                        }
-                        else
-                        {
-                            length2--;
-                        }
-                    }
-                    else if (ch[j] <= 0xFFFF)
-                    {
-                        //汉字                     
-                        ushort a3 = ConvertChinese1(ch[j], _code);
-                        output += a3.ToString();
-                        //Printhex((int)a3);
-                        if (j != length - 1) output += ",";
-                    }
-                }
+                string[] str = CodeTemp.Split(',');
+                Hex hex1 = new Hex(str);
+                string hex0 = "";
+                if (matrix == null) { Print("Select a keyboard templet!"); return; }
 
-                CodeTemp += length2.ToString() + ",";
-                CodeTemp += output;
-                Print(CodeTemp);
+                else if (matrix.Name == "XD004")
+                {
+                    hex0 = Encoding.Default.GetString(Properties.Resources.XD004);
+                    hex0 += hex1.Write(0x0000);
+                }
+                else if (matrix.Name == "Staryu")
+                {
+                    //hex0 = Encoding.Default.GetString(Properties.Resources.Staryu);
+                    hex0 += hex1.Write(0x0000);
+                }
+                else { return; }
+
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "hex files (*.hex)|*.hex|All files (*.*)|*.*";
+                sfd.FilterIndex = 2;
+                sfd.RestoreDirectory = true;
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    FileStream fs = new FileStream(sfd.FileName, FileMode.OpenOrCreate);
+                    fs.SetLength(0);
+                    StreamWriter stream = new StreamWriter(fs);
+                    stream.Write(hex0);
+                    stream.Flush();
+                    stream.Close();
+                }
+                else
+                {
+                    return;
+                }
             }
             catch (Exception ex) { Print(ex.ToString()); }
         }
@@ -541,7 +492,7 @@ namespace HidRawTools
         }
         public void AddRGBButton(int i, int style, int R, int G, int B)
         {
-             img2 = panel1.BackgroundImage;
+            img2 = panel1.BackgroundImage;
             panel1.BackgroundImage = null;
             if (matrix == null) return;
             if (matrix.RGB == null || matrix.RGB.GetUpperBound(0) < 0) return;
@@ -566,7 +517,7 @@ namespace HidRawTools
         }
         public void AddRGBButton()
         {
-             img2 = panel1.BackgroundImage;
+            img2 = panel1.BackgroundImage;
             panel1.BackgroundImage = null;
             if (matrix == null) return;
             if (matrix.RGB == null || matrix.RGB.GetUpperBound(0) < 0) return;
@@ -583,7 +534,7 @@ namespace HidRawTools
                 if ((matrix.RGB[i, 2] & (byte)0x0F) == 0) button.Text = i.ToString();
                 else if ((matrix.RGB[i, 2] & (byte)0x0F) == 0x01) { button.Text = "R"; }
                 if ((matrix.RGB[i, 2] & (byte)0xF0) == 0x10) { button.ForeColor = Color.Black; }
-                else if ((matrix.RGB[i, 2] & (byte)0xF0) == 0x00) { button.ForeColor = Color.FromArgb(200,200,200); }
+                else if ((matrix.RGB[i, 2] & (byte)0xF0) == 0x00) { button.ForeColor = Color.FromArgb(200, 200, 200); }
                 button.Font = new Font(button.Font.Name, 7);
                 button.Name = i.ToString();
                 button.MouseDown += new MouseEventHandler(this.button2_MouseClick);
@@ -620,8 +571,55 @@ namespace HidRawTools
             button.Name = index.ToString();
             panel1.BackgroundImage = img2;
         }
+        private void AboutText()
+        {
+            Clear();
+            /*
+          Print("How to change key values and LED color:");
+Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (Keyboard->XD002)");
+          Print("2.Click on the button icon that you want to change, and then select the desire key value from the chart at lower right corner.Click RGB on the title to change color config.If you want to use Rainbow LED, select RGB->Rainbow on the title bar.Otherwise, choose RGB->Fixed color.");
+          Print("3.XD002 provide two layers(layer 0 and layer 1), you can click radio button on the title bar to alter the key values of another layer.");
+          Print("4.Click on “Matrix” and select “Upload Matrix” to save changes.");
+          Print("");
+          Print("How to alter the printer content:");
+          Print("1.Input the text content in Print Box.  The print box is at the lower left corner.");
+          Print("2.Click on “Printer” on the title bar, select “Upload with GBK” to save the changes. Try to select “Upload with Unicode” If print garbled Korea.");
+          Print("");
+
+          Print("修改按键和灯");
+          Print("");
+          Print("步骤1: 点击标题栏keyboard，选择对应的键盘型号。"); Print("");
+          Print("步骤2: 点击按键图标再点击右下角键值表编辑键值。");
+          Print("点击RGB灯图标编辑灯的颜色。"); Print("");
+          Print("步骤3: 点击Layer0/Layer1切换编辑第二层矩阵的键值。");
+          Print("点击RGB编辑灯的模式。Rainbow表示彩虹渐变。FixColor表示单色。"); Print("");
+          Print("步骤4: 点击标题栏Matrix上传修改内容。");
+          Print("");
+          Print("修改[打字机]内容");
+          Print("");
+          Print("步骤1: PrintBox输入中英文文本。"); Print("");
+          Print("步骤2: 点击标题栏Printer - Upload with GBK上传修改内容。");
+          Print("要切换中文编码则换成Printer - Upload with Unicode。");
+          Print("");
+          */
+            Print("Click on “Keyboard” button on the title bar to select your templet."); Print("");
+            Print("Detailed tutorial http://xiudi.fun/xd002/Manual.html "); Print("");
+
+            Print("Enjoy!");
+            Print("Author zian1  QQ 29347213");
+        }
+        public static void ThreadProc()
+        {
+            libusbtool form = new libusbtool();//第2个窗体
+            form.ShowDialog();
+        }
+        /// <summary>
+        /// ////////////////////////////////////////////////////////////////
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form1_Load(object sender, EventArgs e)
-        {       
+        {
             this.Size = new Size(1024, 800);
             this.panel1.Location = new Point(2, 30);
             panel1.Size = new Size(1002, 396);
@@ -670,7 +668,7 @@ namespace HidRawTools
         }
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            
+
             Graphics g = panel1.CreateGraphics();
             Pen pen = new Pen(Color.FromArgb(220, 220, 230), 1);
             g.DrawRectangle(pen, new Rectangle(35, 95, 727, 247));
@@ -678,7 +676,7 @@ namespace HidRawTools
             g.DrawRectangle(pen, new Rectangle(35, 40, 727, 50));
             //  pen.Color = Color.FromArgb(170, 170, 170);
             g.DrawRectangle(pen, new Rectangle(767, 40, 199, 302));
-            
+
         }
         private void ClearAll_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -770,7 +768,7 @@ namespace HidRawTools
             else
             {
                 return;
-            }          
+            }
             try
             {
                 FileStream fs = new FileStream(path, FileMode.Open);
@@ -884,14 +882,6 @@ namespace HidRawTools
             textBox4.Text = "";
             eepromsize = 2048;
         }      
-        private void staryuToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (loadmatrix("staryu")) { Open(); }
-            textBox3.Text = "32C2";
-            textBox2.Text = "0105";
-            textBox4.Text = "";
-            eepromsize = 1024;
-        }
         private void gH60revCNYToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (loadmatrix("GH60_revCNY")) { Open(); }
@@ -915,7 +905,7 @@ namespace HidRawTools
             textBox3.Text = "32C4";
             textBox2.Text = "0160";
             textBox4.Text = "281";
-            eepromsize = 1024;           
+            eepromsize = 1024;
         }
         private void tinykeyToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -957,43 +947,14 @@ namespace HidRawTools
             textBox4.Text = "39";
             eepromsize = 512;
         }
-        private void AboutText()
+        private void StaryuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Clear();
-            /*
-          Print("How to change key values and LED color:");
-Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (Keyboard->XD002)");
-          Print("2.Click on the button icon that you want to change, and then select the desire key value from the chart at lower right corner.Click RGB on the title to change color config.If you want to use Rainbow LED, select RGB->Rainbow on the title bar.Otherwise, choose RGB->Fixed color.");
-          Print("3.XD002 provide two layers(layer 0 and layer 1), you can click radio button on the title bar to alter the key values of another layer.");
-          Print("4.Click on “Matrix” and select “Upload Matrix” to save changes.");
-          Print("");
-          Print("How to alter the printer content:");
-          Print("1.Input the text content in Print Box.  The print box is at the lower left corner.");
-          Print("2.Click on “Printer” on the title bar, select “Upload with GBK” to save the changes. Try to select “Upload with Unicode” If print garbled Korea.");
-          Print("");
-
-          Print("修改按键和灯");
-          Print("");
-          Print("步骤1: 点击标题栏keyboard，选择对应的键盘型号。"); Print("");
-          Print("步骤2: 点击按键图标再点击右下角键值表编辑键值。");
-          Print("点击RGB灯图标编辑灯的颜色。"); Print("");
-          Print("步骤3: 点击Layer0/Layer1切换编辑第二层矩阵的键值。");
-          Print("点击RGB编辑灯的模式。Rainbow表示彩虹渐变。FixColor表示单色。"); Print("");
-          Print("步骤4: 点击标题栏Matrix上传修改内容。");
-          Print("");
-          Print("修改[打字机]内容");
-          Print("");
-          Print("步骤1: PrintBox输入中英文文本。"); Print("");
-          Print("步骤2: 点击标题栏Printer - Upload with GBK上传修改内容。");
-          Print("要切换中文编码则换成Printer - Upload with Unicode。");
-          Print("");
-          */
-            Print("Click on “Keyboard” button on the title bar to select your templet."); Print("");
-            Print("Detailed tutorial http://xiudi.fun/xd002/Manual.html "); Print("");
-
-            Print("Enjoy!");
-            Print("Author zian1  QQ 29347213");
-        }
+            if (loadmatrix("Staryu")) { Open(); }
+            textBox3.Text = "32C2";
+            textBox2.Text = "0105";
+            textBox4.Text = "";
+            eepromsize = 1024;
+        }        
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             if (layer != 0)
@@ -1009,16 +970,6 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
                 layer = 1;
                 changeButton();
             }
-        }
-        private void gBKToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            iencode = "GBK";
-            UploadPrintBox();
-        }
-        private void unicodeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            iencode = "Unicode";
-            UploadPrintBox();
         }
         private void FixedRGBStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1065,9 +1016,9 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
         }
         private void oNOFFToolStripMenuItem_Click(object sender, EventArgs e)
         {
-          
-           if (matrix == null) return;
-           if (matrix.RGB == null || matrix.RGB.GetUpperBound(0) < 0) return;
+
+            if (matrix == null) return;
+            if (matrix.RGB == null || matrix.RGB.GetUpperBound(0) < 0) return;
 
             if ((RGB_Type & 0xF0) == 0) { this.oNOFFToolStripMenuItem.Text = "Default OFF"; RGB_Type ^= (byte)0x10; }
             else { this.oNOFFToolStripMenuItem.Text = "Default ON"; RGB_Type ^= (byte)0x10; }
@@ -1087,12 +1038,7 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
             Thread t = new Thread(new ThreadStart(ThreadProc));
             t.SetApartmentState(ApartmentState.STA);
             t.Start();
-        }
-        public static void ThreadProc()
-        {
-            libusbtool form = new libusbtool();//第2个窗体
-            form.ShowDialog();
-        }
+        }     
         private void PrintBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Modifiers == Keys.Control && e.KeyCode == Keys.A)
@@ -1106,57 +1052,26 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
             {
                 ((TextBox)sender).SelectAll();
             }
+        }    
+        private void gBKToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            iencode = "GBK";
+            UploadPrintBox();
+        }
+        private void unicodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            iencode = "Unicode";
+            UploadPrintBox();
+        }
+        private void writeToFlashInUnicodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            iencode = "Unicode";
+            WriteToHex();
         }
         private void writeToHexToolStripMenuItem_Click(object sender, EventArgs e)
-        {           
-            Encode(iencode);           
-            try
-            {
-                if (CodeTemp == "")
-                {
-                    Print("Nothing to write");
-                    return;
-                }
-                string[] str = CodeTemp.Split(',');
-                Hex hex1 = new Hex(str);
-                string hex0 = "";
-                if (matrix == null) { Print("Select a keyboard templet!"); return; }
-
-               else if(matrix.Name == "XD004"){
-                    hex0 = Encoding.Default.GetString(Properties.Resources.XD004);
-                    hex0 += hex1.Write(0x0000);
-                }
-                else if (matrix.Name == "staryu")
-                {
-                    hex0 = Encoding.Default.GetString(Properties.Resources.staryu);
-                    hex0 += hex1.Write(0x0000);
-                }
-                else { return; }
-
-                SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Filter = "hex files (*.hex)|*.hex|All files (*.*)|*.*";
-                sfd.FilterIndex = 2;
-                sfd.RestoreDirectory = true;
-                if (sfd.ShowDialog() == DialogResult.OK)
-                {
-                    FileStream fs = new FileStream(sfd.FileName, FileMode.OpenOrCreate);
-                    fs.SetLength(0);
-                    StreamWriter stream = new StreamWriter(fs); 
-                    stream.Write(hex0);
-                    stream.Flush();
-                    stream.Close();
-                }
-                else
-                {
-                    return;
-                }               
-            }
-            catch (Exception ex) { Print(ex.ToString()); }               
-        }
-
-        private void staryuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            iencode = "GBK";
+            WriteToHex();
         }
     }
 }

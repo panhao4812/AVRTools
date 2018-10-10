@@ -68,7 +68,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HexFiles.cs" />
+    <Compile Include="encode.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Hidlib\Extensions.cs" />
     <Compile Include="Hidlib\HidAsyncState.cs" />
     <Compile Include="Hidlib\HidDevice.cs" />
@@ -89,6 +91,7 @@
     <Compile Include="HidRawTools.Designer.cs">
       <DependentUpon>HidRawTools.cs</DependentUpon>
     </Compile>
+    <Compile Include="keyboard\IMatrix.cs" />
     <Compile Include="keyboard\staryu.cs" />
     <Compile Include="libusbtool.cs">
       <SubType>Form</SubType>

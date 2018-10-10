@@ -45,6 +45,7 @@
             this.tinykeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xD75ReToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xD004ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.StaryuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rGBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.oNOFFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -75,7 +76,7 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.PrintBox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.staryuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.writeToFlashInUnicodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -113,21 +114,21 @@
             // matrix1ToolStripMenuItem
             // 
             this.matrix1ToolStripMenuItem.Name = "matrix1ToolStripMenuItem";
-            this.matrix1ToolStripMenuItem.Size = new System.Drawing.Size(171, 26);
+            this.matrix1ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.matrix1ToolStripMenuItem.Text = "OpenMatrix";
             this.matrix1ToolStripMenuItem.Click += new System.EventHandler(this.OpenMatrix_StripMenuItem_Click);
             // 
             // matrix2ToolStripMenuItem
             // 
             this.matrix2ToolStripMenuItem.Name = "matrix2ToolStripMenuItem";
-            this.matrix2ToolStripMenuItem.Size = new System.Drawing.Size(171, 26);
+            this.matrix2ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.matrix2ToolStripMenuItem.Text = "SaveMatrix";
             this.matrix2ToolStripMenuItem.Click += new System.EventHandler(this.SaveMatrix_ToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(171, 26);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.saveAsToolStripMenuItem.Text = "SaveAsFile";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.SaveAsFile_ToolStripMenuItem_Click);
             // 
@@ -135,7 +136,7 @@
             // 
             this.clearAllToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.clearAllToolStripMenuItem.Name = "clearAllToolStripMenuItem";
-            this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(171, 26);
+            this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.clearAllToolStripMenuItem.Text = "ClearAll";
             this.clearAllToolStripMenuItem.Click += new System.EventHandler(this.ClearAll_ToolStripMenuItem_Click);
             // 
@@ -147,7 +148,7 @@
             this.tinykeyToolStripMenuItem,
             this.xD75ReToolStripMenuItem,
             this.xD004ToolStripMenuItem,
-            this.staryuToolStripMenuItem});
+            this.StaryuToolStripMenuItem});
             this.templateToolStripMenuItem.Name = "templateToolStripMenuItem";
             this.templateToolStripMenuItem.Size = new System.Drawing.Size(92, 24);
             this.templateToolStripMenuItem.Text = "Keyboard";
@@ -219,6 +220,13 @@
             this.xD004ToolStripMenuItem.Text = "XD004";
             this.xD004ToolStripMenuItem.Click += new System.EventHandler(this.xD004ToolStripMenuItem_Click);
             // 
+            // StaryuToolStripMenuItem
+            // 
+            this.StaryuToolStripMenuItem.Name = "StaryuToolStripMenuItem";
+            this.StaryuToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
+            this.StaryuToolStripMenuItem.Text = "Staryu";
+            this.StaryuToolStripMenuItem.Click += new System.EventHandler(this.StaryuToolStripMenuItem_Click);
+            // 
             // rGBToolStripMenuItem
             // 
             this.rGBToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -231,14 +239,14 @@
             // oNOFFToolStripMenuItem
             // 
             this.oNOFFToolStripMenuItem.Name = "oNOFFToolStripMenuItem";
-            this.oNOFFToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
+            this.oNOFFToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.oNOFFToolStripMenuItem.Text = "Default ON";
             this.oNOFFToolStripMenuItem.Click += new System.EventHandler(this.oNOFFToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.editToolStripMenuItem.Text = "Rainbow";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.FixedRGBStripMenuItem_Click);
             // 
@@ -264,7 +272,8 @@
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gBKToolStripMenuItem,
             this.unicodeToolStripMenuItem,
-            this.writeToHexToolStripMenuItem});
+            this.writeToHexToolStripMenuItem,
+            this.writeToFlashInUnicodeToolStripMenuItem});
             this.toolsToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
@@ -274,23 +283,23 @@
             // 
             this.gBKToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.gBKToolStripMenuItem.Name = "gBKToolStripMenuItem";
-            this.gBKToolStripMenuItem.Size = new System.Drawing.Size(237, 26);
-            this.gBKToolStripMenuItem.Text = "Upload with GBK";
+            this.gBKToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
+            this.gBKToolStripMenuItem.Text = "Upload to EEP in GBK";
             this.gBKToolStripMenuItem.Click += new System.EventHandler(this.gBKToolStripMenuItem_Click);
             // 
             // unicodeToolStripMenuItem
             // 
             this.unicodeToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.unicodeToolStripMenuItem.Name = "unicodeToolStripMenuItem";
-            this.unicodeToolStripMenuItem.Size = new System.Drawing.Size(237, 26);
-            this.unicodeToolStripMenuItem.Text = "Upload with Unicode";
+            this.unicodeToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
+            this.unicodeToolStripMenuItem.Text = "Upload to EEP in Unicode";
             this.unicodeToolStripMenuItem.Click += new System.EventHandler(this.unicodeToolStripMenuItem_Click);
             // 
             // writeToHexToolStripMenuItem
             // 
             this.writeToHexToolStripMenuItem.Name = "writeToHexToolStripMenuItem";
-            this.writeToHexToolStripMenuItem.Size = new System.Drawing.Size(237, 26);
-            this.writeToHexToolStripMenuItem.Text = "Write to Hex";
+            this.writeToHexToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
+            this.writeToHexToolStripMenuItem.Text = "Wirte to Flash in GBK";
             this.writeToHexToolStripMenuItem.Click += new System.EventHandler(this.writeToHexToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
@@ -543,12 +552,12 @@
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             this.panel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseClick);
             // 
-            // staryuToolStripMenuItem
+            // writeToFlashInUnicodeToolStripMenuItem
             // 
-            this.staryuToolStripMenuItem.Name = "staryuToolStripMenuItem";
-            this.staryuToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
-            this.staryuToolStripMenuItem.Text = "Staryu";
-            this.staryuToolStripMenuItem.Click += new System.EventHandler(this.staryuToolStripMenuItem_Click);
+            this.writeToFlashInUnicodeToolStripMenuItem.Name = "writeToFlashInUnicodeToolStripMenuItem";
+            this.writeToFlashInUnicodeToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
+            this.writeToFlashInUnicodeToolStripMenuItem.Text = "Write to Flash in Unicode";
+            this.writeToFlashInUnicodeToolStripMenuItem.Click += new System.EventHandler(this.writeToFlashInUnicodeToolStripMenuItem_Click);
             // 
             // HidRawTools
             // 
@@ -633,7 +642,8 @@
         private System.Windows.Forms.ToolStripMenuItem xD75ReToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem writeToHexToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem xD004ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem staryuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem StaryuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem writeToFlashInUnicodeToolStripMenuItem;
     }
 }
 
