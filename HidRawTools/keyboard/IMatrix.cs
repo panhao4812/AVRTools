@@ -21,5 +21,9 @@ namespace HidRawTools
         public string[] keycode;
         public string[] Defaultkeycode;
         public int[,] RGB = new int[0, 6];
+        public ushort PrintFlashAddress = 0;
+        public ushort PrintEEpAddress = 0;
+        public ushort eepromsize = 0;
+        public ushort flashsize = 0;
     }
 }

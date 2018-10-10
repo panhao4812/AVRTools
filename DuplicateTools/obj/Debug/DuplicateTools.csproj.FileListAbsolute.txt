@@ -10,3 +10,4 @@ C:\Users\Administrator\Documents\GitHub\Tinytools\DuplicateTools\bin\Debug\Inter
 C:\Users\Administrator\Documents\GitHub\Tinytools\DuplicateTools\bin\Debug\AxInterop.AcroPDFLib.dll
 C:\Users\Administrator\Documents\GitHub\Tinytools\DuplicateTools\obj\Debug\Interop.AcroPDFLib.dll
 C:\Users\Administrator\Documents\GitHub\Tinytools\DuplicateTools\obj\Debug\AxInterop.AcroPDFLib.dll
+C:\Users\Administrator\Documents\GitHub\Tinytools\DuplicateTools\obj\Debug\DuplicateTools.csprojResolveAssemblyReference.cache

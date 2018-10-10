@@ -10,6 +10,11 @@ namespace HidRawTools
     {
         public Staryu()
         {
+            this.PrintFlashAddress = 0x2200;
+            this.PrintEEpAddress = 40;
+            this.eepromsize = 512;
+            this.flashsize = 0x7000;
+
             this.Name = "Staryu";
             this.ROWS = 1;
             this.COLS = 5;
@@ -37,6 +42,7 @@ namespace HidRawTools
 "4,KEY_RIGHT,MACRO7"
             };
             RGB = new int[1, 6]{ {782,255,0,255,255,255} };
+           
         }
     }
     class XD004 : IMatrix
