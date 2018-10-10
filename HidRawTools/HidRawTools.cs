@@ -7,7 +7,7 @@ using System.Windows.Forms;
 namespace HidRawTools
 {
     public partial class HidRawTools : Form
-    {       
+    {
         private void Form1_Load(object sender, EventArgs e)
         {
             this.Size = new Size(1024, 800);
@@ -232,7 +232,7 @@ namespace HidRawTools
                 byte[] outdata = new byte[9]; outdata[0] = 0;
                 outdata[1] = 0xFF; outdata[2] = 0xF1;
                 HidDevice.Write(outdata); Thread.Sleep(60);
-                for (ushort i = 0; i < eepromsize; i += 6)
+                for (ushort i = 0; i < matrix.eepromsize; i += 6)
                 {
                     outdata[0] = 0;
                     byte[] a = BitConverter.GetBytes(i);
@@ -269,32 +269,32 @@ namespace HidRawTools
         }
         private void xShiftToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (loadmatrix("XD60_B")) { Open(); }          
+            if (loadmatrix("XD60_B")) { Open(); }
         }
         private void tinykeyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (loadmatrix("Tinykey")) { Open(); }          
+            if (loadmatrix("Tinykey")) { Open(); }
         }
         private void xshiftToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            if (loadmatrix("bface60_B")) { Open(); }         
+            if (loadmatrix("bface60_B")) { Open(); }
         }
         private void minilaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (loadmatrix("bface60_minila")) { Open(); }         
+            if (loadmatrix("bface60_minila")) { Open(); }
         }
         private void xD75ReToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (loadmatrix("XD75_Re")) { Open(); }         
+            if (loadmatrix("XD75_Re")) { Open(); }
         }
         private void xD004ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (loadmatrix("XD004")) { Open(); }           
+            if (loadmatrix("XD004")) { Open(); }
         }
         private void StaryuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (loadmatrix("Staryu")) { Open(); }       
-        }        
+            if (loadmatrix("Staryu")) { Open(); }
+        }
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             if (layer != 0)
@@ -378,7 +378,7 @@ namespace HidRawTools
             Thread t = new Thread(new ThreadStart(ThreadProc));
             t.SetApartmentState(ApartmentState.STA);
             t.Start();
-        }     
+        }
         private void PrintBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Modifiers == Keys.Control && e.KeyCode == Keys.A)
@@ -392,7 +392,7 @@ namespace HidRawTools
             {
                 ((TextBox)sender).SelectAll();
             }
-        }    
+        }
         private void gBKToolStripMenuItem_Click(object sender, EventArgs e)
         {
             iencode = "GBK";
@@ -406,12 +406,12 @@ namespace HidRawTools
         private void writeToFlashInUnicodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             iencode = "Unicode";
-            WriteToHex(matrix.PrintFlashAddress);
+            WriteToHex();
         }
         private void writeToHexToolStripMenuItem_Click(object sender, EventArgs e)
         {
             iencode = "GBK";
-            WriteToHex(matrix.PrintFlashAddress);
+            WriteToHex();
         }
     }
 }

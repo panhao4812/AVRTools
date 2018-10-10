@@ -10,6 +10,11 @@ namespace HidRawTools
     {
         public ps2avrU()
         {
+            this.PrintFlashAddress = 0;
+            this.PrintEEpAddress = 297;
+            this.eepromsize = 1024;
+            this.flashsize = 0;
+
             this.Name = "ps2avrU";
             this.ROWS = 8;
             this.COLS = 10;
@@ -152,6 +157,11 @@ namespace HidRawTools
     {
         public bface60()
         {
+            this.PrintFlashAddress = 0;
+            this.PrintEEpAddress = 297;
+            this.eepromsize = 1024;
+            this.flashsize = 0;
+
             this.Name = "bface60";
             this.ROWS = 5;
             this.COLS = 15;

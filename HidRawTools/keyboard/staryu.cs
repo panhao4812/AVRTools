@@ -12,7 +12,7 @@ namespace HidRawTools
         {
             this.PrintFlashAddress = 0x2200;
             this.PrintEEpAddress = 40;
-            this.eepromsize = 512;
+            this.eepromsize = 1024;
             this.flashsize = 0x7000;
 
             this.Name = "Staryu";
@@ -49,6 +49,11 @@ namespace HidRawTools
     {
         public XD004()
         {
+            this.PrintFlashAddress = 0x2200;
+            this.PrintEEpAddress = 39;
+            this.eepromsize = 512;
+            this.flashsize = 0x3000;
+
             this.Name = "XD004";
             this.ROWS = 1;
             this.COLS = 4;
@@ -83,6 +88,11 @@ namespace HidRawTools
     {
         public Tinykey()
         {
+            this.PrintFlashAddress = 0;
+            this.PrintEEpAddress = 31;
+            this.eepromsize = 512;
+            this.flashsize = 0;
+
             this.Name = "Tinykey";
             this.ROWS = 1;
             this.COLS = 2;

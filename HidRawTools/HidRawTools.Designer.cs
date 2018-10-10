@@ -55,6 +55,7 @@
             this.gBKToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.unicodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.writeToHexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.writeToFlashInUnicodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.eEPROMToolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,11 +73,8 @@
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.PrintBox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.writeToFlashInUnicodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -96,7 +94,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(512, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(397, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -114,21 +112,21 @@
             // matrix1ToolStripMenuItem
             // 
             this.matrix1ToolStripMenuItem.Name = "matrix1ToolStripMenuItem";
-            this.matrix1ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.matrix1ToolStripMenuItem.Size = new System.Drawing.Size(171, 26);
             this.matrix1ToolStripMenuItem.Text = "OpenMatrix";
             this.matrix1ToolStripMenuItem.Click += new System.EventHandler(this.OpenMatrix_StripMenuItem_Click);
             // 
             // matrix2ToolStripMenuItem
             // 
             this.matrix2ToolStripMenuItem.Name = "matrix2ToolStripMenuItem";
-            this.matrix2ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.matrix2ToolStripMenuItem.Size = new System.Drawing.Size(171, 26);
             this.matrix2ToolStripMenuItem.Text = "SaveMatrix";
             this.matrix2ToolStripMenuItem.Click += new System.EventHandler(this.SaveMatrix_ToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(171, 26);
             this.saveAsToolStripMenuItem.Text = "SaveAsFile";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.SaveAsFile_ToolStripMenuItem_Click);
             // 
@@ -136,7 +134,7 @@
             // 
             this.clearAllToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.clearAllToolStripMenuItem.Name = "clearAllToolStripMenuItem";
-            this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(171, 26);
             this.clearAllToolStripMenuItem.Text = "ClearAll";
             this.clearAllToolStripMenuItem.Click += new System.EventHandler(this.ClearAll_ToolStripMenuItem_Click);
             // 
@@ -239,14 +237,14 @@
             // oNOFFToolStripMenuItem
             // 
             this.oNOFFToolStripMenuItem.Name = "oNOFFToolStripMenuItem";
-            this.oNOFFToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.oNOFFToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
             this.oNOFFToolStripMenuItem.Text = "Default ON";
             this.oNOFFToolStripMenuItem.Click += new System.EventHandler(this.oNOFFToolStripMenuItem_Click);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(164, 26);
             this.editToolStripMenuItem.Text = "Rainbow";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.FixedRGBStripMenuItem_Click);
             // 
@@ -301,6 +299,13 @@
             this.writeToHexToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
             this.writeToHexToolStripMenuItem.Text = "Wirte to Flash in GBK";
             this.writeToHexToolStripMenuItem.Click += new System.EventHandler(this.writeToHexToolStripMenuItem_Click);
+            // 
+            // writeToFlashInUnicodeToolStripMenuItem
+            // 
+            this.writeToFlashInUnicodeToolStripMenuItem.Name = "writeToFlashInUnicodeToolStripMenuItem";
+            this.writeToFlashInUnicodeToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
+            this.writeToFlashInUnicodeToolStripMenuItem.Text = "Write to Flash in Unicode";
+            this.writeToFlashInUnicodeToolStripMenuItem.Click += new System.EventHandler(this.writeToFlashInUnicodeToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -477,7 +482,7 @@
             this.radioButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(868, 5);
+            this.radioButton1.Location = new System.Drawing.Point(978, 6);
             this.radioButton1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(76, 19);
@@ -491,7 +496,7 @@
             // 
             this.radioButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(955, 5);
+            this.radioButton2.Location = new System.Drawing.Point(1065, 6);
             this.radioButton2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(76, 19);
@@ -499,30 +504,6 @@
             this.radioButton2.Text = "Layer1";
             this.radioButton2.UseVisualStyleBackColor = true;
             this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(1048, 8);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(39, 15);
-            this.label3.TabIndex = 32;
-            this.label3.Text = "addr";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox4.BackColor = System.Drawing.Color.White;
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox4.Location = new System.Drawing.Point(1092, 5);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(53, 20);
-            this.textBox4.TabIndex = 31;
-            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // PrintBox
             // 
@@ -552,13 +533,6 @@
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             this.panel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseClick);
             // 
-            // writeToFlashInUnicodeToolStripMenuItem
-            // 
-            this.writeToFlashInUnicodeToolStripMenuItem.Name = "writeToFlashInUnicodeToolStripMenuItem";
-            this.writeToFlashInUnicodeToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
-            this.writeToFlashInUnicodeToolStripMenuItem.Text = "Write to Flash in Unicode";
-            this.writeToFlashInUnicodeToolStripMenuItem.Click += new System.EventHandler(this.writeToFlashInUnicodeToolStripMenuItem_Click);
-            // 
             // HidRawTools
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -566,8 +540,6 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1344, 951);
             this.Controls.Add(this.PrintBox);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox4);
             this.Controls.Add(this.radioButton2);
             this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.checkedListBox1);
@@ -626,8 +598,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gBKToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem unicodeToolStripMenuItem;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.ToolStripMenuItem rGBToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.TextBox PrintBox;

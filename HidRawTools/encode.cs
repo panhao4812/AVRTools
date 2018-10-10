@@ -31,12 +31,9 @@ namespace HidRawTools
         public int keyCount = 0;
         int layer = 0;
         string matrixname = "";
-        ushort eepromsize = 512;
-        ushort flashsize = 1024 * 8;
         string CodeTemp = "";
         string iencode = "GBK";
         byte RGB_Type = 0;
-        int addr = 0;
         Image img = null; Image img2 = null;
         public static HidDevice HidDevice;
         void save(string path)
@@ -90,22 +87,7 @@ namespace HidRawTools
             {
                 Print(ex.ToString());
             }
-        }
-        void changeButton()
-        {
-            //Clear();
-            img2 = panel1.BackgroundImage;
-            panel1.BackgroundImage = null;
-            panel1.Controls.Clear();
-            panel1.BackgroundImage = img2;
-            for (int i = 0; i < checkedListBox1.CheckedIndices.Count; i++)
-            {
-                string str = checkedListBox1.CheckedIndices[i].ToString();
-                int index = checkedListBox1.CheckedIndices[i];
-                AddButton(index, matrix.keycode[index + layer * keyCount]);
-            }
-            AddRGBButton();
-        }
+        }    
         void Open()
         {
             try
@@ -311,8 +293,6 @@ namespace HidRawTools
                 matrix = new XD60_A();
                 textBox3.Text = "32C4";
                 textBox2.Text = "0160";
-                textBox4.Text = "281";
-                eepromsize = 1024;
                 img = Properties.Resources.tinykey3;
             }
             else if (_name == "XD60_B")
@@ -320,8 +300,6 @@ namespace HidRawTools
                 matrix = new XD60_B();
                 textBox3.Text = "32C4";
                 textBox2.Text = "0160";
-                textBox4.Text = "281";
-                eepromsize = 1024;
                 img = Properties.Resources.tinykey3;
             }
             else if (_name == "ps2avrU")
@@ -337,8 +315,6 @@ namespace HidRawTools
                 matrix = new bface60_minila();
                 textBox3.Text = "32A0";
                 textBox2.Text = "0160";
-                textBox4.Text = "297";
-                eepromsize = 1024;
                 img = Properties.Resources.tinykey2;
             }
             else if (_name == "bface60_B")
@@ -346,8 +322,6 @@ namespace HidRawTools
                 matrix = new bface60_B();
                 textBox3.Text = "32A0";
                 textBox2.Text = "0160";
-                textBox4.Text = "297";
-                eepromsize = 1024;
                 img = Properties.Resources.tinykey2;
             }
             else if (_name == "Staryu")
@@ -355,24 +329,18 @@ namespace HidRawTools
                 matrix = new Staryu();
                 textBox3.Text = "32C2";
                 textBox2.Text = "0105";
-                textBox4.Text = "40";
-                eepromsize = 1024;
             }
             else if (_name == "XD004")
             {
                 matrix = new XD004();
                 textBox3.Text = "16C2";
                 textBox2.Text = "0204";
-                textBox4.Text = "39";
-                eepromsize = 512;
             }
             else if (_name == "Tinykey")
             {
                 matrix = new Tinykey();
                 textBox3.Text = "D850";
                 textBox2.Text = "0102";
-                textBox4.Text = "31";
-                eepromsize = 512;
                 img = Properties.Resources.tinykey;
             }
             else if (_name == "XD75_Re")
@@ -380,8 +348,6 @@ namespace HidRawTools
                 matrix = new XD75_Re();
                 textBox3.Text = "32C4";
                 textBox2.Text = "0375";
-                textBox4.Text = "279";
-                eepromsize = 1024;
                 img = Properties.Resources.tinykey4;
             }
             else return false;
@@ -408,10 +374,10 @@ namespace HidRawTools
                 checkedListBox1.Items.Add(name);
             }
             radioButton2.Checked = false;
-            radioButton1.Checked = true;           
+            radioButton1.Checked = true;
             return true;
         }
-        private void WriteToHex(int address)
+        private void WriteToHex()
         {
             Encode(iencode);
             try
@@ -429,12 +395,12 @@ namespace HidRawTools
                 else if (matrix.Name == "XD004")
                 {
                     hex0 = Encoding.Default.GetString(Properties.Resources.XD004);
-                    hex0 += hex1.Write(address);
+                    hex0 += hex1.Write(matrix.PrintFlashAddress);
                 }
                 else if (matrix.Name == "Staryu")
                 {
                     hex0 = Encoding.Default.GetString(Properties.Resources.Staryu);
-                    hex0 += hex1.Write(address);
+                    hex0 += hex1.Write(matrix.PrintFlashAddress);
                 }
                 else { return; }
 
@@ -462,7 +428,7 @@ namespace HidRawTools
         {
             OpenDevice();
             Encode(iencode);
-            Print("eepromsize=" + eepromsize.ToString());
+            Print("eepromsize=" + matrix.eepromsize.ToString());
             try
             {
                 if (CodeTemp == "")
@@ -480,9 +446,9 @@ namespace HidRawTools
                 byte[] a = new byte[2];
                 outdata[1] = 0xFF; outdata[2] = 0xF1;
                 HidDevice.Write(outdata); Thread.Sleep(60);
-                for (ushort i = 0; (i * 2 + 4 + addr) < eepromsize; i += 3)
+                for (ushort i = 0; (i * 2 + 4 + matrix.PrintEEpAddress) < matrix.eepromsize; i += 3)
                 {
-                    a = BitConverter.GetBytes((ushort)(i * 2 + addr));
+                    a = BitConverter.GetBytes((ushort)(i * 2 + matrix.PrintEEpAddress));
                     outdata[1] = a[0]; outdata[2] = a[1];
                     if ((i + 2) < str.Length)
                     {
@@ -520,6 +486,21 @@ namespace HidRawTools
                 Print("Upload finished");
             }
             catch (Exception ex) { Print(ex.ToString()); }
+        }
+        void changeButton()
+        {
+            //Clear();
+            img2 = panel1.BackgroundImage;
+            panel1.BackgroundImage = null;
+            panel1.Controls.Clear();
+            panel1.BackgroundImage = img2;
+            for (int i = 0; i < checkedListBox1.CheckedIndices.Count; i++)
+            {
+                string str = checkedListBox1.CheckedIndices[i].ToString();
+                int index = checkedListBox1.CheckedIndices[i];
+                AddButton(index, matrix.keycode[index + layer * keyCount]);
+            }
+            AddRGBButton();
         }
         public void AddRGBButton(int i, Color c)
         {
@@ -704,12 +685,6 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
                     return;
                 }
                 // Print("English 0-127 GBK > " + 0x8080);
-                addr = 0;
-                if (textBox4.Text != "" && textBox4.Text != null)
-                {
-                    addr = Convert.ToInt32(textBox4.Text);
-                }
-                Print("Uploading address=" + addr.ToString());
                 int length = ch.Length;
                 string output = "";
                 int length2 = length;
@@ -737,7 +712,6 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
                         if (j != length - 1) output += ",";
                     }
                 }
-
                 CodeTemp += length2.ToString() + ",";
                 CodeTemp += output;
                 Print(CodeTemp);

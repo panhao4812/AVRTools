@@ -10,6 +10,11 @@ namespace HidRawTools
     {
         public XD60()
         {
+            this.PrintFlashAddress = 0;
+            this.PrintEEpAddress = 281;
+            this.eepromsize = 1024;
+            this.flashsize = 0x7000;
+
             this.ROWS = 5;
             this.COLS = 14;
             this.rowPins = new byte[5] { 5, 6, 7, 8, 23 };
@@ -294,6 +299,11 @@ namespace HidRawTools
     {
         public XD75_Re()
         {
+            this.PrintFlashAddress = 0;
+            this.PrintEEpAddress = 279;
+            this.eepromsize = 1024;
+            this.flashsize = 0x7000;
+
             this.Name = "XD75_Re";
             this.ROWS = 5;
             this.COLS = 15;
@@ -475,6 +485,11 @@ namespace HidRawTools
     {
         public GH60_revCNY()
         {
+            this.PrintFlashAddress = 0;
+            this.PrintEEpAddress = 281;
+            this.eepromsize = 1024;
+            this.flashsize = 0x7000;
+
             this.Name = "GH60_revCNY";
             this.ROWS = 5;
             this.COLS = 14;
