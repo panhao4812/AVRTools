@@ -18,3 +18,4 @@ C:\Users\Administrator\Documents\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTo
 C:\Users\Administrator\Documents\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.csproj.GenerateResource.Cache
 C:\Users\Administrator\Documents\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.exe
 C:\Users\Administrator\Documents\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.pdb
+C:\Users\Administrator\Documents\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.csprojResolveAssemblyReference.cache

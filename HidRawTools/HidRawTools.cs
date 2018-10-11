@@ -218,7 +218,7 @@ namespace HidRawTools
                     Print("Invalid device");
                     return;
                 }
-                string codeTemp = ToEEP();
+                string codeTemp = CreateMatrixCode();
                 if (codeTemp == "")
                 {
                     //Clear();
@@ -265,35 +265,35 @@ namespace HidRawTools
         }
         private void xShiftToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (loadmatrix("XD60_A")) { Open(); }
+            if (loadmatrix("XD60_A")) { initMatrix(); }
         }
         private void xShiftToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (loadmatrix("XD60_B")) { Open(); }
+            if (loadmatrix("XD60_B")) { initMatrix(); }
         }
         private void tinykeyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (loadmatrix("Tinykey")) { Open(); }
+            if (loadmatrix("Tinykey")) { initMatrix(); }
         }
         private void xshiftToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            if (loadmatrix("bface60_B")) { Open(); }
+            if (loadmatrix("bface60_B")) { initMatrix(); }
         }
         private void minilaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (loadmatrix("bface60_minila")) { Open(); }
+            if (loadmatrix("bface60_minila")) { initMatrix(); }
         }
         private void xD75ReToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (loadmatrix("XD75_Re")) { Open(); }
+            if (loadmatrix("XD75_Re")) { initMatrix(); }
         }
         private void xD004ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (loadmatrix("XD004")) { Open(); }
+            if (loadmatrix("XD004")) { initMatrix(); }
         }
         private void StaryuToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (loadmatrix("Staryu")) { Open(); }
+            if (loadmatrix("Staryu")) { initMatrix(); }
         }
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {

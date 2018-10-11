@@ -87,65 +87,7 @@ namespace HidRawTools
             {
                 Print(ex.ToString());
             }
-        }    
-        void Open()
-        {
-            try
-            {
-                for (int i = 0; i < matrix.Defaultkeycode.Length; i++)
-                {
-                    string str = matrix.Defaultkeycode[i];
-                    string[] chara = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-                    if (chara.Length == 3)
-                    {
-                        int index = Convert.ToInt32(chara[0]);
-                        checkedListBox1.SetItemChecked(index, true);
-                        AddButton(index, Program.shortname(chara[1]));
-                        matrix.keycode[index] = Program.shortname(chara[1]);
-                        matrix.keycode[index + keyCount] = Program.shortname(chara[2]);
-                    }
-                    else if (chara.Length == 2)
-                    {
-                        int index = Convert.ToInt32(chara[0]);
-                        checkedListBox1.SetItemChecked(index, true);
-                        AddButton(index, Program.shortname(chara[1]));
-                        matrix.keycode[index] = Program.shortname(chara[1]);
-                    }
-                    else if (chara.Length == 1)
-                    {
-                        int index = Convert.ToInt32(chara[0]);
-                        checkedListBox1.SetItemChecked(index, true);
-                        AddButton(index, "");
-                    }
-
-                }
-                AddRGBButton();
-                RGB_Type = (Byte)matrix.RGB[0, 2];
-                if ((RGB_Type & 0x0F) == 0x01)
-                {
-                    this.editToolStripMenuItem.Text = "FixedColor";
-                }
-                else
-                {
-                    this.editToolStripMenuItem.Text = "Rainbow";
-                }
-                if ((RGB_Type & 0xF0) == 0x10)
-                {
-                    this.oNOFFToolStripMenuItem.Text = "Default OFF";
-                }
-                else
-                {
-                    this.oNOFFToolStripMenuItem.Text = "Default ON";
-                }
-                panel1.BackgroundImage = img;
-
-            }
-            catch (Exception ex)
-            {
-                Print(ex.ToString());
-                panel1.BackgroundImage = img;
-            }
-        }
+        }           
         private void OpenDevice()
         {
             ushort vid = 0, pid = 0;
@@ -188,102 +130,6 @@ namespace HidRawTools
             catch (Exception ex)
             {
                 Print(ex.ToString());
-            }
-        }
-        public string ToEEP()
-        {
-            for (int r = 0; r < matrix.ROWS; r++)
-            {
-                for (int c = 0; c < matrix.COLS; c++)
-                {
-                    matrix.hexaKeys0[r, c] = "0x00";
-                    matrix.hexaKeys1[r, c] = "0x00";
-                }
-            }
-            for (int i = 0; i < checkedListBox1.CheckedIndices.Count; i++)
-            {
-                int index = checkedListBox1.CheckedIndices[i];
-                string str0 = matrix.keycode[index];
-                string str1 = matrix.keycode[index + keyCount];
-                int r = (int)matrix.keycap[index, 3];
-                int c = (int)matrix.keycap[index, 4];
-                matrix.hexaKeys0[r, c] = str0;
-                matrix.hexaKeys1[r, c] = str1;
-            }
-            try
-            {
-                ushort add1 = 5 * 2;
-                ushort add2 = (ushort)(add1 + matrix.ROWS);
-                ushort add3 = (ushort)(add2 + matrix.COLS);
-                ushort add4 = (ushort)(add3 + matrix.ROWS * matrix.COLS);
-                ushort add5 = (ushort)(add4 + matrix.ROWS * matrix.COLS);
-                StringBuilder output = new StringBuilder();
-                byte[] a = BitConverter.GetBytes(add1);
-                output.Append(a[0]); output.Append(","); output.Append(a[1]); output.Append(",");
-                a = BitConverter.GetBytes(add2);
-                output.Append(a[0]); output.Append(","); output.Append(a[1]); output.Append(",");
-                a = BitConverter.GetBytes(add3);
-                output.Append(a[0]); output.Append(","); output.Append(a[1]); output.Append(",");
-                a = BitConverter.GetBytes(add4);
-                output.Append(a[0]); output.Append(","); output.Append(a[1]); output.Append(",");
-                a = BitConverter.GetBytes(add5);
-                output.Append(a[0]); output.Append(","); output.Append(a[1]); output.Append(",");
-                for (int i = 0; i < matrix.ROWS; i++)
-                {
-                    output.Append(matrix.rowPins[i]); output.Append(",");
-                }
-                for (int i = 0; i < matrix.COLS; i++)
-                {
-                    output.Append(matrix.colPins[i]); output.Append(",");
-                }
-                int[,] mask = new int[matrix.ROWS, matrix.COLS];
-                for (int r = 0; r < matrix.ROWS; r++)
-                {
-                    for (int c = 0; c < matrix.COLS; c++)
-                    {
-                        string code1 = matrix.hexaKeys0[r, c];
-                        int mask1 = 0;
-                        int code = Program.name2code(code1, out mask1);
-                        mask[r, c] += mask1 * 16;
-                        output.Append(code); output.Append(",");
-                    }
-                }
-                for (int r = 0; r < matrix.ROWS; r++)
-                {
-                    for (int c = 0; c < matrix.COLS; c++)
-                    {
-                        string code2 = matrix.hexaKeys1[r, c];
-                        int mask2 = 0;
-                        int code = Program.name2code(code2, out mask2);
-                        mask[r, c] += mask2;
-                        output.Append(code); output.Append(",");
-                    }
-                }
-                for (int r = 0; r < matrix.ROWS; r++)
-                {
-                    for (int c = 0; c < matrix.COLS; c++)
-                    {
-                        output.Append(mask[r, c]); output.Append(",");
-                    }
-                }
-                if (matrix != null)
-                {
-                    if (matrix.RGB != null && matrix.RGB.GetUpperBound(0) >= 0)
-                    {
-                        for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
-                        {
-                            output.Append(matrix.RGB[i, 3]); output.Append(",");
-                            output.Append(matrix.RGB[i, 4]); output.Append(",");
-                            output.Append(matrix.RGB[i, 5]); output.Append(",");
-                        }
-                    }
-                }
-                output.Append(RGB_Type);
-                return output.ToString();
-            }
-            catch
-            {
-                return "Select a Matrix.Try again.";
             }
         }
         public bool loadmatrix(string _name)
@@ -377,9 +223,67 @@ namespace HidRawTools
             radioButton1.Checked = true;
             return true;
         }
+        void initMatrix()
+        {
+            try
+            {
+                for (int i = 0; i < matrix.Defaultkeycode.Length; i++)
+                {
+                    string str = matrix.Defaultkeycode[i];
+                    string[] chara = str.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                    if (chara.Length == 3)
+                    {
+                        int index = Convert.ToInt32(chara[0]);
+                        checkedListBox1.SetItemChecked(index, true);
+                        AddButton(index, Program.shortname(chara[1]));
+                        matrix.keycode[index] = Program.shortname(chara[1]);
+                        matrix.keycode[index + keyCount] = Program.shortname(chara[2]);
+                    }
+                    else if (chara.Length == 2)
+                    {
+                        int index = Convert.ToInt32(chara[0]);
+                        checkedListBox1.SetItemChecked(index, true);
+                        AddButton(index, Program.shortname(chara[1]));
+                        matrix.keycode[index] = Program.shortname(chara[1]);
+                    }
+                    else if (chara.Length == 1)
+                    {
+                        int index = Convert.ToInt32(chara[0]);
+                        checkedListBox1.SetItemChecked(index, true);
+                        AddButton(index, "");
+                    }
+
+                }
+                AddRGBButton();
+                RGB_Type = (Byte)matrix.RGB[0, 2];
+                if ((RGB_Type & 0x0F) == 0x01)
+                {
+                    this.editToolStripMenuItem.Text = "FixedColor";
+                }
+                else
+                {
+                    this.editToolStripMenuItem.Text = "Rainbow";
+                }
+                if ((RGB_Type & 0xF0) == 0x10)
+                {
+                    this.oNOFFToolStripMenuItem.Text = "Default OFF";
+                }
+                else
+                {
+                    this.oNOFFToolStripMenuItem.Text = "Default ON";
+                }
+                panel1.BackgroundImage = img;
+
+            }
+            catch (Exception ex)
+            {
+                Print(ex.ToString());
+                panel1.BackgroundImage = img;
+            }
+        }
         private void WriteToHex()
         {
-            Encode(iencode);
+            EncodePrintBox(iencode);
             try
             {
                 if (CodeTemp == "")
@@ -391,22 +295,20 @@ namespace HidRawTools
                 Hex hex1 = new Hex(str);
                 string hex0 = "";
                 if (matrix == null) { Print("Select a keyboard templet!"); return; }
-
                 else if (matrix.Name == "XD004")
                 {
                     hex0 = Encoding.Default.GetString(Properties.Resources.XD004);
-                    hex0 += hex1.Write(matrix.PrintFlashAddress);
                 }
                 else if (matrix.Name == "Staryu")
                 {
-                    hex0 = Encoding.Default.GetString(Properties.Resources.Staryu);
-                    hex0 += hex1.Write(matrix.PrintFlashAddress);
+                    hex0 = Encoding.Default.GetString(Properties.Resources.Staryu);                  
                 }
                 else { return; }
-
+                hex0 += hex1.Write(matrix.PrintFlashAddress,matrix.flashsize);
+                Print(hex0);
                 SaveFileDialog sfd = new SaveFileDialog();
                 sfd.Filter = "hex files (*.hex)|*.hex|All files (*.*)|*.*";
-                sfd.FilterIndex = 2;
+                sfd.FilterIndex = 1;
                 sfd.RestoreDirectory = true;
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
@@ -427,21 +329,23 @@ namespace HidRawTools
         private void UploadPrintBox()
         {
             OpenDevice();
-            Encode(iencode);
-            Print("eepromsize=" + matrix.eepromsize.ToString());
+            EncodePrintBox(iencode);        
             try
             {
+                if (matrix == null) return;
+                Print("eepromsize=" + matrix.eepromsize.ToString());
                 if (CodeTemp == "")
                 {
                     Print("Nothing to upload");
                     return;
                 }
+              
                 string[] str = CodeTemp.Split(',');
                 if (HidDevice == null)
                 {
                     Print("Invalid device");
                     return;
-                }
+                }            
                 byte[] outdata = new byte[9]; outdata[0] = 0;
                 byte[] a = new byte[2];
                 outdata[1] = 0xFF; outdata[2] = 0xF1;
@@ -671,7 +575,7 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
             ushort a3 = Convert.ToUInt16(str2, 16);
             return a3;
         }
-        private void Encode(string _code)
+        private void EncodePrintBox(string _code)
         {
             try
             {
@@ -718,6 +622,102 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
             }
             catch (Exception ex) { Print(ex.ToString()); }
         }
+        public string CreateMatrixCode()
+        {
+            for (int r = 0; r < matrix.ROWS; r++)
+            {
+                for (int c = 0; c < matrix.COLS; c++)
+                {
+                    matrix.hexaKeys0[r, c] = "0x00";
+                    matrix.hexaKeys1[r, c] = "0x00";
+                }
+            }
+            for (int i = 0; i < checkedListBox1.CheckedIndices.Count; i++)
+            {
+                int index = checkedListBox1.CheckedIndices[i];
+                string str0 = matrix.keycode[index];
+                string str1 = matrix.keycode[index + keyCount];
+                int r = (int)matrix.keycap[index, 3];
+                int c = (int)matrix.keycap[index, 4];
+                matrix.hexaKeys0[r, c] = str0;
+                matrix.hexaKeys1[r, c] = str1;
+            }
+            try
+            {
+                ushort add1 = 5 * 2;
+                ushort add2 = (ushort)(add1 + matrix.ROWS);
+                ushort add3 = (ushort)(add2 + matrix.COLS);
+                ushort add4 = (ushort)(add3 + matrix.ROWS * matrix.COLS);
+                ushort add5 = (ushort)(add4 + matrix.ROWS * matrix.COLS);
+                StringBuilder output = new StringBuilder();
+                byte[] a = BitConverter.GetBytes(add1);
+                output.Append(a[0]); output.Append(","); output.Append(a[1]); output.Append(",");
+                a = BitConverter.GetBytes(add2);
+                output.Append(a[0]); output.Append(","); output.Append(a[1]); output.Append(",");
+                a = BitConverter.GetBytes(add3);
+                output.Append(a[0]); output.Append(","); output.Append(a[1]); output.Append(",");
+                a = BitConverter.GetBytes(add4);
+                output.Append(a[0]); output.Append(","); output.Append(a[1]); output.Append(",");
+                a = BitConverter.GetBytes(add5);
+                output.Append(a[0]); output.Append(","); output.Append(a[1]); output.Append(",");
+                for (int i = 0; i < matrix.ROWS; i++)
+                {
+                    output.Append(matrix.rowPins[i]); output.Append(",");
+                }
+                for (int i = 0; i < matrix.COLS; i++)
+                {
+                    output.Append(matrix.colPins[i]); output.Append(",");
+                }
+                int[,] mask = new int[matrix.ROWS, matrix.COLS];
+                for (int r = 0; r < matrix.ROWS; r++)
+                {
+                    for (int c = 0; c < matrix.COLS; c++)
+                    {
+                        string code1 = matrix.hexaKeys0[r, c];
+                        int mask1 = 0;
+                        int code = Program.name2code(code1, out mask1);
+                        mask[r, c] += mask1 * 16;
+                        output.Append(code); output.Append(",");
+                    }
+                }
+                for (int r = 0; r < matrix.ROWS; r++)
+                {
+                    for (int c = 0; c < matrix.COLS; c++)
+                    {
+                        string code2 = matrix.hexaKeys1[r, c];
+                        int mask2 = 0;
+                        int code = Program.name2code(code2, out mask2);
+                        mask[r, c] += mask2;
+                        output.Append(code); output.Append(",");
+                    }
+                }
+                for (int r = 0; r < matrix.ROWS; r++)
+                {
+                    for (int c = 0; c < matrix.COLS; c++)
+                    {
+                        output.Append(mask[r, c]); output.Append(",");
+                    }
+                }
+                if (matrix != null)
+                {
+                    if (matrix.RGB != null && matrix.RGB.GetUpperBound(0) >= 0)
+                    {
+                        for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
+                        {
+                            output.Append(matrix.RGB[i, 3]); output.Append(",");
+                            output.Append(matrix.RGB[i, 4]); output.Append(",");
+                            output.Append(matrix.RGB[i, 5]); output.Append(",");
+                        }
+                    }
+                }
+                output.Append(RGB_Type);
+                return output.ToString();
+            }
+            catch
+            {
+                return "Select a Matrix.Try again.";
+            }
+        }
     }
     public class Hex
     {
@@ -742,7 +742,7 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
             }
         }
         public List<ushort> data;
-        public string Write(int address)
+        public string Write(int address,int end)
         {
             string output = "";
             for (int i = 0; i < data.Count; i += 8)
@@ -762,6 +762,7 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
                 buffer1 += Hex.Tail(buffer1);
                 output += buffer1 + "\r\n";
                 address += 16;
+                if (address >= end) break;
             }
             output += ":00000001FF";
             return output;
