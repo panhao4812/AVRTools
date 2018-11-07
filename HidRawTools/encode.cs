@@ -301,11 +301,11 @@ namespace HidRawTools
                 }
                 else if (matrix.Name == "Staryu")
                 {
-                    hex0 = Encoding.Default.GetString(Properties.Resources.Staryu);                  
+                    //hex0 = Encoding.Default.GetString(Properties.Resources.Staryu);                  
                 }
                 else { return; }
                 hex0 += hex1.Write(matrix.PrintFlashAddress,matrix.flashsize);
-                Print(hex0);
+                Print(matrix.PrintFlashAddress);
                 SaveFileDialog sfd = new SaveFileDialog();
                 sfd.Filter = "hex files (*.hex)|*.hex|All files (*.*)|*.*";
                 sfd.FilterIndex = 1;
@@ -721,6 +721,7 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
     }
     public class Hex
     {
+
         public Hex()
         {
             data = new List<ushort>();
@@ -744,9 +745,11 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
         public List<ushort> data;
         public string Write(int address,int end)
         {
+          
             string output = "";
             for (int i = 0; i < data.Count; i += 8)
             {
+                if (address >= end - 16) break;
                 string buffer1 = ":10";
                 buffer1 += Convert.ToString(address, 16).PadLeft(4, '0');
                 buffer1 += "00";
@@ -755,20 +758,22 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
                     int index = i + j;
                     if (index < data.Count)
                     {
-                        buffer1 += Convert.ToString(data[index], 16).PadLeft(4, '0');
+                        char[] bytes = Convert.ToString(data[index], 16).PadLeft(4, '0').ToArray();
+                        char[] bytes2 = { bytes[2], bytes[3], bytes[0], bytes[1] };
+                        string str = new string(bytes2);
+                        buffer1 += str;
                     }
                     else { buffer1 += "0000"; }
                 }
                 buffer1 += Hex.Tail(buffer1);
                 output += buffer1 + "\r\n";
                 address += 16;
-                if (address >= end) break;
             }
             output += ":00000001FF";
             return output;
         }
         public static string Tail(string input)
-        {
+        {//校验出错
             char[] data1 = input.ToCharArray();
             if (data1[0] != ':') return "FF";
             int regi = 0;
@@ -781,6 +786,7 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
             }
             regi = 0x100 - regi % 0x100;
             return Convert.ToString(regi, 16).PadLeft(2, '0');
+
         }
         public void DataFromString(string input)
         {

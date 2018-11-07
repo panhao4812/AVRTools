@@ -49,7 +49,7 @@ namespace HidRawTools
     {
         public XD004()
         {
-            this.PrintFlashAddress = 0x2200;
+            this.PrintFlashAddress = 0x2400;
             this.PrintEEpAddress = 39;
             this.eepromsize = 512;
             this.flashsize = 0x3000;
@@ -73,9 +73,9 @@ namespace HidRawTools
                 {3,-1,1,0,3 },
             };
             Defaultkeycode = new string[]{
-"0,KEY_1,MACRO0",
-"1,KEY_2,MACRO1",
-"2,KEY_3,MACRO2",
+"0,KEY_1,MACRO1",
+"1,KEY_3,MACRO3",
+"2,KEY_4,MACRO4",
 "3,KEY_FN,KEY_FN",
             };
             RGB = new int[2, 6]{
