@@ -773,7 +773,7 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
             return output;
         }
         public static string Tail(string input)
-        {//校验出错
+        {
             char[] data1 = input.ToCharArray();
             if (data1[0] != ':') return "FF";
             int regi = 0;
@@ -785,8 +785,8 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
                 regi += a;
             }
             regi = 0x100 - regi % 0x100;
+            if (regi == 0x100) regi = 0;
             return Convert.ToString(regi, 16).PadLeft(2, '0');
-
         }
         public void DataFromString(string input)
         {
