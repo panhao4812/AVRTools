@@ -28,4 +28,3 @@ C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.
 C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.csproj.GenerateResource.Cache
 C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.exe
 C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.pdb
-C:\Users\Administrator\Documents\GitHub\Tinytools\Tinytools\obj\Debug\Tinytools.csprojResolveAssemblyReference.cache
