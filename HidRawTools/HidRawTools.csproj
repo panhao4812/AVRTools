@@ -103,9 +103,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="keyboard\GH60.cs" />
     <Compile Include="keyboard\ps2avr.cs" />
-    <EmbeddedResource Include="encode.resx">
-      <DependentUpon>encode.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="HidRawTools.resx">
       <DependentUpon>HidRawTools.cs</DependentUpon>
     </EmbeddedResource>

@@ -175,12 +175,15 @@ namespace HidRawTools
                 matrix = new Staryu();
                 textBox3.Text = "32C2";
                 textBox2.Text = "0105";
+                img = null;
+
             }
             else if (_name == "XD004")
             {
                 matrix = new XD004();
                 textBox3.Text = "16C2";
                 textBox2.Text = "0204";
+                img = null;
             }
             else if (_name == "Tinykey")
             {
