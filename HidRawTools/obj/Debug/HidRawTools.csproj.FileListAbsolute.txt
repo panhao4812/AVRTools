@@ -28,3 +28,4 @@ D:\GitHub 20200110\Tinytools\HidRawTools\obj\Debug\HidRawTools.libusbtool.resour
 D:\GitHub 20200110\Tinytools\HidRawTools\obj\Debug\HidRawTools.Properties.Resources.resources
 D:\GitHub 20200110\Tinytools\HidRawTools\obj\Debug\HidRawTools.csproj.GenerateResource.Cache
 C:\Users\Administrator\Documents\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.HidRawTools.resources
+C:\Users\Administrator\Documents\GitHub\Tinytools\HidRawTools\obj\Debug\HidRawTools.csprojResolveAssemblyReference.cache
