@@ -332,11 +332,24 @@ namespace Tinytools
         private void avrdudeHelpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string str = "Format of eeprom number is '0xXX' !" + "\r\n";
-           str+="arduino 1280 => -c arduino" + "\r\n";
-           str += "arduino 328p => -c avrisp" + "\r\n";
+            str += "arduino 1280 as programmer for ATmega32A => " + "\r\n";
+            str += " -c arduino -p m32 -b 19200 -P COM5" + "\r\n";      
             Main_box.Text = str;
         }
 
-       
+        private void pstoolsHelpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string str = "解锁注册表权限" + "\r\n";
+            str += "Run Regedit interactively in the System account to view the contents of the SAM and SECURITY keys：" + "\r\n";
+            str += @"psexec - i - d - s c:\windows\regedit.exe";
+
+            Main_box.Text = str;
+        }
+
+        private void hidBootFlashHelpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string str = "BootloadHID is a USB boot loader for AVR microcontrollers. "+ "\r\n";
+            str += "The uploader tool requires no kernel level driver on Windows and can therefore be run without installing any DLLs."+ "\r\n";
+        }
     }
 }

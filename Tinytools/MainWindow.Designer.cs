@@ -85,6 +85,8 @@
             this.PID_box = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.pstoolsHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hidBootFlashHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,7 +99,8 @@
             this.HelpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(625, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(469, 25);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -107,20 +110,20 @@
             this.OpenToolStripMenuItem,
             this.SaveToolStripMenuItem});
             this.FileToolStripMenuItem.Name = "FileToolStripMenuItem";
-            this.FileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.FileToolStripMenuItem.Size = new System.Drawing.Size(39, 21);
             this.FileToolStripMenuItem.Text = "File";
             // 
             // OpenToolStripMenuItem
             // 
             this.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem";
-            this.OpenToolStripMenuItem.Size = new System.Drawing.Size(124, 26);
+            this.OpenToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
             this.OpenToolStripMenuItem.Text = "Open";
             this.OpenToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
             // 
             // SaveToolStripMenuItem
             // 
             this.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem";
-            this.SaveToolStripMenuItem.Size = new System.Drawing.Size(124, 26);
+            this.SaveToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
             this.SaveToolStripMenuItem.Text = "Save";
             this.SaveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
@@ -129,13 +132,13 @@
             this.uSBuploadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.usbUploadToolStripMenuItem1});
             this.uSBuploadToolStripMenuItem.Name = "uSBuploadToolStripMenuItem";
-            this.uSBuploadToolStripMenuItem.Size = new System.Drawing.Size(61, 24);
+            this.uSBuploadToolStripMenuItem.Size = new System.Drawing.Size(52, 21);
             this.uSBuploadToolStripMenuItem.Text = "Tools";
             // 
             // usbUploadToolStripMenuItem1
             // 
             this.usbUploadToolStripMenuItem1.Name = "usbUploadToolStripMenuItem1";
-            this.usbUploadToolStripMenuItem1.Size = new System.Drawing.Size(198, 26);
+            this.usbUploadToolStripMenuItem1.Size = new System.Drawing.Size(168, 22);
             this.usbUploadToolStripMenuItem1.Text = "UsbUploadTool";
             this.usbUploadToolStripMenuItem1.Click += new System.EventHandler(this.usbUploadToolStripMenuItem1_Click);
             // 
@@ -143,22 +146,24 @@
             // 
             this.HelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AboutToolStripMenuItem,
-            this.avrdudeHelpToolStripMenuItem});
+            this.avrdudeHelpToolStripMenuItem,
+            this.pstoolsHelpToolStripMenuItem,
+            this.hidBootFlashHelpToolStripMenuItem});
             this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
-            this.HelpToolStripMenuItem.Size = new System.Drawing.Size(56, 24);
+            this.HelpToolStripMenuItem.Size = new System.Drawing.Size(47, 21);
             this.HelpToolStripMenuItem.Text = "Help";
             // 
             // AboutToolStripMenuItem
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(183, 26);
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.AboutToolStripMenuItem.Text = "About";
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // avrdudeHelpToolStripMenuItem
             // 
             this.avrdudeHelpToolStripMenuItem.Name = "avrdudeHelpToolStripMenuItem";
-            this.avrdudeHelpToolStripMenuItem.Size = new System.Drawing.Size(183, 26);
+            this.avrdudeHelpToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.avrdudeHelpToolStripMenuItem.Text = "avrdude Help";
             this.avrdudeHelpToolStripMenuItem.Click += new System.EventHandler(this.avrdudeHelpToolStripMenuItem_Click);
             // 
@@ -166,9 +171,10 @@
             // 
             this.CMD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CMD.ForeColor = System.Drawing.Color.DarkOrange;
-            this.CMD.Location = new System.Drawing.Point(516, 80);
+            this.CMD.Location = new System.Drawing.Point(387, 64);
+            this.CMD.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CMD.Name = "CMD";
-            this.CMD.Size = new System.Drawing.Size(97, 40);
+            this.CMD.Size = new System.Drawing.Size(73, 32);
             this.CMD.TabIndex = 6;
             this.CMD.Text = "CMD";
             this.CMD.UseVisualStyleBackColor = true;
@@ -178,9 +184,10 @@
             // 
             this.cd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cd.ForeColor = System.Drawing.Color.DarkOrange;
-            this.cd.Location = new System.Drawing.Point(516, 126);
+            this.cd.Location = new System.Drawing.Point(387, 101);
+            this.cd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cd.Name = "cd";
-            this.cd.Size = new System.Drawing.Size(97, 30);
+            this.cd.Size = new System.Drawing.Size(73, 24);
             this.cd.TabIndex = 8;
             this.cd.Text = "CD";
             this.cd.UseVisualStyleBackColor = true;
@@ -190,9 +197,10 @@
             // 
             this.flash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.flash.ForeColor = System.Drawing.Color.CadetBlue;
-            this.flash.Location = new System.Drawing.Point(516, 217);
+            this.flash.Location = new System.Drawing.Point(387, 174);
+            this.flash.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.flash.Name = "flash";
-            this.flash.Size = new System.Drawing.Size(97, 30);
+            this.flash.Size = new System.Drawing.Size(73, 24);
             this.flash.TabIndex = 11;
             this.flash.Text = "Flash";
             this.flash.UseVisualStyleBackColor = true;
@@ -202,9 +210,10 @@
             // 
             this.eeprom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.eeprom.ForeColor = System.Drawing.Color.CadetBlue;
-            this.eeprom.Location = new System.Drawing.Point(516, 253);
+            this.eeprom.Location = new System.Drawing.Point(387, 202);
+            this.eeprom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.eeprom.Name = "eeprom";
-            this.eeprom.Size = new System.Drawing.Size(97, 30);
+            this.eeprom.Size = new System.Drawing.Size(73, 24);
             this.eeprom.TabIndex = 12;
             this.eeprom.Text = "eeprom";
             this.eeprom.UseVisualStyleBackColor = true;
@@ -214,9 +223,10 @@
             // 
             this.fuse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.fuse.ForeColor = System.Drawing.Color.CadetBlue;
-            this.fuse.Location = new System.Drawing.Point(516, 180);
+            this.fuse.Location = new System.Drawing.Point(387, 144);
+            this.fuse.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.fuse.Name = "fuse";
-            this.fuse.Size = new System.Drawing.Size(97, 30);
+            this.fuse.Size = new System.Drawing.Size(73, 24);
             this.fuse.TabIndex = 13;
             this.fuse.Text = "Fuse";
             this.fuse.UseVisualStyleBackColor = true;
@@ -226,39 +236,43 @@
             // 
             this.flash_box.BackColor = System.Drawing.SystemColors.Menu;
             this.flash_box.ForeColor = System.Drawing.Color.CadetBlue;
-            this.flash_box.Location = new System.Drawing.Point(118, 216);
+            this.flash_box.Location = new System.Drawing.Point(88, 173);
+            this.flash_box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.flash_box.Multiline = true;
             this.flash_box.Name = "flash_box";
-            this.flash_box.Size = new System.Drawing.Size(392, 30);
+            this.flash_box.Size = new System.Drawing.Size(295, 25);
             this.flash_box.TabIndex = 18;
             // 
             // eeprom_box
             // 
             this.eeprom_box.BackColor = System.Drawing.SystemColors.Menu;
             this.eeprom_box.ForeColor = System.Drawing.Color.CadetBlue;
-            this.eeprom_box.Location = new System.Drawing.Point(118, 252);
+            this.eeprom_box.Location = new System.Drawing.Point(88, 202);
+            this.eeprom_box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.eeprom_box.Multiline = true;
             this.eeprom_box.Name = "eeprom_box";
-            this.eeprom_box.Size = new System.Drawing.Size(392, 30);
+            this.eeprom_box.Size = new System.Drawing.Size(295, 25);
             this.eeprom_box.TabIndex = 19;
             // 
             // cd_box
             // 
             this.cd_box.BackColor = System.Drawing.SystemColors.Menu;
             this.cd_box.ForeColor = System.Drawing.Color.DarkOrange;
-            this.cd_box.Location = new System.Drawing.Point(118, 126);
+            this.cd_box.Location = new System.Drawing.Point(88, 101);
+            this.cd_box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cd_box.Multiline = true;
             this.cd_box.Name = "cd_box";
-            this.cd_box.Size = new System.Drawing.Size(392, 30);
+            this.cd_box.Size = new System.Drawing.Size(295, 25);
             this.cd_box.TabIndex = 14;
             // 
             // SEND
             // 
             this.SEND.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SEND.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.SEND.Location = new System.Drawing.Point(516, 31);
+            this.SEND.Location = new System.Drawing.Point(387, 25);
+            this.SEND.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.SEND.Name = "SEND";
-            this.SEND.Size = new System.Drawing.Size(97, 40);
+            this.SEND.Size = new System.Drawing.Size(73, 32);
             this.SEND.TabIndex = 0;
             this.SEND.Text = "Send";
             this.SEND.UseVisualStyleBackColor = true;
@@ -266,20 +280,22 @@
             // 
             // Main_box
             // 
-            this.Main_box.Location = new System.Drawing.Point(12, 31);
+            this.Main_box.Location = new System.Drawing.Point(9, 25);
+            this.Main_box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Main_box.Multiline = true;
             this.Main_box.Name = "Main_box";
             this.Main_box.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.Main_box.Size = new System.Drawing.Size(498, 89);
+            this.Main_box.Size = new System.Drawing.Size(374, 72);
             this.Main_box.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.CadetBlue;
-            this.label1.Location = new System.Drawing.Point(132, 188);
+            this.label1.Location = new System.Drawing.Point(99, 150);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 15);
+            this.label1.Size = new System.Drawing.Size(35, 12);
             this.label1.TabIndex = 24;
             this.label1.Text = "lfuse";
             // 
@@ -287,29 +303,32 @@
             // 
             this.lfuse_box.BackColor = System.Drawing.SystemColors.Menu;
             this.lfuse_box.ForeColor = System.Drawing.Color.CadetBlue;
-            this.lfuse_box.Location = new System.Drawing.Point(183, 180);
+            this.lfuse_box.Location = new System.Drawing.Point(137, 144);
+            this.lfuse_box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lfuse_box.Multiline = true;
             this.lfuse_box.Name = "lfuse_box";
-            this.lfuse_box.Size = new System.Drawing.Size(70, 30);
+            this.lfuse_box.Size = new System.Drawing.Size(54, 25);
             this.lfuse_box.TabIndex = 28;
             // 
             // hfuse_box
             // 
             this.hfuse_box.BackColor = System.Drawing.SystemColors.Menu;
             this.hfuse_box.ForeColor = System.Drawing.Color.CadetBlue;
-            this.hfuse_box.Location = new System.Drawing.Point(312, 180);
+            this.hfuse_box.Location = new System.Drawing.Point(234, 144);
+            this.hfuse_box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.hfuse_box.Multiline = true;
             this.hfuse_box.Name = "hfuse_box";
-            this.hfuse_box.Size = new System.Drawing.Size(70, 30);
+            this.hfuse_box.Size = new System.Drawing.Size(54, 25);
             this.hfuse_box.TabIndex = 31;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.CadetBlue;
-            this.label2.Location = new System.Drawing.Point(262, 188);
+            this.label2.Location = new System.Drawing.Point(196, 150);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 15);
+            this.label2.Size = new System.Drawing.Size(35, 12);
             this.label2.TabIndex = 30;
             this.label2.Text = "hfuse";
             // 
@@ -317,19 +336,21 @@
             // 
             this.efuse_box.BackColor = System.Drawing.SystemColors.Menu;
             this.efuse_box.ForeColor = System.Drawing.Color.CadetBlue;
-            this.efuse_box.Location = new System.Drawing.Point(440, 180);
+            this.efuse_box.Location = new System.Drawing.Point(330, 144);
+            this.efuse_box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.efuse_box.Multiline = true;
             this.efuse_box.Name = "efuse_box";
-            this.efuse_box.Size = new System.Drawing.Size(70, 30);
+            this.efuse_box.Size = new System.Drawing.Size(54, 25);
             this.efuse_box.TabIndex = 33;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.CadetBlue;
-            this.label3.Location = new System.Drawing.Point(390, 188);
+            this.label3.Location = new System.Drawing.Point(292, 150);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 15);
+            this.label3.Size = new System.Drawing.Size(35, 12);
             this.label3.TabIndex = 32;
             this.label3.Text = "efuse";
             // 
@@ -337,9 +358,10 @@
             // 
             this.path_flash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.path_flash.ForeColor = System.Drawing.Color.CadetBlue;
-            this.path_flash.Location = new System.Drawing.Point(12, 216);
+            this.path_flash.Location = new System.Drawing.Point(9, 173);
+            this.path_flash.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.path_flash.Name = "path_flash";
-            this.path_flash.Size = new System.Drawing.Size(97, 30);
+            this.path_flash.Size = new System.Drawing.Size(73, 24);
             this.path_flash.TabIndex = 23;
             this.path_flash.Text = "path";
             this.path_flash.UseVisualStyleBackColor = true;
@@ -349,9 +371,10 @@
             // 
             this.path_cd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.path_cd.ForeColor = System.Drawing.Color.DarkOrange;
-            this.path_cd.Location = new System.Drawing.Point(12, 126);
+            this.path_cd.Location = new System.Drawing.Point(9, 101);
+            this.path_cd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.path_cd.Name = "path_cd";
-            this.path_cd.Size = new System.Drawing.Size(97, 30);
+            this.path_cd.Size = new System.Drawing.Size(73, 24);
             this.path_cd.TabIndex = 34;
             this.path_cd.Text = "path";
             this.path_cd.UseVisualStyleBackColor = true;
@@ -361,9 +384,10 @@
             // 
             this.path_eeprom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.path_eeprom.ForeColor = System.Drawing.Color.CadetBlue;
-            this.path_eeprom.Location = new System.Drawing.Point(12, 252);
+            this.path_eeprom.Location = new System.Drawing.Point(9, 202);
+            this.path_eeprom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.path_eeprom.Name = "path_eeprom";
-            this.path_eeprom.Size = new System.Drawing.Size(97, 30);
+            this.path_eeprom.Size = new System.Drawing.Size(73, 24);
             this.path_eeprom.TabIndex = 22;
             this.path_eeprom.Text = "path";
             this.path_eeprom.UseVisualStyleBackColor = true;
@@ -373,19 +397,21 @@
             // 
             this.c_box.BackColor = System.Drawing.SystemColors.Menu;
             this.c_box.ForeColor = System.Drawing.Color.CadetBlue;
-            this.c_box.Location = new System.Drawing.Point(41, 289);
+            this.c_box.Location = new System.Drawing.Point(31, 231);
+            this.c_box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.c_box.Multiline = true;
             this.c_box.Name = "c_box";
-            this.c_box.Size = new System.Drawing.Size(90, 30);
+            this.c_box.Size = new System.Drawing.Size(68, 25);
             this.c_box.TabIndex = 36;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.CadetBlue;
-            this.label4.Location = new System.Drawing.Point(12, 297);
+            this.label4.Location = new System.Drawing.Point(9, 238);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(23, 15);
+            this.label4.Size = new System.Drawing.Size(17, 12);
             this.label4.TabIndex = 35;
             this.label4.Text = "-c";
             // 
@@ -393,19 +419,21 @@
             // 
             this.b_box.BackColor = System.Drawing.SystemColors.Menu;
             this.b_box.ForeColor = System.Drawing.Color.CadetBlue;
-            this.b_box.Location = new System.Drawing.Point(295, 289);
+            this.b_box.Location = new System.Drawing.Point(221, 231);
+            this.b_box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.b_box.Multiline = true;
             this.b_box.Name = "b_box";
-            this.b_box.Size = new System.Drawing.Size(90, 30);
+            this.b_box.Size = new System.Drawing.Size(68, 25);
             this.b_box.TabIndex = 38;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.CadetBlue;
-            this.label5.Location = new System.Drawing.Point(266, 297);
+            this.label5.Location = new System.Drawing.Point(200, 238);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(23, 15);
+            this.label5.Size = new System.Drawing.Size(17, 12);
             this.label5.TabIndex = 37;
             this.label5.Text = "-b";
             // 
@@ -413,19 +441,21 @@
             // 
             this.p_box.BackColor = System.Drawing.SystemColors.Menu;
             this.p_box.ForeColor = System.Drawing.Color.CadetBlue;
-            this.p_box.Location = new System.Drawing.Point(168, 289);
+            this.p_box.Location = new System.Drawing.Point(126, 231);
+            this.p_box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.p_box.Multiline = true;
             this.p_box.Name = "p_box";
-            this.p_box.Size = new System.Drawing.Size(90, 30);
+            this.p_box.Size = new System.Drawing.Size(68, 25);
             this.p_box.TabIndex = 40;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.CadetBlue;
-            this.label6.Location = new System.Drawing.Point(139, 297);
+            this.label6.Location = new System.Drawing.Point(104, 238);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(23, 15);
+            this.label6.Size = new System.Drawing.Size(17, 12);
             this.label6.TabIndex = 39;
             this.label6.Text = "-p";
             // 
@@ -433,19 +463,21 @@
             // 
             this.p_box2.BackColor = System.Drawing.SystemColors.Menu;
             this.p_box2.ForeColor = System.Drawing.Color.CadetBlue;
-            this.p_box2.Location = new System.Drawing.Point(420, 289);
+            this.p_box2.Location = new System.Drawing.Point(315, 231);
+            this.p_box2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.p_box2.Multiline = true;
             this.p_box2.Name = "p_box2";
-            this.p_box2.Size = new System.Drawing.Size(90, 30);
+            this.p_box2.Size = new System.Drawing.Size(68, 25);
             this.p_box2.TabIndex = 42;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.ForeColor = System.Drawing.Color.CadetBlue;
-            this.label7.Location = new System.Drawing.Point(391, 297);
+            this.label7.Location = new System.Drawing.Point(293, 238);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(23, 15);
+            this.label7.Size = new System.Drawing.Size(17, 12);
             this.label7.TabIndex = 41;
             this.label7.Text = "-P";
             // 
@@ -453,9 +485,10 @@
             // 
             this.verify.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.verify.ForeColor = System.Drawing.Color.CadetBlue;
-            this.verify.Location = new System.Drawing.Point(516, 289);
+            this.verify.Location = new System.Drawing.Point(387, 231);
+            this.verify.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.verify.Name = "verify";
-            this.verify.Size = new System.Drawing.Size(97, 30);
+            this.verify.Size = new System.Drawing.Size(73, 24);
             this.verify.TabIndex = 43;
             this.verify.Text = "Verify";
             this.verify.UseVisualStyleBackColor = true;
@@ -465,19 +498,21 @@
             // 
             this.lock_box.BackColor = System.Drawing.SystemColors.Menu;
             this.lock_box.ForeColor = System.Drawing.Color.CadetBlue;
-            this.lock_box.Location = new System.Drawing.Point(53, 180);
+            this.lock_box.Location = new System.Drawing.Point(40, 144);
+            this.lock_box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.lock_box.Multiline = true;
             this.lock_box.Name = "lock_box";
-            this.lock_box.Size = new System.Drawing.Size(70, 30);
+            this.lock_box.Size = new System.Drawing.Size(54, 25);
             this.lock_box.TabIndex = 45;
             // 
             // lockbit
             // 
             this.lockbit.AutoSize = true;
             this.lockbit.ForeColor = System.Drawing.Color.CadetBlue;
-            this.lockbit.Location = new System.Drawing.Point(8, 188);
+            this.lockbit.Location = new System.Drawing.Point(6, 150);
+            this.lockbit.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lockbit.Name = "lockbit";
-            this.lockbit.Size = new System.Drawing.Size(39, 15);
+            this.lockbit.Size = new System.Drawing.Size(29, 12);
             this.lockbit.TabIndex = 44;
             this.lockbit.Text = "lock";
             // 
@@ -485,9 +520,10 @@
             // 
             this.m_path_flash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_path_flash.ForeColor = System.Drawing.Color.MediumOrchid;
-            this.m_path_flash.Location = new System.Drawing.Point(12, 339);
+            this.m_path_flash.Location = new System.Drawing.Point(9, 271);
+            this.m_path_flash.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.m_path_flash.Name = "m_path_flash";
-            this.m_path_flash.Size = new System.Drawing.Size(97, 30);
+            this.m_path_flash.Size = new System.Drawing.Size(73, 24);
             this.m_path_flash.TabIndex = 48;
             this.m_path_flash.Text = "path";
             this.m_path_flash.UseVisualStyleBackColor = true;
@@ -497,19 +533,21 @@
             // 
             this.m_flash_box.BackColor = System.Drawing.SystemColors.Menu;
             this.m_flash_box.ForeColor = System.Drawing.Color.MediumOrchid;
-            this.m_flash_box.Location = new System.Drawing.Point(118, 339);
+            this.m_flash_box.Location = new System.Drawing.Point(88, 271);
+            this.m_flash_box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.m_flash_box.Multiline = true;
             this.m_flash_box.Name = "m_flash_box";
-            this.m_flash_box.Size = new System.Drawing.Size(392, 30);
+            this.m_flash_box.Size = new System.Drawing.Size(295, 25);
             this.m_flash_box.TabIndex = 47;
             // 
             // m_flash
             // 
             this.m_flash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.m_flash.ForeColor = System.Drawing.Color.MediumOrchid;
-            this.m_flash.Location = new System.Drawing.Point(516, 340);
+            this.m_flash.Location = new System.Drawing.Point(387, 272);
+            this.m_flash.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.m_flash.Name = "m_flash";
-            this.m_flash.Size = new System.Drawing.Size(97, 30);
+            this.m_flash.Size = new System.Drawing.Size(73, 24);
             this.m_flash.TabIndex = 46;
             this.m_flash.Text = "Flash";
             this.m_flash.UseVisualStyleBackColor = true;
@@ -519,9 +557,10 @@
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.Color.MediumOrchid;
-            this.label8.Location = new System.Drawing.Point(9, 322);
+            this.label8.Location = new System.Drawing.Point(7, 258);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(607, 15);
+            this.label8.Size = new System.Drawing.Size(455, 12);
             this.label8.TabIndex = 52;
             this.label8.Text = "--------------------------------micronucleus-------------------------------";
             // 
@@ -529,9 +568,10 @@
             // 
             this.label9.AutoSize = true;
             this.label9.ForeColor = System.Drawing.Color.DarkCyan;
-            this.label9.Location = new System.Drawing.Point(9, 159);
+            this.label9.Location = new System.Drawing.Point(7, 127);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(607, 15);
+            this.label9.Size = new System.Drawing.Size(455, 12);
             this.label9.TabIndex = 53;
             this.label9.Text = "----------------------------------avrdude----------------------------------";
             // 
@@ -539,19 +579,21 @@
             // 
             this.pstools_box.BackColor = System.Drawing.SystemColors.Menu;
             this.pstools_box.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.pstools_box.Location = new System.Drawing.Point(118, 390);
+            this.pstools_box.Location = new System.Drawing.Point(88, 312);
+            this.pstools_box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pstools_box.Multiline = true;
             this.pstools_box.Name = "pstools_box";
-            this.pstools_box.Size = new System.Drawing.Size(392, 30);
+            this.pstools_box.Size = new System.Drawing.Size(295, 25);
             this.pstools_box.TabIndex = 54;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.ForeColor = System.Drawing.Color.SlateBlue;
-            this.label10.Location = new System.Drawing.Point(9, 372);
+            this.label10.Location = new System.Drawing.Point(7, 298);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(607, 15);
+            this.label10.Size = new System.Drawing.Size(455, 12);
             this.label10.TabIndex = 55;
             this.label10.Text = "----------------------------------pstools----------------------------------";
             // 
@@ -559,9 +601,10 @@
             // 
             this.usbpcap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.usbpcap.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.usbpcap.Location = new System.Drawing.Point(12, 390);
+            this.usbpcap.Location = new System.Drawing.Point(9, 312);
+            this.usbpcap.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.usbpcap.Name = "usbpcap";
-            this.usbpcap.Size = new System.Drawing.Size(97, 30);
+            this.usbpcap.Size = new System.Drawing.Size(73, 24);
             this.usbpcap.TabIndex = 57;
             this.usbpcap.Text = "path";
             this.usbpcap.UseVisualStyleBackColor = true;
@@ -571,9 +614,10 @@
             // 
             this.usbpcap_cd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.usbpcap_cd.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.usbpcap_cd.Location = new System.Drawing.Point(516, 390);
+            this.usbpcap_cd.Location = new System.Drawing.Point(387, 312);
+            this.usbpcap_cd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.usbpcap_cd.Name = "usbpcap_cd";
-            this.usbpcap_cd.Size = new System.Drawing.Size(97, 30);
+            this.usbpcap_cd.Size = new System.Drawing.Size(73, 24);
             this.usbpcap_cd.TabIndex = 63;
             this.usbpcap_cd.Text = "PSTools";
             this.usbpcap_cd.UseVisualStyleBackColor = true;
@@ -583,9 +627,10 @@
             // 
             this.BLFlash.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BLFlash.ForeColor = System.Drawing.Color.SteelBlue;
-            this.BLFlash.Location = new System.Drawing.Point(516, 441);
+            this.BLFlash.Location = new System.Drawing.Point(387, 353);
+            this.BLFlash.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BLFlash.Name = "BLFlash";
-            this.BLFlash.Size = new System.Drawing.Size(97, 30);
+            this.BLFlash.Size = new System.Drawing.Size(73, 24);
             this.BLFlash.TabIndex = 66;
             this.BLFlash.Text = "Flash";
             this.BLFlash.UseVisualStyleBackColor = true;
@@ -595,9 +640,10 @@
             // 
             this.label11.AutoSize = true;
             this.label11.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label11.Location = new System.Drawing.Point(9, 423);
+            this.label11.Location = new System.Drawing.Point(7, 338);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(607, 15);
+            this.label11.Size = new System.Drawing.Size(455, 12);
             this.label11.TabIndex = 65;
             this.label11.Text = "--------------------------------HidBootFlash-------------------------------";
             // 
@@ -605,19 +651,21 @@
             // 
             this.VID_box.BackColor = System.Drawing.SystemColors.Menu;
             this.VID_box.ForeColor = System.Drawing.Color.SteelBlue;
-            this.VID_box.Location = new System.Drawing.Point(359, 441);
+            this.VID_box.Location = new System.Drawing.Point(269, 353);
+            this.VID_box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.VID_box.Multiline = true;
             this.VID_box.Name = "VID_box";
-            this.VID_box.Size = new System.Drawing.Size(55, 30);
+            this.VID_box.Size = new System.Drawing.Size(42, 25);
             this.VID_box.TabIndex = 64;
             // 
             // BLFlash_button
             // 
             this.BLFlash_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BLFlash_button.ForeColor = System.Drawing.Color.SteelBlue;
-            this.BLFlash_button.Location = new System.Drawing.Point(12, 441);
+            this.BLFlash_button.Location = new System.Drawing.Point(9, 353);
+            this.BLFlash_button.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BLFlash_button.Name = "BLFlash_button";
-            this.BLFlash_button.Size = new System.Drawing.Size(97, 30);
+            this.BLFlash_button.Size = new System.Drawing.Size(73, 24);
             this.BLFlash_button.TabIndex = 70;
             this.BLFlash_button.Text = "path";
             this.BLFlash_button.UseVisualStyleBackColor = true;
@@ -627,29 +675,32 @@
             // 
             this.BLFlash_box.BackColor = System.Drawing.SystemColors.Menu;
             this.BLFlash_box.ForeColor = System.Drawing.Color.SteelBlue;
-            this.BLFlash_box.Location = new System.Drawing.Point(118, 441);
+            this.BLFlash_box.Location = new System.Drawing.Point(88, 353);
+            this.BLFlash_box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BLFlash_box.Multiline = true;
             this.BLFlash_box.Name = "BLFlash_box";
-            this.BLFlash_box.Size = new System.Drawing.Size(198, 30);
+            this.BLFlash_box.Size = new System.Drawing.Size(150, 25);
             this.BLFlash_box.TabIndex = 68;
             // 
             // PID_box
             // 
             this.PID_box.BackColor = System.Drawing.SystemColors.Menu;
             this.PID_box.ForeColor = System.Drawing.Color.SteelBlue;
-            this.PID_box.Location = new System.Drawing.Point(455, 441);
+            this.PID_box.Location = new System.Drawing.Point(341, 353);
+            this.PID_box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.PID_box.Multiline = true;
             this.PID_box.Name = "PID_box";
-            this.PID_box.Size = new System.Drawing.Size(55, 30);
+            this.PID_box.Size = new System.Drawing.Size(42, 25);
             this.PID_box.TabIndex = 71;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label12.Location = new System.Drawing.Point(420, 449);
+            this.label12.Location = new System.Drawing.Point(315, 359);
+            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(31, 15);
+            this.label12.Size = new System.Drawing.Size(23, 12);
             this.label12.TabIndex = 72;
             this.label12.Text = "PID";
             // 
@@ -657,17 +708,32 @@
             // 
             this.label13.AutoSize = true;
             this.label13.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label13.Location = new System.Drawing.Point(322, 449);
+            this.label13.Location = new System.Drawing.Point(242, 359);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(31, 15);
+            this.label13.Size = new System.Drawing.Size(23, 12);
             this.label13.TabIndex = 73;
             this.label13.Text = "VID";
             // 
+            // pstoolsHelpToolStripMenuItem
+            // 
+            this.pstoolsHelpToolStripMenuItem.Name = "pstoolsHelpToolStripMenuItem";
+            this.pstoolsHelpToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.pstoolsHelpToolStripMenuItem.Text = "pstools Help";
+            this.pstoolsHelpToolStripMenuItem.Click += new System.EventHandler(this.pstoolsHelpToolStripMenuItem_Click);
+            // 
+            // hidBootFlashHelpToolStripMenuItem
+            // 
+            this.hidBootFlashHelpToolStripMenuItem.Name = "hidBootFlashHelpToolStripMenuItem";
+            this.hidBootFlashHelpToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.hidBootFlashHelpToolStripMenuItem.Text = "HidBootFlash Help";
+            this.hidBootFlashHelpToolStripMenuItem.Click += new System.EventHandler(this.hidBootFlashHelpToolStripMenuItem_Click);
+            // 
             // MainWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(625, 483);
+            this.ClientSize = new System.Drawing.Size(469, 386);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.PID_box);
@@ -718,6 +784,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.Text = "TinyTools";
@@ -787,5 +854,7 @@
         private System.Windows.Forms.ToolStripMenuItem uSBuploadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem usbUploadToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem avrdudeHelpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pstoolsHelpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hidBootFlashHelpToolStripMenuItem;
     }
 }
