@@ -200,6 +200,13 @@ namespace HidRawTools
                 textBox2.Text = "0375";
                 img = Properties.Resources.tinykey4;
             }
+            else if (_name == "bface96")
+            {
+                matrix = new bface96();
+                textBox3.Text = "32A0";
+                textBox2.Text = "0160";
+                img = null;
+            }
             else return false;
             layer = 0;
             keyCount = matrix.keycap.GetUpperBound(0) + 1;
@@ -308,6 +315,11 @@ namespace HidRawTools
                     //hex0 = Encoding.Default.GetString(Properties.Resources.Staryu);                  
                 }
                 else { return; }
+                if (matrix.PrintFlashAddress == 0 || matrix.flashsize == 0)
+                {
+                    Print("Keyboard can't Print Flash");
+                    return;
+                }
                 hex0 += hex1.Write(matrix.PrintFlashAddress, matrix.flashsize);
                 Print(matrix.PrintFlashAddress);
                 SaveFileDialog sfd = new SaveFileDialog();
@@ -325,6 +337,7 @@ namespace HidRawTools
                 }
                 else
                 {
+                    Print("Keyboard can't Print Flash");
                     return;
                 }
             }
@@ -485,6 +498,11 @@ namespace HidRawTools
             if (y < 0)
             {
                 Point1.Y -= 9;
+            }
+            if (length ==0.5)
+            {
+                size1.Width = (int)(keycaplength  - keycapoffset * 2);
+                size1.Height = (int)(keycaplength*2 - keycapoffset * 2);
             }
             button.Size = size1;
             button.Location = Point1;
@@ -1008,6 +1026,10 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
         private void StaryuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (loadmatrix("Staryu")) { initMatrix(); }
+        }
+        private void bface96ver21ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("bface96")) { initMatrix(); }
         }
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
