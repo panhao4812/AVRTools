@@ -290,7 +290,7 @@ namespace HidRawTools
         {14,4,1,4,13 }};
             RGB = new int[12, 6]{
                 //x,y,type,r,g,b
- {630,12,1,255,255,255},
+
  {530,12,1,255,255,255},
  {430,12,1,255,255,255},
  {330,12,1,255,255,255},
@@ -301,7 +301,8 @@ namespace HidRawTools
  {330,355,1,255,255,255},
  {430,355,1,255,255,255},
  {530,355,1,255,255,255},
- {630,355,1,255,255,255}
+ {630,355,1,255,255,255},
+ {630,12,1,255,255,255}
             };
         }
     }
@@ -457,21 +458,21 @@ namespace HidRawTools
     {
         public bface96()
         {
-            this.ROWS = 5;
+            this.ROWS = 8;
             this.COLS = 15;
 
             this.PrintFlashAddress = 0;
-            this.PrintEEpAddress = (ushort)(10 + ROWS + COLS + (ROWS * COLS * 3) + (20 * 3)+6);
+            this.PrintEEpAddress = (ushort)(10 + ROWS + COLS + (ROWS * COLS * 3) + (20 * 3) + 6);
             this.eepromsize = 1024;
             this.flashsize = 0;
 
             this.Name = "bface96";
-           
-            this.rowPins = new byte[5] { 11, 12, 13, 14, 15 };
+
+            this.rowPins = new byte[8] { 8, 9, 10, 11, 12, 13, 14, 15 };
             this.colPins = new byte[15] { 0, 1, 2, 3, 4, 5, 6, 7, 23, 22, 21, 20, 19, 18, 31 };
-            this.hexaKeys0 = new string[5, 15];
-            this.hexaKeys1 = new string[5, 15];
-            keycode = new string[100 * 2];
+            this.hexaKeys0 = new string[8, 15];
+            this.hexaKeys1 = new string[8, 15];
+            keycode = new string[99 * 2];
             for (int i = 0; i < keycode.Length; i++)
             {
                 keycode[i] = "";
@@ -497,7 +498,7 @@ namespace HidRawTools
 "17,KEY_PAGE_UP,",
 "18,KEY_PAGE_DOWN,",
 //----------------------------
-"19,KEY_PERIOD,",
+"19,KEY_TILDE,",
 "20,KEY_1,",
 "21,KEY_2,",
 "22,KEY_3,",
@@ -511,7 +512,7 @@ namespace HidRawTools
 "30,KEY_MINUS,",
 "31,KEY_EQUAL,",
 "32,KEY_BACKSPACE,",
-"33,KEY_NUMBER,",
+"33,KEY_NUM_LOCK,",
 "34,KEYPAD_SLASH,",
 "35,KEYPAD_ASTERIX,",
 "36,KEYPAD_MINUS,",
@@ -529,7 +530,7 @@ namespace HidRawTools
 "47,KEY_P,",
 "48,KEY_LEFT_BRACE,",
 "49,KEY_RIGHT_BRACE,",
-"50,KEY_SLASH,",
+"50,KEY_BACKSLASH,",
 "51,KEYPAD_7,",
 "52,KEYPAD_8,",
 "53,KEYPAD_9,",
@@ -574,123 +575,116 @@ namespace HidRawTools
 "89,KEY_GUI,",
 "90,KEY_ALT,",
 "91,KEY_SPACE,",
-"92,KEY_FN,",
+"92,KEY_RIGHT_ALT,",
 "93,KEY_FN,",
-"94,KEY_FN,",
-"95,KEY_LEFT,",
-"96,KEY_DOWN,",
-"97,KEY_RIGHT,",
-"98,KEYPAD_0,",
-"99,KEYPAD_PERIOD,"
+"94,KEY_LEFT,",
+"95,KEY_DOWN,",
+"96,KEY_RIGHT,",
+"97,KEYPAD_0,",
+"98,KEYPAD_PERIOD,"//98
 };
-            this.keycap = new double[100, 5] {
-                //x y length mx my
-        {0,-1,1,0,0 },//0
-        {1,-1,1,0,1 },//1
-        {2,-1,1,0,2 },//2
-        {3,-1,1,0,3 },//3
-        {4,-1,1,0,4 },//4
-        {5,-1,1,0,5 },//5
-        {6,-1,1,0,6 },//6
-        {7,-1,1,0,7 },//7
-        {8,-1,1,0,8 },//8
-        {9,-1,1,0,9 },//9
-        {10,-1,1,0,10 },//10
-        {11,-1,1,0,11 },//11
-        {12,-1,1,0,12 },//12
-        {13,-1,1,0,13 },//13
-        {14,-1,1,0,14 },//14
-        {15,-1,1,0,14 },//15
-        {16,-1,1,1,0 },//16
-        {17,-1,1,1,1 },//17
-        {18,-1,1,1,2 },//18       
-        //--------------------------
-        {0,0,1,1,3 },//19
-        {1,0,1,1,4 },
-        {2,0,1,1,5 },
-        {3,0,1,1,6 },
-        {4,0,1,1,7 },
-        {5,0,1,1,8 },
-        {6,0,1,1,9 },//25
-        {7,0,1,1,10 },
-        {8,0,1,1,11 },
-        {9,0,1,1,12 },
-        {10,0,1,1,13 },//29
-        {11,0,1,2,0 },//30
-        {12,0,1,2,1 },
-        {13,0,2,2,2 },
-        {15,0,1,2,3 },
-        {16,0,1,2,4 },
-        {17,0,1,2,5 },//35
-        {18,0,1,2,6 },//36
-        //------------------------------
-        {0,1,1.5,2,7 },  //37   
-        {1.5,1,1,2,8 },
-        {2.5,1,1,2,9 },
-        {3.5,1,1,2,10 },//40
-        {4.5,1,1,2,11 },//41
-        {5.5,1,1,2,12 },
-        {6.5,1,1,2,13 },//43
-        {7.5,1,1,2,13 },
-        {8.5,1,1,3,0 },//45
-        {9.5,1,1,3,0 },
-        {10.5,1,1,3,1 },
-        {11.5,1,1,3,2 },
-        {12.5,1,1,3,3 },
-        {13.5,1,1.5,3,4 },//50
-        {15,1,1,3,5 },
-        {16,1,1,3,6 },
-        {17,1,1,3,7 },
-        {18,1,0.5,3,8 },//54
-        //-----------------------------
-        {0,2,1.75,3,9 },//55
-        {1.75,2,1,3,10 },
-        {2.75,2,1,3,11 },
-        {3.75,2,1,3,13 },
-        {4.75,2,1,3,13 },
-        {5.75,2,1,3,12 },//60
-        {6.75,2,1,3,13 },
-        {7.75,2,1,3,12 },
-        {8.75,2,1,3,0 },//63
-        {9.75,2,1,3,0 },
-        {10.75,2,1,3,1 },//65
-        {11.75,2,1,3,2 },//66
-        {12.75,2,2.25,3,3 },
-        {15,2,1,3,4 },
-        {16,2,1,3,5 },
-        {17,2,1,3,6 },//70       
-        //-------------------------------  
-        {0,3,2.25,3,7 },//71
-        {2.25,3,1,3,8 },
-        {3.25,3,1,3,9 },
-        {4.25,3,1,3,10 },
-        {5.25,3,1,3,11 },//75
-        {6.25,3,1,3,11 },
-        {7.25,3,1,3,12 },//77
-        {8.25,3,1,3,13 },//78
-        {9.25,3,1,3,13 },
-        {10.25,3,1,3,14 },//80
-        {11.25,3,1,4,0 },
-        {12.25,3,1.75,4,0 },//
-        {14,3,1,4,0 },
-        {15,3,1,4,1 },//
-        {16,3,1,4,1 },
-        {17,3,1,4,1 },//86
-        {18,3,0.5,4,1 },//87
-        //////////////////    
-        {0,4,1.25,4,2 },//88
-        {1.25,4,1.25,4,2 },
-        {2.5,4,1.25,4,2 },
-        {3.75,4,6.25,4,3 },
-        {10,4,1,4,7 },//92
-        {11,4,1,4,5 },
-        {12,4,1,4,5 },//94
-        {13,4,1,4,5 },
-        {14,4,1,4,7 },
-        {15,4,1,4,8 },
-        {16,4,1,4,9 },
-        {17,4,1,4,9 } //99
-       };
+            this.keycap = new double[99, 5] {
+                //x y length  my mx
+{0,-1,1,5,0},// 0
+{1,-1,1,5,2},// 1
+{2,-1,1,5,3},// 2
+{3,-1,1,5,4},// 3
+{4,-1,1,5,5},// 4
+{5,-1,1,6,0},// 5
+{6,-1,1,6,10},// 6
+{7,-1,1,7,10},// 7
+{8,-1,1,7,0},// 8
+{9,-1,1,5,11},// 9
+{10,-1,1,5,12},// 10
+{11,-1,1,5,13},// 11
+{12,-1,1,5,14},// 12
+{13,-1,1,1,13},// 13
+{14,-1,1,2,14},// 14
+{15,-1,1,0,13},// 15
+{16,-1,1,7,6},// 16
+{17,-1,1,7,9},// 17
+{18,-1,1,7,8},// 18
+{0,0,1,4,0},// 19
+{1,0,1,4,1},// 20
+{2,0,1,4,2},// 21
+{3,0,1,4,3},// 22
+{4,0,1,4,4},// 23
+{5,0,1,4,5},// 24
+{6,0,1,6,1},// 25
+{7,0,1,6,11},// 26
+{8,0,1,7,11},// 27
+{9,0,1,7,1},// 28
+{10,0,1,4,10},// 29
+{11,0,1,4,11},// 30
+{12,0,1,4,12},// 31
+{13,0,2,4,14},// 32
+{15,0,1,4,6},// 33
+{16,0,1,4,7},// 34
+{17,0,1,4,8},// 35
+{18,0,1,4,9},// 36
+{0,1,1.5,3,0},// 37
+{1.5,1,1,3,1},// 38
+{2.5,1,1,3,2},// 39
+{3.5,1,1,3,3},// 40
+{4.5,1,1,3,4},// 41
+{5.5,1,1,3,5},// 42
+{6.5,1,1,6,2},// 43
+{7.5,1,1,6,12},// 44
+{8.5,1,1,7,12},// 45
+{9.5,1,1,7,2},// 46
+{10.5,1,1,3,10},// 47
+{11.5,1,1,3,11},// 48
+{12.5,1,1,3,12},// 49
+{13.5,1,1.5,3,13},// 50
+{15,1,1,3,6},// 51
+{16,1,1,3,7},// 52
+{17,1,1,3,8},// 53
+{18,1,0.5,2,9},// 54
+{0,2,1.75,2,0},// 55
+{1.75,2,1,2,1},// 56
+{2.75,2,1,2,2},// 57
+{3.75,2,1,2,3},// 58
+{4.75,2,1,2,4},// 59
+{5.75,2,1,2,5},// 60
+{6.75,2,1,6,3},// 61
+{7.75,2,1,6,13},// 62
+{8.75,2,1,7,13},// 63
+{9.75,2,1,7,3},// 64
+{10.75,2,1,2,10},// 65
+{11.75,2,1,2,11},// 66
+{12.75,2,2.25,2,13},// 67
+{15,2,1,2,6},// 68
+{16,2,1,2,7},// 69
+{17,2,1,2,8},// 70
+{0,3,2.25,1,0},// 71
+{2.25,3,1,1,1},// 72
+{3.25,3,1,1,2},// 73
+{4.25,3,1,1,3},// 74
+{5.25,3,1,1,4},// 75
+{6.25,3,1,1,5},// 76
+{7.25,3,1,6,4},// 77
+{8.25,3,1,6,14},// 78
+{9.25,3,1,7,14},// 79
+{10.25,3,1,7,4},// 80
+{11.25,3,1,1,10},// 81
+{12.25,3,1.75,1,11},// 82
+{14,3,1,6,8},// 83
+{15,3,1,1,6},// 84
+{16,3,1,1,7},// 85
+{17,3,1,1,8},// 86
+{18,3,0.5,0,9},// 87
+{0,4,1.25,0,0},// 88
+{1.25,4,1.25,0,1},// 89
+{2.5,4,1.25,0,2},// 90
+{3.75,4,6.25,6,5},// 91 space
+{10,4,1.25,7,5},// 92 right alt
+{11.25,4,1.75,0,11},// 93 fn
+{13,4,1,6,6},// 94
+{14,4,1,6,7},// 95
+{15,4,1,6,9},// 96
+{16,4,1,0,6},// 97
+{17,4,1,0,8}// 98
+            };
             RGB = new int[20, 6]{
                 //x,y,type,r,g,b
  {6,172,1,255,255,255},
@@ -715,6 +709,56 @@ namespace HidRawTools
  {189,355,1,255,255,255},
  {89,355,1,255,255,255}
             };
+          //  UpdateMatrix();
+        }
+        void UpdateMatrix()
+        {
+            byte[,] hexaKeys0 = new byte[,]{
+    {Program.KEY_CTRL,Program.KEY_GUI,Program.KEY_ALT,0x00,0x00,0x00,Program.KEYPAD_0,0x00,Program.KEYPAD_PERIOD,Program.KEYPAD_ENTER,Program.KEY_RIGHT_GUI,Program.KEY_FN,Program.KEY_RIGHT_CTRL,Program.KEY_INSERT,0x00},//r1
+	{Program.KEY_SHIFT,Program.KEY_Z,Program.KEY_X,Program.KEY_C,Program.KEY_V,Program.KEY_B,Program.KEYPAD_1,Program.KEYPAD_2,Program.KEYPAD_3,0x00,Program.KEY_SLASH,Program.KEY_RIGHT_SHIFT,0x00,Program.KEY_PRINTSCREEN,0x00},//r2
+	{Program.KEY_CAPS_LOCK,Program.KEY_A,Program.KEY_S,Program.KEY_D,Program.KEY_F,Program.KEY_G,Program.KEYPAD_4,Program.KEYPAD_5,Program.KEYPAD_6,Program.KEYPAD_PLUS,Program.KEY_SEMICOLON,Program.KEY_QUOTE,0x00,Program.KEY_ENTER,Program.KEY_PAUSE},//r3
+	{Program.KEY_TAB,Program.KEY_Q,Program.KEY_W,Program.KEY_E,Program.KEY_R,Program.KEY_T,Program.KEYPAD_7,Program.KEYPAD_8,Program.KEYPAD_9,0x00,Program.KEY_P,Program.KEY_LEFT_BRACE,Program.KEY_RIGHT_BRACE,Program.KEY_BACKSLASH,0x00},//r4
+	{Program.KEY_TILDE,Program.KEY_1,Program.KEY_2,Program.KEY_3,Program.KEY_4,Program.KEY_5,Program.KEY_NUM_LOCK,Program.KEYPAD_SLASH,Program.KEYPAD_ASTERIX,Program.KEYPAD_MINUS,Program.KEY_0,Program.KEY_MINUS,Program.KEY_EQUAL,Program.KEY_TILDE,Program.KEY_BACKSPACE},//r5
+	{Program.KEY_ESC,0x00,Program.KEY_F1,Program.KEY_F2,Program.KEY_F3,Program.KEY_F4,0x00,0x00,0x00,0x00,0x00,Program.KEY_F9,Program.KEY_F10,Program.KEY_F11,Program.KEY_F12},//r6
+	{Program.KEY_F5,Program.KEY_6,Program.KEY_Y,Program.KEY_H,Program.KEY_N,Program.KEY_SPACE,Program.KEY_LEFT,Program.KEY_DOWN,Program.KEY_UP,Program.KEY_RIGHT,Program.KEY_F6,Program.KEY_7,Program.KEY_U,Program.KEY_J,Program.KEY_M},//r7
+	{Program.KEY_F8,Program.KEY_9,Program.KEY_O,Program.KEY_L,Program.KEY_PERIOD,Program.KEY_RIGHT_ALT,Program.KEY_DELETE,0x00,Program.KEY_PAGE_DOWN,Program.KEY_PAGE_UP,Program.KEY_F7,Program.KEY_8,Program.KEY_I,Program.KEY_K,Program.KEY_COMMA} //r8
+};
+            byte[,] keymask= new byte[,]  {
+	{0x20,0x20,0x20,0x00,0x00,0x00,0x10,0x00,0x10,0x10,0x20,0x66,0x20,0x10,0x00},//r1
+	{0x20,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x00,0x10,0x20,0x00,0x10,0x00},//r2
+	{0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x00,0x10,0x10},//r3
+	{0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x00,0x10,0x10,0x10,0x10,0x00},//r4
+	{0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10},//r5
+	{0x10,0x00,0x10,0x10,0x10,0x10,0x00,0x00,0x00,0x00,0x00,0x10,0x10,0x10,0x10},//r6
+	{0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10},//r7
+	{0x10,0x10,0x10,0x10,0x10,0x20,0x10,0x00,0x10,0x10,0x10,0x10,0x10,0x10,0x10} //r8
+};
+            for (int i = 0; i < Defaultkeycode.Length; i++)
+            {
+                string str = Defaultkeycode[i];
+                string[] strs = str.Split(',');
+                int index = Convert.ToInt32(strs[0]);
+                bool sign = false;
+                int ii, jj,mask; mask = 0;
+                for ( ii = 0; ii < this.ROWS; ii++)
+                {
+                    for ( jj = 0; jj < this.COLS; jj++)
+                    {
+                        
+                        int nameid = Program.name2code(strs[1],out mask);
+                        if(nameid== hexaKeys0[ii, jj]&& keymask[ii,jj]==mask*16)
+                        {
+                            keycap[index, 4] = jj; keycap[index, 3] = ii;
+                            sign = true;
+                        }
+                        if (sign) break;
+                    }
+                    if (sign)
+                    {
+                        break;
+                    }
+                }
+            }
         }
     }
 }

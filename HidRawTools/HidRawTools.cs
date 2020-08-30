@@ -37,6 +37,71 @@ namespace HidRawTools
         byte RGB_Type = 0;
         Image img = null; Image img2 = null;
         public static HidDevice HidDevice;
+        void Export(string path)
+        {
+            try
+            {
+                if (matrix == null)
+                {
+                    Clear();
+                    Print("Open a keyboard templet and try again!");
+                    return;
+                }
+                if (path == "")
+                {
+                    SaveFileDialog sfd = new SaveFileDialog();
+                    sfd.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                    sfd.FilterIndex = 2;
+                    sfd.RestoreDirectory = true;
+                    if (sfd.ShowDialog() == DialogResult.OK)
+                    {
+                        path = sfd.FileName;
+                        matrixname = path;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
+                fs.SetLength(0);
+                StreamWriter stream = new StreamWriter(fs);
+                string output = "matrix," + matrix.Name + "\r\n";
+                for (int i = 0; i < checkedListBox1.CheckedIndices.Count; i++)
+                {
+                    int index = checkedListBox1.CheckedIndices[i];
+                    string str = index.ToString();
+                    //  string[] chara = str.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+                    output +="\""+ str + "," + 
+                        Program.longname(matrix.keycode[index])+ "," + 
+                        Program.longname(matrix.keycode[index + keyCount]) + "\","+ "\r\n";
+                }
+                for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
+                {
+                    output += "{" + i.ToString() + "," + 
+                        matrix.RGB[i, 2].ToString() + "," + 
+                        matrix.RGB[i, 3].ToString()+ "," + 
+                        matrix.RGB[i, 4].ToString() + "," + 
+                        matrix.RGB[i, 5].ToString()  +"},"+"\r\n";
+                }
+                for (int i = matrix.keycap.GetLowerBound(0); i <= matrix.keycap.GetUpperBound(0); i++)
+                {
+                    output+= "{"+ 
+                        matrix.keycap[i,0].ToString()+","+
+                        matrix.keycap[i, 1].ToString() + "," +
+                        matrix.keycap[i, 2].ToString() + "," +
+                        matrix.keycap[i, 3].ToString() + "," +
+                        matrix.keycap[i, 4].ToString() + "}," +@"// "+i.ToString()+ "\r\n";
+                }
+                stream.Write(output);
+                stream.Flush();
+                stream.Close();
+            }
+            catch (Exception ex)
+            {
+                Print(ex.ToString());
+            }
+        }
         void save(string path)
         {
             try
@@ -646,24 +711,28 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
         }
         public string CreateMatrixCode()
         {
-            for (int r = 0; r < matrix.ROWS; r++)
-            {
-                for (int c = 0; c < matrix.COLS; c++)
+            int r, c, index;
+           // try{
+                for ( r = 0; r < matrix.ROWS; r++)
                 {
-                    matrix.hexaKeys0[r, c] = "0x00";
-                    matrix.hexaKeys1[r, c] = "0x00";
+                    for ( c = 0; c < matrix.COLS; c++)
+                    {
+                        matrix.hexaKeys0[r, c] = "0x00";
+                        matrix.hexaKeys1[r, c] = "0x00";
+                    }
                 }
-            }
-            for (int i = 0; i < checkedListBox1.CheckedIndices.Count; i++)
-            {
-                int index = checkedListBox1.CheckedIndices[i];
-                string str0 = matrix.keycode[index];
-                string str1 = matrix.keycode[index + keyCount];
-                int r = (int)matrix.keycap[index, 3];
-                int c = (int)matrix.keycap[index, 4];
-                matrix.hexaKeys0[r, c] = str0;
-                matrix.hexaKeys1[r, c] = str1;
-            }
+                for (int i = 0; i < checkedListBox1.CheckedIndices.Count; i++)
+                {
+                    index = checkedListBox1.CheckedIndices[i];
+                    string str0 = matrix.keycode[index];
+                    string str1 = matrix.keycode[index + keyCount];
+                     r = (int)matrix.keycap[index, 3];
+                     c = (int)matrix.keycap[index, 4];
+                    matrix.hexaKeys0[r, c] = str0;
+                    matrix.hexaKeys1[r, c] = str1;
+                Print(r.ToString()+","+c.ToString()+":"+str0 + " , " + str1);
+                }
+          //  }catch(Exception ex) { Print(ex.ToString());}
             try
             {
                 ushort add1 = 5 * 2;
@@ -691,9 +760,9 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
                     output.Append(matrix.colPins[i]); output.Append(",");
                 }
                 int[,] mask = new int[matrix.ROWS, matrix.COLS];
-                for (int r = 0; r < matrix.ROWS; r++)
+                for ( r = 0; r < matrix.ROWS; r++)
                 {
-                    for (int c = 0; c < matrix.COLS; c++)
+                    for ( c = 0; c < matrix.COLS; c++)
                     {
                         string code1 = matrix.hexaKeys0[r, c];
                         int mask1 = 0;
@@ -702,9 +771,9 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
                         output.Append(code); output.Append(",");
                     }
                 }
-                for (int r = 0; r < matrix.ROWS; r++)
+                for ( r = 0; r < matrix.ROWS; r++)
                 {
-                    for (int c = 0; c < matrix.COLS; c++)
+                    for ( c = 0; c < matrix.COLS; c++)
                     {
                         string code2 = matrix.hexaKeys1[r, c];
                         int mask2 = 0;
@@ -713,9 +782,9 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
                         output.Append(code); output.Append(",");
                     }
                 }
-                for (int r = 0; r < matrix.ROWS; r++)
+                for ( r = 0; r < matrix.ROWS; r++)
                 {
-                    for (int c = 0; c < matrix.COLS; c++)
+                    for ( c = 0; c < matrix.COLS; c++)
                     {
                         output.Append(mask[r, c]); output.Append(",");
                     }
@@ -1148,6 +1217,10 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
         {
             iencode = "GBK";
             WriteToHex();
+        }
+        private void exportMatrixToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Export("");
         }
     }
 }

@@ -35,6 +35,7 @@
             this.matrix2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportMatrixToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.templateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bface96ver21ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ps2avrGB2XShiftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -105,7 +106,8 @@
             this.matrix1ToolStripMenuItem,
             this.matrix2ToolStripMenuItem,
             this.saveAsToolStripMenuItem,
-            this.clearAllToolStripMenuItem});
+            this.clearAllToolStripMenuItem,
+            this.exportMatrixToolStripMenuItem});
             this.xD60ToolStripMenuItem.Name = "xD60ToolStripMenuItem";
             this.xD60ToolStripMenuItem.Size = new System.Drawing.Size(45, 21);
             this.xD60ToolStripMenuItem.Text = "Files";
@@ -113,21 +115,21 @@
             // matrix1ToolStripMenuItem
             // 
             this.matrix1ToolStripMenuItem.Name = "matrix1ToolStripMenuItem";
-            this.matrix1ToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.matrix1ToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.matrix1ToolStripMenuItem.Text = "OpenMatrix";
             this.matrix1ToolStripMenuItem.Click += new System.EventHandler(this.OpenMatrix_StripMenuItem_Click);
             // 
             // matrix2ToolStripMenuItem
             // 
             this.matrix2ToolStripMenuItem.Name = "matrix2ToolStripMenuItem";
-            this.matrix2ToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.matrix2ToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.matrix2ToolStripMenuItem.Text = "SaveMatrix";
             this.matrix2ToolStripMenuItem.Click += new System.EventHandler(this.SaveMatrix_ToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.saveAsToolStripMenuItem.Text = "SaveAsFile";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.SaveAsFile_ToolStripMenuItem_Click);
             // 
@@ -135,9 +137,16 @@
             // 
             this.clearAllToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.clearAllToolStripMenuItem.Name = "clearAllToolStripMenuItem";
-            this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
             this.clearAllToolStripMenuItem.Text = "ClearAll";
             this.clearAllToolStripMenuItem.Click += new System.EventHandler(this.ClearAll_ToolStripMenuItem_Click);
+            // 
+            // exportMatrixToolStripMenuItem
+            // 
+            this.exportMatrixToolStripMenuItem.Name = "exportMatrixToolStripMenuItem";
+            this.exportMatrixToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.exportMatrixToolStripMenuItem.Text = "ExportMatrix";
+            this.exportMatrixToolStripMenuItem.Click += new System.EventHandler(this.exportMatrixToolStripMenuItem_Click);
             // 
             // templateToolStripMenuItem
             // 
@@ -157,7 +166,7 @@
             // 
             this.bface96ver21ToolStripMenuItem.Name = "bface96ver21ToolStripMenuItem";
             this.bface96ver21ToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.bface96ver21ToolStripMenuItem.Text = "Bface96_ver2";
+            this.bface96ver21ToolStripMenuItem.Text = "Bface96_SJZZ";
             this.bface96ver21ToolStripMenuItem.Click += new System.EventHandler(this.bface96ver21ToolStripMenuItem_Click);
             // 
             // ps2avrGB2XShiftToolStripMenuItem
@@ -172,14 +181,14 @@
             // xshiftToolStripMenuItem2
             // 
             this.xshiftToolStripMenuItem2.Name = "xshiftToolStripMenuItem2";
-            this.xshiftToolStripMenuItem2.Size = new System.Drawing.Size(116, 22);
+            this.xshiftToolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.xshiftToolStripMenuItem2.Text = "2XShift";
             this.xshiftToolStripMenuItem2.Click += new System.EventHandler(this.xshiftToolStripMenuItem2_Click);
             // 
             // minilaToolStripMenuItem
             // 
             this.minilaToolStripMenuItem.Name = "minilaToolStripMenuItem";
-            this.minilaToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.minilaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.minilaToolStripMenuItem.Text = "Minila";
             this.minilaToolStripMenuItem.Click += new System.EventHandler(this.minilaToolStripMenuItem_Click);
             // 
@@ -195,14 +204,14 @@
             // xShiftToolStripMenuItem
             // 
             this.xShiftToolStripMenuItem.Name = "xShiftToolStripMenuItem";
-            this.xShiftToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.xShiftToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.xShiftToolStripMenuItem.Text = "2.25XShift";
             this.xShiftToolStripMenuItem.Click += new System.EventHandler(this.xShiftToolStripMenuItem_Click);
             // 
             // xShiftToolStripMenuItem1
             // 
             this.xShiftToolStripMenuItem1.Name = "xShiftToolStripMenuItem1";
-            this.xShiftToolStripMenuItem1.Size = new System.Drawing.Size(133, 22);
+            this.xShiftToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.xShiftToolStripMenuItem1.Text = "2XShift";
             this.xShiftToolStripMenuItem1.Click += new System.EventHandler(this.xShiftToolStripMenuItem1_Click);
             // 
@@ -231,7 +240,7 @@
             // 
             this.StaryuToolStripMenuItem.Name = "StaryuToolStripMenuItem";
             this.StaryuToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
-            this.StaryuToolStripMenuItem.Text = "Staryu";
+            this.StaryuToolStripMenuItem.Text = "Staryu_Kairyu";
             this.StaryuToolStripMenuItem.Click += new System.EventHandler(this.StaryuToolStripMenuItem_Click);
             // 
             // rGBToolStripMenuItem
@@ -625,6 +634,7 @@
         private System.Windows.Forms.ToolStripMenuItem StaryuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem writeToFlashInUnicodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bface96ver21ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportMatrixToolStripMenuItem;
     }
 }
 
