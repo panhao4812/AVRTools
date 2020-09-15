@@ -179,7 +179,7 @@ namespace HidRawTools
                 {
                     if (ch[j] < 127 && ch[j] >= 0)
                     {
-                        int code = Program.ascii_to_scan_code_table[(int)ch[j]];
+                        int code = IKeycode.ascii_to_scan_code_table[(int)ch[j]];
                         if (code != 0)
                         {
                             output += code.ToString();
@@ -296,10 +296,7 @@ namespace HidRawTools
             {
                 ((TextBox)sender).SelectAll();
             }
-        }
-
-       
-
+        }    
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Modifiers == Keys.Control && e.KeyCode == Keys.A)

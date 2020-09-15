@@ -90,6 +90,7 @@
     </Compile>
     <Compile Include="keyboard\Hex.cs" />
     <Compile Include="keyboard\IMatrix.cs" />
+    <Compile Include="keyboard\KeyCode.cs" />
     <Compile Include="keyboard\staryu.cs" />
     <Compile Include="libusbtool.cs">
       <SubType>Form</SubType>

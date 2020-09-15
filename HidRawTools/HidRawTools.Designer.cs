@@ -77,6 +77,10 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.PrintBox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.qMK60ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.iSOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xShiftToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.xShiftToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -96,7 +100,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(335, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(427, 25);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -115,21 +119,21 @@
             // matrix1ToolStripMenuItem
             // 
             this.matrix1ToolStripMenuItem.Name = "matrix1ToolStripMenuItem";
-            this.matrix1ToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.matrix1ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.matrix1ToolStripMenuItem.Text = "OpenMatrix";
             this.matrix1ToolStripMenuItem.Click += new System.EventHandler(this.OpenMatrix_StripMenuItem_Click);
             // 
             // matrix2ToolStripMenuItem
             // 
             this.matrix2ToolStripMenuItem.Name = "matrix2ToolStripMenuItem";
-            this.matrix2ToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.matrix2ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.matrix2ToolStripMenuItem.Text = "SaveMatrix";
             this.matrix2ToolStripMenuItem.Click += new System.EventHandler(this.SaveMatrix_ToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveAsToolStripMenuItem.Text = "SaveAsFile";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.SaveAsFile_ToolStripMenuItem_Click);
             // 
@@ -137,14 +141,14 @@
             // 
             this.clearAllToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.clearAllToolStripMenuItem.Name = "clearAllToolStripMenuItem";
-            this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.clearAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.clearAllToolStripMenuItem.Text = "ClearAll";
             this.clearAllToolStripMenuItem.Click += new System.EventHandler(this.ClearAll_ToolStripMenuItem_Click);
             // 
             // exportMatrixToolStripMenuItem
             // 
             this.exportMatrixToolStripMenuItem.Name = "exportMatrixToolStripMenuItem";
-            this.exportMatrixToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.exportMatrixToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exportMatrixToolStripMenuItem.Text = "ExportMatrix";
             this.exportMatrixToolStripMenuItem.Click += new System.EventHandler(this.exportMatrixToolStripMenuItem_Click);
             // 
@@ -157,7 +161,8 @@
             this.tinykeyToolStripMenuItem,
             this.xD75ReToolStripMenuItem,
             this.xD004ToolStripMenuItem,
-            this.StaryuToolStripMenuItem});
+            this.StaryuToolStripMenuItem,
+            this.qMK60ToolStripMenuItem});
             this.templateToolStripMenuItem.Name = "templateToolStripMenuItem";
             this.templateToolStripMenuItem.Size = new System.Drawing.Size(77, 21);
             this.templateToolStripMenuItem.Text = "Keyboard";
@@ -552,6 +557,35 @@
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             this.panel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseClick);
             // 
+            // qMK60ToolStripMenuItem
+            // 
+            this.qMK60ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.iSOToolStripMenuItem,
+            this.xShiftToolStripMenuItem3,
+            this.xShiftToolStripMenuItem4});
+            this.qMK60ToolStripMenuItem.Name = "qMK60ToolStripMenuItem";
+            this.qMK60ToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
+            this.qMK60ToolStripMenuItem.Text = "QMK60";
+            // 
+            // iSOToolStripMenuItem
+            // 
+            this.iSOToolStripMenuItem.Name = "iSOToolStripMenuItem";
+            this.iSOToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.iSOToolStripMenuItem.Text = "ISO";
+            this.iSOToolStripMenuItem.Click += new System.EventHandler(this.iSOToolStripMenuItem_Click);
+            // 
+            // xShiftToolStripMenuItem3
+            // 
+            this.xShiftToolStripMenuItem3.Name = "xShiftToolStripMenuItem3";
+            this.xShiftToolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
+            this.xShiftToolStripMenuItem3.Text = "2XShift";
+            // 
+            // xShiftToolStripMenuItem4
+            // 
+            this.xShiftToolStripMenuItem4.Name = "xShiftToolStripMenuItem4";
+            this.xShiftToolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
+            this.xShiftToolStripMenuItem4.Text = "1.75XShift";
+            // 
             // HidRawTools
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -635,6 +669,10 @@
         private System.Windows.Forms.ToolStripMenuItem writeToFlashInUnicodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bface96ver21ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportMatrixToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem qMK60ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem iSOToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem xShiftToolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem xShiftToolStripMenuItem4;
     }
 }
 

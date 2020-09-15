@@ -73,8 +73,8 @@ namespace HidRawTools
                     string str = index.ToString();
                     //  string[] chara = str.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
                     output +="\""+ str + "," + 
-                        Program.longname(matrix.keycode[index])+ "," + 
-                        Program.longname(matrix.keycode[index + keyCount]) + "\","+ "\r\n";
+                        IKeycode.longname(matrix.keycode[index])+ "," + 
+                        IKeycode.longname(matrix.keycode[index + keyCount]) + "\","+ "\r\n";
                 }
                 for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
                 {
@@ -137,8 +137,8 @@ namespace HidRawTools
                     int index = checkedListBox1.CheckedIndices[i];
                     string str = index.ToString();
                     //  string[] chara = str.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
-                    output += str + "," + Program.longname(matrix.keycode[index])
-                        + "," + Program.longname(matrix.keycode[index + keyCount]) + "\r\n";
+                    output += str + "," + IKeycode.longname(matrix.keycode[index])
+                        + "," + IKeycode.longname(matrix.keycode[index + keyCount]) + "\r\n";
                 }
                 for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
                 {
@@ -272,6 +272,13 @@ namespace HidRawTools
                 textBox2.Text = "0160";
                 img = null;
             }
+            else if (_name == "QMK60_ISO")
+            {
+                matrix = new QMK60_ISO();
+                textBox3.Text = "32C4";
+                textBox2.Text = "1160";
+                img = null;
+            }
             else return false;
             layer = 0;
             keyCount = matrix.keycap.GetUpperBound(0) + 1;
@@ -311,16 +318,16 @@ namespace HidRawTools
                     {
                         int index = Convert.ToInt32(chara[0]);
                         checkedListBox1.SetItemChecked(index, true);
-                        AddButton(index, Program.shortname(chara[1]));
-                        matrix.keycode[index] = Program.shortname(chara[1]);
-                        matrix.keycode[index + keyCount] = Program.shortname(chara[2]);
+                        AddButton(index, IKeycode.shortname(chara[1]));
+                        matrix.keycode[index] = IKeycode.shortname(chara[1]);
+                        matrix.keycode[index + keyCount] = IKeycode.shortname(chara[2]);
                     }
                     else if (chara.Length == 2)
                     {
                         int index = Convert.ToInt32(chara[0]);
                         checkedListBox1.SetItemChecked(index, true);
-                        AddButton(index, Program.shortname(chara[1]));
-                        matrix.keycode[index] = Program.shortname(chara[1]);
+                        AddButton(index, IKeycode.shortname(chara[1]));
+                        matrix.keycode[index] = IKeycode.shortname(chara[1]);
                     }
                     else if (chara.Length == 1)
                     {
@@ -330,26 +337,31 @@ namespace HidRawTools
                     }
 
                 }
-                AddRGBButton();
-                RGB_Type = (Byte)matrix.RGB[0, 2];
-                if ((RGB_Type & 0x0F) == 0x01)
+                if (matrix.RGB != null)
                 {
-                    this.editToolStripMenuItem.Text = "FixedColor";
-                }
-                else
-                {
-                    this.editToolStripMenuItem.Text = "Rainbow";
-                }
-                if ((RGB_Type & 0xF0) == 0x10)
-                {
-                    this.oNOFFToolStripMenuItem.Text = "Default OFF";
-                }
-                else
-                {
-                    this.oNOFFToolStripMenuItem.Text = "Default ON";
+                    if (matrix.RGB.GetUpperBound(0) != matrix.Defaultkeycode.Count())
+                    {//排除不带ws2812灯带 和 反贴片轴灯
+                        AddRGBButton();
+                    }
+                        RGB_Type = (Byte)matrix.RGB[0, 2];              
+                        if ((RGB_Type & 0x0F) == 0x01)
+                        {
+                            this.editToolStripMenuItem.Text = "FixedColor";
+                        }
+                        else
+                        {
+                            this.editToolStripMenuItem.Text = "Rainbow";
+                        }
+                        if ((RGB_Type & 0xF0) == 0x10)
+                        {
+                            this.oNOFFToolStripMenuItem.Text = "Default OFF";
+                        }
+                        else
+                        {
+                            this.oNOFFToolStripMenuItem.Text = "Default ON";
+                        }
                 }
                 panel1.BackgroundImage = img;
-
             }
             catch (Exception ex)
             {
@@ -683,7 +695,7 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
                 {
                     if (ch[j] < 127 && ch[j] >= 0)
                     {
-                        int code = Program.ascii_to_scan_code_table[(int)ch[j]];
+                        int code = IKeycode.ascii_to_scan_code_table[(int)ch[j]];
                         if (code != 0)
                         {
                             output += code.ToString();
@@ -766,7 +778,7 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
                     {
                         string code1 = matrix.hexaKeys0[r, c];
                         int mask1 = 0;
-                        int code = Program.name2code(code1, out mask1);
+                        int code = IKeycode.name2code(code1, out mask1);
                         mask[r, c] += mask1 * 16;
                         output.Append(code); output.Append(",");
                     }
@@ -777,7 +789,7 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
                     {
                         string code2 = matrix.hexaKeys1[r, c];
                         int mask2 = 0;
-                        int code = Program.name2code(code2, out mask2);
+                        int code = IKeycode.name2code(code2, out mask2);
                         mask[r, c] += mask2;
                         output.Append(code); output.Append(",");
                     }
@@ -822,7 +834,7 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
             checkedListBox1.Location = new Point(444, 428);
             dataGridView1.Size = new Size(338, 322);
             dataGridView1.Location = new Point(666, 428);
-            dataGridView1.RowCount = Program.KeyName.Length + 1;
+            dataGridView1.RowCount = IKeycode.KeyName.Length + 1;
             for (int i = 0; i < this.dataGridView1.Columns.Count; i++)
             {
                 this.dataGridView1.Columns[i].SortMode = DataGridViewColumnSortMode.Automatic;
@@ -832,13 +844,13 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
             this.dataGridView1.Rows[0].Cells[2].Value = "";
             this.dataGridView1.Rows[0].Cells[3].Value = 0;
             this.dataGridView1.Rows[0].Cells[4].Value = 0;
-            for (int i = 0; i < Program.KeyName.Length; i++)
+            for (int i = 0; i < IKeycode.KeyName.Length; i++)
             {
                 this.dataGridView1.Rows[i + 1].Cells[0].Value = i;
-                this.dataGridView1.Rows[i + 1].Cells[1].Value = Program.KeyName[i];
-                this.dataGridView1.Rows[i + 1].Cells[2].Value = Program.KeyName2[i];
-                this.dataGridView1.Rows[i + 1].Cells[3].Value = Program.Keycode[i];
-                this.dataGridView1.Rows[i + 1].Cells[4].Value = Program.Keymask[i];
+                this.dataGridView1.Rows[i + 1].Cells[1].Value = IKeycode.KeyName[i];
+                this.dataGridView1.Rows[i + 1].Cells[2].Value = IKeycode.KeyName2[i];
+                this.dataGridView1.Rows[i + 1].Cells[3].Value = IKeycode.Keycode[i];
+                this.dataGridView1.Rows[i + 1].Cells[4].Value = IKeycode.Keymask[i];
             }
         }
         private void SaveMatrix_ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -975,16 +987,16 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
                     {
                         int index = Convert.ToInt32(chara[0]);
                         checkedListBox1.SetItemChecked(index, true);
-                        AddButton(index, Program.shortname(chara[1]));
-                        matrix.keycode[index] = Program.shortname(chara[1]);
-                        matrix.keycode[index + keyCount] = Program.shortname(chara[2]);
+                        AddButton(index, IKeycode.shortname(chara[1]));
+                        matrix.keycode[index] = IKeycode.shortname(chara[1]);
+                        matrix.keycode[index + keyCount] = IKeycode.shortname(chara[2]);
                     }
                     else if (chara.Length == 2)
                     {
                         int index = Convert.ToInt32(chara[0]);
                         checkedListBox1.SetItemChecked(index, true);
-                        AddButton(index, Program.shortname(chara[1]));
-                        matrix.keycode[index] = Program.shortname(chara[1]);
+                        AddButton(index, IKeycode.shortname(chara[1]));
+                        matrix.keycode[index] = IKeycode.shortname(chara[1]);
                     }
                     else if (chara.Length == 1)
                     {
@@ -1096,6 +1108,10 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
         {
             if (loadmatrix("Staryu")) { initMatrix(); }
         }
+        private void iSOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("QMK60_ISO")) { initMatrix(); }
+        }
         private void bface96ver21ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (loadmatrix("bface96")) { initMatrix(); }
@@ -1186,14 +1202,14 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
         }
         private void PrintBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.A)
+            if (e.Modifiers == System.Windows.Forms.Keys.Control && e.KeyCode == System.Windows.Forms.Keys.A)
             {
                 ((TextBox)sender).SelectAll();
             }
         }
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.A)
+            if (e.Modifiers == System.Windows.Forms.Keys.Control && e.KeyCode == System.Windows.Forms.Keys.A)
             {
                 ((TextBox)sender).SelectAll();
             }
@@ -1222,5 +1238,7 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
         {
             Export("");
         }
+
+       
     }
 }

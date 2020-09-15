@@ -290,7 +290,6 @@ namespace HidRawTools
         {14,4,1,4,13 }};
             RGB = new int[12, 6]{
                 //x,y,type,r,g,b
-
  {530,12,1,255,255,255},
  {430,12,1,255,255,255},
  {330,12,1,255,255,255},
@@ -460,14 +459,11 @@ namespace HidRawTools
         {
             this.ROWS = 8;
             this.COLS = 15;
-
             this.PrintFlashAddress = 0;
             this.PrintEEpAddress = (ushort)(10 + ROWS + COLS + (ROWS * COLS * 3) + (20 * 3) + 6);
             this.eepromsize = 1024;
             this.flashsize = 0;
-
             this.Name = "bface96";
-
             this.rowPins = new byte[8] { 8, 9, 10, 11, 12, 13, 14, 15 };
             this.colPins = new byte[15] { 0, 1, 2, 3, 4, 5, 6, 7, 23, 22, 21, 20, 19, 18, 31 };
             this.hexaKeys0 = new string[8, 15];
@@ -709,22 +705,19 @@ namespace HidRawTools
  {189,355,1,255,255,255},
  {89,355,1,255,255,255}
             };
-          //  UpdateMatrix();
-        }
-        void UpdateMatrix()
-        {
-            byte[,] hexaKeys0 = new byte[,]{
-    {Program.KEY_CTRL,Program.KEY_GUI,Program.KEY_ALT,0x00,0x00,0x00,Program.KEYPAD_0,0x00,Program.KEYPAD_PERIOD,Program.KEYPAD_ENTER,Program.KEY_RIGHT_GUI,Program.KEY_FN,Program.KEY_RIGHT_CTRL,Program.KEY_INSERT,0x00},//r1
-	{Program.KEY_SHIFT,Program.KEY_Z,Program.KEY_X,Program.KEY_C,Program.KEY_V,Program.KEY_B,Program.KEYPAD_1,Program.KEYPAD_2,Program.KEYPAD_3,0x00,Program.KEY_SLASH,Program.KEY_RIGHT_SHIFT,0x00,Program.KEY_PRINTSCREEN,0x00},//r2
-	{Program.KEY_CAPS_LOCK,Program.KEY_A,Program.KEY_S,Program.KEY_D,Program.KEY_F,Program.KEY_G,Program.KEYPAD_4,Program.KEYPAD_5,Program.KEYPAD_6,Program.KEYPAD_PLUS,Program.KEY_SEMICOLON,Program.KEY_QUOTE,0x00,Program.KEY_ENTER,Program.KEY_PAUSE},//r3
-	{Program.KEY_TAB,Program.KEY_Q,Program.KEY_W,Program.KEY_E,Program.KEY_R,Program.KEY_T,Program.KEYPAD_7,Program.KEYPAD_8,Program.KEYPAD_9,0x00,Program.KEY_P,Program.KEY_LEFT_BRACE,Program.KEY_RIGHT_BRACE,Program.KEY_BACKSLASH,0x00},//r4
-	{Program.KEY_TILDE,Program.KEY_1,Program.KEY_2,Program.KEY_3,Program.KEY_4,Program.KEY_5,Program.KEY_NUM_LOCK,Program.KEYPAD_SLASH,Program.KEYPAD_ASTERIX,Program.KEYPAD_MINUS,Program.KEY_0,Program.KEY_MINUS,Program.KEY_EQUAL,Program.KEY_TILDE,Program.KEY_BACKSPACE},//r5
-	{Program.KEY_ESC,0x00,Program.KEY_F1,Program.KEY_F2,Program.KEY_F3,Program.KEY_F4,0x00,0x00,0x00,0x00,0x00,Program.KEY_F9,Program.KEY_F10,Program.KEY_F11,Program.KEY_F12},//r6
-	{Program.KEY_F5,Program.KEY_6,Program.KEY_Y,Program.KEY_H,Program.KEY_N,Program.KEY_SPACE,Program.KEY_LEFT,Program.KEY_DOWN,Program.KEY_UP,Program.KEY_RIGHT,Program.KEY_F6,Program.KEY_7,Program.KEY_U,Program.KEY_J,Program.KEY_M},//r7
-	{Program.KEY_F8,Program.KEY_9,Program.KEY_O,Program.KEY_L,Program.KEY_PERIOD,Program.KEY_RIGHT_ALT,Program.KEY_DELETE,0x00,Program.KEY_PAGE_DOWN,Program.KEY_PAGE_UP,Program.KEY_F7,Program.KEY_8,Program.KEY_I,Program.KEY_K,Program.KEY_COMMA} //r8
+            /*
+   IhexaKeys0 = new byte[,]{
+    {IKeycode.KEY_CTRL,IKeycode.KEY_GUI,IKeycode.KEY_ALT,0x00,0x00,0x00,IKeycode.KEYPAD_0,0x00,IKeycode.KEYPAD_PERIOD,IKeycode.KEYPAD_ENTER,IKeycode.KEY_RIGHT_GUI,IKeycode.KEY_FN,IKeycode.KEY_RIGHT_CTRL,IKeycode.KEY_INSERT,0x00},//r1
+	{IKeycode.KEY_SHIFT,IKeycode.KEY_Z,IKeycode.KEY_X,IKeycode.KEY_C,IKeycode.KEY_V,IKeycode.KEY_B,IKeycode.KEYPAD_1,IKeycode.KEYPAD_2,IKeycode.KEYPAD_3,0x00,IKeycode.KEY_SLASH,IKeycode.KEY_RIGHT_SHIFT,0x00,IKeycode.KEY_PRINTSCREEN,0x00},//r2
+	{IKeycode.KEY_CAPS_LOCK,IKeycode.KEY_A,IKeycode.KEY_S,IKeycode.KEY_D,IKeycode.KEY_F,IKeycode.KEY_G,IKeycode.KEYPAD_4,IKeycode.KEYPAD_5,IKeycode.KEYPAD_6,IKeycode.KEYPAD_PLUS,IKeycode.KEY_SEMICOLON,IKeycode.KEY_QUOTE,0x00,IKeycode.KEY_ENTER,IKeycode.KEY_PAUSE},//r3
+	{IKeycode.KEY_TAB,IKeycode.KEY_Q,IKeycode.KEY_W,IKeycode.KEY_E,IKeycode.KEY_R,IKeycode.KEY_T,IKeycode.KEYPAD_7,IKeycode.KEYPAD_8,IKeycode.KEYPAD_9,0x00,IKeycode.KEY_P,IKeycode.KEY_LEFT_BRACE,IKeycode.KEY_RIGHT_BRACE,IKeycode.KEY_BACKSLASH,0x00},//r4
+	{IKeycode.KEY_TILDE,IKeycode.KEY_1,IKeycode.KEY_2,IKeycode.KEY_3,IKeycode.KEY_4,IKeycode.KEY_5,IKeycode.KEY_NUM_LOCK,IKeycode.KEYPAD_SLASH,IKeycode.KEYPAD_ASTERIX,IKeycode.KEYPAD_MINUS,IKeycode.KEY_0,IKeycode.KEY_MINUS,IKeycode.KEY_EQUAL,IKeycode.KEY_TILDE,IKeycode.KEY_BACKSPACE},//r5
+	{IKeycode.KEY_ESC,0x00,IKeycode.KEY_F1,IKeycode.KEY_F2,IKeycode.KEY_F3,IKeycode.KEY_F4,0x00,0x00,0x00,0x00,0x00,IKeycode.KEY_F9,IKeycode.KEY_F10,IKeycode.KEY_F11,IKeycode.KEY_F12},//r6
+	{IKeycode.KEY_F5,IKeycode.KEY_6,IKeycode.KEY_Y,IKeycode.KEY_H,IKeycode.KEY_N,IKeycode.KEY_SPACE,IKeycode.KEY_LEFT,IKeycode.KEY_DOWN,IKeycode.KEY_UP,IKeycode.KEY_RIGHT,IKeycode.KEY_F6,IKeycode.KEY_7,IKeycode.KEY_U,IKeycode.KEY_J,IKeycode.KEY_M},//r7
+	{IKeycode.KEY_F8,IKeycode.KEY_9,IKeycode.KEY_O,IKeycode.KEY_L,IKeycode.KEY_PERIOD,IKeycode.KEY_RIGHT_ALT,IKeycode.KEY_DELETE,0x00,IKeycode.KEY_PAGE_DOWN,IKeycode.KEY_PAGE_UP,IKeycode.KEY_F7,IKeycode.KEY_8,IKeycode.KEY_I,IKeycode.KEY_K,IKeycode.KEY_COMMA} //r8
 };
-            byte[,] keymask= new byte[,]  {
-	{0x20,0x20,0x20,0x00,0x00,0x00,0x10,0x00,0x10,0x10,0x20,0x66,0x20,0x10,0x00},//r1
+   Ikeymask = new byte[,]  {
+    {0x20,0x20,0x20,0x00,0x00,0x00,0x10,0x00,0x10,0x10,0x20,0x66,0x20,0x10,0x00},//r1
 	{0x20,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x00,0x10,0x20,0x00,0x10,0x00},//r2
 	{0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x00,0x10,0x10},//r3
 	{0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x00,0x10,0x10,0x10,0x10,0x00},//r4
@@ -733,32 +726,8 @@ namespace HidRawTools
 	{0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10},//r7
 	{0x10,0x10,0x10,0x10,0x10,0x20,0x10,0x00,0x10,0x10,0x10,0x10,0x10,0x10,0x10} //r8
 };
-            for (int i = 0; i < Defaultkeycode.Length; i++)
-            {
-                string str = Defaultkeycode[i];
-                string[] strs = str.Split(',');
-                int index = Convert.ToInt32(strs[0]);
-                bool sign = false;
-                int ii, jj,mask; mask = 0;
-                for ( ii = 0; ii < this.ROWS; ii++)
-                {
-                    for ( jj = 0; jj < this.COLS; jj++)
-                    {
-                        
-                        int nameid = Program.name2code(strs[1],out mask);
-                        if(nameid== hexaKeys0[ii, jj]&& keymask[ii,jj]==mask*16)
-                        {
-                            keycap[index, 4] = jj; keycap[index, 3] = ii;
-                            sign = true;
-                        }
-                        if (sign) break;
-                    }
-                    if (sign)
-                    {
-                        break;
-                    }
-                }
-            }
-        }
+     IUpdateMatrix();
+           */
+        }       
     }
 }
