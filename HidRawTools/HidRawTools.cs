@@ -76,6 +76,7 @@ namespace HidRawTools
                         IKeycode.longname(matrix.keycode[index])+ "," + 
                         IKeycode.longname(matrix.keycode[index + keyCount]) + "\","+ "\r\n";
                 }
+                if (matrix.RGB != null) {
                 for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
                 {
                     output += "{" + i.ToString() + "," + 
@@ -84,14 +85,20 @@ namespace HidRawTools
                         matrix.RGB[i, 4].ToString() + "," + 
                         matrix.RGB[i, 5].ToString()  +"},"+"\r\n";
                 }
+                }
+                int count = 0;
                 for (int i = matrix.keycap.GetLowerBound(0); i <= matrix.keycap.GetUpperBound(0); i++)
                 {
-                    output+= "{"+ 
-                        matrix.keycap[i,0].ToString()+","+
-                        matrix.keycap[i, 1].ToString() + "," +
-                        matrix.keycap[i, 2].ToString() + "," +
-                        matrix.keycap[i, 3].ToString() + "," +
-                        matrix.keycap[i, 4].ToString() + "}," +@"// "+i.ToString()+ "\r\n";
+                    if (checkedListBox1.GetItemChecked(i))
+                    {
+                        output += "{" +
+                            matrix.keycap[i, 0].ToString() + "," +
+                            matrix.keycap[i, 1].ToString() + "," +
+                            matrix.keycap[i, 2].ToString() + "," +
+                            matrix.keycap[i, 3].ToString() + "," +
+                            matrix.keycap[i, 4].ToString() + "}," + @"// " + count.ToString() + "\r\n";
+                        count++;
+                    }
                 }
                 stream.Write(output);
                 stream.Flush();
@@ -140,10 +147,13 @@ namespace HidRawTools
                     output += str + "," + IKeycode.longname(matrix.keycode[index])
                         + "," + IKeycode.longname(matrix.keycode[index + keyCount]) + "\r\n";
                 }
-                for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
+                if (matrix.RGB != null)
                 {
-                    output += i.ToString() + "," + matrix.RGB[i, 2].ToString() + "," + matrix.RGB[i, 3].ToString()
-                        + "," + matrix.RGB[i, 4].ToString() + "," + matrix.RGB[i, 5].ToString() + "\r\n";
+                    for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
+                    {
+                        output += i.ToString() + "," + matrix.RGB[i, 2].ToString() + "," + matrix.RGB[i, 3].ToString()
+                            + "," + matrix.RGB[i, 4].ToString() + "," + matrix.RGB[i, 5].ToString() + "\r\n";
+                    }
                 }
                 stream.Write(output);
                 stream.Flush();
@@ -276,7 +286,28 @@ namespace HidRawTools
             {
                 matrix = new QMK60_ISO();
                 textBox3.Text = "32C4";
-                textBox2.Text = "1160";
+                textBox2.Text = "D061";
+                img = null;
+            }
+            else if (_name == "QMK60_175Shift")
+            {
+                matrix = new QMK60_175Shift();
+                textBox3.Text = "32C4";
+                textBox2.Text = "D063";
+                img = null;
+            }
+            else if (_name == "QMK60_2Shift")
+            {
+                matrix = new QMK60_2Shift();
+                textBox3.Text = "32C4";
+                textBox2.Text = "D064";
+                img = null;
+            }
+            else if (_name == "QMK96_ISO")
+            {
+                matrix = new QMK96_ISO();
+                textBox3.Text = "32C4";
+                textBox2.Text = "D100";
                 img = null;
             }
             else return false;
@@ -1076,46 +1107,6 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
             }
             catch (Exception ex) { Print(ex.ToString()); return; }
         }
-        private void xShiftToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (loadmatrix("XD60_A")) { initMatrix(); }
-        }
-        private void xShiftToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            if (loadmatrix("XD60_B")) { initMatrix(); }
-        }
-        private void tinykeyToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (loadmatrix("Tinykey")) { initMatrix(); }
-        }
-        private void xshiftToolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            if (loadmatrix("bface60_B")) { initMatrix(); }
-        }
-        private void minilaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (loadmatrix("bface60_minila")) { initMatrix(); }
-        }
-        private void xD75ReToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (loadmatrix("XD75_Re")) { initMatrix(); }
-        }
-        private void xD004ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (loadmatrix("XD004")) { initMatrix(); }
-        }
-        private void StaryuToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (loadmatrix("Staryu")) { initMatrix(); }
-        }
-        private void iSOToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (loadmatrix("QMK60_ISO")) { initMatrix(); }
-        }
-        private void bface96ver21ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (loadmatrix("bface96")) { initMatrix(); }
-        }
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             if (layer != 0)
@@ -1238,7 +1229,57 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
         {
             Export("");
         }
-
-       
+        private void uShiftToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("bface60_B")) { initMatrix(); }
+        }
+        private void bface96SJZZToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("bface96")) { initMatrix(); }
+        }
+        private void minilaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("bface60_minila")) { initMatrix(); }
+        }
+        private void xD75ReToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("XD75_Re")) { initMatrix(); }
+        }
+        private void uShiftToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("XD60_A")) { initMatrix(); }
+        }
+        private void uShiftToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("XD60_B")) { initMatrix(); }
+        }
+        private void xD002ver10ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("Tinykey")) { initMatrix(); }
+        }
+        private void xD004ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("XD004")) { initMatrix(); }
+        }
+        private void iSOToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("QMK60_ISO")) { initMatrix(); }
+        }
+        private void shiftToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("QMK60_175Shift")) { initMatrix(); }
+        }
+        private void shiftToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("QMK60_2Shift")) { initMatrix(); }
+        }
+        private void xD004ToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            if (loadmatrix("Staryu")) { initMatrix(); }
+        }
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("QMK96_ISO")) { initMatrix(); }
+        }
     }
 }
