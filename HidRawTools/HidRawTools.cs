@@ -51,7 +51,7 @@ namespace HidRawTools
                 {
                     SaveFileDialog sfd = new SaveFileDialog();
                     sfd.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-                    sfd.FilterIndex = 2;
+                    sfd.FilterIndex = 1;
                     sfd.RestoreDirectory = true;
                     if (sfd.ShowDialog() == DialogResult.OK)
                     {
@@ -66,38 +66,55 @@ namespace HidRawTools
                 FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
                 fs.SetLength(0);
                 StreamWriter stream = new StreamWriter(fs);
-                string output = "matrix," + matrix.Name + "\r\n";
+                string output = "name," + matrix.Name + "\r\n";
+                 output += "PrintFlashAddress," + matrix.PrintFlashAddress.ToString()+ "\r\n";
+                output += "PrintEEpAddress ," + matrix.PrintEEpAddress.ToString() + "\r\n";
+                output += "eepromsize ," + matrix.eepromsize.ToString() + "\r\n";
+                output += "flashsize ," + matrix.flashsize.ToString() + "\r\n";
+                output += "ROWS ," + matrix.ROWS.ToString() + "\r\n";
+                for(int i=0;i< matrix.rowPins.Length; i++)
+                {
+                    output += matrix.rowPins[i].ToString() ;
+                    if (i != matrix.rowPins.Length - 1) output += ",";
+                }
+                output += "\r\n";
+                output += "COLS ," + matrix.COLS.ToString() + "\r\n";
+                for (int i = 0; i < matrix.colPins.Length; i++)
+                {
+                    output += matrix.colPins[i].ToString() ;
+                    if (i != matrix.colPins.Length - 1) output += ",";
+                }
+                output +="\r\n";
                 for (int i = 0; i < checkedListBox1.CheckedIndices.Count; i++)
                 {
                     int index = checkedListBox1.CheckedIndices[i];
-                    string str = index.ToString();
+                    string str = i.ToString();
                     //  string[] chara = str.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
                     output +="\""+ str + "," + 
                         IKeycode.longname(matrix.keycode[index])+ "," + 
                         IKeycode.longname(matrix.keycode[index + keyCount]) + "\","+ "\r\n";
                 }
-                if (matrix.RGB != null) {
-                for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
+
+                for (int i = 0; i < checkedListBox1.CheckedIndices.Count; i++)
                 {
-                    output += "{" + i.ToString() + "," + 
-                        matrix.RGB[i, 2].ToString() + "," + 
-                        matrix.RGB[i, 3].ToString()+ "," + 
-                        matrix.RGB[i, 4].ToString() + "," + 
-                        matrix.RGB[i, 5].ToString()  +"},"+"\r\n";
+                    int index = checkedListBox1.CheckedIndices[i];
+                    string str = i.ToString();
+                    output += "{" +
+                            matrix.keycap[index, 0].ToString() + "," +
+                            matrix.keycap[index, 1].ToString() + "," +
+                            matrix.keycap[index, 2].ToString() + "," +
+                            matrix.keycap[index, 3].ToString() + "," +
+                            matrix.keycap[index, 4].ToString() + "}," + @"// " +str + "\r\n";                   
                 }
-                }
-                int count = 0;
-                for (int i = matrix.keycap.GetLowerBound(0); i <= matrix.keycap.GetUpperBound(0); i++)
+                if (matrix.RGB != null)
                 {
-                    if (checkedListBox1.GetItemChecked(i))
+                    for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
                     {
-                        output += "{" +
-                            matrix.keycap[i, 0].ToString() + "," +
-                            matrix.keycap[i, 1].ToString() + "," +
-                            matrix.keycap[i, 2].ToString() + "," +
-                            matrix.keycap[i, 3].ToString() + "," +
-                            matrix.keycap[i, 4].ToString() + "}," + @"// " + count.ToString() + "\r\n";
-                        count++;
+                        output += "{" + i.ToString() + "," +
+                            matrix.RGB[i, 2].ToString() + "," +
+                            matrix.RGB[i, 3].ToString() + "," +
+                            matrix.RGB[i, 4].ToString() + "," +
+                            matrix.RGB[i, 5].ToString() + "}," + "\r\n";
                     }
                 }
                 stream.Write(output);
