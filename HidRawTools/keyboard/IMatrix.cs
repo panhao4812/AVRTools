@@ -304,7 +304,7 @@ namespace HidRawTools
             this.Name = "QMK60_2Shift";
             iniLayout();
         }
-        const int keynum = 64;
+        public const int keynum = 64;
         public void iniLayout()
         {
             RGB = null;

@@ -327,6 +327,13 @@ namespace HidRawTools
                 textBox2.Text = "D100";
                 img = null;
             }
+            else if (_name == "CXT64")
+            {
+                matrix = new CXT64();
+                textBox3.Text = "32C4";
+                textBox2.Text = "0xD064";
+                img = null;
+            }
             else return false;
             layer = 0;
             keyCount = matrix.keycap.GetUpperBound(0) + 1;
@@ -387,26 +394,30 @@ namespace HidRawTools
                 }
                 if (matrix.RGB != null)
                 {
-                    if (matrix.RGB.GetUpperBound(0) != matrix.Defaultkeycode.Count())
+                    if (matrix.RGB.GetUpperBound(0) != matrix.Defaultkeycode.Length-1) 
                     {//排除不带ws2812灯带 和 反贴片轴灯
                         AddRGBButton();
                     }
                         RGB_Type = (Byte)matrix.RGB[0, 2];              
-                        if ((RGB_Type & 0x0F) == 0x01)
+                        if ((RGB_Type & 0x0F) == 0x00)
                         {
-                            this.editToolStripMenuItem.Text = "FixedColor";
+                            this.editToolStripMenuItem.Text = "Default is FixedColor,click to change.";
                         }
-                        else
+                        else if((RGB_Type & 0x0F) == 0x01)
                         {
-                            this.editToolStripMenuItem.Text = "Rainbow";
+                            this.editToolStripMenuItem.Text = "Default is Rainbow,click to change.";
+                        }
+                        else if((RGB_Type & 0x0F) == 0x02)
+                        {
+                        this.editToolStripMenuItem.Text = "Default is PrintLight,click to change.";
                         }
                         if ((RGB_Type & 0xF0) == 0x10)
                         {
-                            this.oNOFFToolStripMenuItem.Text = "Default OFF";
+                            this.oNOFFToolStripMenuItem.Text = "Default is ON,click to turn off.";
                         }
                         else
                         {
-                            this.oNOFFToolStripMenuItem.Text = "Default ON";
+                            this.oNOFFToolStripMenuItem.Text = "Default is OFF,click to turn on.";
                         }
                 }
                 panel1.BackgroundImage = img;
@@ -593,8 +604,11 @@ namespace HidRawTools
                 button.Location = Point1;
                 button.FlatStyle = FlatStyle.Flat;
                 button.BackColor = Color.FromArgb(matrix.RGB[i, 3], matrix.RGB[i, 4], matrix.RGB[i, 5]);
+
                 if ((matrix.RGB[i, 2] & (byte)0x0F) == 0) button.Text = i.ToString();
                 else if ((matrix.RGB[i, 2] & (byte)0x0F) == 0x01) { button.Text = "R"; }
+                else if ((matrix.RGB[i, 2] & (byte)0x0F) == 0x02) { button.Text = "P"; }
+
                 if ((matrix.RGB[i, 2] & (byte)0xF0) == 0x10) { button.ForeColor = Color.Black; }
                 else if ((matrix.RGB[i, 2] & (byte)0xF0) == 0x00) { button.ForeColor = Color.FromArgb(200, 200, 200); }
                 button.Font = new Font(button.Font.Name, 7);
@@ -1142,21 +1156,39 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
         }
         private void FixedRGBStripMenuItem_Click(object sender, EventArgs e)
         {
+
             if (matrix == null) return;
             if (matrix.RGB == null || matrix.RGB.GetUpperBound(0) < 0) return;
-            if ((RGB_Type & 0x0F) == 0x01)
+            RGB_Type++;
+            if((RGB_Type&0x0F)>2) RGB_Type &= 0xF0;
+            if ((RGB_Type & 0x0F) == 0x00)
             {
-                this.editToolStripMenuItem.Text = "Rainbow";
-                RGB_Type &= (byte)0xF0;
+                this.editToolStripMenuItem.Text = "Default is FixedColor,click to change.";
+                
                 for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
                 {
                     matrix.RGB[i, 2] = RGB_Type;
+                    matrix.RGB[i, 3] = 255;
+                    matrix.RGB[i, 4] = 255;
+                    matrix.RGB[i, 5] = 255;
+                }
+            }
+            else if ((RGB_Type & 0x0F) == 0x01)
+            {
+                this.editToolStripMenuItem.Text = "Default is Rainbow,click to change.";
+              
+                for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
+                {
+                    matrix.RGB[i, 2] = RGB_Type;
+                    matrix.RGB[i, 3] = 255;
+                    matrix.RGB[i, 4] = 255;
+                    matrix.RGB[i, 5] = 255;
                 }
             }
             else
             {
-                this.editToolStripMenuItem.Text = "FixedColor";
-                RGB_Type |= (byte)0x01;
+                this.editToolStripMenuItem.Text = "Default is PrintLight,click to change.";
+             
                 for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
                 {
                     matrix.RGB[i, 2] = RGB_Type;
@@ -1168,29 +1200,14 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
             Print("RGB_Type = " + RGB_Type);
             changeButton();
         }
-        private void rainfullToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (matrix == null) return;
-            if (matrix.RGB == null || matrix.RGB.GetUpperBound(0) < 0) return;
-            RGB_Type |= (byte)0x01;
-            for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
-            {
-                matrix.RGB[i, 2] = RGB_Type;
-                matrix.RGB[i, 3] = 255;
-                matrix.RGB[i, 4] = 255;
-                matrix.RGB[i, 5] = 255;
-            }
-            Print("RGB_Type = " + RGB_Type);
-            changeButton();
-        }
         private void oNOFFToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
             if (matrix == null) return;
             if (matrix.RGB == null || matrix.RGB.GetUpperBound(0) < 0) return;
 
-            if ((RGB_Type & 0xF0) == 0) { this.oNOFFToolStripMenuItem.Text = "Default OFF"; RGB_Type ^= (byte)0x10; }
-            else { this.oNOFFToolStripMenuItem.Text = "Default ON"; RGB_Type ^= (byte)0x10; }
+            if ((RGB_Type & 0xF0) == 0) { this.oNOFFToolStripMenuItem.Text = "Default is ON,click to turn off."; RGB_Type ^= (byte)0x10; }
+            else { this.oNOFFToolStripMenuItem.Text = "Default is OFF,click to turn on."; RGB_Type ^= (byte)0x10; }
             for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
             {
                 matrix.RGB[i, 2] = RGB_Type;
@@ -1297,6 +1314,10 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
             if (loadmatrix("QMK96_ISO")) { initMatrix(); }
+        }
+        private void cXT64ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("CXT64")) { initMatrix(); }
         }
     }
 }
