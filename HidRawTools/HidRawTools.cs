@@ -231,43 +231,35 @@ namespace HidRawTools
             {
                 matrix = new XD60_A();
                 textBox3.Text = "32C4";
-                textBox2.Text = "0160";
+                textBox2.Text = "D060";
                 img = Properties.Resources.tinykey3;
             }
             else if (_name == "XD60_B")
             {
                 matrix = new XD60_B();
                 textBox3.Text = "32C4";
-                textBox2.Text = "0160";
+                textBox2.Text = "D060";
                 img = Properties.Resources.tinykey3;
-            }
-            else if (_name == "ps2avrU")
-            {
-                matrix = new ps2avrU();
-            }
-            else if (_name == "GH60_revCNY")
-            {
-                matrix = new GH60_revCNY();
             }
             else if (_name == "bface60_minila")
             {
                 matrix = new bface60_minila();
                 textBox3.Text = "32A0";
-                textBox2.Text = "0160";
+                textBox2.Text = "B060";
                 img = Properties.Resources.tinykey2;
             }
             else if (_name == "bface60_B")
             {
                 matrix = new bface60_B();
                 textBox3.Text = "32A0";
-                textBox2.Text = "0160";
+                textBox2.Text = "B060";
                 img = Properties.Resources.tinykey2;
             }
             else if (_name == "Staryu")
             {
                 matrix = new Staryu();
                 textBox3.Text = "32C2";
-                textBox2.Text = "0105";
+                textBox2.Text = "D005";
                 img = null;
 
             }
@@ -275,63 +267,63 @@ namespace HidRawTools
             {
                 matrix = new XD004();
                 textBox3.Text = "16C2";
-                textBox2.Text = "0204";
+                textBox2.Text = "D004";
                 img = null;
             }
             else if (_name == "Tinykey")
             {
                 matrix = new Tinykey();
                 textBox3.Text = "D850";
-                textBox2.Text = "0102";
+                textBox2.Text = "D002";
                 img = Properties.Resources.tinykey;
             }
             else if (_name == "XD75_Re")
             {
                 matrix = new XD75_Re();
                 textBox3.Text = "32C4";
-                textBox2.Text = "0375";
+                textBox2.Text = "D075";
                 img = Properties.Resources.tinykey4;
             }
             else if (_name == "bface96")
             {
                 matrix = new bface96();
                 textBox3.Text = "32A0";
-                textBox2.Text = "0160";
+                textBox2.Text = "B096";
                 img = null;
             }
             else if (_name == "QMK60_ISO")
             {
                 matrix = new QMK60_ISO();
                 textBox3.Text = "32C4";
-                textBox2.Text = "D061";
+                textBox2.Text = "A060";
                 img = null;
             }
             else if (_name == "QMK60_175Shift")
             {
                 matrix = new QMK60_175Shift();
                 textBox3.Text = "32C4";
-                textBox2.Text = "D063";
+                textBox2.Text = "A060";
                 img = null;
             }
             else if (_name == "QMK60_2Shift")
             {
                 matrix = new QMK60_2Shift();
                 textBox3.Text = "32C4";
-                textBox2.Text = "D064";
+                textBox2.Text = "A060";
                 img = null;
             }
             else if (_name == "QMK96_ISO")
             {
                 matrix = new QMK96_ISO();
                 textBox3.Text = "32C4";
-                textBox2.Text = "D100";
+                textBox2.Text = "A096";
                 img = null;
             }
             else if (_name == "CXT64")
             {
                 matrix = new CXT64();
                 textBox3.Text = "32C4";
-                textBox2.Text = "0xD064";
+                textBox2.Text = "C060";
                 img = null;
             }
             else return false;

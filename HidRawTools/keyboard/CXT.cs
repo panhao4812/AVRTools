@@ -22,7 +22,7 @@ namespace HidRawTools.keyboard
             this.hexaKeys0 = new string[5, 15];
             this.hexaKeys1 = new string[5, 15];
             Defaultkeycode = new string[]{
-            "0,MACRO2,MACRO2",
+            "0,KEY_TILDE,KEY_TILDE",
 "1,KEY_1,KEY_F1",
 "2,KEY_2,KEY_F2",
 "3,KEY_3,KEY_F3",
@@ -159,6 +159,21 @@ RGB=new int[64,6]{
 {189,355,1,255,255,255},
 {89,355,1,255,255,255}
             };
+            IhexaKeys0 = new byte[,]{
+      {IKeycode.KEY_TILDE,IKeycode.KEY_1,IKeycode.KEY_2,IKeycode.KEY_3,IKeycode.KEY_4,IKeycode.KEY_5,IKeycode.KEY_6,IKeycode.KEY_7,IKeycode.KEY_8,IKeycode.KEY_9,IKeycode.KEY_0,IKeycode.KEY_MINUS,IKeycode.KEY_EQUAL,0x00,IKeycode.KEY_BACKSPACE},
+    {IKeycode.KEY_TAB,0x00,IKeycode.KEY_Q,IKeycode.KEY_W,IKeycode.KEY_E,IKeycode.KEY_R,IKeycode.KEY_T,IKeycode.KEY_Y,IKeycode.KEY_U,IKeycode.KEY_I,IKeycode.KEY_O,IKeycode.KEY_P,IKeycode.KEY_LEFT_BRACE,IKeycode.KEY_RIGHT_BRACE,IKeycode.KEY_BACKSLASH},
+    {IKeycode.KEY_CAPS_LOCK,0x00,IKeycode.KEY_A,IKeycode.KEY_S,IKeycode.KEY_D,IKeycode.KEY_F,IKeycode.KEY_G,IKeycode.KEY_H,IKeycode.KEY_J,IKeycode.KEY_K,IKeycode.KEY_L,IKeycode.KEY_SEMICOLON,IKeycode.KEY_QUOTE,IKeycode.KEY_ENTER,0x00},
+    {0x00,IKeycode.KEY_LEFT_SHIFT,IKeycode.KEY_Z,IKeycode.KEY_X,IKeycode.KEY_C,IKeycode.KEY_V,IKeycode.KEY_B,IKeycode.KEY_N,IKeycode.KEY_M,IKeycode.KEY_COMMA,IKeycode.KEY_PERIOD,IKeycode.KEY_SLASH,IKeycode.KEY_RIGHT_SHIFT,IKeycode.KEY_UP,IKeycode.KEY_RIGHT_CTRL},
+    {IKeycode.KEY_LEFT_CTRL,IKeycode.KEY_FN,0x00,IKeycode.KEY_LEFT_ALT,0x00,0x00,IKeycode.KEY_SPACE,0x00,0x00,0x00,IKeycode.KEY_FN,IKeycode.KEY_FN,IKeycode.KEY_LEFT,IKeycode.KEY_DOWN,IKeycode.KEY_RIGHT}
+};
+            Ikeymask = new byte[,]  {
+    {0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x11,0x00,0x11},
+    {0x10,0x00,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10},
+    {0x10,0x00,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x00},
+    {0x00,0x22,0x11,0x17,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x22,0x11,0x22},
+    {0x22,0x66,0x00,0x22,0x00,0x00,0x11,0x00,0x00,0x00,0x66,0x66,0x11,0x11,0x11}
+};
+            IUpdateMatrix();
         }
     }
 }

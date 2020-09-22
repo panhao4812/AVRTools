@@ -44,7 +44,7 @@ namespace HidRawTools
                     {
 
                         int nameid = IKeycode.name2code(strs[1], out mask);
-                        if (nameid == IhexaKeys0[ii, jj] && Ikeymask[ii, jj] == mask * 16)
+                        if (nameid == IhexaKeys0[ii, jj] && (Ikeymask[ii, jj]& 0xF0) == mask * 16)
                         {
                             keycap[index, 4] = jj; keycap[index, 3] = ii;
                             sign = true;
