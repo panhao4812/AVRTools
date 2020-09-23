@@ -705,29 +705,6 @@ namespace HidRawTools
  {189,355,1,255,255,255},
  {89,355,1,255,255,255}
             };
-            /*
-   IhexaKeys0 = new byte[,]{
-    {IKeycode.KEY_CTRL,IKeycode.KEY_GUI,IKeycode.KEY_ALT,0x00,0x00,0x00,IKeycode.KEYPAD_0,0x00,IKeycode.KEYPAD_PERIOD,IKeycode.KEYPAD_ENTER,IKeycode.KEY_RIGHT_GUI,IKeycode.KEY_FN,IKeycode.KEY_RIGHT_CTRL,IKeycode.KEY_INSERT,0x00},//r1
-	{IKeycode.KEY_SHIFT,IKeycode.KEY_Z,IKeycode.KEY_X,IKeycode.KEY_C,IKeycode.KEY_V,IKeycode.KEY_B,IKeycode.KEYPAD_1,IKeycode.KEYPAD_2,IKeycode.KEYPAD_3,0x00,IKeycode.KEY_SLASH,IKeycode.KEY_RIGHT_SHIFT,0x00,IKeycode.KEY_PRINTSCREEN,0x00},//r2
-	{IKeycode.KEY_CAPS_LOCK,IKeycode.KEY_A,IKeycode.KEY_S,IKeycode.KEY_D,IKeycode.KEY_F,IKeycode.KEY_G,IKeycode.KEYPAD_4,IKeycode.KEYPAD_5,IKeycode.KEYPAD_6,IKeycode.KEYPAD_PLUS,IKeycode.KEY_SEMICOLON,IKeycode.KEY_QUOTE,0x00,IKeycode.KEY_ENTER,IKeycode.KEY_PAUSE},//r3
-	{IKeycode.KEY_TAB,IKeycode.KEY_Q,IKeycode.KEY_W,IKeycode.KEY_E,IKeycode.KEY_R,IKeycode.KEY_T,IKeycode.KEYPAD_7,IKeycode.KEYPAD_8,IKeycode.KEYPAD_9,0x00,IKeycode.KEY_P,IKeycode.KEY_LEFT_BRACE,IKeycode.KEY_RIGHT_BRACE,IKeycode.KEY_BACKSLASH,0x00},//r4
-	{IKeycode.KEY_TILDE,IKeycode.KEY_1,IKeycode.KEY_2,IKeycode.KEY_3,IKeycode.KEY_4,IKeycode.KEY_5,IKeycode.KEY_NUM_LOCK,IKeycode.KEYPAD_SLASH,IKeycode.KEYPAD_ASTERIX,IKeycode.KEYPAD_MINUS,IKeycode.KEY_0,IKeycode.KEY_MINUS,IKeycode.KEY_EQUAL,IKeycode.KEY_TILDE,IKeycode.KEY_BACKSPACE},//r5
-	{IKeycode.KEY_ESC,0x00,IKeycode.KEY_F1,IKeycode.KEY_F2,IKeycode.KEY_F3,IKeycode.KEY_F4,0x00,0x00,0x00,0x00,0x00,IKeycode.KEY_F9,IKeycode.KEY_F10,IKeycode.KEY_F11,IKeycode.KEY_F12},//r6
-	{IKeycode.KEY_F5,IKeycode.KEY_6,IKeycode.KEY_Y,IKeycode.KEY_H,IKeycode.KEY_N,IKeycode.KEY_SPACE,IKeycode.KEY_LEFT,IKeycode.KEY_DOWN,IKeycode.KEY_UP,IKeycode.KEY_RIGHT,IKeycode.KEY_F6,IKeycode.KEY_7,IKeycode.KEY_U,IKeycode.KEY_J,IKeycode.KEY_M},//r7
-	{IKeycode.KEY_F8,IKeycode.KEY_9,IKeycode.KEY_O,IKeycode.KEY_L,IKeycode.KEY_PERIOD,IKeycode.KEY_RIGHT_ALT,IKeycode.KEY_DELETE,0x00,IKeycode.KEY_PAGE_DOWN,IKeycode.KEY_PAGE_UP,IKeycode.KEY_F7,IKeycode.KEY_8,IKeycode.KEY_I,IKeycode.KEY_K,IKeycode.KEY_COMMA} //r8
-};
-   Ikeymask = new byte[,]  {
-    {0x20,0x20,0x20,0x00,0x00,0x00,0x10,0x00,0x10,0x10,0x20,0x66,0x20,0x10,0x00},//r1
-	{0x20,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x00,0x10,0x20,0x00,0x10,0x00},//r2
-	{0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x00,0x10,0x10},//r3
-	{0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x00,0x10,0x10,0x10,0x10,0x00},//r4
-	{0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10},//r5
-	{0x10,0x00,0x10,0x10,0x10,0x10,0x00,0x00,0x00,0x00,0x00,0x10,0x10,0x10,0x10},//r6
-	{0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10,0x10},//r7
-	{0x10,0x10,0x10,0x10,0x10,0x20,0x10,0x00,0x10,0x10,0x10,0x10,0x10,0x10,0x10} //r8
-};
-     IUpdateMatrix();
-           */
         }       
     }
 }

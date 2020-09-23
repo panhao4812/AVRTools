@@ -25,8 +25,8 @@ namespace HidRawTools
             textBox1.Text += str.ToString() + "\r\n";
         }
         IMatrix matrix = null;
-        double keycaplength = 48;
-        double keycapoffset = 1;
+        public static double keycaplength = 48;
+        public static double keycapoffset = 1;
         Button selectkey = null;
         Button selectkey2 = null;
         public int keyCount = 0;
@@ -215,7 +215,7 @@ namespace HidRawTools
                 Print("Device OK");
                 byte[] outdata = new byte[9]; outdata[0] = 0;
                 outdata[1] = 0xFF; outdata[2] = 0xFA;
-                HidDevice.Write(outdata); Thread.Sleep(60);
+                HidDevice.Write(outdata); Thread.Sleep(100);
                 // 0xFFFA是open的flag
                 // 0xFFF1是upload的flag
                 // 0xFFF2是end的flag
@@ -382,14 +382,10 @@ namespace HidRawTools
                         checkedListBox1.SetItemChecked(index, true);
                         AddButton(index, "");
                     }
-
                 }
                 if (matrix.RGB != null)
                 {
-                    if (matrix.RGB.GetUpperBound(0) != matrix.Defaultkeycode.Length-1) 
-                    {//排除不带ws2812灯带 和 反贴片轴灯
                         AddRGBButton();
-                    }
                         RGB_Type = (Byte)matrix.RGB[0, 2];              
                         if ((RGB_Type & 0x0F) == 0x00)
                         {
@@ -494,7 +490,7 @@ namespace HidRawTools
                 byte[] outdata = new byte[9]; outdata[0] = 0;
                 byte[] a = new byte[2];
                 outdata[1] = 0xFF; outdata[2] = 0xF1;
-                HidDevice.Write(outdata); Thread.Sleep(60);
+                HidDevice.Write(outdata); Thread.Sleep(100);//汇报符的等待时间和灯的延迟有关，必须大于一个灯的循环。
                 for (ushort i = 0; (i * 2 + 4 + matrix.PrintEEpAddress) < matrix.eepromsize; i += 3)
                 {
                     a = BitConverter.GetBytes((ushort)(i * 2 + matrix.PrintEEpAddress));
@@ -528,10 +524,10 @@ namespace HidRawTools
                         outdatastr += outdata[k].ToString() + "/";
                     }
                     Print(outdatastr);
-                    Thread.Sleep(60);
+                    Thread.Sleep(100);
                 }
                 outdata[1] = 0xFF; outdata[2] = 0xF2;
-                HidDevice.Write(outdata); Thread.Sleep(60);
+                HidDevice.Write(outdata); Thread.Sleep(100);
                 Print("Upload finished");
             }
             catch (Exception ex) { Print(ex.ToString()); }
@@ -591,20 +587,34 @@ namespace HidRawTools
                 Button button = new Button();
                 panel1.Controls.Add(button);
                 Size size1 = new Size(25, 25);
-                Point Point1 = new Point(matrix.RGB[i, 0], matrix.RGB[i, 1]);
+                button.Font = new Font(button.Font.Name, 7);
+                Point Point1=new Point(matrix.RGB[i, 0], matrix.RGB[i, 1]);
+                if (matrix.Name== "CXT64")
+                {
+                    //keycap led
+                    Point1.Y -= 1; Point1.X -= 1;
+                    size1 = new Size(18, 18);
+                    button.Font = new Font(button.Font.Name, 6);
+                }              
                 button.Size = size1;
                 button.Location = Point1;
                 button.FlatStyle = FlatStyle.Flat;
+                if(matrix.RGB[i, 2] == 0) { 
                 button.BackColor = Color.FromArgb(matrix.RGB[i, 3], matrix.RGB[i, 4], matrix.RGB[i, 5]);
-
+                }
+                else
+                {
+                button.BackColor = Color.White;
+                }
                 if ((matrix.RGB[i, 2] & (byte)0x0F) == 0) button.Text = i.ToString();
                 else if ((matrix.RGB[i, 2] & (byte)0x0F) == 0x01) { button.Text = "R"; }
                 else if ((matrix.RGB[i, 2] & (byte)0x0F) == 0x02) { button.Text = "P"; }
 
                 if ((matrix.RGB[i, 2] & (byte)0xF0) == 0x10) { button.ForeColor = Color.Black; }
                 else if ((matrix.RGB[i, 2] & (byte)0xF0) == 0x00) { button.ForeColor = Color.FromArgb(200, 200, 200); }
-                button.Font = new Font(button.Font.Name, 7);
+                
                 button.Name = i.ToString();
+                button.BringToFront();
                 button.MouseDown += new MouseEventHandler(this.button2_MouseClick);
             }
             panel1.BackgroundImage = img2;
@@ -1098,7 +1108,7 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
                 Print("Uploading");
                 byte[] outdata = new byte[9]; outdata[0] = 0;
                 outdata[1] = 0xFF; outdata[2] = 0xF1;
-                HidDevice.Write(outdata); Thread.Sleep(60);
+                HidDevice.Write(outdata); Thread.Sleep(100);
                 for (ushort i = 0; i < matrix.eepromsize; i += 6)
                 {
                     outdata[0] = 0;
@@ -1122,10 +1132,10 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
                     outdatastr += outdata[7].ToString() + "/";
                     outdatastr += outdata[8].ToString();
                     Print(outdatastr);
-                    Thread.Sleep(60);
+                    Thread.Sleep(100);
                 }
                 outdata[1] = 0xFF; outdata[2] = 0xF2;
-                HidDevice.Write(outdata); Thread.Sleep(60);
+                HidDevice.Write(outdata); Thread.Sleep(100);
                 Print("Upload finished");
             }
             catch (Exception ex) { Print(ex.ToString()); return; }
@@ -1148,45 +1158,43 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
         }
         private void FixedRGBStripMenuItem_Click(object sender, EventArgs e)
         {
-
             if (matrix == null) return;
             if (matrix.RGB == null || matrix.RGB.GetUpperBound(0) < 0) return;
             RGB_Type++;
-            if((RGB_Type&0x0F)>2) RGB_Type &= 0xF0;
-            if ((RGB_Type & 0x0F) == 0x00)
+            if ((RGB_Type & 0x0F) > 1)
+            {
+                if(matrix.Name != "CXT64")RGB_Type &= 0xF0;
+            }
+            if ((RGB_Type & 0x0F) > 2)
+            {
+                RGB_Type &= 0xF0;
+            }
+
+        if ((RGB_Type & 0x0F) == 0x00)
             {
                 this.editToolStripMenuItem.Text = "Default is FixedColor,click to change.";
-                
+
                 for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
                 {
-                    matrix.RGB[i, 2] = RGB_Type;
-                    matrix.RGB[i, 3] = 255;
-                    matrix.RGB[i, 4] = 255;
-                    matrix.RGB[i, 5] = 255;
+                    matrix.RGB[i, 2] = RGB_Type;             
                 }
             }
             else if ((RGB_Type & 0x0F) == 0x01)
             {
                 this.editToolStripMenuItem.Text = "Default is Rainbow,click to change.";
-              
+
                 for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
                 {
-                    matrix.RGB[i, 2] = RGB_Type;
-                    matrix.RGB[i, 3] = 255;
-                    matrix.RGB[i, 4] = 255;
-                    matrix.RGB[i, 5] = 255;
+                    matrix.RGB[i, 2] = RGB_Type;              
                 }
             }
             else
             {
                 this.editToolStripMenuItem.Text = "Default is PrintLight,click to change.";
-             
+
                 for (int i = matrix.RGB.GetLowerBound(0); i <= matrix.RGB.GetUpperBound(0); i++)
                 {
-                    matrix.RGB[i, 2] = RGB_Type;
-                    matrix.RGB[i, 3] = 255;
-                    matrix.RGB[i, 4] = 255;
-                    matrix.RGB[i, 5] = 255;
+                    matrix.RGB[i, 2] = RGB_Type;                  
                 }
             }
             Print("RGB_Type = " + RGB_Type);
@@ -1310,6 +1318,7 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
         private void cXT64ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (loadmatrix("CXT64")) { initMatrix(); }
+            Print(matrix.Debug_output);
         }
     }
 }

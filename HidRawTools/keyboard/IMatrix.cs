@@ -8,6 +8,7 @@ namespace HidRawTools
 {
     public class IMatrix
     {
+        public string Debug_output="";
         public IMatrix() { }
         public int ROWS;
         public int COLS;
@@ -20,14 +21,13 @@ namespace HidRawTools
         public string Name = "unamed";
         public string[] keycode;
         public string[] Defaultkeycode;
-        public int[,] RGB = new int[0, 6];
+        public int[,] RGB = null;
         public ushort PrintFlashAddress = 0;
         public ushort PrintEEpAddress = 0;
         public ushort eepromsize = 0;
         public ushort flashsize = 0;
-
         /// ///////////////////////////////////////////////////
-        public byte[,] IhexaKeys0, Ikeymask;
+        public string[,] IhexaKeys0;
         public void IUpdateMatrix()
         {
             if (Defaultkeycode.Length < 1) return;
@@ -37,24 +37,19 @@ namespace HidRawTools
                 string[] strs = str.Split(',');
                 int index = Convert.ToInt32(strs[0]);
                 bool sign = false;
-                int ii, jj, mask; mask = 0;
+                int ii, jj;
                 for (ii = 0; ii < this.ROWS; ii++)
                 {
                     for (jj = 0; jj < this.COLS; jj++)
                     {
-
-                        int nameid = IKeycode.name2code(strs[1], out mask);
-                        if (nameid == IhexaKeys0[ii, jj] && (Ikeymask[ii, jj]& 0xF0) == mask * 16)
+                        if (strs[1] == IhexaKeys0[ii, jj])
                         {
                             keycap[index, 4] = jj; keycap[index, 3] = ii;
                             sign = true;
                         }
                         if (sign) break;
                     }
-                    if (sign)
-                    {
-                        break;
-                    }
+                    if (sign) break;
                 }
             }
         }
