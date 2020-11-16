@@ -90,6 +90,9 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.PrintBox = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.keyCool84ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lILILIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lWLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -168,7 +171,8 @@
             this.xD60AToolStripMenuItem,
             this.xD004ToolStripMenuItem,
             this.qMK60ToolStripMenuItem,
-            this.cXT60ToolStripMenuItem});
+            this.cXT60ToolStripMenuItem,
+            this.keyCool84ToolStripMenuItem});
             this.templateToolStripMenuItem.Name = "templateToolStripMenuItem";
             this.templateToolStripMenuItem.Size = new System.Drawing.Size(77, 21);
             this.templateToolStripMenuItem.Text = "Keyboard";
@@ -293,7 +297,7 @@
             this.shiftToolStripMenuItem,
             this.shiftToolStripMenuItem1});
             this.iSOToolStripMenuItem.Name = "iSOToolStripMenuItem";
-            this.iSOToolStripMenuItem.Size = new System.Drawing.Size(90, 22);
+            this.iSOToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.iSOToolStripMenuItem.Text = "60";
             // 
             // iSOToolStripMenuItem1
@@ -320,25 +324,25 @@
             // xShiftToolStripMenuItem3
             // 
             this.xShiftToolStripMenuItem3.Name = "xShiftToolStripMenuItem3";
-            this.xShiftToolStripMenuItem3.Size = new System.Drawing.Size(90, 22);
+            this.xShiftToolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
             this.xShiftToolStripMenuItem3.Text = "68";
             // 
             // xShiftToolStripMenuItem4
             // 
             this.xShiftToolStripMenuItem4.Name = "xShiftToolStripMenuItem4";
-            this.xShiftToolStripMenuItem4.Size = new System.Drawing.Size(90, 22);
+            this.xShiftToolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
             this.xShiftToolStripMenuItem4.Text = "84";
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(90, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem3.Text = "87";
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(90, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem4.Text = "96";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
             // 
@@ -666,6 +670,28 @@
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             this.panel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseClick);
             // 
+            // keyCool84ToolStripMenuItem
+            // 
+            this.keyCool84ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lILILIToolStripMenuItem,
+            this.lWLToolStripMenuItem});
+            this.keyCool84ToolStripMenuItem.Name = "keyCool84ToolStripMenuItem";
+            this.keyCool84ToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.keyCool84ToolStripMenuItem.Text = "KeyCool84";
+            // 
+            // lILILIToolStripMenuItem
+            // 
+            this.lILILIToolStripMenuItem.Name = "lILILIToolStripMenuItem";
+            this.lILILIToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.lILILIToolStripMenuItem.Text = "LILILI";
+            this.lILILIToolStripMenuItem.Click += new System.EventHandler(this.lILILIToolStripMenuItem_Click);
+            // 
+            // lWLToolStripMenuItem
+            // 
+            this.lWLToolStripMenuItem.Name = "lWLToolStripMenuItem";
+            this.lWLToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.lWLToolStripMenuItem.Text = "Vem";
+            // 
             // HidRawTools
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -762,6 +788,9 @@
         private System.Windows.Forms.ToolStripMenuItem xD004ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem cXT60ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cXT64ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem keyCool84ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lILILIToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lWLToolStripMenuItem;
     }
 }
 

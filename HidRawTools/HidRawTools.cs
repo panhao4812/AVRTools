@@ -326,6 +326,13 @@ namespace HidRawTools
                 textBox2.Text = "C060";
                 img = null;
             }
+            else if (_name == "KC84_LILILI")
+            {
+                matrix = new KC84_LILILI();
+                textBox3.Text = "32C4";
+                textBox2.Text = "B084";
+                img = null;
+            }
             else return false;
             layer = 0;
             keyCount = matrix.keycap.GetUpperBound(0) + 1;
@@ -589,7 +596,7 @@ namespace HidRawTools
                 Size size1 = new Size(25, 25);
                 button.Font = new Font(button.Font.Name, 7);
                 Point Point1=new Point(matrix.RGB[i, 0], matrix.RGB[i, 1]);
-                if (matrix.Name== "CXT64")
+                if (matrix.Name== "CXT64"|| matrix.Name == "KC84_LILILI")
                 {
                     //keycap led
                     Point1.Y -= 1; Point1.X -= 1;
@@ -1318,6 +1325,11 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
         private void cXT64ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (loadmatrix("CXT64")) { initMatrix(); }
+            Print(matrix.Debug_output);
+        }
+        private void lILILIToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("KC84_LILILI")) { initMatrix(); }
             Print(matrix.Debug_output);
         }
     }
