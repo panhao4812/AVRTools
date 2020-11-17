@@ -88,7 +88,10 @@
     <Compile Include="HidRawTools.Designer.cs">
       <DependentUpon>HidRawTools.cs</DependentUpon>
     </Compile>
-    <Compile Include="keyboard\CXT.cs" />
+    <Compile Include="kernel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="keyboard\WS2812B_3528.cs" />
     <Compile Include="keyboard\Hex.cs" />
     <Compile Include="keyboard\IMatrix.cs" />
     <Compile Include="keyboard\KeyCode.cs" />

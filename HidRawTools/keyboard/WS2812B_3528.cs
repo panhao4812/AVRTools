@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HidRawTools.keyboard
+namespace HidRawTools
 {
     class CXT64: QMK60_2Shift
-    {
-     
+    {   
         public CXT64(){
          
             this.Name = "CXT64";
@@ -29,7 +28,7 @@ namespace HidRawTools.keyboard
             {
                 double x = keycap[i, 0];
                 double y = keycap[i, 1];
-                Point Point1 = new Point(40 + (int)(x * HidRawTools.keycaplength), 100 + (int)(y * HidRawTools.keycaplength));
+                Point Point1 = new Point(40 + (int)(x * HidRawTools.KeycapLength), 100 + (int)(y * HidRawTools.KeycapLength));
                 if (x > 14)
                 {
                     Point1.X += 12;
@@ -86,7 +85,7 @@ namespace HidRawTools.keyboard
             {
                 double x = keycap[i, 0];
                 double y = keycap[i, 1];
-                Point Point1 = new Point(40 + (int)(x * HidRawTools.keycaplength), 100 + (int)(y * HidRawTools.keycaplength));
+                Point Point1 = new Point(40 + (int)(x * HidRawTools.KeycapLength), 100 + (int)(y * HidRawTools.KeycapLength));
                 if (x > 14)
                 {
                     Point1.X += 12;
