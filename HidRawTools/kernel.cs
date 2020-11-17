@@ -59,7 +59,7 @@ namespace HidRawTools
                     if (chara.Length == 3)
                     {
                         int index = Convert.ToInt32(chara[0]);
-                        KeymapBox.SetItemChecked(index, true);
+                        KeymapEditBox.SetItemChecked(index, true);
                         AddButton(index, IKeycode.shortname(chara[1]));
                         ActiveMatrix.keycode[index] = IKeycode.shortname(chara[1]);
                         ActiveMatrix.keycode[index + KeyCount] = IKeycode.shortname(chara[2]);
@@ -67,14 +67,14 @@ namespace HidRawTools
                     else if (chara.Length == 2)
                     {
                         int index = Convert.ToInt32(chara[0]);
-                        KeymapBox.SetItemChecked(index, true);
+                        KeymapEditBox.SetItemChecked(index, true);
                         AddButton(index, IKeycode.shortname(chara[1]));
                         ActiveMatrix.keycode[index] = IKeycode.shortname(chara[1]);
                     }
                     else if (chara.Length == 1)
                     {
                         int index = Convert.ToInt32(chara[0]);
-                        KeymapBox.SetItemChecked(index, true);
+                        KeymapEditBox.SetItemChecked(index, true);
                         AddButton(index, "");
                     }
                     else if (chara.Length == 5)
@@ -127,23 +127,27 @@ namespace HidRawTools
                 output += "PrintEEpAddress ," + ActiveMatrix.PrintEEpAddress.ToString() + "\r\n";
                 output += "eepromsize ," + ActiveMatrix.eepromsize.ToString() + "\r\n";
                 output += "flashsize ," + ActiveMatrix.flashsize.ToString() + "\r\n";
-                output += "ROWS ," + ActiveMatrix.ROWS.ToString() + "\r\n";
-                for (int i = 0; i < ActiveMatrix.rowPins.Length; i++)
+                if (ActiveMatrix.rowPins != null && ActiveMatrix.colPins != null)
                 {
-                    output += ActiveMatrix.rowPins[i].ToString();
-                    if (i != ActiveMatrix.rowPins.Length - 1) output += ",";
+                    output += "ROWS ," + ActiveMatrix.ROWS.ToString() + "\r\n";
+                    for (int i = 0; i < ActiveMatrix.rowPins.Length; i++)
+                    {
+                        output += ActiveMatrix.rowPins[i].ToString();
+                        if (i != ActiveMatrix.rowPins.Length - 1) output += ",";
+                    }
+
+                    output += "\r\n";
+                    output += "COLS ," + ActiveMatrix.COLS.ToString() + "\r\n";
+                    for (int i = 0; i < ActiveMatrix.colPins.Length; i++)
+                    {
+                        output += ActiveMatrix.colPins[i].ToString();
+                        if (i != ActiveMatrix.colPins.Length - 1) output += ",";
+                    }
+                    output += "\r\n";
                 }
-                output += "\r\n";
-                output += "COLS ," + ActiveMatrix.COLS.ToString() + "\r\n";
-                for (int i = 0; i < ActiveMatrix.colPins.Length; i++)
+                for (int i = 0; i < KeymapEditBox.CheckedIndices.Count; i++)
                 {
-                    output += ActiveMatrix.colPins[i].ToString();
-                    if (i != ActiveMatrix.colPins.Length - 1) output += ",";
-                }
-                output += "\r\n";
-                for (int i = 0; i < KeymapBox.CheckedIndices.Count; i++)
-                {
-                    int index = KeymapBox.CheckedIndices[i];
+                    int index = KeymapEditBox.CheckedIndices[i];
                     string str = i.ToString();
                     //  string[] chara = str.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
                     output += "\"" + str + "," +
@@ -151,9 +155,9 @@ namespace HidRawTools
                         IKeycode.longname(ActiveMatrix.keycode[index + KeyCount]) + "\"," + "\r\n";
                 }
 
-                for (int i = 0; i < KeymapBox.CheckedIndices.Count; i++)
+                for (int i = 0; i < KeymapEditBox.CheckedIndices.Count; i++)
                 {
-                    int index = KeymapBox.CheckedIndices[i];
+                    int index = KeymapEditBox.CheckedIndices[i];
                     string str = i.ToString();
                     output += "{" +
                             ActiveMatrix.keycap[index, 0].ToString() + "," +
@@ -212,9 +216,9 @@ namespace HidRawTools
                 fs.SetLength(0);
                 StreamWriter stream = new StreamWriter(fs);
                 string output = "matrix," + ActiveMatrix.Name + "\r\n";
-                for (int i = 0; i < KeymapBox.CheckedIndices.Count; i++)
+                for (int i = 0; i < KeymapEditBox.CheckedIndices.Count; i++)
                 {
-                    int index = KeymapBox.CheckedIndices[i];
+                    int index = KeymapEditBox.CheckedIndices[i];
                     string str = index.ToString();
                     //  string[] chara = str.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
                     output += str + "," + IKeycode.longname(ActiveMatrix.keycode[index])
@@ -292,7 +296,7 @@ namespace HidRawTools
                     if (chara.Length == 3)
                     {
                         int index = Convert.ToInt32(chara[0]);
-                        KeymapBox.SetItemChecked(index, true);
+                        KeymapEditBox.SetItemChecked(index, true);
                         AddButton(index, IKeycode.shortname(chara[1]));
                         ActiveMatrix.keycode[index] = IKeycode.shortname(chara[1]);
                         ActiveMatrix.keycode[index + KeyCount] = IKeycode.shortname(chara[2]);
@@ -300,14 +304,14 @@ namespace HidRawTools
                     else if (chara.Length == 2)
                     {
                         int index = Convert.ToInt32(chara[0]);
-                        KeymapBox.SetItemChecked(index, true);
+                        KeymapEditBox.SetItemChecked(index, true);
                         AddButton(index, IKeycode.shortname(chara[1]));
                         ActiveMatrix.keycode[index] = IKeycode.shortname(chara[1]);
                     }
                     else if (chara.Length == 1)
                     {
                         int index = Convert.ToInt32(chara[0]);
-                        KeymapBox.SetItemChecked(index, true);
+                        KeymapEditBox.SetItemChecked(index, true);
                         AddButton(index, "");
                     }
                 }
@@ -519,9 +523,9 @@ namespace HidRawTools
                     ActiveMatrix.hexaKeys1[r, c] = "0x00";
                 }
             }
-            for (int i = 0; i < KeymapBox.CheckedIndices.Count; i++)
+            for (int i = 0; i < KeymapEditBox.CheckedIndices.Count; i++)
             {
-                index = KeymapBox.CheckedIndices[i];
+                index = KeymapEditBox.CheckedIndices[i];
                 string str0 = ActiveMatrix.keycode[index];
                 string str1 = ActiveMatrix.keycode[index + KeyCount];
                 r = (int)ActiveMatrix.keycap[index, 3];
@@ -670,10 +674,10 @@ namespace HidRawTools
             KeymapPanel.BackgroundImage = null;
             KeymapPanel.Controls.Clear();
             KeymapPanel.BackgroundImage = TempImage;
-            for (int i = 0; i < KeymapBox.CheckedIndices.Count; i++)
+            for (int i = 0; i < KeymapEditBox.CheckedIndices.Count; i++)
             {
-                string str = KeymapBox.CheckedIndices[i].ToString();
-                int index = KeymapBox.CheckedIndices[i];
+                string str = KeymapEditBox.CheckedIndices[i].ToString();
+                int index = KeymapEditBox.CheckedIndices[i];
                 AddButton(index, ActiveMatrix.keycode[index + Layer * KeyCount]);
             }
             AddRGBButton();
@@ -720,7 +724,9 @@ namespace HidRawTools
                 Size size1 = new Size(25, 25);
                 button.Font = new Font(button.Font.Name, 7);
                 Point Point1 = new Point(ActiveMatrix.RGB[i, 0], ActiveMatrix.RGB[i, 1]);
-                if (ActiveMatrix.Name == "CXT64" || ActiveMatrix.Name == "KC84_LILILI")
+                if (ActiveMatrix.Name == "CXT64"
+                    || ActiveMatrix.Name == "KC84_LILILI"
+                    || ActiveMatrix.Name == "KC84_Vem")
                 {
                     //keycap led
                     Point1.Y -= 1; Point1.X -= 1;
@@ -741,10 +747,8 @@ namespace HidRawTools
                 if ((ActiveMatrix.RGB[i, 2] & (byte)0x0F) == 0) button.Text = i.ToString();
                 else if ((ActiveMatrix.RGB[i, 2] & (byte)0x0F) == 0x01) { button.Text = "R"; }
                 else if ((ActiveMatrix.RGB[i, 2] & (byte)0x0F) == 0x02) { button.Text = "P"; }
-
                 if ((ActiveMatrix.RGB[i, 2] & (byte)0xF0) == 0x10) { button.ForeColor = Color.Black; }
                 else if ((ActiveMatrix.RGB[i, 2] & (byte)0xF0) == 0x00) { button.ForeColor = Color.FromArgb(200, 200, 200); }
-
                 button.Name = i.ToString();
                 button.BringToFront();
                 button.MouseDown += new MouseEventHandler(this.Layer1Button_MouseClick);
