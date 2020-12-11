@@ -78,7 +78,6 @@ namespace HidRawTools
             this.hexaKeys0 = new string[6, 16];
             this.hexaKeys1 = new string[6, 16];
 
-
             RGB = new int[keynum, 6];
             ///*
             for (int i = 0; i < keynum; i++)
@@ -136,7 +135,6 @@ namespace HidRawTools
             this.colPins = new byte[16] { 16, 17, 18, 19, 20, 21, 7, 8, 23, 22, 11, 12, 13, 14, 15, 9 };
             this.hexaKeys0 = new string[6, 16];
             this.hexaKeys1 = new string[6, 16];
-
 
             RGB = new int[keynum, 6];
             ///*
