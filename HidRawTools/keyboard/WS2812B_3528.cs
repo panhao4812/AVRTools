@@ -73,8 +73,8 @@ namespace HidRawTools
             this.PrintEEpAddress = (ushort)(10 + ROWS + COLS + (ROWS * COLS * 3) + (keynum * 3) + 6);
             this.eepromsize = 1024;
             this.flashsize = 0x7000;
-            this.rowPins = new byte[6] { 21, 20, 19, 18, 17, 16 };
-            this.colPins = new byte[16] { 4, 15, 14, 13, 3, 2, 7, 6, 12, 11, 23, 22, 8, 7, 6, 5 };
+            this.rowPins = new byte[6] { 4, 15, 14, 13, 3, 2 };
+            this.colPins = new byte[16] { 21, 20, 19, 18, 17, 16, 10, 9, 12, 11, 23, 22, 8, 7, 6, 5 };
             this.hexaKeys0 = new string[6, 16];
             this.hexaKeys1 = new string[6, 16];
 
@@ -113,8 +113,8 @@ namespace HidRawTools
 { "KEY_TILDE","KEY_1","KEY_2","KEY_3","KEY_4","KEY_5","KEY_6","KEY_7","KEY_8","KEY_9","KEY_0","KEY_MINUS","KEY_EQUAL","0x00","KEY_BACKSPACE","KEY_HOME"},
 { "KEY_TAB","KEY_Q","KEY_W","KEY_E","KEY_R","KEY_T","KEY_Y","KEY_U","KEY_I","KEY_O","KEY_P","KEY_LEFT_BRACE","KEY_RIGHT_BRACE","0x00","KEY_BACKSLASH","KEY_PAGE_UP"},
 { "KEY_CAPS_LOCK","KEY_A","KEY_S","KEY_D","KEY_F","KEY_G","KEY_H","KEY_J","KEY_K","KEY_L","KEY_SEMICOLON","KEY_QUOTE","0x00","0x00","KEY_ENTER","KEY_PAGE_DOWN"},
-{ "KEY_LEFT_SHIFT","KEY_Z","KEY_X","KEY_C","KEY_V","KEY_B","KEY_N","KEY_M","KEY_COMMA","KEY_PERIOD","KEY_SLASH","0x00","0x00","KEY_RIGHT_SHIFT","KEY_UP","KEY_END"},
-{ "KEY_LEFT_CTRL","KEY_LEFT_GUI","KEY_LEFT_ALT","0x00","0x00","KEY_SPACE","0x00","0x00","0x00","KEY_RIGHT_ALT","KEY_FN","KEY_RIGHT_CTRL","0x00","KEY_LEFT","KEY_DOWN","KEY_RIGHT"}
+{ "KEY_SHIFT","KEY_Z","KEY_X","KEY_C","KEY_V","KEY_B","KEY_N","KEY_M","KEY_COMMA","KEY_PERIOD","KEY_SLASH","0x00","0x00","KEY_RIGHT_SHIFT","KEY_UP","KEY_END"},
+{ "KEY_CTRL","KEY_GUI","KEY_ALT","0x00","0x00","KEY_SPACE","0x00","0x00","0x00","KEY_RIGHT_ALT","KEY_FN","KEY_RIGHT_CTRL","0x00","KEY_LEFT","KEY_DOWN","KEY_RIGHT"}
                     };
             IUpdateMatrix();
         }
@@ -171,8 +171,8 @@ namespace HidRawTools
 {"KEY_TILDE","KEY_1","KEY_2","KEY_3","KEY_4","KEY_5","KEY_6","KEY_7","KEY_8","KEY_9","KEY_0","KEY_MINUS","KEY_EQUAL","0x00","KEY_BACKSPACE","KEY_HOME"},
 {"KEY_TAB","0x00","KEY_Q","KEY_W","KEY_E","KEY_R","KEY_T","KEY_Y","KEY_U","KEY_I","KEY_O","KEY_P","KEY_LEFT_BRACE","KEY_RIGHT_BRACE","KEY_BACKSLASH","KEY_PAGE_UP"},
 {"KEY_CAPS_LOCK","0x00","KEY_A","KEY_S","KEY_D","KEY_F","KEY_G","KEY_H","KEY_J","KEY_K","KEY_L","KEY_SEMICOLON","KEY_QUOTE","KEY_ENTER","0x00","KEY_PAGE_DOWN"},
-{"0x00","KEY_LEFT_SHIFT","KEY_Z","KEY_X","KEY_C","KEY_V","KEY_B","KEY_N","KEY_M","KEY_COMMA","KEY_PERIOD","KEY_SLASH","0x00","KEY_RIGHT_SHIFT","KEY_UP","KEY_END"},
-{"KEY_LEFT_CTRL","KEY_LEFT_GUI","0x00","KEY_LEFT_ALT","0x00","0x00","KEY_SPACE","0x00","0x00","0x00","KEY_RIGHT_ALT","KEY_FN","KEY_RIGHT_CTRL","KEY_LEFT","KEY_DOWN","KEY_RIGHT"}
+{"0x00","KEY_SHIFT","KEY_Z","KEY_X","KEY_C","KEY_V","KEY_B","KEY_N","KEY_M","KEY_COMMA","KEY_PERIOD","KEY_SLASH","0x00","KEY_RIGHT_SHIFT","KEY_UP","KEY_END"},
+{"KEY_CTRL","KEY_GUI","0x00","KEY_ALT","0x00","0x00","KEY_SPACE","0x00","0x00","0x00","KEY_RIGHT_ALT","KEY_FN","KEY_RIGHT_CTRL","KEY_LEFT","KEY_DOWN","KEY_RIGHT"}
                     };
             IUpdateMatrix();
         }

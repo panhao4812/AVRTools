@@ -309,7 +309,7 @@ namespace HidRawTools
 "57,KEY_QUOTE,",
 "58,KEY_ENTER,",
 "59,KEY_PAGE_DOWN,",
-"60,KEY_LEFT_SHIFT,",
+"60,KEY_SHIFT,",
 "61,KEY_Z,",
 "62,KEY_X,",
 "63,KEY_C,",
