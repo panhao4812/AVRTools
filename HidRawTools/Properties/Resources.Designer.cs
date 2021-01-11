@@ -63,9 +63,9 @@ namespace HidRawTools.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap tinykey {
+        internal static System.Drawing.Bitmap staryu {
             get {
-                object obj = ResourceManager.GetObject("tinykey", resourceCulture);
+                object obj = ResourceManager.GetObject("staryu", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,29 +73,9 @@ namespace HidRawTools.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Bitmap tinykey2 {
+        internal static System.Drawing.Bitmap xd002 {
             get {
-                object obj = ResourceManager.GetObject("tinykey2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Bitmap tinykey3 {
-            get {
-                object obj = ResourceManager.GetObject("tinykey3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Bitmap tinykey4 {
-            get {
-                object obj = ResourceManager.GetObject("tinykey4", resourceCulture);
+                object obj = ResourceManager.GetObject("xd002", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -107,6 +87,36 @@ namespace HidRawTools.Properties {
             get {
                 object obj = ResourceManager.GetObject("XD004", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap xd04 {
+            get {
+                object obj = ResourceManager.GetObject("xd04", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap xd60 {
+            get {
+                object obj = ResourceManager.GetObject("xd60", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap xd75 {
+            get {
+                object obj = ResourceManager.GetObject("xd75", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

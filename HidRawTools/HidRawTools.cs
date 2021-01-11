@@ -297,28 +297,32 @@ namespace HidRawTools
                 ActiveMatrix = new XD60_A();
                 VidBox.Text = "32C4";
                 PidBox.Text = "D060";
-                PanelImage = Properties.Resources.tinykey3;
+                PanelImage = null;
+                PanelImage = Properties.Resources.xd60;
             }
             else if (_name == "XD60_B")
             {
                 ActiveMatrix = new XD60_B();
                 VidBox.Text = "32C4";
                 PidBox.Text = "D060";
-                PanelImage = Properties.Resources.tinykey3;
+                PanelImage = null;
+                PanelImage = Properties.Resources.xd60;
             }
             else if (_name == "bface60_minila")
             {
                 ActiveMatrix = new bface60_minila();
                 VidBox.Text = "32A0";
                 PidBox.Text = "B060";
-                PanelImage = Properties.Resources.tinykey2;
+                PanelImage = null;
+                //PanelImage = Properties.Resources.tinykey2;
             }
             else if (_name == "bface60_B")
             {
                 ActiveMatrix = new bface60_B();
                 VidBox.Text = "32A0";
                 PidBox.Text = "B060";
-                PanelImage = Properties.Resources.tinykey2;
+                PanelImage = null;
+                //PanelImage = Properties.Resources.tinykey2;
             }
             else if (_name == "Staryu")
             {
@@ -326,7 +330,7 @@ namespace HidRawTools
                 VidBox.Text = "32C2";
                 PidBox.Text = "D005";
                 PanelImage = null;
-
+                PanelImage = Properties.Resources.staryu;
             }
             else if (_name == "XD004")
             {
@@ -334,20 +338,23 @@ namespace HidRawTools
                 VidBox.Text = "16C2";
                 PidBox.Text = "D004";
                 PanelImage = null;
+                PanelImage = Properties.Resources.xd04;
             }
             else if (_name == "Tinykey")
             {
                 ActiveMatrix = new Tinykey();
                 VidBox.Text = "D850";
                 PidBox.Text = "D002";
-                PanelImage = Properties.Resources.tinykey;
+                PanelImage = null;
+                PanelImage = Properties.Resources.xd002;
             }
             else if (_name == "XD75_Re")
             {
                 ActiveMatrix = new XD75_Re();
                 VidBox.Text = "32C4";
                 PidBox.Text = "D075";
-                PanelImage = Properties.Resources.tinykey4;
+                PanelImage = null;
+                PanelImage = Properties.Resources.xd75;
             }
             else if (_name == "bface96")
             {
@@ -485,10 +492,6 @@ namespace HidRawTools
         {
             if (loadmatrix("XD004")) { InitMatrix(); }
         }
-        private void Staryu_Click(object sender, EventArgs e)
-        {
-            if (loadmatrix("Staryu")) { InitMatrix(); }
-        }
         private void CXT64_Click(object sender, EventArgs e)
         {
             if (loadmatrix("CXT64")) { InitMatrix(); }
@@ -533,6 +536,9 @@ namespace HidRawTools
             if (loadmatrix("QMK87_ISO")) { InitMatrix(); }
         }
 
-
+        private void staryuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (loadmatrix("Staryu")) { InitMatrix(); }
+        }
     }
 }

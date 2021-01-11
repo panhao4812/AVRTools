@@ -58,7 +58,6 @@
             this.uShiftToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.xD002ver10ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xD004ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.xD004ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cXT60ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cXT64ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -92,6 +91,7 @@
             this.layer1Button = new System.Windows.Forms.RadioButton();
             this.PrintBox = new System.Windows.Forms.TextBox();
             this.KeymapPanel = new System.Windows.Forms.Panel();
+            this.staryuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.KeycodeSelectionBox)).BeginInit();
             this.SuspendLayout();
@@ -111,7 +111,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(397, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(512, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -169,7 +169,6 @@
             this.qMK60ToolStripMenuItem,
             this.bface96ver21ToolStripMenuItem,
             this.xD60AToolStripMenuItem,
-            this.xD004ToolStripMenuItem,
             this.cXT60ToolStripMenuItem});
             this.templateToolStripMenuItem.Name = "templateToolStripMenuItem";
             this.templateToolStripMenuItem.Size = new System.Drawing.Size(92, 24);
@@ -194,55 +193,55 @@
             this.shiftToolStripMenuItem,
             this.shiftToolStripMenuItem1});
             this.iSOToolStripMenuItem.Name = "iSOToolStripMenuItem";
-            this.iSOToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.iSOToolStripMenuItem.Size = new System.Drawing.Size(102, 26);
             this.iSOToolStripMenuItem.Text = "60";
             // 
             // iSOToolStripMenuItem1
             // 
             this.iSOToolStripMenuItem1.Name = "iSOToolStripMenuItem1";
-            this.iSOToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
+            this.iSOToolStripMenuItem1.Size = new System.Drawing.Size(148, 26);
             this.iSOToolStripMenuItem1.Text = "ISO";
             this.iSOToolStripMenuItem1.Click += new System.EventHandler(this.QMK60_ISO);
             // 
             // shiftToolStripMenuItem
             // 
             this.shiftToolStripMenuItem.Name = "shiftToolStripMenuItem";
-            this.shiftToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.shiftToolStripMenuItem.Size = new System.Drawing.Size(148, 26);
             this.shiftToolStripMenuItem.Text = "1.75Shift";
             this.shiftToolStripMenuItem.Click += new System.EventHandler(this.QMK60_175Shift_Click);
             // 
             // shiftToolStripMenuItem1
             // 
             this.shiftToolStripMenuItem1.Name = "shiftToolStripMenuItem1";
-            this.shiftToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
+            this.shiftToolStripMenuItem1.Size = new System.Drawing.Size(148, 26);
             this.shiftToolStripMenuItem1.Text = "2Shift";
             this.shiftToolStripMenuItem1.Click += new System.EventHandler(this.QMK60_2Shift_Click);
             // 
             // xShiftToolStripMenuItem3
             // 
             this.xShiftToolStripMenuItem3.Name = "xShiftToolStripMenuItem3";
-            this.xShiftToolStripMenuItem3.Size = new System.Drawing.Size(181, 26);
+            this.xShiftToolStripMenuItem3.Size = new System.Drawing.Size(102, 26);
             this.xShiftToolStripMenuItem3.Text = "68";
             this.xShiftToolStripMenuItem3.Click += new System.EventHandler(this.QMK68_Click);
             // 
             // xShiftToolStripMenuItem4
             // 
             this.xShiftToolStripMenuItem4.Name = "xShiftToolStripMenuItem4";
-            this.xShiftToolStripMenuItem4.Size = new System.Drawing.Size(181, 26);
+            this.xShiftToolStripMenuItem4.Size = new System.Drawing.Size(102, 26);
             this.xShiftToolStripMenuItem4.Text = "84";
             this.xShiftToolStripMenuItem4.Click += new System.EventHandler(this.QMK84_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(181, 26);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(102, 26);
             this.toolStripMenuItem3.Text = "87";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.QMK87_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(181, 26);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(102, 26);
             this.toolStripMenuItem4.Text = "96";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.QMK96_ISO_Click);
             // 
@@ -291,7 +290,8 @@
             this.xD75ReToolStripMenuItem1,
             this.xD60ver30ToolStripMenuItem,
             this.xD002ver10ToolStripMenuItem,
-            this.xD004ToolStripMenuItem1});
+            this.xD004ToolStripMenuItem1,
+            this.staryuToolStripMenuItem});
             this.xD60AToolStripMenuItem.Name = "xD60AToolStripMenuItem";
             this.xD60AToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
             this.xD60AToolStripMenuItem.Text = "Xiudi";
@@ -315,14 +315,14 @@
             // uShiftToolStripMenuItem1
             // 
             this.uShiftToolStripMenuItem1.Name = "uShiftToolStripMenuItem1";
-            this.uShiftToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
+            this.uShiftToolStripMenuItem1.Size = new System.Drawing.Size(157, 26);
             this.uShiftToolStripMenuItem1.Text = "1.75uShift";
             this.uShiftToolStripMenuItem1.Click += new System.EventHandler(this.XD60_A_Click);
             // 
             // uShiftToolStripMenuItem2
             // 
             this.uShiftToolStripMenuItem2.Name = "uShiftToolStripMenuItem2";
-            this.uShiftToolStripMenuItem2.Size = new System.Drawing.Size(181, 26);
+            this.uShiftToolStripMenuItem2.Size = new System.Drawing.Size(157, 26);
             this.uShiftToolStripMenuItem2.Text = "2uShift";
             this.uShiftToolStripMenuItem2.Click += new System.EventHandler(this.XD60_B_Click);
             // 
@@ -339,13 +339,6 @@
             this.xD004ToolStripMenuItem1.Size = new System.Drawing.Size(184, 26);
             this.xD004ToolStripMenuItem1.Text = "XD004";
             this.xD004ToolStripMenuItem1.Click += new System.EventHandler(this.XD004_Click);
-            // 
-            // xD004ToolStripMenuItem
-            // 
-            this.xD004ToolStripMenuItem.Name = "xD004ToolStripMenuItem";
-            this.xD004ToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
-            this.xD004ToolStripMenuItem.Text = "Staryu_Kairyu";
-            this.xD004ToolStripMenuItem.Click += new System.EventHandler(this.Staryu_Click);
             // 
             // cXT60ToolStripMenuItem
             // 
@@ -368,14 +361,14 @@
             // 
             this.vemToolStripMenuItem.Name = "vemToolStripMenuItem";
             this.vemToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.vemToolStripMenuItem.Text = "Vem";
+            this.vemToolStripMenuItem.Text = "KC84 vem";
             this.vemToolStripMenuItem.Click += new System.EventHandler(this.Vem_Click);
             // 
             // lILILIToolStripMenuItem1
             // 
             this.lILILIToolStripMenuItem1.Name = "lILILIToolStripMenuItem1";
             this.lILILIToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
-            this.lILILIToolStripMenuItem1.Text = "LILILI";
+            this.lILILIToolStripMenuItem1.Text = "KC84 LILILI";
             this.lILILIToolStripMenuItem1.Click += new System.EventHandler(this.lILILI_Click);
             // 
             // rGBToolStripMenuItem
@@ -686,6 +679,13 @@
             this.KeymapPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.KeymapPanel_Paint);
             this.KeymapPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.KeymapPanel_MouseClick);
             // 
+            // staryuToolStripMenuItem
+            // 
+            this.staryuToolStripMenuItem.Name = "staryuToolStripMenuItem";
+            this.staryuToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.staryuToolStripMenuItem.Text = "Staryu";
+            this.staryuToolStripMenuItem.Click += new System.EventHandler(this.staryuToolStripMenuItem_Click);
+            // 
             // HidRawTools
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -757,7 +757,6 @@
         private System.Windows.Forms.ToolStripMenuItem eEPROMToolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem writeToHexToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem xD004ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem writeToFlashInUnicodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bface96ver21ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportMatrixToolStripMenuItem;
@@ -784,6 +783,7 @@
         private System.Windows.Forms.ToolStripMenuItem cXT64ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vemToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lILILIToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem staryuToolStripMenuItem;
     }
 }
 

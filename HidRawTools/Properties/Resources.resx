@@ -118,19 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="tinykey" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tinykey.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tinykey2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tinykey2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tinykey3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tinykey3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tinykey4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tinykey4.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="XD004" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\XD004.hex;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="staryu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\staryu.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="xd002" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\xd002.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="xd04" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\xd004.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="xd60" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\xd60.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="xd75" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\xd75.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
