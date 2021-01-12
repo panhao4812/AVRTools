@@ -58,6 +58,7 @@
             this.uShiftToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.xD002ver10ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xD004ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.staryuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cXT60ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cXT64ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -91,7 +92,6 @@
             this.layer1Button = new System.Windows.Forms.RadioButton();
             this.PrintBox = new System.Windows.Forms.TextBox();
             this.KeymapPanel = new System.Windows.Forms.Panel();
-            this.staryuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.KeycodeSelectionBox)).BeginInit();
             this.SuspendLayout();
@@ -111,7 +111,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(512, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(397, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -340,6 +340,13 @@
             this.xD004ToolStripMenuItem1.Text = "XD004";
             this.xD004ToolStripMenuItem1.Click += new System.EventHandler(this.XD004_Click);
             // 
+            // staryuToolStripMenuItem
+            // 
+            this.staryuToolStripMenuItem.Name = "staryuToolStripMenuItem";
+            this.staryuToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
+            this.staryuToolStripMenuItem.Text = "Staryu";
+            this.staryuToolStripMenuItem.Click += new System.EventHandler(this.staryuToolStripMenuItem_Click);
+            // 
             // cXT60ToolStripMenuItem
             // 
             this.cXT60ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -353,21 +360,21 @@
             // cXT64ToolStripMenuItem
             // 
             this.cXT64ToolStripMenuItem.Name = "cXT64ToolStripMenuItem";
-            this.cXT64ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.cXT64ToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
             this.cXT64ToolStripMenuItem.Text = "CXT64";
             this.cXT64ToolStripMenuItem.Click += new System.EventHandler(this.CXT64_Click);
             // 
             // vemToolStripMenuItem
             // 
             this.vemToolStripMenuItem.Name = "vemToolStripMenuItem";
-            this.vemToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.vemToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
             this.vemToolStripMenuItem.Text = "KC84 vem";
             this.vemToolStripMenuItem.Click += new System.EventHandler(this.Vem_Click);
             // 
             // lILILIToolStripMenuItem1
             // 
             this.lILILIToolStripMenuItem1.Name = "lILILIToolStripMenuItem1";
-            this.lILILIToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
+            this.lILILIToolStripMenuItem1.Size = new System.Drawing.Size(162, 26);
             this.lILILIToolStripMenuItem1.Text = "KC84 LILILI";
             this.lILILIToolStripMenuItem1.Click += new System.EventHandler(this.lILILI_Click);
             // 
@@ -670,6 +677,7 @@
             // KeymapPanel
             // 
             this.KeymapPanel.BackColor = System.Drawing.Color.White;
+            this.KeymapPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.KeymapPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.KeymapPanel.Location = new System.Drawing.Point(3, 34);
             this.KeymapPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -678,13 +686,6 @@
             this.KeymapPanel.TabIndex = 0;
             this.KeymapPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.KeymapPanel_Paint);
             this.KeymapPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.KeymapPanel_MouseClick);
-            // 
-            // staryuToolStripMenuItem
-            // 
-            this.staryuToolStripMenuItem.Name = "staryuToolStripMenuItem";
-            this.staryuToolStripMenuItem.Size = new System.Drawing.Size(184, 26);
-            this.staryuToolStripMenuItem.Text = "Staryu";
-            this.staryuToolStripMenuItem.Click += new System.EventHandler(this.staryuToolStripMenuItem_Click);
             // 
             // HidRawTools
             // 
