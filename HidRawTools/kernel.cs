@@ -23,6 +23,7 @@ namespace HidRawTools
         string IEncode = "GBK";
         byte RGB_Type = 0;
         Image PanelImage = null; Image TempImage = null;
+        public bool keytest = false;
         public static HidDevice HidDevice;
         public void Clear()
         {
@@ -785,7 +786,7 @@ namespace HidRawTools
             button.Location = Point1;
             button.FlatStyle = FlatStyle.Flat;
             button.BackColor = Color.White;
-            button.MouseDown += new MouseEventHandler(this.Layer0Button_MouseClick);
+            button.MouseDown += new MouseEventHandler(Layer0Button_MouseClick);       
             button.Text = str;
             button.Name = index.ToString();
             KeymapPanel.BackgroundImage = TempImage;

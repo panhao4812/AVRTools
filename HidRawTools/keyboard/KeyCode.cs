@@ -8,6 +8,95 @@ namespace HidRawTools
 {
     public static class IKeycode
     {
+        public static int ASCII2scan(int ASCII)
+        {
+            //键值还是有些问题
+            if (ASCII >= 65 && ASCII <= 90)
+            {
+                //a--z
+                return ASCII - (65 - 0x04);
+            }
+            else if (ASCII == 48) return 0x27;//0
+            else if (ASCII >= 49 && ASCII <= 57)
+            {
+                //1---9
+                return ASCII - (49 - 0x1E);
+            }
+            else if (ASCII >= 112 && ASCII <= 123)
+            {
+                //F1---F12 58 69
+                return ASCII - (112 - 0x3A);
+            }
+            else if (ASCII >= 96 && ASCII <= 105)
+            {
+                //pad1---pad9 0x59 0x62
+                return ASCII - (96 - 0x59);
+            }
+            else if (ASCII == 13) return 0x28;//0// ENTER
+            else if (ASCII == 27) return 0x29;//0// ESC
+            else if (ASCII == 219) return 0x2A;//0 // BACKSPACE
+            else if (ASCII == 9) return 0x2B;//0 // TAB
+            else if (ASCII == 32) return 0x2C;//0 // SPACE
+
+            else if (ASCII == 189) return 0x2D;// KEY_SUB 0x2D           // - and _
+            else if (ASCII == 187) return 0x2E;// KEY_EQUAL 0x2E         // = and +
+            else if (ASCII == 219) return 0x2F;// KEY_LEFT_BRACKET 0x2F  // [ and {
+            else if (ASCII == 221) return 0x30;// KEY_RIGHT_BRACKET 0x30 // ] and }
+            else if (ASCII == 220) return 0x31;// KEY_VERTICAL_LINE 0x31 // "\" and |
+            //else if (ASCII == 192) return 0x32;// KEY_WAVE 0x32          // ` and ~
+            else if (ASCII == 186) return 0x33;// KEY_SEMICOLON 0x33     // ; and :
+            else if (ASCII == 222) return 0x34;// KEY_QUOTE 0x34         // ' and "
+            else if (ASCII == 192) return 0x35;// KEY_THROW 0x35         // ~ and `
+            else if (ASCII == 188) return 0x36;// KEY_COMMA 0x36         // , and <
+            else if (ASCII == 190) return 0x37;// KEY_DOT 0x37           // . and >
+            else if (ASCII == 191) return 0x38;// KEY_QUESTION 0x38     //?
+
+            else if (ASCII == 20) return 0x39;//0//CAPS
+            else if (ASCII == 44) return 0x46;//KEY_PRT_SCR 0x46
+            else if (ASCII == 145) return 0x47; //KEY_SCOLL_LOCK 0x47
+            else if (ASCII == 19) return 0x48; //KEY_PAUSE 0x48
+            else if (ASCII == 45) return 0x49; //KEY_INS 0x49
+            else if (ASCII == 36) return 0x4A; //KEY_HOME 0x4A
+            else if (ASCII == 33) return 0x4B;//KEY_PAGEUP 0x4B
+            else if (ASCII == 46) return 0x4C;//KEY_DEL 0x4C
+            else if (ASCII == 35) return 0x4D;//KEY_END 0x4D
+            else if (ASCII == 34) return 0x4E;//KEY_PAGEDOWN 0x4E
+            else if (ASCII == 39) return 0x4F;//KEY_RIGHT_ARROW 0x4F
+            else if (ASCII == 37) return 0x50;//KEY_LEFT_ARROW 0x50
+            else if (ASCII == 40) return 0x51;//KEY_DOWN_ARROW 0x51
+else if (ASCII == 144) return 0x53;// KEY_PAD_NUMLOCK 0x53
+else if (ASCII == 111) return 0x54;// KEY_PAD_DIV 0x54
+else if (ASCII == 106) return 0x55;// KEY_PAD_MUL 0x55
+else if (ASCII == 109) return 0x56;// KEY_PAD_SUB 0x56
+else if (ASCII == 107) return 0x57;// KEY_PAD_ADD 0x57
+//else if (ASCII ==0 ) return 0x58;// KEY_PAD_ENTER 0x58
+else if (ASCII == 110) return 0x63;// KEY_PAD_DOT 0x63
+            
+else if (ASCII == 17) return 0x01;// KEY_LCTRL 0xE0  
+else if (ASCII == 18) return 0x02;// KEY_LALT 0xE2   
+else if (ASCII == 16) return 0x04;// KEY_LSHFIT 0xE1 
+else if (ASCII ==91 ) return 0x08;// KEY_LWIN 0xE3   
+else if (ASCII ==92 ) return 0x10;// KEY_RWIN 0xE7   
+else if (ASCII ==161 ) return 0x20;// KEY_RSHIFT 0xE5 
+else if (ASCII == 165) return 0x40;// KEY_RALT 0xE6   
+else if (ASCII == 163) return 0x80;// KEY_RCTRL 0xE4 
+
+            else return -100;
+            /*
+45 Insert Insert
+144 NumLock NumLock
+111 Divide Divide
+106 Multiply Multiply
+109 Subtract Subtract
+107 Add Add
+46 Delete Delete
+144 NumLock NumLock
+110 Decimal Decimal
+17 ControlKey ControlKey, Control
+18 Menu Menu, Alt
+18 Menu Menu, Alt
+*/
+        }
         public static string Arabit2Roman(int arabic)
         {
             string[] alpha = { "I", "V", "X", "L", "C", "D", "M" };

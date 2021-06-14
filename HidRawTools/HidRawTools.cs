@@ -132,6 +132,7 @@ namespace HidRawTools
         }
         private void Layer0Button_MouseClick(object sender, MouseEventArgs e)
         {
+            //key button
             if (SelectKey1 != null) SelectKey1.BackColor = Color.White;
             if (e.Button == MouseButtons.Right)
             {
@@ -145,6 +146,7 @@ namespace HidRawTools
         }
         private void Layer1Button_MouseClick(object sender, MouseEventArgs e)
         {
+            //RGB_button
             if (SelectKey1 != null) SelectKey1.BackColor = Color.White;
             if (e.Button == MouseButtons.Right)
             {
@@ -265,6 +267,13 @@ namespace HidRawTools
             {
                 ((TextBox)sender).SelectAll();
             }
+            if (keytest == false) return;
+            string[] lsindex = ConsoleBox.Text.Split('\r');
+            if (lsindex.Length > 20)
+            {
+                Clear();
+            }
+            Print(e.KeyValue.ToString() + " " + e.KeyCode.ToString() + " " + e.KeyData.ToString());
         }
         private void GBK_Click(object sender, EventArgs e)
         {
@@ -535,10 +544,28 @@ namespace HidRawTools
         {
             if (loadmatrix("QMK87_ISO")) { InitMatrix(); }
         }
-
         private void staryuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (loadmatrix("Staryu")) { InitMatrix(); }
+        }
+
+        private void clearToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (clearToolStripMenuItem.Name == "Close")
+            {
+                clearToolStripMenuItem.Name = "start";
+                KeymapPanel.BackColor = Color.White;
+                keytest = false;
+                ConsoleBox.ReadOnly = false;
+            }
+            else
+            {
+                //keytest start
+                clearToolStripMenuItem.Name = "Close";       
+            KeymapPanel.BackColor = Color.LightGray;
+            keytest = true;
+                ConsoleBox.ReadOnly = true;
+            }
         }
     }
 }
