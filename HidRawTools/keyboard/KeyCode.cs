@@ -8,9 +8,124 @@ namespace HidRawTools
 {
     public static class IKeycode
     {
+        public static int KeyName2ASCII(string keyName)
+        {
+            switch (keyName)
+            {
+                case "Ctrl": return 17;
+                case "Shift": return 16;
+                case "Alt": return 18;
+                case "Gui": return 91;
+                case "lCtrl": return 17;
+                case "lShift": return 16;
+                case "lAlt": return 18;
+                case "lGui": return 91;
+                case "rCtrl": return 163;
+                case "rShift": return 161;
+                case "rAlt": return 165;
+                case "rGui": return 92;
+                case "A": return 65;
+                case "B": return 66;
+                case "C": return 67;
+                case "D": return 68;
+                case "E": return 69;
+                case "F": return 70;
+                case "G": return 71;
+                case "H": return 72;
+                case "I": return 73;
+                case "J": return 74;
+                case "K": return 75;
+                case "L": return 76;
+                case "M": return 77;
+                case "N": return 78;
+                case "O": return 79;
+                case "P": return 80;
+                case "Q": return 81;
+                case "R": return 82;
+                case "S": return 83;
+                case "T": return 84;
+                case "U": return 85;
+                case "V": return 86;
+                case "W": return 87;
+                case "X": return 88;
+                case "Y": return 89;
+                case "Z": return 90;
+                case "1": return 49;
+                case "2": return 50;
+                case "3": return 51;
+                case "4": return 52;
+                case "5": return 53;
+                case "6": return 54;
+                case "7": return 55;
+                case "8": return 56;
+                case "9": return 57;
+                case "0": return 48;
+                case "Enter": return 13;
+                case "Esc": return 27;
+                case "<--": return 8;
+                case "Tab": return 9;
+                case "Space": return 32;
+                case "_-": return 189;
+                case "+=": return 187;
+                case "{[": return 219;
+                case "]}": return 221;
+                case "|": return 220;
+                //    case "Number" : return  ;//US键盘没这个按键
+                case ":;": return 186;
+                case "“'": return 222;
+                case "~": return 192;
+                case "<,;": return 188;
+                case ".>": return 190;
+                case "?/": return 191;
+                case "CapsLK": return 20;
+                case "F1": return 112;
+                case "F2": return 113;
+                case "F3": return 114;
+                case "F4": return 115;
+                case "F5": return 116;
+                case "F6": return 117;
+                case "F7": return 118;
+                case "F8": return 119;
+                case "F9": return 120;
+                case "F10": return 121;
+                case "F11": return 122;
+                case "F12": return 123;
+                case "PrtSc": return 44;
+                case "ScrLk": return 145;
+                case "Pause": return 19;
+                case "Insert": return 45;
+                case "Home": return 36;
+                case "PgUp": return 33;
+                case "Delete": return 46;
+                case "End": return 35;
+                case "PgDn": return 34;
+                case "→": return 39;
+                case "←": return 37;
+                case "↓": return 40;
+                case "↑": return 38;
+                case "NumLK": return 144;
+                case "p/": return 111;
+                case "p*": return 106;
+                case "p-": return 109;
+                case "p+": return 107;
+                case "pENTER": return 13;
+                case "p1": return 97;
+                case "p2": return 98;
+                case "p3": return 99;
+                case "p4": return 100;
+                case "p5": return 101;
+                case "p6": return 102;
+                case "p7": return 103;
+                case "p8": return 104;
+                case "p9": return 105;
+                case "p0" : return  96;
+                case "p.": return 110;  //.
+            }
+            return -1;
+        }
         public static int ASCII2scan(int ASCII)
         {
-            //键值还是有些问题
+            //缺小键盘Enter键
             if (ASCII >= 65 && ASCII <= 90)
             {
                 //a--z
@@ -27,30 +142,28 @@ namespace HidRawTools
                 //F1---F12 58 69
                 return ASCII - (112 - 0x3A);
             }
-            else if (ASCII >= 96 && ASCII <= 105)
+            else if (ASCII == 96) return 0x62;//0
+            else if (ASCII >= 97 && ASCII <= 105)
             {
-                //pad1---pad9 0x59 0x62
-                return ASCII - (96 - 0x59);
+                //pad1---pad9 0x59 0x61
+                return ASCII - (97 - 0x59);
             }
             else if (ASCII == 13) return 0x28;//0// ENTER
             else if (ASCII == 27) return 0x29;//0// ESC
-            else if (ASCII == 219) return 0x2A;//0 // BACKSPACE
+            else if (ASCII == 8) return 0x2A;//0 // BACKSPACE
             else if (ASCII == 9) return 0x2B;//0 // TAB
             else if (ASCII == 32) return 0x2C;//0 // SPACE
-
             else if (ASCII == 189) return 0x2D;// KEY_SUB 0x2D           // - and _
             else if (ASCII == 187) return 0x2E;// KEY_EQUAL 0x2E         // = and +
             else if (ASCII == 219) return 0x2F;// KEY_LEFT_BRACKET 0x2F  // [ and {
             else if (ASCII == 221) return 0x30;// KEY_RIGHT_BRACKET 0x30 // ] and }
             else if (ASCII == 220) return 0x31;// KEY_VERTICAL_LINE 0x31 // "\" and |
-            //else if (ASCII == 192) return 0x32;// KEY_WAVE 0x32          // ` and ~
             else if (ASCII == 186) return 0x33;// KEY_SEMICOLON 0x33     // ; and :
             else if (ASCII == 222) return 0x34;// KEY_QUOTE 0x34         // ' and "
             else if (ASCII == 192) return 0x35;// KEY_THROW 0x35         // ~ and `
             else if (ASCII == 188) return 0x36;// KEY_COMMA 0x36         // , and <
             else if (ASCII == 190) return 0x37;// KEY_DOT 0x37           // . and >
             else if (ASCII == 191) return 0x38;// KEY_QUESTION 0x38     //?
-
             else if (ASCII == 20) return 0x39;//0//CAPS
             else if (ASCII == 44) return 0x46;//KEY_PRT_SCR 0x46
             else if (ASCII == 145) return 0x47; //KEY_SCOLL_LOCK 0x47
@@ -64,38 +177,23 @@ namespace HidRawTools
             else if (ASCII == 39) return 0x4F;//KEY_RIGHT_ARROW 0x4F
             else if (ASCII == 37) return 0x50;//KEY_LEFT_ARROW 0x50
             else if (ASCII == 40) return 0x51;//KEY_DOWN_ARROW 0x51
-else if (ASCII == 144) return 0x53;// KEY_PAD_NUMLOCK 0x53
-else if (ASCII == 111) return 0x54;// KEY_PAD_DIV 0x54
-else if (ASCII == 106) return 0x55;// KEY_PAD_MUL 0x55
-else if (ASCII == 109) return 0x56;// KEY_PAD_SUB 0x56
-else if (ASCII == 107) return 0x57;// KEY_PAD_ADD 0x57
-//else if (ASCII ==0 ) return 0x58;// KEY_PAD_ENTER 0x58
-else if (ASCII == 110) return 0x63;// KEY_PAD_DOT 0x63
-            
-else if (ASCII == 17) return 0x01;// KEY_LCTRL 0xE0  
-else if (ASCII == 18) return 0x02;// KEY_LALT 0xE2   
-else if (ASCII == 16) return 0x04;// KEY_LSHFIT 0xE1 
-else if (ASCII ==91 ) return 0x08;// KEY_LWIN 0xE3   
-else if (ASCII ==92 ) return 0x10;// KEY_RWIN 0xE7   
-else if (ASCII ==161 ) return 0x20;// KEY_RSHIFT 0xE5 
-else if (ASCII == 165) return 0x40;// KEY_RALT 0xE6   
-else if (ASCII == 163) return 0x80;// KEY_RCTRL 0xE4 
-
+            else if (ASCII == 38) return 82;//KEY_up_ARROW 0x51
+            else if (ASCII == 144) return 0x53;// KEY_PAD_NUMLOCK 0x53
+            else if (ASCII == 111) return 0x54;// KEY_PAD_DIV 0x54
+            else if (ASCII == 106) return 0x55;// KEY_PAD_MUL 0x55
+            else if (ASCII == 109) return 0x56;// KEY_PAD_SUB 0x56
+            else if (ASCII == 107) return 0x57;// KEY_PAD_ADD 0x57
+            else if (ASCII == 110) return 0x63;// KEY_PAD_DOT 0x63   
+            else if (ASCII == 17) return 0x01;// KEY_LCTRL 0xE0  
+            else if (ASCII == 18) return 0x02;// KEY_LALT 0xE2   
+            else if (ASCII == 16) return 0x04;// KEY_LSHFIT 0xE1 
+            else if (ASCII == 91) return 0x08;// KEY_LWIN 0xE3   
+            else if (ASCII == 92) return 0x10;// KEY_RWIN 0xE7   
+            else if (ASCII == 161) return 0x20;// KEY_RSHIFT 0xE5 
+            else if (ASCII == 165) return 0x40;// KEY_RALT 0xE6   
+            else if (ASCII == 163) return 0x80;// KEY_RCTRL 0xE4 
+                                               //else if (ASCII ==0 ) return 0x58;// KEY_PAD_ENTER 0x58
             else return -100;
-            /*
-45 Insert Insert
-144 NumLock NumLock
-111 Divide Divide
-106 Multiply Multiply
-109 Subtract Subtract
-107 Add Add
-46 Delete Delete
-144 NumLock NumLock
-110 Decimal Decimal
-17 ControlKey ControlKey, Control
-18 Menu Menu, Alt
-18 Menu Menu, Alt
-*/
         }
         public static string Arabit2Roman(int arabic)
         {

@@ -703,7 +703,7 @@ namespace HidRawTools
             button.Location = Point1;
             button.FlatStyle = FlatStyle.Flat;
             button.BackColor = Color.FromArgb(ActiveMatrix.RGB[i, 3], ActiveMatrix.RGB[i, 4], ActiveMatrix.RGB[i, 5]);
-            if ((ActiveMatrix.RGB[i, 2] & (byte)0x0F) == 0) button.Text = i.ToString();
+            if ((ActiveMatrix.RGB[i, 2] & (byte)0x0F) == 0) button.Text = i.ToString()+" c";
             else if ((ActiveMatrix.RGB[i, 2] & (byte)0x0F) == 0x01) { button.Text = "R"; }
             if ((ActiveMatrix.RGB[i, 2] & (byte)0xF0) == 0x10) { button.ForeColor = Color.Black; }
             else if ((ActiveMatrix.RGB[i, 2] & (byte)0xF0) == 0x00) { button.ForeColor = Color.Gray; }
@@ -745,7 +745,7 @@ namespace HidRawTools
                 {
                     button.BackColor = Color.White;
                 }
-                if ((ActiveMatrix.RGB[i, 2] & (byte)0x0F) == 0) button.Text = i.ToString();
+                if ((ActiveMatrix.RGB[i, 2] & (byte)0x0F) == 0) button.Text = i.ToString()+" c";//避免testkey识别冲突
                 else if ((ActiveMatrix.RGB[i, 2] & (byte)0x0F) == 0x01) { button.Text = "R"; }
                 else if ((ActiveMatrix.RGB[i, 2] & (byte)0x0F) == 0x02) { button.Text = "P"; }
                 if ((ActiveMatrix.RGB[i, 2] & (byte)0xF0) == 0x10) { button.ForeColor = Color.Black; }
@@ -786,9 +786,9 @@ namespace HidRawTools
             button.Location = Point1;
             button.FlatStyle = FlatStyle.Flat;
             button.BackColor = Color.White;
-            button.MouseDown += new MouseEventHandler(Layer0Button_MouseClick);       
+            button.MouseDown += new MouseEventHandler(Layer0Button_MouseClick);
             button.Text = str;
-            button.Name = index.ToString();
+            button.Name = index.ToString();          
             KeymapPanel.BackgroundImage = TempImage;
         }
         private void AboutText()
@@ -870,7 +870,36 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
             ushort a3 = Convert.ToUInt16(str2, 16);
             return a3;
         }
-
+        public void EnableControl()
+        {
+            VidBox.Enabled = true;
+            PidBox.Enabled = true;
+            menu1.Enabled = true;
+            menu2.Enabled = true;
+            menu3.Enabled = true;
+            menu4.Enabled = true;
+            menu5.Enabled = true;
+            //menu6.Enabled = true;
+            menu7.Enabled = true;
+            KeycodeSelectionBox.Enabled = true;
+            KeymapEditBox.Enabled = true;
+            PrintBox.Enabled = true;
+        }
+        public void DisableControl()
+        {
+            VidBox.Enabled = false;
+            PidBox.Enabled = false;
+            menu1.Enabled = false;
+            menu2.Enabled = false;
+            menu3.Enabled = false;
+            menu4.Enabled = false;
+            menu5.Enabled = false;
+            //menu6.Enabled = false;
+            menu7.Enabled = false;
+            KeycodeSelectionBox.Enabled = false;
+            KeymapEditBox.Enabled = false;
+            PrintBox.Enabled = false;
+        }
 
     }
 }

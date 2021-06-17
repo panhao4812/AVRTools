@@ -14,8 +14,7 @@ namespace HidRawTools
         public HidRawTools()
         {
             InitializeComponent();
-        }
-        
+        }       
         public static void ThreadProc()
         {
             libusbtool form = new libusbtool();//第2个窗体
@@ -143,6 +142,7 @@ namespace HidRawTools
                 ((Button)sender).BackColor = Color.LightSalmon;
                 SelectKey1 = ((Button)sender);
             }
+            ConsoleBox.Focus();
         }
         private void Layer1Button_MouseClick(object sender, MouseEventArgs e)
         {
@@ -168,6 +168,7 @@ namespace HidRawTools
                 ActiveMatrix.RGB[index, 4] = c.G;
                 ActiveMatrix.RGB[index, 5] = c.B;
             }
+            ConsoleBox.Focus();
         }
         private void Layer0Button_CheckedChanged(object sender, EventArgs e)
         {
@@ -176,6 +177,7 @@ namespace HidRawTools
                 Layer = 0;
                 changeButton();
             }
+            ConsoleBox.Focus();
         }
         private void Layer1Button_CheckedChanged(object sender, EventArgs e)
         {
@@ -184,6 +186,7 @@ namespace HidRawTools
                 Layer = 1;
                 changeButton();
             }
+            ConsoleBox.Focus();
         }
         private void FixedRGB_Click(object sender, EventArgs e)
         {
@@ -274,6 +277,25 @@ namespace HidRawTools
                 Clear();
             }
             Print(e.KeyValue.ToString() + " " + e.KeyCode.ToString() + " " + e.KeyData.ToString());
+            /////////
+            for (int i = 0; i < KeymapPanel.Controls.Count; i++)
+            {
+                if (IKeycode.KeyName2ASCII(((Button)KeymapPanel.Controls[i]).Text) == e.KeyValue)
+                {
+                    ((Button)KeymapPanel.Controls[i]).BackColor = Color.LightPink;
+                }
+            }
+        }
+        private void ConsoleBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (keytest == false) return;
+            for (int i = 0; i < KeymapPanel.Controls.Count; i++)
+            {
+                if (IKeycode.KeyName2ASCII(((Button)KeymapPanel.Controls[i]).Text) == e.KeyValue)
+                {
+                    ((Button)KeymapPanel.Controls[i]).BackColor = Color.LightBlue;
+                }
+            }
         }
         private void GBK_Click(object sender, EventArgs e)
         {
@@ -548,11 +570,15 @@ namespace HidRawTools
         {
             if (loadmatrix("Staryu")) { InitMatrix(); }
         }
-
-        private void clearToolStripMenuItem_Click(object sender, EventArgs e)
+        private void TestKeyMenuItem_Click(object sender, EventArgs e)
         {
+            for (int i = 0; i < KeymapPanel.Controls.Count; i++)
+            {           
+                    ((Button)KeymapPanel.Controls[i]).BackColor = Color.White;
+            }
             if (clearToolStripMenuItem.Name == "Close")
             {
+                EnableControl();
                 clearToolStripMenuItem.Name = "start";
                 KeymapPanel.BackColor = Color.White;
                 keytest = false;
@@ -561,11 +587,15 @@ namespace HidRawTools
             else
             {
                 //keytest start
+                DisableControl();
+                Clear();
                 clearToolStripMenuItem.Name = "Close";       
-            KeymapPanel.BackColor = Color.LightGray;
-            keytest = true;
+                KeymapPanel.BackColor = Color.LightGray;
+                keytest = true;
                 ConsoleBox.ReadOnly = true;
             }
         }
+
+     
     }
 }
