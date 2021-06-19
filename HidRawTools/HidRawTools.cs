@@ -11,10 +11,14 @@ namespace HidRawTools
 {
     public partial class HidRawTools : Form
     {
+        protected override bool ProcessTabKey(bool forward)
+        {
+            return false;//禁用tab
+        }
         public HidRawTools()
         {
             InitializeComponent();
-        }       
+        }
         public static void ThreadProc()
         {
             libusbtool form = new libusbtool();//第2个窗体
@@ -195,20 +199,20 @@ namespace HidRawTools
             RGB_Type++;
             if ((RGB_Type & 0x0F) > 1)
             {
-                if(ActiveMatrix.Name != "CXT64")RGB_Type &= 0xF0;
+                if (ActiveMatrix.Name != "CXT64") RGB_Type &= 0xF0;
             }
             if ((RGB_Type & 0x0F) > 2)
             {
                 RGB_Type &= 0xF0;
             }
 
-        if ((RGB_Type & 0x0F) == 0x00)
+            if ((RGB_Type & 0x0F) == 0x00)
             {
                 this.editToolStripMenuItem.Text = "Default is FixedColor,click to change.";
 
                 for (int i = ActiveMatrix.RGB.GetLowerBound(0); i <= ActiveMatrix.RGB.GetUpperBound(0); i++)
                 {
-                    ActiveMatrix.RGB[i, 2] = RGB_Type;             
+                    ActiveMatrix.RGB[i, 2] = RGB_Type;
                 }
             }
             else if ((RGB_Type & 0x0F) == 0x01)
@@ -217,7 +221,7 @@ namespace HidRawTools
 
                 for (int i = ActiveMatrix.RGB.GetLowerBound(0); i <= ActiveMatrix.RGB.GetUpperBound(0); i++)
                 {
-                    ActiveMatrix.RGB[i, 2] = RGB_Type;              
+                    ActiveMatrix.RGB[i, 2] = RGB_Type;
                 }
             }
             else
@@ -226,7 +230,7 @@ namespace HidRawTools
 
                 for (int i = ActiveMatrix.RGB.GetLowerBound(0); i <= ActiveMatrix.RGB.GetUpperBound(0); i++)
                 {
-                    ActiveMatrix.RGB[i, 2] = RGB_Type;                  
+                    ActiveMatrix.RGB[i, 2] = RGB_Type;
                 }
             }
             Print("RGB_Type = " + RGB_Type);
@@ -266,24 +270,26 @@ namespace HidRawTools
         }
         private void ConsoleBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Modifiers == System.Windows.Forms.Keys.Control && e.KeyCode == System.Windows.Forms.Keys.A)
+            if (keytest == false)
             {
-                ((TextBox)sender).SelectAll();
+                if (e.Modifiers == System.Windows.Forms.Keys.Control && e.KeyCode == System.Windows.Forms.Keys.A)
+                {
+                    ((TextBox)sender).SelectAll();
+                }
             }
-            if (keytest == false) return;
-            string[] lsindex = ConsoleBox.Text.Split('\r');
-            if (lsindex.Length > 20)
+            else
             {
                 Clear();
-            }
-            Print(e.KeyValue.ToString() + " " + e.KeyCode.ToString() + " " + e.KeyData.ToString());
-            /////////
-            for (int i = 0; i < KeymapPanel.Controls.Count; i++)
-            {
-                if (IKeycode.KeyName2ASCII(((Button)KeymapPanel.Controls[i]).Text) == e.KeyValue)
+                Print(e.KeyValue.ToString() + " " + e.KeyCode.ToString() + " " + e.KeyData.ToString());
+                /////////
+                for (int i = 0; i < KeymapPanel.Controls.Count; i++)
                 {
-                    ((Button)KeymapPanel.Controls[i]).BackColor = Color.LightPink;
+                    if (IKeycode.KeyName2ASCII(((Button)KeymapPanel.Controls[i]).Text) == e.KeyValue)
+                    {
+                        ((Button)KeymapPanel.Controls[i]).BackColor = Color.LightPink;
+                    }
                 }
+                ConsoleBox.Focus();
             }
         }
         private void ConsoleBox_KeyUp(object sender, KeyEventArgs e)
@@ -572,9 +578,18 @@ namespace HidRawTools
         }
         private void TestKeyMenuItem_Click(object sender, EventArgs e)
         {
+            /*
+            使用console_box的key事件来实现，需要一直保证console_box的focus,确保事件一直激活。
+            1、所有控件focus后会顺带把focus还原到console box，包括console_box自己（不然shift等按键会丢失focus）
+            2、在Form层级用protected override bool ProcessTabKey(bool forward)禁用tab键转移focus           
+            */
             for (int i = 0; i < KeymapPanel.Controls.Count; i++)
-            {           
+            {
+                if (((Button)KeymapPanel.Controls[i]).Size.Width > 25)
+                {
+                    //排除RGB button
                     ((Button)KeymapPanel.Controls[i]).BackColor = Color.White;
+                }
             }
             if (clearToolStripMenuItem.Name == "Close")
             {
@@ -589,13 +604,11 @@ namespace HidRawTools
                 //keytest start
                 DisableControl();
                 Clear();
-                clearToolStripMenuItem.Name = "Close";       
+                clearToolStripMenuItem.Name = "Close";
                 KeymapPanel.BackColor = Color.LightGray;
                 keytest = true;
                 ConsoleBox.ReadOnly = true;
             }
         }
-
-     
     }
 }

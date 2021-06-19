@@ -74,7 +74,7 @@ namespace HidRawTools
                 case ":;": return 186;
                 case "“'": return 222;
                 case "~": return 192;
-                case "<,;": return 188;
+                case "<,": return 188;
                 case ".>": return 190;
                 case "?/": return 191;
                 case "CapsLK": return 20;

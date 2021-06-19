@@ -709,6 +709,7 @@ namespace HidRawTools
             else if ((ActiveMatrix.RGB[i, 2] & (byte)0xF0) == 0x00) { button.ForeColor = Color.Gray; }
             button.Font = new Font(button.Font.Name, 7);
             button.Name = i.ToString();
+            button.TabStop = false; //禁用tab键 
             button.MouseDown += new MouseEventHandler(this.Layer1Button_MouseClick);
             KeymapPanel.BackgroundImage = TempImage;
         }
@@ -746,12 +747,13 @@ namespace HidRawTools
                     button.BackColor = Color.White;
                 }
                 if ((ActiveMatrix.RGB[i, 2] & (byte)0x0F) == 0) button.Text = i.ToString()+" c";//避免testkey识别冲突
-                else if ((ActiveMatrix.RGB[i, 2] & (byte)0x0F) == 0x01) { button.Text = "R"; }
-                else if ((ActiveMatrix.RGB[i, 2] & (byte)0x0F) == 0x02) { button.Text = "P"; }
+                else if ((ActiveMatrix.RGB[i, 2] & (byte)0x0F) == 0x01) { button.Text = "R  c"; }
+                else if ((ActiveMatrix.RGB[i, 2] & (byte)0x0F) == 0x02) { button.Text = "P  c"; }
                 if ((ActiveMatrix.RGB[i, 2] & (byte)0xF0) == 0x10) { button.ForeColor = Color.Black; }
                 else if ((ActiveMatrix.RGB[i, 2] & (byte)0xF0) == 0x00) { button.ForeColor = Color.FromArgb(200, 200, 200); }
                 button.Name = i.ToString();
                 button.BringToFront();
+                button.TabStop = false; //禁用tab键 非必须
                 button.MouseDown += new MouseEventHandler(this.Layer1Button_MouseClick);
             }
             KeymapPanel.BackgroundImage = TempImage;
@@ -788,7 +790,8 @@ namespace HidRawTools
             button.BackColor = Color.White;
             button.MouseDown += new MouseEventHandler(Layer0Button_MouseClick);
             button.Text = str;
-            button.Name = index.ToString();          
+            button.Name = index.ToString();
+            // button.TabStop = false; //禁用tab键    
             KeymapPanel.BackgroundImage = TempImage;
         }
         private void AboutText()
