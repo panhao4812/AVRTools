@@ -304,7 +304,6 @@ namespace HidRawTools
                 if (e.Modifiers == System.Windows.Forms.Keys.Control && e.KeyCode == System.Windows.Forms.Keys.A)
                 {
                     ((TextBox)sender).SelectAll();
-                    if (IKeycode.KeyName2ASCII(((Button)KeymapPanel.Controls[i]).Text) == e.KeyValue)
                 }              
         }      
         private void GBK_Click(object sender, EventArgs e)
