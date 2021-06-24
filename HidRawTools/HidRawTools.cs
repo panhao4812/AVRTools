@@ -12,8 +12,39 @@ namespace HidRawTools
     public partial class HidRawTools : Form
     {
         protected override bool ProcessTabKey(bool forward)
-        {
+        { 
             return false;//禁用tab
+        } 
+        protected override bool ProcessKeyPreview(ref Message m)
+        {
+            if (keytest == false) return base.ProcessKeyPreview(ref m);
+            long keyData = (long)m.LParam;
+            keyData = keyData >> 16;
+            Clear();
+            Print(m.Msg.ToString("x")+ " "+ m.WParam.ToString() + " " +keyData.ToString("x"));
+            //LParam 有键盘bios码,应该用这个来判断，注意码表版本
+            for (int i = 0; i < KeymapPanel.Controls.Count; i++)
+            {
+                if (m.Msg == 0x100|| m.Msg == 0x104)
+                {
+                    int code = IKeycode.KeyName2BIOS(((Button)KeymapPanel.Controls[i]).Text);
+                    
+                    if ((code & 0x0FFF) == (keyData & 0x0FFF))
+                    {
+                        ((Button)KeymapPanel.Controls[i]).BackColor = Color.LightPink;
+                    }
+                }
+                else if (m.Msg == 0x101 || m.Msg == 0x105)
+                {
+                    int code = IKeycode.KeyName2BIOS(((Button)KeymapPanel.Controls[i]).Text);
+
+                    if ((code & 0x0FFF) == (keyData & 0x0FFF))
+                    {
+                        ((Button)KeymapPanel.Controls[i]).BackColor = Color.LightBlue;
+                    }
+                }
+            }
+            return true;
         }
         public HidRawTools()
         {
@@ -269,40 +300,13 @@ namespace HidRawTools
             }
         }
         private void ConsoleBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (keytest == false)
-            {
+        {        
                 if (e.Modifiers == System.Windows.Forms.Keys.Control && e.KeyCode == System.Windows.Forms.Keys.A)
                 {
                     ((TextBox)sender).SelectAll();
-                }
-            }
-            else
-            {
-                Clear();
-                Print(e.KeyValue.ToString() + " " + e.KeyCode.ToString() + " " + e.KeyData.ToString());
-                /////////
-                for (int i = 0; i < KeymapPanel.Controls.Count; i++)
-                {
                     if (IKeycode.KeyName2ASCII(((Button)KeymapPanel.Controls[i]).Text) == e.KeyValue)
-                    {
-                        ((Button)KeymapPanel.Controls[i]).BackColor = Color.LightPink;
-                    }
-                }
-                ConsoleBox.Focus();
-            }
-        }
-        private void ConsoleBox_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (keytest == false) return;
-            for (int i = 0; i < KeymapPanel.Controls.Count; i++)
-            {
-                if (IKeycode.KeyName2ASCII(((Button)KeymapPanel.Controls[i]).Text) == e.KeyValue)
-                {
-                    ((Button)KeymapPanel.Controls[i]).BackColor = Color.LightBlue;
-                }
-            }
-        }
+                }              
+        }      
         private void GBK_Click(object sender, EventArgs e)
         {
             IEncode = "GBK";
@@ -596,8 +600,7 @@ namespace HidRawTools
                 EnableControl();
                 clearToolStripMenuItem.Name = "start";
                 KeymapPanel.BackColor = Color.White;
-                keytest = false;
-                ConsoleBox.ReadOnly = false;
+                keytest = false;         
             }
             else
             {
@@ -607,8 +610,8 @@ namespace HidRawTools
                 clearToolStripMenuItem.Name = "Close";
                 KeymapPanel.BackColor = Color.LightGray;
                 keytest = true;
-                ConsoleBox.ReadOnly = true;
             }
         }
+      
     }
 }

@@ -8,7 +8,123 @@ namespace HidRawTools
 {
     public static class IKeycode
     {
-        public static int KeyName2ASCII(string keyName)
+        public static int KeyName2BIOS(string keyName)
+        {
+            switch (keyName)
+            {
+                case "Ctrl": return 0x1d;
+                case "Shift": return 0x2a;
+                case "Alt": return 0x38;
+                case "Gui": return 0x015b;
+                case "lCtrl": return 0x1d;
+                case "lShift": return 0x2a;
+                case "lAlt": return 0x38;
+                case "lGui": return 0x015b;
+                case "rCtrl": return 0x011d;
+                case "rShift": return 0x36;
+                case "rAlt": return 0x0138;
+                case "rGui": return 0x015b;
+                case "A": return 0x1e;
+                case "B": return 0x30;
+                case "C": return 0x2e;
+                case "D": return 0x20;
+                case "E": return 0x12;
+                case "F": return 0x21;
+                case "G": return 0x22;
+                case "H": return 0x23;
+                case "I": return 0x17;
+                case "J": return 0x24;
+                case "K": return 0x25;
+                case "L": return 0x26;
+                case "M": return 0x32;
+                case "N": return 0x31;
+                case "O": return 0x18;
+                case "P": return 0x19;
+                case "Q": return 0x10;
+                case "R": return 0x13;
+                case "S": return 0x1f;
+                case "T": return 0x14;
+                case "U": return 0x16;
+                case "V": return 0x2f;
+                case "W": return 0x11;
+                case "X": return 0x2d;
+                case "Y": return 0x15;
+                case "Z": return 0x2c;
+                case "1": return 0x02;
+                case "2": return 0x03;
+                case "3": return 0x04;
+                case "4": return 0x05;
+                case "5": return 0x06;
+                case "6": return 0x07;
+                case "7": return 0x08;
+                case "8": return 0x09;
+                case "9": return 0x0a;
+                case "0": return 0x0b;
+                case "Enter": return 0x1c;
+                case "Esc": return 0x01;
+                case "<--": return 0x0e;
+                case "Tab": return 0x0f;
+                case "Space": return 0x39;
+                case "_-": return 0x0c;
+                case "+=": return 0x0d;
+                case "{[": return 0x1a;
+                case "]}": return 0x1b;
+                case "|": return 0x2b;
+                //    case "Number" : return  ;//US键盘没这个按键
+                case ":;": return 0x27;
+                case "“'": return 0x28;
+                case "~": return 0x29;
+                case "<,": return 0x33;
+                case ".>": return 0x34;
+                case "?/": return 0x35;
+                case "CapsLK": return 0X3a;
+                case "F1": return 0x3b;
+                case "F2": return 0x3c;
+                case "F3": return 0x3d;
+                case "F4": return 0x3e;
+                case "F5": return 0x3f;
+                case "F6": return 0x40;
+                case "F7": return 0x41;
+                case "F8": return 0x42;
+                case "F9": return 0x43;
+                case "F10": return 0x44;
+                case "F11": return 0x57;
+                case "F12": return 0x58;
+                case "PrtSc": return 0x0137;
+                case "ScrLk": return 0x46;
+                case "Pause": return 0x45;
+                case "Insert": return 0x0152;
+                case "Home": return 0x0147;
+                case "PgUp": return 0x0149;
+                case "Delete": return 0x0153;
+                case "End": return 0x014f;
+                case "PgDn": return 0x0151;
+                case "→": return 0x014d;
+                case "←": return 0x014b;
+                case "↓": return 0x0150;
+                case "↑": return 0x0148;
+                case "NumLK": return 0x0145;
+                case "p/": return 0x0135;
+                case "p*": return 0x37;
+                case "p-": return 0x4a;
+                case "p+": return 0x4e;
+                case "pENTER": return 0x011c;
+                case "p1": return 0x4f;
+                case "p2": return 0x50;
+                case "p3": return 0x51;
+                case "p4": return 0x4b;
+                case "p5": return 0x4c;
+                case "p6": return 0x4d;
+                case "p7": return 0x47;
+                case "p8": return 0x48;
+                case "p9": return 0x49;
+                case "p0": return 0x52;
+                case "p.": return 0x53;  //.
+            }
+            return -1;
+
+        }
+        public static int KeyName2WIN(string keyName)
         {
             switch (keyName)
             {
@@ -24,7 +140,7 @@ namespace HidRawTools
                 case "rShift": return 161;
                 case "rAlt": return 165;
                 case "rGui": return 92;
-                case "A": return 65;
+                case "A": return 65;//0x41
                 case "B": return 66;
                 case "C": return 67;
                 case "D": return 68;
@@ -118,7 +234,7 @@ namespace HidRawTools
                 case "p7": return 103;
                 case "p8": return 104;
                 case "p9": return 105;
-                case "p0" : return  96;
+                case "p0": return 96;
                 case "p.": return 110;  //.
             }
             return -1;
@@ -184,7 +300,7 @@ namespace HidRawTools
             else if (ASCII == 109) return 0x56;// KEY_PAD_SUB 0x56
             else if (ASCII == 107) return 0x57;// KEY_PAD_ADD 0x57
             else if (ASCII == 110) return 0x63;// KEY_PAD_DOT 0x63   
-            else if (ASCII == 17) return 0x01;// KEY_LCTRL 0xE0  
+            else if (ASCII == 17) return 0x01;// KEY_LCTRL 0x01  
             else if (ASCII == 18) return 0x02;// KEY_LALT 0xE2   
             else if (ASCII == 16) return 0x04;// KEY_LSHFIT 0xE1 
             else if (ASCII == 91) return 0x08;// KEY_LWIN 0xE3   
