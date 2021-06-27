@@ -887,6 +887,7 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
             KeycodeSelectionBox.Enabled = true;
             KeymapEditBox.Enabled = true;
             PrintBox.Enabled = true;
+          //  ConsoleBox.Enabled = true;
         }
         public void DisableControl()
         {
@@ -902,6 +903,7 @@ Print("1.Click on “Keyboard” button on the title bar, select “XD002”. (K
             KeycodeSelectionBox.Enabled = false;
             KeymapEditBox.Enabled = false;
             PrintBox.Enabled = false;
+           // ConsoleBox.Enabled = false;
         }
 
     }
