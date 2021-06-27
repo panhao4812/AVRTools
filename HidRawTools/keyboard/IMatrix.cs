@@ -30,6 +30,7 @@ namespace HidRawTools
         public string[,] IhexaKeys0;
         public void IUpdateMatrix()
         {
+            // 不能有重复键
             if (Defaultkeycode.Length < 1) return;
             for (int i = 0; i < Defaultkeycode.Length; i++)
             {
@@ -773,13 +774,13 @@ namespace HidRawTools
 "51,KEY_SLASH,AUDIO_MUTE",
 "52,KEY_RIGHT_SHIFT,KEY_RIGHT_SHIFT",
 "53,KEY_UP,KEY_UP",
-"54,KEY_RIGHT_CTRL,KEY_RIGHT_CTRL",
+"54,KEY_DELETE,KEY_DELETE",
 "55,KEY_CTRL,KEY_CTRL",
 "56,KEY_FN,KEY_FN",
 "57,KEY_ALT,KEY_ALT",
 "58,KEY_SPACE,KEY_SPACE",
-"59,KEY_FN,KEY_FN",
-"60,KEY_FN,KEY_FN",
+"59,KEY_RIGHT_ALT,KEY_RIGHT_ALT",
+"60,KEY_RIGHT_CTRL,KEY_RIGHT_CTRL",
 "61,KEY_LEFT,KEY_LEFT",
 "62,KEY_DOWN,KEY_DOWN",
 "63,KEY_RIGHT,KEY_RIGHT"
