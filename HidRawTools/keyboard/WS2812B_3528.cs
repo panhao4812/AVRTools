@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HidRawTools
 {
-    class CXT64: QMK60_2Shift
+    class CXT64: QMK64
     {   
         public CXT64(){
          

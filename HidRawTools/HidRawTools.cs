@@ -412,14 +412,14 @@ namespace HidRawTools
             }
             else if (_name == "QMK60_175Shift")
             {
-                ActiveMatrix = new QMK60_175Shift();
+                ActiveMatrix = new QMK63();
                 VidBox.Text = "32C4";
                 PidBox.Text = "A060";
                 PanelImage = null;
             }
             else if (_name == "QMK60_2Shift")
             {
-                ActiveMatrix = new QMK60_2Shift();
+                ActiveMatrix = new QMK64();
                 VidBox.Text = "32C4";
                 PidBox.Text = "A060";
                 PanelImage = null;
@@ -582,8 +582,7 @@ namespace HidRawTools
         private void TestKeyMenuItem_Click(object sender, EventArgs e)
         {
             /*
-            使用console_box的key事件来实现，需要一直保证console_box的focus,确保事件一直激活。
-            1、所有控件focus后会顺带把focus还原到console box，包括console_box自己（不然shift等按键会丢失focus）
+            1、在Key事件的前置函数里面来获取按键bios码。
             2、在Form层级用protected override bool ProcessTabKey(bool forward)禁用tab键转移focus           
             */
             for (int i = 0; i < KeymapPanel.Controls.Count; i++)
@@ -611,6 +610,5 @@ namespace HidRawTools
                 keytest = true;
             }
         }
-      
     }
 }

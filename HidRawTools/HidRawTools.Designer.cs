@@ -114,7 +114,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(476, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(591, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -196,55 +196,55 @@
             this.shiftToolStripMenuItem,
             this.shiftToolStripMenuItem1});
             this.iSOToolStripMenuItem.Name = "iSOToolStripMenuItem";
-            this.iSOToolStripMenuItem.Size = new System.Drawing.Size(102, 26);
+            this.iSOToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.iSOToolStripMenuItem.Text = "60";
             // 
             // iSOToolStripMenuItem1
             // 
             this.iSOToolStripMenuItem1.Name = "iSOToolStripMenuItem1";
-            this.iSOToolStripMenuItem1.Size = new System.Drawing.Size(148, 26);
+            this.iSOToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
             this.iSOToolStripMenuItem1.Text = "ISO";
             this.iSOToolStripMenuItem1.Click += new System.EventHandler(this.QMK60_ISO);
             // 
             // shiftToolStripMenuItem
             // 
             this.shiftToolStripMenuItem.Name = "shiftToolStripMenuItem";
-            this.shiftToolStripMenuItem.Size = new System.Drawing.Size(148, 26);
+            this.shiftToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.shiftToolStripMenuItem.Text = "1.75Shift";
             this.shiftToolStripMenuItem.Click += new System.EventHandler(this.QMK60_175Shift_Click);
             // 
             // shiftToolStripMenuItem1
             // 
             this.shiftToolStripMenuItem1.Name = "shiftToolStripMenuItem1";
-            this.shiftToolStripMenuItem1.Size = new System.Drawing.Size(148, 26);
+            this.shiftToolStripMenuItem1.Size = new System.Drawing.Size(181, 26);
             this.shiftToolStripMenuItem1.Text = "2Shift";
             this.shiftToolStripMenuItem1.Click += new System.EventHandler(this.QMK60_2Shift_Click);
             // 
             // xShiftToolStripMenuItem3
             // 
             this.xShiftToolStripMenuItem3.Name = "xShiftToolStripMenuItem3";
-            this.xShiftToolStripMenuItem3.Size = new System.Drawing.Size(102, 26);
+            this.xShiftToolStripMenuItem3.Size = new System.Drawing.Size(181, 26);
             this.xShiftToolStripMenuItem3.Text = "68";
             this.xShiftToolStripMenuItem3.Click += new System.EventHandler(this.QMK68_Click);
             // 
             // xShiftToolStripMenuItem4
             // 
             this.xShiftToolStripMenuItem4.Name = "xShiftToolStripMenuItem4";
-            this.xShiftToolStripMenuItem4.Size = new System.Drawing.Size(102, 26);
+            this.xShiftToolStripMenuItem4.Size = new System.Drawing.Size(181, 26);
             this.xShiftToolStripMenuItem4.Text = "84";
             this.xShiftToolStripMenuItem4.Click += new System.EventHandler(this.QMK84_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(102, 26);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(181, 26);
             this.toolStripMenuItem3.Text = "87";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.QMK87_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(102, 26);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(181, 26);
             this.toolStripMenuItem4.Text = "96";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.QMK96_ISO_Click);
             // 
@@ -517,7 +517,6 @@
             this.ConsoleBox.TabIndex = 2;
             this.ConsoleBox.Text = "Console\r\n\r\nClick on “Keyboard” button on the title bar to select your templet.";
             this.ConsoleBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ConsoleBox_KeyDown);
-         
             // 
             // PidBox
             // 
@@ -583,7 +582,7 @@
             this.KeyCode,
             this.Keymask});
             this.KeycodeSelectionBox.Location = new System.Drawing.Point(907, 535);
-            this.KeycodeSelectionBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.KeycodeSelectionBox.Margin = new System.Windows.Forms.Padding(4);
             this.KeycodeSelectionBox.MultiSelect = false;
             this.KeycodeSelectionBox.Name = "KeycodeSelectionBox";
             this.KeycodeSelectionBox.ReadOnly = true;
