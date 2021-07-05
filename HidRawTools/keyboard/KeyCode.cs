@@ -590,7 +590,7 @@ namespace HidRawTools
         "POWERD" ,
         "SLEEP" ,
         "WAKEUP",
-        "LED","RGB","ESC~","PrintEEP","user4","user5","user6","user7"
+        "LEDEnable","RGBEnable","ESC~","PrintEEP","PrintFlash","RGBEffect","user6","user7"
     };
         public static string[] KeyName =
         {
@@ -861,22 +861,14 @@ namespace HidRawTools
         public static byte SYSTEM_WAKE_UP = 0x83;
 
         public static int[] ascii_to_scan_code_table = {
-	// /* ASCII:   0 */
-	0,
-	// /* ASCII:   1 */
-	0,
-	// /* ASCII:   2 */
-	0,
-	// /* ASCII:   3 */
-	0,
-	// /* ASCII:   4 */
-	0,
-	// /* ASCII:   5 */
-	0,
-	// /* ASCII:   6 */
-	0,
-	// /* ASCII:   7 */
-	0,
+	/* ASCII:   0 */0,
+	/* ASCII:   1 */0,
+	/* ASCII:   2 */0,
+	/* ASCII:   3 */0,
+	/* ASCII:   4 */0,
+	/* ASCII:   5 */0,
+	/* ASCII:   6 */0,
+	/* ASCII:   7 */0,
 	/* ASCII:   8 */ 42,
 	/* ASCII:   9 */ 43,
 	/* ASCII:  10 */ 40,

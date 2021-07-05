@@ -183,13 +183,13 @@ namespace HidRawTools
 "39,KEY_QUOTE,",
 "40,KEY_ENTER,KEY_ENTER",
 "41,KEY_SHIFT,KEY_SHIFT",
-"42,KEY_Z,KEY_NUM_LOCK",
-"43,KEY_X,KEY_SCROLL_LOCK",
+"42,KEY_Z,MACRO0",
+"43,KEY_X,MACRO1",
 "44,KEY_C,MACRO5",
 "45,KEY_V,",
 "46,KEY_B,",
-"47,KEY_N,",
-"48,KEY_M,",
+"47,KEY_N,KEY_NUM_LOCK",
+"48,KEY_M,KEY_SCROLL_LOCK",
 "49,KEY_COMMA,AUDIO_VOL_DOWN",
 "50,KEY_PERIOD,AUDIO_VOL_UP",
 "51,KEY_SLASH,AUDIO_MUTE",
@@ -198,10 +198,10 @@ namespace HidRawTools
 "54,KEY_FN,KEY_FN",
 "55,KEY_ALT,KEY_ALT",
 "56,KEY_LEFT,KEY_SPACE",
-"57,KEY_RIGHT_ALT,KEY_UP",
-"58,KEY_LEFT,KEY_LEFT",
-"59,KEY_RIGHT,KEY_RIGHT",
-"60,KEY_RIGHT_CTRL,KEY_DOWN"
+"57,KEY_RIGHT_ALT,KEY_RIGHT_ALT",
+"58,KEY_LEFT,KEY_UP",
+"59,KEY_RIGHT,KEY_DOWN",
+"60,KEY_RIGHT_CTRL,KEY_RIGHT_CTRL"
             };
         }
     }
@@ -632,9 +632,9 @@ namespace HidRawTools
 };
         }
     }
-    class QMK60_2Shift : IMatrix
+    class QMK64 : IMatrix
     {
-        public QMK60_2Shift()
+        public QMK64()
         {
             this.Name = "QMK60_2Shift";
             iniLayout();
@@ -787,9 +787,9 @@ namespace HidRawTools
  };
         }
     }
-    class QMK60_175Shift : IMatrix
+    class QMK63 : IMatrix
     {
-        public QMK60_175Shift()
+        public QMK63()
         {
             this.Name = "QMK60_175Shift";
             iniLayout();
