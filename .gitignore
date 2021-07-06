@@ -21,7 +21,7 @@ $RECYCLE.BIN/
 *.Config
 # Windows shortcuts
 *.lnk
-
+*.suo
 # =========================
 # Operating System Files
 # =========================
