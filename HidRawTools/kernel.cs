@@ -178,6 +178,20 @@ namespace HidRawTools
                             ActiveMatrix.RGB[i, 5].ToString() + "}," + "\r\n";
                     }
                 }
+                for (int i = 0; i < KeymapEditBox.CheckedIndices.Count; i++)
+                {
+                    int index = KeymapEditBox.CheckedIndices[i];
+                    string str = i.ToString();
+                    //  string[] chara = str.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+                    output += "\"" +
+                         ActiveMatrix.keycap[index, 0].ToString() + "," +
+                            ActiveMatrix.keycap[index, 1].ToString() + "," +
+                            ActiveMatrix.keycap[index, 2].ToString() + "," +
+                            ActiveMatrix.keycap[index, 3].ToString() + "," +
+                            ActiveMatrix.keycap[index, 4].ToString() + "," + 
+                    IKeycode.longname(ActiveMatrix.keycode[index]) + "," +
+                        IKeycode.longname(ActiveMatrix.keycode[index + KeyCount]) + "\"," + "\r\n";
+                }
                 stream.Write(output);
                 stream.Flush();
                 stream.Close();

@@ -67,9 +67,8 @@
     <Compile Include="AVRKeys.Designer.cs">
       <DependentUpon>AVRKeys.cs</DependentUpon>
     </Compile>
-    <Compile Include="Keyboard\Keycap.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Keyboard\IMatrix.cs" />
+    <Compile Include="Keyboard\IKeyCode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AVRKeys.resx">

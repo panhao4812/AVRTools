@@ -11,8 +11,8 @@ using System.Windows.Forms;
 namespace AVRTools
 {
     /*
-         * 原型
-         * */
+     * 原型
+     */
     public partial class AVRKeys : Form
     {
         public void DefaultLayout()
@@ -22,13 +22,11 @@ namespace AVRTools
             MatrixPanel.Location = new Point(0, 25);
             SelectKeysPanel.Size = new Size(838, 250);
             SelectKeysPanel.Location = new Point(0, 272);
-        }
-        
+        }   
         public AVRKeys()
         {
             InitializeComponent();
         }
-
         private void AddButton(int index, string str)
         {
             /*
@@ -67,22 +65,18 @@ namespace AVRTools
             KeymapPanel.BackgroundImage = TempImage;
             */
         }
-
         private void AVRKeys_Load(object sender, EventArgs e)
         {
             DefaultLayout();
         }
-
         private void ISO60_Click(object sender, EventArgs e)
         {
 
         }
-
         private void ISO61_Click(object sender, EventArgs e)
         {
 
         }
-
         private void ISO64_Click(object sender, EventArgs e)
         {
 

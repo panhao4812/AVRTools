@@ -94,7 +94,7 @@
     <Compile Include="keyboard\WS2812B_3528.cs" />
     <Compile Include="keyboard\Hex.cs" />
     <Compile Include="keyboard\IMatrix.cs" />
-    <Compile Include="keyboard\KeyCode.cs" />
+    <Compile Include="keyboard\IKeyCode.cs" />
     <Compile Include="libusbtool.cs">
       <SubType>Form</SubType>
     </Compile>
