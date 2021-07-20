@@ -17,7 +17,7 @@ namespace AVRKeys.Keyboard
         public int[,] hexaKeys1;
         public int[,] keymask;
         public double[,] keycapLength;
-        public Point[,] keycapPos;
+        public PointF[,] keycapPos;
         public int[,] RGB;
         public int ROWS = 0;
         public int COLS = 0;
@@ -62,9 +62,35 @@ namespace AVRKeys.Keyboard
             int ADD_COL = ADD_ROW + COLS;
             int ADD_KEYS1 = ADD_COL + (ROWS * COLS);
             int ADD_KEYS2 = ADD_KEYS1 + (ROWS * COLS);
-            int ADD_RGB = ADD_KEYS2 + (ROWS * COLS);
-            int ADD_RGBTYPE = ADD_RGB + (WS2812_COUNT * 3);
+            int ADD_RGB_FIX = ADD_KEYS2 + (ROWS * COLS);
+            int ADD_RGBTYPE = ADD_RGB_FIX + (WS2812_COUNT * 3);
             ADD_EEP = ADD_RGBTYPE + 6;
+        }
+        public Button[,] CreateButton()
+        {
+            Button[,] buttons = new Button[ROWS, COLS];
+            if (ROWS == 0 || COLS == 0) return buttons;         
+            for (int r = 0; r < ROWS; r++)
+            {
+                for (int c = 0; c < COLS; c++)
+                {
+                    Button button = new Button();
+                    float U = 40;
+                    float x = keycapPos[r, c].X*U+1;
+                    float y = keycapPos[r, c].Y*U+1;
+                    button.Width = (int)(U * keycapLength[r, c]) - 2;
+                    button.Height=(int)U-2;
+                    button.Location = new Point((int)x, (int)y);
+                    button.FlatStyle = FlatStyle.Flat;
+                    button.BackColor = Color.White;
+                    button.Font = new Font("Arial", 7);
+                    button.TextAlign = ContentAlignment.TopLeft;
+                    //button.MouseDown += new MouseEventHandler(Layer0Button_MouseClick);
+                    //button.Text = IKeycode.Code2ShortName(hexaKeys0[r,c]);
+                    buttons[r,c]=button;          
+                }
+            }
+            return buttons;                 
         }
         public void Matrix_Init()
         {
@@ -74,23 +100,23 @@ namespace AVRKeys.Keyboard
             for (int i = 0; i < keycap.Length; i++)
             {
                 string[] str = keycap[i].Split(',');
-                Rows.Add(Convert.ToInt32(str[4]));
-                Cols.Add(Convert.ToInt32(str[3]));
+                Rows.Add(Convert.ToInt32(str[3]));
+                Cols.Add(Convert.ToInt32(str[4]));
             }
-            ROWS =Rows.Max(); COLS =Cols.Max();
+            ROWS =Rows.Max()+1; COLS =Cols.Max()+1;
             hexaKeys0 = new int[ROWS, COLS];
             hexaKeys1 = new int[ROWS, COLS];
             keymask = new int[ROWS, COLS];
             keycapLength = new double[ROWS, COLS];
-            keycapPos = new Point[ROWS, COLS];
+            keycapPos = new PointF[ROWS, COLS];
             RGB = new int[ROWS, COLS];
             for (int i = 0; i < keycap.Length; i++)
             {
                 string[] str = keycap[i].Split(',');
-                int row = Convert.ToInt32(str[4]);
-                int col = Convert.ToInt32(str[3]);
-                keycapLength[row, col] = Convert.ToInt32(str[2]);
-                keycapPos[row, col] = new Point(Convert.ToInt32(str[0]), Convert.ToInt32(str[1]));
+                int row = Convert.ToInt32(str[3]);
+                int col = Convert.ToInt32(str[4]);
+                keycapLength[row, col] = Convert.ToDouble(str[2]);
+                keycapPos[row, col] = new PointF(Convert.ToSingle(str[0]), Convert.ToSingle(str[1]));
                 int mask1 = 0;
                 int mask2 = 0;
                 int code1 = IKeycode.name2code(str[5], out mask1);
@@ -127,7 +153,7 @@ namespace AVRKeys.Keyboard
         }
 
     }
-    class QMK60_ISO : IMatrix
+    public class QMK60_ISO : IMatrix
     {
         public QMK60_ISO()
         {

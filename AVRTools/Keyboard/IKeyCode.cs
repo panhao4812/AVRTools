@@ -422,6 +422,43 @@ namespace AVRKeys.Keyboard
             }
             return 0xFFFF;
         }
+        public static int name2code(string name)
+        {
+            if (name == "0x00") return 0;
+            if (name == "") return 0;
+            for (int i = 0; i < KeyName.Length; i++)
+            {
+                if (name == KeyName[i] || name == KeyName2[i])
+                {
+                    return Keycode[i];
+                }
+            }
+            return 0xFFFF;
+        }
+        public static string Code2ShortName(int code)
+        {
+            for (int i = 0; i < Keycode.Length; i++)
+            {
+                if (code == Keycode[i])
+                {
+                    return KeyName2[i];
+                }
+            }
+            return "";
+        }
+        public static string Code2ShortName(int code, out int mask)
+        {
+            mask = 0;
+            for (int i = 0; i < Keycode.Length; i++)
+            {
+                if (code == Keycode[i])
+                {
+                    mask = Keymask[i];
+                    return KeyName2[i];
+                }
+            }
+            return "";
+        }
         #region KeyName2
         public static string[] KeyName2 =
        {
