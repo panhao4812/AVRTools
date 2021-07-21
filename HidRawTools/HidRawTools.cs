@@ -97,7 +97,7 @@ namespace HidRawTools
         }
         private void HidRawTools_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MatrixName != "") FileSave(MatrixName);
+           // if (MatrixName != "") FileSave(MatrixName);
         }
         private void CheckedLayers_SelectedIndexChanged(object sender, EventArgs e)
         {

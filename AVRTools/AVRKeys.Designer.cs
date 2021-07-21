@@ -131,59 +131,61 @@
             this.toolStripMenuItem7,
             this.toolStripMenuItem8});
             this.iSOToolStripMenuItem.Name = "iSOToolStripMenuItem";
-            this.iSOToolStripMenuItem.Size = new System.Drawing.Size(117, 26);
+            this.iSOToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.iSOToolStripMenuItem.Text = "ISO";
             // 
             // iSO60ToolStripMenuItem
             // 
             this.iSO60ToolStripMenuItem.Name = "iSO60ToolStripMenuItem";
-            this.iSO60ToolStripMenuItem.Size = new System.Drawing.Size(117, 26);
+            this.iSO60ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.iSO60ToolStripMenuItem.Text = "61";
             this.iSO60ToolStripMenuItem.Click += new System.EventHandler(this.ISO61_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(117, 26);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(181, 26);
             this.toolStripMenuItem2.Text = "63";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.ISO63_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(117, 26);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(181, 26);
             this.toolStripMenuItem3.Text = "64";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.ISO64_Click);
             // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(117, 26);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(181, 26);
             this.toolStripMenuItem4.Text = "68";
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(117, 26);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(181, 26);
             this.toolStripMenuItem5.Text = "84";
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(117, 26);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(181, 26);
             this.toolStripMenuItem6.Text = "100";
+            this.toolStripMenuItem6.Click += new System.EventHandler(this.ISO100_Click);
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(117, 26);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(181, 26);
             this.toolStripMenuItem7.Text = "104";
             // 
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(117, 26);
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(181, 26);
             this.toolStripMenuItem8.Text = "108";
+            this.toolStripMenuItem8.Click += new System.EventHandler(this.toolStripMenuItem8_Click);
             // 
             // wS2812ToolStripMenuItem
             // 
@@ -298,7 +300,7 @@
             this.Layer2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Layer2.Name = "Layer2";
             this.Layer2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Layer2.Size = new System.Drawing.Size(1109, 279);
+            this.Layer2.Size = new System.Drawing.Size(1109, 302);
             this.Layer2.TabIndex = 1;
             this.Layer2.Text = "Layer2";
             this.Layer2.UseVisualStyleBackColor = true;
@@ -309,7 +311,7 @@
             this.Schematic.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Schematic.Name = "Schematic";
             this.Schematic.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Schematic.Size = new System.Drawing.Size(1109, 279);
+            this.Schematic.Size = new System.Drawing.Size(1109, 302);
             this.Schematic.TabIndex = 2;
             this.Schematic.Text = "Schematic";
             this.Schematic.UseVisualStyleBackColor = true;
@@ -317,10 +319,10 @@
             // WS2812
             // 
             this.WS2812.Location = new System.Drawing.Point(4, 29);
-            this.WS2812.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.WS2812.Margin = new System.Windows.Forms.Padding(4);
             this.WS2812.Name = "WS2812";
-            this.WS2812.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.WS2812.Size = new System.Drawing.Size(1109, 279);
+            this.WS2812.Padding = new System.Windows.Forms.Padding(4);
+            this.WS2812.Size = new System.Drawing.Size(1109, 302);
             this.WS2812.TabIndex = 3;
             this.WS2812.Text = "WS2812";
             this.WS2812.UseVisualStyleBackColor = true;
@@ -328,10 +330,10 @@
             // BackRGB
             // 
             this.BackRGB.Location = new System.Drawing.Point(4, 29);
-            this.BackRGB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BackRGB.Margin = new System.Windows.Forms.Padding(4);
             this.BackRGB.Name = "BackRGB";
-            this.BackRGB.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.BackRGB.Size = new System.Drawing.Size(1109, 279);
+            this.BackRGB.Padding = new System.Windows.Forms.Padding(4);
+            this.BackRGB.Size = new System.Drawing.Size(1109, 302);
             this.BackRGB.TabIndex = 4;
             this.BackRGB.Text = "BackRGB";
             this.BackRGB.UseVisualStyleBackColor = true;

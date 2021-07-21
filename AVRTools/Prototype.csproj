@@ -69,6 +69,7 @@
     </Compile>
     <Compile Include="Keyboard\IMatrix.cs" />
     <Compile Include="Keyboard\IKeyCode.cs" />
+    <Compile Include="Keyboard\QMK_ISO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AVRKeys.resx">
