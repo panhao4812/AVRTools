@@ -17,7 +17,6 @@ namespace AVRKeys.Keyboard
         public float L = 0;
         public string layer1;
         public string layer2;
-        public static float U = 40;
         public IKeycap(string Str)
         {
             input = Str;
@@ -29,20 +28,53 @@ namespace AVRKeys.Keyboard
             L = Convert.ToSingle(str[2]);
             layer1 = str[5]; layer2 = str[6];
         }
-        public Button CreateButton()
+        public static Button UpdateButton(Button button)
+        {
+            //fix fond size
+            if (button.Width < 40)
+            {
+                button.Font = new Font(button.Font.SystemFontName, button.Font.Size -1);
+            }
+           float t= (float)button.Width / (float)button.Height;
+            if (t < 1) t = 1;
+            if (button.Text.Length/t <=1)
+            {
+                button.Font=new Font(button.Font.SystemFontName,button.Font.Size + 2);
+            }
+            else if (button.Text.Length/t  <=3)
+            {
+                button.Font = new Font(button.Font.SystemFontName, button.Font.Size + 1);
+            }        
+            if (button.Text != "_-")
+            {
+                string[] strs = button.Text.Split('_');
+                if (strs.Length >= 2)
+                {
+                    string newname = "";
+                    for (int i = 0; i < strs.Length; i++) { newname += strs[i] + "\r\n"; }
+                    button.Text = newname;
+                }
+            }
+            return button;
+        }   
+        public Button CreateButton(int U1)
         {
             Button button = new Button();
-            float x = X * U + 1;
-            float y = Y * U + 1;
-            button.Width = (int)(U * L) - 2;
-            button.Height = (int)U - 2;
+            float x = X * U1 + 1;
+            float y = Y * U1 + 1;
+            button.Width = (int)(U1 * L) - 2;
+            button.Height = (int)U1 - 2;
+            if (L == 0.5)
+            {
+                button.Width = (int)U1 - 2;
+                button.Height = (int)(U1 * 2) - 2;
+            }
             button.Location = new Point((int)x, (int)y);
             button.FlatStyle = FlatStyle.Flat;
             button.BackColor = Color.White;
-            button.Font = new Font("Arial", 7);
+            button.Font = new Font("Franklin Gothic", 7);
             button.TextAlign = ContentAlignment.TopLeft;
             //button.MouseDown += new MouseEventHandler(Layer0Button_MouseClick);
-            //button.Text = IKeycode.Code2ShortName(hexaKeys0[r,c]);
             return button;
         }
     }
@@ -125,13 +157,13 @@ namespace AVRKeys.Keyboard
             hexa_keys0 = new int[ROWS, COLS];
             hexa_keys1 = new int[ROWS, COLS];
             key_mask = new int[ROWS, COLS];
-        }
-        public List<Button> CreateButton()
+        } 
+        public List<Button> CreateButton(int U1)
         {
             List<Button> bus = new List<Button>();
             for (int i = 0; i < this.key_caps.Count; i++)
             {
-                bus.Add(key_caps[i].CreateButton());
+                bus.Add(key_caps[i].CreateButton(U1));
             }
             return bus;
         }
@@ -204,5 +236,85 @@ namespace AVRKeys.Keyboard
             return str;
         }
     }
-
+    public partial class QMK61_ISO : IMatrix
+    {
+        public QMK61_ISO()
+        {
+            this.NAME = "QMK61_ISO";
+            MCU_Init("__AVR_ATmega32U4__");
+            Keycap_Init(keycap);
+        }
+    }
+    public partial class QMK63_ISO : IMatrix
+    {
+        public QMK63_ISO()
+        {
+            this.NAME = "QMK63_ISO";
+            MCU_Init("__AVR_ATmega32U4__");
+            Keycap_Init(keycap);
+        }    
+    }
+    public partial class QMK64_ISO : IMatrix
+    {
+        public QMK64_ISO()
+        {
+            this.NAME = "QMK64_ISO";
+            MCU_Init("__AVR_ATmega32U4__");
+            Keycap_Init(keycap);
+        } 
+    }
+    public partial class QMK68_ISO : IMatrix
+    {
+        public QMK68_ISO()
+        {
+            this.NAME = "QMK68_ISO";
+            MCU_Init("__AVR_ATmega32U4__");
+            Keycap_Init(keycap);
+        }
+    }
+    public partial class QMK84_ISO : IMatrix
+    {
+        public QMK84_ISO()
+        {
+            this.NAME = "QMK84_ISO";
+            MCU_Init("__AVR_ATmega32U4__");
+            Keycap_Init(keycap);
+        }
+    }
+    public partial class QMK87_ISO : IMatrix
+    {
+        public QMK87_ISO()
+        {
+            this.NAME = "QMK87_ISO";
+            MCU_Init("__AVR_ATmega32U4__");
+            Keycap_Init(keycap);
+        }
+    }
+    public partial class QMK100_ISO : IMatrix
+    {
+        public QMK100_ISO()
+        {
+            this.NAME = "QMK100_ISO";
+            MCU_Init("__AVR_ATmega32U4__");
+            Keycap_Init(keycap);
+        }
+    }
+    public partial class QMK104_ISO : IMatrix
+    {
+        public QMK104_ISO()
+        {
+            this.NAME = "QMK104_ISO";
+            MCU_Init("__AVR_ATmega32U4__");
+            Keycap_Init(keycap);
+        }
+    }
+    public partial class QMK108_ISO : IMatrix
+    {
+        public QMK108_ISO()
+        {
+            this.NAME = "QMK108_ISO";
+            MCU_Init("__AVR_ATmega32U4__");
+           Keycap_Init(keycap);
+        }
+    }
 }

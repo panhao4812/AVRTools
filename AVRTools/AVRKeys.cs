@@ -17,6 +17,10 @@ namespace AVRTools
      */
     public partial class AVRKeys : Form
     {
+        public void Print(string str)
+        {
+            ConsoleBox.Text += str + "\r\n";
+        }
         public IMatrix ActiveMatrix;
         public Button ActiveButton;
         string SavePath = "";
@@ -37,6 +41,18 @@ namespace AVRTools
         {
             InitializeComponent();
         }
+        private void AVRKeys_Load(object sender, EventArgs e)
+        {
+            DefaultLayout();
+            US.Controls.Clear();
+            IMatrix matrix104 = new QMK104_ISO();
+            List<Button> buttons1 = matrix104.CreateButton(36);
+            for (int i = 0; i < buttons1.Count; i++)
+            {
+                buttons1[i].Text = IKeycode.shortname(matrix104.key_caps[i].layer1);
+                US.Controls.Add(IKeycap.UpdateButton(buttons1[i]));
+            }
+            }
         private void ClearButton()
         {
             Layer1.Controls.Clear();
@@ -46,24 +62,22 @@ namespace AVRTools
         private void InitMatrrix()
         {
             ClearButton();
-            List<Button> buttons1 = ActiveMatrix.CreateButton();
-            List<Button> buttons2 = ActiveMatrix.CreateButton();
-            List<Button> buttons3 = ActiveMatrix.CreateButton();
+            List<Button> buttons1 = ActiveMatrix.CreateButton(40);
+            List<Button> buttons2 = ActiveMatrix.CreateButton(40);
+            List<Button> buttons3 = ActiveMatrix.CreateButton(40);
             for (int i = 0; i < buttons1.Count; i++)
             {
                 buttons1[i].Text = IKeycode.shortname(ActiveMatrix.key_caps[i].layer1);
-                Layer1.Controls.Add(buttons1[i]);
+                Layer1.Controls.Add(IKeycap.UpdateButton(buttons1[i]));
                 buttons2[i].Text = IKeycode.shortname(ActiveMatrix.key_caps[i].layer2);
-                Layer2.Controls.Add(buttons2[i]);
+                Layer2.Controls.Add(IKeycap.UpdateButton(buttons2[i]));
                 buttons3[i].Text = ActiveMatrix.key_caps[i].R.ToString() + "/" +
                     ActiveMatrix.key_caps[i].C.ToString();
-                Schematic.Controls.Add(buttons3[i]);
+                Schematic.Controls.Add(IKeycap.UpdateButton(buttons3[i]));
+                
             }
-        }
-        private void AVRKeys_Load(object sender, EventArgs e)
-        {
-            DefaultLayout();
-        }
+        }   
+        #region IO
         private void Open_Click(object sender, EventArgs e)
         {
             String path = "";
@@ -107,10 +121,6 @@ namespace AVRTools
         {
             FileSave(SavePath);
         }
-        public void Print(string str)
-        {
-            ConsoleBox.Text += str + "\r\n";
-        }
         private void FileSave(string path)
         {
             try
@@ -146,7 +156,7 @@ namespace AVRTools
                 else
                 {
                     output += ActiveMatrix.NAME + "\r\n";
-                 // can not be loaded
+                    // can not be loaded
                 }
                 output += ActiveMatrix.PrintKeyCap();
                 stream.Write(output);
@@ -162,55 +172,54 @@ namespace AVRTools
         {
             FileSave("");
         }
-
-        private void WS2812_Enable_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void WS2812_Effect__Click(object sender, EventArgs e)
-        {
-
-        }
+        #endregion
+        #region Matrix
         private void ISO61_Click(object sender, EventArgs e)
         {
-            ActiveMatrix = new QMK60_ISO();
+            ActiveMatrix = new QMK61_ISO();
             InitMatrrix();
         }
         private void ISO63_Click(object sender, EventArgs e)
         {
-            ActiveMatrix = new QMK60_ISO();
+            ActiveMatrix = new QMK63_ISO();
             InitMatrrix();
         }
         private void ISO64_Click(object sender, EventArgs e)
         {
-            ActiveMatrix = new QMK60_ISO();
-            InitMatrrix();
-        }
-        private void ISO100_Click(object sender, EventArgs e)
-        {
-            ActiveMatrix = new QMK60_ISO();
+            ActiveMatrix = new QMK64_ISO();
             InitMatrrix();
         }
         private void ISO68_Click(object sender, EventArgs e)
         {
-            ActiveMatrix = new QMK60_ISO();
+            ActiveMatrix = new QMK68_ISO();
             InitMatrrix();
         }
         private void ISO84_Click(object sender, EventArgs e)
         {
-            ActiveMatrix = new QMK60_ISO();
+            ActiveMatrix = new QMK84_ISO();
+            InitMatrrix();
+        }
+        private void ISO87_Click(object sender, EventArgs e)
+        {
+            ActiveMatrix = new QMK87_ISO();
+            InitMatrrix();
+        }
+        private void ISO100_Click(object sender, EventArgs e)
+        {
+            ActiveMatrix = new QMK100_ISO();
             InitMatrrix();
         }
         private void ISO104_Click(object sender, EventArgs e)
         {
-            ActiveMatrix = new QMK60_ISO();
+            ActiveMatrix = new QMK104_ISO();
             InitMatrrix();
         }
         private void ISO108_Click(object sender, EventArgs e)
         {
-            ActiveMatrix = new QMK60_ISO();
+            ActiveMatrix = new QMK108_ISO();
             InitMatrrix();
         }
+        #endregion
         private void Upload_Click(object sender, EventArgs e)
         {
 
@@ -219,5 +228,7 @@ namespace AVRTools
         {
 
         }
+
+
     }
 }
