@@ -44,24 +44,28 @@
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
-            this.wS2812ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.defaultONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fixColorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uploadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gBKToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.oNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hidRawToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lEDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rGBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hELPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SelectKeysPanel = new System.Windows.Forms.TabControl();
             this.US = new System.Windows.Forms.TabPage();
             this.Macro = new System.Windows.Forms.TabPage();
-            this.MatrixPanel = new System.Windows.Forms.TabControl();
-            this.Layer1 = new System.Windows.Forms.TabPage();
-            this.Layer2 = new System.Windows.Forms.TabPage();
+            this.IOPage = new System.Windows.Forms.TabPage();
+            this.ConsolePage = new System.Windows.Forms.TabPage();
+            this.ConsoleBox = new System.Windows.Forms.TextBox();
             this.Schematic = new System.Windows.Forms.TabPage();
-            this.WS2812 = new System.Windows.Forms.TabPage();
-            this.BackRGB = new System.Windows.Forms.TabPage();
+            this.Layer2 = new System.Windows.Forms.TabPage();
+            this.Layer1 = new System.Windows.Forms.TabPage();
+            this.MatrixPanel = new System.Windows.Forms.TabControl();
             this.menuStrip1.SuspendLayout();
             this.SelectKeysPanel.SuspendLayout();
+            this.ConsolePage.SuspendLayout();
             this.MatrixPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,10 +76,10 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.matrixToolStripMenuItem,
-            this.wS2812ToolStripMenuItem,
             this.uploadToolStripMenuItem,
             this.testKeyToolStripMenuItem,
-            this.toolsToolStripMenuItem});
+            this.toolsToolStripMenuItem,
+            this.hELPToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -98,18 +102,21 @@
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
             this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.Open_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
             this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.Save_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
             this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
             this.saveAsToolStripMenuItem.Text = "Save As";
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.SaveAs_Click);
             // 
             // matrixToolStripMenuItem
             // 
@@ -160,12 +167,14 @@
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
             this.toolStripMenuItem4.Size = new System.Drawing.Size(181, 26);
             this.toolStripMenuItem4.Text = "68";
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.ISO68_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
             this.toolStripMenuItem5.Size = new System.Drawing.Size(181, 26);
             this.toolStripMenuItem5.Text = "84";
+            this.toolStripMenuItem5.Click += new System.EventHandler(this.ISO84_Click);
             // 
             // toolStripMenuItem6
             // 
@@ -179,51 +188,51 @@
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
             this.toolStripMenuItem7.Size = new System.Drawing.Size(181, 26);
             this.toolStripMenuItem7.Text = "104";
+            this.toolStripMenuItem7.Click += new System.EventHandler(this.ISO104_Click);
             // 
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
             this.toolStripMenuItem8.Size = new System.Drawing.Size(181, 26);
             this.toolStripMenuItem8.Text = "108";
-            this.toolStripMenuItem8.Click += new System.EventHandler(this.toolStripMenuItem8_Click);
-            // 
-            // wS2812ToolStripMenuItem
-            // 
-            this.wS2812ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.defaultONToolStripMenuItem,
-            this.fixColorsToolStripMenuItem});
-            this.wS2812ToolStripMenuItem.Name = "wS2812ToolStripMenuItem";
-            this.wS2812ToolStripMenuItem.Size = new System.Drawing.Size(87, 24);
-            this.wS2812ToolStripMenuItem.Text = "WS2812";
-            // 
-            // defaultONToolStripMenuItem
-            // 
-            this.defaultONToolStripMenuItem.Name = "defaultONToolStripMenuItem";
-            this.defaultONToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
-            this.defaultONToolStripMenuItem.Text = "Default ON";
-            // 
-            // fixColorsToolStripMenuItem
-            // 
-            this.fixColorsToolStripMenuItem.Name = "fixColorsToolStripMenuItem";
-            this.fixColorsToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
-            this.fixColorsToolStripMenuItem.Text = "Fix Colors";
+            this.toolStripMenuItem8.Click += new System.EventHandler(this.ISO108_Click);
             // 
             // uploadToolStripMenuItem
             // 
+            this.uploadToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gBKToolStripMenuItem});
             this.uploadToolStripMenuItem.Name = "uploadToolStripMenuItem";
             this.uploadToolStripMenuItem.Size = new System.Drawing.Size(87, 24);
             this.uploadToolStripMenuItem.Text = "Upload";
             // 
+            // gBKToolStripMenuItem
+            // 
+            this.gBKToolStripMenuItem.Name = "gBKToolStripMenuItem";
+            this.gBKToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.gBKToolStripMenuItem.Text = "Matrix";
+            this.gBKToolStripMenuItem.Click += new System.EventHandler(this.Upload_Click);
+            // 
             // testKeyToolStripMenuItem
             // 
+            this.testKeyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.oNToolStripMenuItem});
             this.testKeyToolStripMenuItem.Name = "testKeyToolStripMenuItem";
             this.testKeyToolStripMenuItem.Size = new System.Drawing.Size(98, 24);
             this.testKeyToolStripMenuItem.Text = "TestKey";
             // 
+            // oNToolStripMenuItem
+            // 
+            this.oNToolStripMenuItem.Name = "oNToolStripMenuItem";
+            this.oNToolStripMenuItem.Size = new System.Drawing.Size(106, 26);
+            this.oNToolStripMenuItem.Text = "ON";
+            this.oNToolStripMenuItem.Click += new System.EventHandler(this.TestKey_Click);
+            // 
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.hidRawToolStripMenuItem});
+            this.hidRawToolStripMenuItem,
+            this.lEDToolStripMenuItem,
+            this.rGBToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -234,10 +243,30 @@
             this.hidRawToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
             this.hidRawToolStripMenuItem.Text = "HidRaw";
             // 
+            // lEDToolStripMenuItem
+            // 
+            this.lEDToolStripMenuItem.Name = "lEDToolStripMenuItem";
+            this.lEDToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
+            this.lEDToolStripMenuItem.Text = "LED";
+            // 
+            // rGBToolStripMenuItem
+            // 
+            this.rGBToolStripMenuItem.Name = "rGBToolStripMenuItem";
+            this.rGBToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
+            this.rGBToolStripMenuItem.Text = "RGB";
+            // 
+            // hELPToolStripMenuItem
+            // 
+            this.hELPToolStripMenuItem.Name = "hELPToolStripMenuItem";
+            this.hELPToolStripMenuItem.Size = new System.Drawing.Size(65, 24);
+            this.hELPToolStripMenuItem.Text = "HELP";
+            // 
             // SelectKeysPanel
             // 
             this.SelectKeysPanel.Controls.Add(this.US);
             this.SelectKeysPanel.Controls.Add(this.Macro);
+            this.SelectKeysPanel.Controls.Add(this.IOPage);
+            this.SelectKeysPanel.Controls.Add(this.ConsolePage);
             this.SelectKeysPanel.Font = new System.Drawing.Font("Courier New", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SelectKeysPanel.Location = new System.Drawing.Point(0, 341);
             this.SelectKeysPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -268,20 +297,57 @@
             this.Macro.Text = "Macro";
             this.Macro.UseVisualStyleBackColor = true;
             // 
-            // MatrixPanel
+            // IOPage
             // 
-            this.MatrixPanel.Controls.Add(this.Layer1);
-            this.MatrixPanel.Controls.Add(this.Layer2);
-            this.MatrixPanel.Controls.Add(this.Schematic);
-            this.MatrixPanel.Controls.Add(this.WS2812);
-            this.MatrixPanel.Controls.Add(this.BackRGB);
-            this.MatrixPanel.Font = new System.Drawing.Font("Courier New", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MatrixPanel.Location = new System.Drawing.Point(0, 31);
-            this.MatrixPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MatrixPanel.Name = "MatrixPanel";
-            this.MatrixPanel.SelectedIndex = 0;
-            this.MatrixPanel.Size = new System.Drawing.Size(1117, 312);
-            this.MatrixPanel.TabIndex = 6;
+            this.IOPage.Location = new System.Drawing.Point(4, 29);
+            this.IOPage.Name = "IOPage";
+            this.IOPage.Padding = new System.Windows.Forms.Padding(3);
+            this.IOPage.Size = new System.Drawing.Size(1109, 279);
+            this.IOPage.TabIndex = 2;
+            this.IOPage.Text = "IO";
+            this.IOPage.UseVisualStyleBackColor = true;
+            // 
+            // ConsolePage
+            // 
+            this.ConsolePage.Controls.Add(this.ConsoleBox);
+            this.ConsolePage.Location = new System.Drawing.Point(4, 29);
+            this.ConsolePage.Name = "ConsolePage";
+            this.ConsolePage.Padding = new System.Windows.Forms.Padding(3);
+            this.ConsolePage.Size = new System.Drawing.Size(1109, 279);
+            this.ConsolePage.TabIndex = 3;
+            this.ConsolePage.Text = "Console";
+            this.ConsolePage.UseVisualStyleBackColor = true;
+            // 
+            // ConsoleBox
+            // 
+            this.ConsoleBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ConsoleBox.Location = new System.Drawing.Point(3, 3);
+            this.ConsoleBox.Multiline = true;
+            this.ConsoleBox.Name = "ConsoleBox";
+            this.ConsoleBox.Size = new System.Drawing.Size(1103, 273);
+            this.ConsoleBox.TabIndex = 0;
+            // 
+            // Schematic
+            // 
+            this.Schematic.Location = new System.Drawing.Point(4, 29);
+            this.Schematic.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Schematic.Name = "Schematic";
+            this.Schematic.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Schematic.Size = new System.Drawing.Size(1109, 279);
+            this.Schematic.TabIndex = 2;
+            this.Schematic.Text = "Schematic";
+            this.Schematic.UseVisualStyleBackColor = true;
+            // 
+            // Layer2
+            // 
+            this.Layer2.Location = new System.Drawing.Point(4, 29);
+            this.Layer2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Layer2.Name = "Layer2";
+            this.Layer2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Layer2.Size = new System.Drawing.Size(1109, 279);
+            this.Layer2.TabIndex = 1;
+            this.Layer2.Text = "Layer2";
+            this.Layer2.UseVisualStyleBackColor = true;
             // 
             // Layer1
             // 
@@ -294,49 +360,18 @@
             this.Layer1.Text = "Layer1";
             this.Layer1.UseVisualStyleBackColor = true;
             // 
-            // Layer2
+            // MatrixPanel
             // 
-            this.Layer2.Location = new System.Drawing.Point(4, 29);
-            this.Layer2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Layer2.Name = "Layer2";
-            this.Layer2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Layer2.Size = new System.Drawing.Size(1109, 302);
-            this.Layer2.TabIndex = 1;
-            this.Layer2.Text = "Layer2";
-            this.Layer2.UseVisualStyleBackColor = true;
-            // 
-            // Schematic
-            // 
-            this.Schematic.Location = new System.Drawing.Point(4, 29);
-            this.Schematic.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Schematic.Name = "Schematic";
-            this.Schematic.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Schematic.Size = new System.Drawing.Size(1109, 302);
-            this.Schematic.TabIndex = 2;
-            this.Schematic.Text = "Schematic";
-            this.Schematic.UseVisualStyleBackColor = true;
-            // 
-            // WS2812
-            // 
-            this.WS2812.Location = new System.Drawing.Point(4, 29);
-            this.WS2812.Margin = new System.Windows.Forms.Padding(4);
-            this.WS2812.Name = "WS2812";
-            this.WS2812.Padding = new System.Windows.Forms.Padding(4);
-            this.WS2812.Size = new System.Drawing.Size(1109, 302);
-            this.WS2812.TabIndex = 3;
-            this.WS2812.Text = "WS2812";
-            this.WS2812.UseVisualStyleBackColor = true;
-            // 
-            // BackRGB
-            // 
-            this.BackRGB.Location = new System.Drawing.Point(4, 29);
-            this.BackRGB.Margin = new System.Windows.Forms.Padding(4);
-            this.BackRGB.Name = "BackRGB";
-            this.BackRGB.Padding = new System.Windows.Forms.Padding(4);
-            this.BackRGB.Size = new System.Drawing.Size(1109, 302);
-            this.BackRGB.TabIndex = 4;
-            this.BackRGB.Text = "BackRGB";
-            this.BackRGB.UseVisualStyleBackColor = true;
+            this.MatrixPanel.Controls.Add(this.Layer1);
+            this.MatrixPanel.Controls.Add(this.Layer2);
+            this.MatrixPanel.Controls.Add(this.Schematic);
+            this.MatrixPanel.Font = new System.Drawing.Font("Courier New", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MatrixPanel.Location = new System.Drawing.Point(0, 31);
+            this.MatrixPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MatrixPanel.Name = "MatrixPanel";
+            this.MatrixPanel.SelectedIndex = 0;
+            this.MatrixPanel.Size = new System.Drawing.Size(1117, 312);
+            this.MatrixPanel.TabIndex = 6;
             // 
             // AVRKeys
             // 
@@ -356,6 +391,8 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.SelectKeysPanel.ResumeLayout(false);
+            this.ConsolePage.ResumeLayout(false);
+            this.ConsolePage.PerformLayout();
             this.MatrixPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -369,22 +406,13 @@
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem matrixToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem wS2812ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem defaultONToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem fixColorsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uploadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem testKeyToolStripMenuItem;
         private System.Windows.Forms.TabControl SelectKeysPanel;
         private System.Windows.Forms.TabPage US;
         private System.Windows.Forms.TabPage Macro;
-        private System.Windows.Forms.TabControl MatrixPanel;
-        private System.Windows.Forms.TabPage Layer1;
-        private System.Windows.Forms.TabPage Layer2;
-        private System.Windows.Forms.TabPage Schematic;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hidRawToolStripMenuItem;
-        private System.Windows.Forms.TabPage WS2812;
-        private System.Windows.Forms.TabPage BackRGB;
         private System.Windows.Forms.ToolStripMenuItem iSOToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem iSO60ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
@@ -394,6 +422,18 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem7;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem8;
+        private System.Windows.Forms.ToolStripMenuItem gBKToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem oNToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lEDToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rGBToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hELPToolStripMenuItem;
+        private System.Windows.Forms.TabPage Schematic;
+        private System.Windows.Forms.TabPage Layer2;
+        private System.Windows.Forms.TabPage Layer1;
+        private System.Windows.Forms.TabControl MatrixPanel;
+        private System.Windows.Forms.TabPage IOPage;
+        private System.Windows.Forms.TabPage ConsolePage;
+        private System.Windows.Forms.TextBox ConsoleBox;
     }
 }
 

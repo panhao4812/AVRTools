@@ -1,8 +1,8 @@
 C:\Users\Administrator\Documents\github\AVRTools\AVRTools\bin\Debug\AVRKeys.exe
 C:\Users\Administrator\Documents\github\AVRTools\AVRTools\bin\Debug\AVRKeys.pdb
-C:\Users\Administrator\Documents\github\AVRTools\AVRTools\obj\Debug\Prototype.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Documents\github\AVRTools\AVRTools\obj\Debug\AVRTools.AVRKeys.resources
 C:\Users\Administrator\Documents\github\AVRTools\AVRTools\obj\Debug\AVRKeys.Properties.Resources.resources
 C:\Users\Administrator\Documents\github\AVRTools\AVRTools\obj\Debug\Prototype.csproj.GenerateResource.Cache
 C:\Users\Administrator\Documents\github\AVRTools\AVRTools\obj\Debug\AVRKeys.exe
 C:\Users\Administrator\Documents\github\AVRTools\AVRTools\obj\Debug\AVRKeys.pdb
+C:\Users\Administrator\Documents\GitHub\AVRTools\AVRTools\obj\Debug\Prototype.csprojResolveAssemblyReference.cache

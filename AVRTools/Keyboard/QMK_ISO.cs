@@ -10,7 +10,7 @@ namespace AVRKeys.Keyboard
     {
         public QMK60_ISO()
         {
-            this.Name = "QMK60_ISO";
+            this.NAME = "QMK60_ISO";
             MCU_Init("__AVR_ATmega32U4__");
             Keycap_Init(keycap);
         }
