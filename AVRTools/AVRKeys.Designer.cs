@@ -64,6 +64,10 @@
             this.Layer2 = new System.Windows.Forms.TabPage();
             this.Layer1 = new System.Windows.Forms.TabPage();
             this.MatrixPanel = new System.Windows.Forms.TabControl();
+            this.PidBox = new System.Windows.Forms.TextBox();
+            this.VidBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SelectKeysPanel.SuspendLayout();
@@ -233,7 +237,7 @@
             // oNToolStripMenuItem
             // 
             this.oNToolStripMenuItem.Name = "oNToolStripMenuItem";
-            this.oNToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
+            this.oNToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.oNToolStripMenuItem.Text = "ON";
             this.oNToolStripMenuItem.Click += new System.EventHandler(this.TestKey_Click);
             // 
@@ -250,19 +254,19 @@
             // hidRawToolStripMenuItem
             // 
             this.hidRawToolStripMenuItem.Name = "hidRawToolStripMenuItem";
-            this.hidRawToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.hidRawToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.hidRawToolStripMenuItem.Text = "HidRaw";
             // 
             // lEDToolStripMenuItem
             // 
             this.lEDToolStripMenuItem.Name = "lEDToolStripMenuItem";
-            this.lEDToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.lEDToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.lEDToolStripMenuItem.Text = "LED";
             // 
             // rGBToolStripMenuItem
             // 
             this.rGBToolStripMenuItem.Name = "rGBToolStripMenuItem";
-            this.rGBToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.rGBToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.rGBToolStripMenuItem.Text = "RGB";
             // 
             // hELPToolStripMenuItem
@@ -361,6 +365,8 @@
             this.Layer2.TabIndex = 1;
             this.Layer2.Text = "Layer2";
             this.Layer2.UseVisualStyleBackColor = true;
+            this.Layer2.Enter += new System.EventHandler(this.Layer2_Enter);
+            this.Layer2.Leave += new System.EventHandler(this.Layer2_Leave);
             // 
             // Layer1
             // 
@@ -372,6 +378,8 @@
             this.Layer1.TabIndex = 0;
             this.Layer1.Text = "Layer1";
             this.Layer1.UseVisualStyleBackColor = true;
+            this.Layer1.Enter += new System.EventHandler(this.Layer1_Enter);
+            this.Layer1.Leave += new System.EventHandler(this.Layer1_Leave);
             // 
             // MatrixPanel
             // 
@@ -386,14 +394,63 @@
             this.MatrixPanel.Size = new System.Drawing.Size(838, 250);
             this.MatrixPanel.TabIndex = 6;
             // 
+            // PidBox
+            // 
+            this.PidBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PidBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PidBox.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.PidBox.Location = new System.Drawing.Point(788, 4);
+            this.PidBox.Margin = new System.Windows.Forms.Padding(2);
+            this.PidBox.Multiline = true;
+            this.PidBox.Name = "PidBox";
+            this.PidBox.Size = new System.Drawing.Size(40, 16);
+            this.PidBox.TabIndex = 22;
+            this.PidBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // VidBox
+            // 
+            this.VidBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.VidBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.VidBox.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.VidBox.Location = new System.Drawing.Point(717, 4);
+            this.VidBox.Margin = new System.Windows.Forms.Padding(2);
+            this.VidBox.Multiline = true;
+            this.VidBox.Name = "VidBox";
+            this.VidBox.Size = new System.Drawing.Size(40, 16);
+            this.VidBox.TabIndex = 21;
+            this.VidBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(691, 6);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(23, 12);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "VID";
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(761, 6);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(23, 12);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "PID";
+            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(386, 0);
+            this.button1.Location = new System.Drawing.Point(611, 1);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
+            this.button1.TabIndex = 23;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
+//            this.button1.TextChanged += new System.EventHandler(this.button1_TextChanged);
             // 
             // AVRKeys
             // 
@@ -402,6 +459,10 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(834, 523);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.PidBox);
+            this.Controls.Add(this.VidBox);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.MatrixPanel);
             this.Controls.Add(this.SelectKeysPanel);
             this.Controls.Add(this.menuStrip1);
@@ -458,6 +519,10 @@
         private System.Windows.Forms.TabPage ConsolePage;
         private System.Windows.Forms.TextBox ConsoleBox;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.TextBox PidBox;
+        private System.Windows.Forms.TextBox VidBox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
     }
 }

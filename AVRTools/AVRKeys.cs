@@ -50,6 +50,8 @@ namespace AVRTools
             for (int i = 0; i < buttons1.Count; i++)
             {
                 buttons1[i].Text = IKeycode.shortname(matrix104.key_caps[i].layer1);
+                buttons1[i].BackColor = Color.LightSteelBlue;
+                buttons1[i].MouseDown += new MouseEventHandler(SelectKey_Button_MouseClick);
                 US.Controls.Add(IKeycap.UpdateButton(buttons1[i]));
             }
             }
@@ -68,15 +70,60 @@ namespace AVRTools
             for (int i = 0; i < buttons1.Count; i++)
             {
                 buttons1[i].Text = IKeycode.shortname(ActiveMatrix.key_caps[i].layer1);
+                buttons1[i].BackColor = Color.LightSeaGreen;
+                buttons1[i].MouseDown += new MouseEventHandler(Keycap_Button_MouseClick);
                 Layer1.Controls.Add(IKeycap.UpdateButton(buttons1[i]));
                 buttons2[i].Text = IKeycode.shortname(ActiveMatrix.key_caps[i].layer2);
+                buttons2[i].BackColor = Color.LightSeaGreen;
+                buttons2[i].MouseDown += new MouseEventHandler(Keycap_Button_MouseClick);
                 Layer2.Controls.Add(IKeycap.UpdateButton(buttons2[i]));
                 buttons3[i].Text = ActiveMatrix.key_caps[i].R.ToString() + "/" +
-                    ActiveMatrix.key_caps[i].C.ToString();
+                ActiveMatrix.key_caps[i].C.ToString();
+                buttons3[i].MouseDown += new MouseEventHandler(Keycap_Button_MouseClick);
                 Schematic.Controls.Add(IKeycap.UpdateButton(buttons3[i]));
                 
             }
-        }   
+            PidBox.Text = "0x" + ActiveMatrix.PRODUCT_ID.ToString("X");
+            VidBox.Text = "0x" + ActiveMatrix.VENDOR_ID.ToString("X");
+        }
+        private void Layer1_Keycap_TextChanged(object sender, EventArgs e)
+        {
+            if (ActiveMatrix == null) return;
+            int index = Convert.ToInt32(((Button)sender).Name);
+            ActiveMatrix.key_caps[index].layer1=( (Button)sender).Text;
+        }
+        private void Layer2_Keycap_TextChanged(object sender, EventArgs e)
+        {
+            if (ActiveMatrix == null) return;
+            int index = Convert.ToInt32(((Button)sender).Name);
+            ActiveMatrix.key_caps[index].layer2 = ((Button)sender).Text;
+        }
+        private void Keycap_Button_MouseClick(object sender, MouseEventArgs e)
+        {
+            //key button
+            if (ActiveButton != null) ActiveButton.BackColor = Color.LightSeaGreen;
+            if (e.Button == MouseButtons.Right)
+            {
+                ActiveButton = null;
+            }
+            else
+            {
+                ((Button)sender).BackColor = Color.LightSalmon;
+                ActiveButton = ((Button)sender);
+            }  
+        }
+        private void SelectKey_Button_MouseClick(object sender, MouseEventArgs e)
+        {
+            //key button      
+            if (e.Button == MouseButtons.Right)
+            {
+               
+            }
+            else
+            {
+                ActiveButton.Text = ((Button)sender).Text;
+            }
+        }
         #region IO
         private void Open_Click(object sender, EventArgs e)
         {
@@ -229,6 +276,28 @@ namespace AVRTools
 
         }
 
+        private void Layer2_Leave(object sender, EventArgs e)
+        {
+           
+        }
 
+        private void Layer1_Leave(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Layer1_Enter(object sender, EventArgs e)
+        {
+            if (ActiveButton != null) ActiveButton.BackColor = Color.LightSeaGreen;
+            ActiveButton = null;
+        }
+
+        private void Layer2_Enter(object sender, EventArgs e)
+        {
+            if (ActiveButton != null) ActiveButton.BackColor = Color.LightSeaGreen;
+            ActiveButton = null;
+        }
+
+       
     }
 }

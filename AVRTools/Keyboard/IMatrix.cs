@@ -9,7 +9,18 @@ namespace AVRKeys.Keyboard
 {
     public class IKeycap
     {
-        public string input = "";
+        public override string ToString()
+        {
+            string str = "";
+            str += X.ToString() + ",";
+            str += Y.ToString() + ",";
+            str += L.ToString() + ",";
+            str += R.ToString() + ",";
+            str += C.ToString() + ",";
+            str += layer1 + ",";
+            str += layer2;
+            return str;
+        }
         public float X = 0;
         public float Y = 0;
         public int R = 0;
@@ -17,9 +28,8 @@ namespace AVRKeys.Keyboard
         public float L = 0;
         public string layer1;
         public string layer2;
-        public IKeycap(string Str)
+        public IKeycap(string input)
         {
-            input = Str;
             string[] str = input.Split(',');
             R = Convert.ToInt32(str[3]);
             C = Convert.ToInt32(str[4]);
@@ -73,8 +83,7 @@ namespace AVRKeys.Keyboard
             button.FlatStyle = FlatStyle.Flat;
             button.BackColor = Color.White;
             button.Font = new Font("Franklin Gothic", 7);
-            button.TextAlign = ContentAlignment.TopLeft;
-            //button.MouseDown += new MouseEventHandler(Layer0Button_MouseClick);
+            button.TextAlign = ContentAlignment.TopLeft;        
             return button;
         }
     }
@@ -141,7 +150,6 @@ namespace AVRKeys.Keyboard
             int ADD_RGBTYPE = ADD_RGB_FIX + (WS2812_COUNT * 3);
             ADD_EEP = ADD_RGBTYPE + 6;
         }
-
         public void Keycap_Init(string[] keycap)
         {
             if (keycap.Length <= 0) return;
@@ -163,7 +171,9 @@ namespace AVRKeys.Keyboard
             List<Button> bus = new List<Button>();
             for (int i = 0; i < this.key_caps.Count; i++)
             {
-                bus.Add(key_caps[i].CreateButton(U1));
+                Button button= key_caps[i].CreateButton(U1);
+                button.Name = i.ToString();
+                bus.Add(button);          
             }
             return bus;
         }
@@ -174,7 +184,7 @@ namespace AVRKeys.Keyboard
                 string output = "";
                 for (int i = 0; i < this.key_caps.Count; i++)
                 {
-                    output += key_caps[i].input + "\r\n";
+                    output += key_caps[i].ToString() + "\r\n";
                 }
                 return output;
             }
