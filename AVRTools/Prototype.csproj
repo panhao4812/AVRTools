@@ -67,12 +67,29 @@
     <Compile Include="AVRKeys.Designer.cs">
       <DependentUpon>AVRKeys.cs</DependentUpon>
     </Compile>
+    <Compile Include="HidLib\Extensions.cs" />
+    <Compile Include="HidLib\HidAsyncState.cs" />
+    <Compile Include="HidLib\HidDevice.cs" />
+    <Compile Include="HidLib\HidDeviceAttributes.cs" />
+    <Compile Include="HidLib\HidDeviceCapabilities.cs" />
+    <Compile Include="HidLib\HidDeviceData.cs" />
+    <Compile Include="HidLib\HidDeviceEventMonitor.cs" />
+    <Compile Include="HidLib\HidDevices.cs" />
+    <Compile Include="HidLib\HidFastReadDevice.cs" />
+    <Compile Include="HidLib\HidFastReadEnumerator.cs" />
+    <Compile Include="HidLib\HidReport.cs" />
+    <Compile Include="HidLib\IHidDevice.cs" />
+    <Compile Include="HidLib\IHidEnumerator.cs" />
+    <Compile Include="HidLib\NativeMethods.cs" />
+    <Compile Include="Keyboard\Hex.cs" />
+    <Compile Include="Keyboard\IColors.cs" />
     <Compile Include="Keyboard\IMatrix.cs" />
     <Compile Include="Keyboard\IKeyCode.cs" />
     <Compile Include="Keyboard\ISO100.cs" />
     <Compile Include="Keyboard\ISO60.cs" />
     <Compile Include="Keyboard\ISO75.cs" />
     <Compile Include="Keyboard\ISO80.cs" />
+    <Compile Include="Keyboard\MCU.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AVRKeys.resx">

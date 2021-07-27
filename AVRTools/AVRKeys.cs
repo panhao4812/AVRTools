@@ -155,7 +155,7 @@ namespace AVRTools
                 IMatrix matrix = new IMatrix();
                 matrix.NAME = chara[1];
                 matrix.MCU_Init(chara[0]);
-                matrix.Keycap_Init(strs.ToArray());
+                matrix.KeyCap_Init(strs.ToArray());
                 ActiveMatrix = matrix;
                 InitMatrrix();
             }
@@ -177,7 +177,7 @@ namespace AVRTools
                 {
                     SaveFileDialog sfd = new SaveFileDialog();
                     sfd.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-                    sfd.FilterIndex = 2;
+                    sfd.FilterIndex = 0;
                     sfd.RestoreDirectory = true;
                     if (sfd.ShowDialog() == DialogResult.OK)
                     {
@@ -297,7 +297,5 @@ namespace AVRTools
             if (ActiveButton != null) ActiveButton.BackColor = Color.LightSeaGreen;
             ActiveButton = null;
         }
-
-       
     }
 }

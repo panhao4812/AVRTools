@@ -43,18 +43,18 @@ namespace AVRKeys.Keyboard
             //fix fond size
             if (button.Width < 40)
             {
-                button.Font = new Font(button.Font.SystemFontName, button.Font.Size -1);
+                button.Font = new Font(button.Font.SystemFontName, button.Font.Size - 1);
             }
-           float t= (float)button.Width / (float)button.Height;
+            float t = (float)button.Width / (float)button.Height;
             if (t < 1) t = 1;
-            if (button.Text.Length/t <=1)
+            if (button.Text.Length / t <= 1)
             {
-                button.Font=new Font(button.Font.SystemFontName,button.Font.Size + 2);
+                button.Font = new Font(button.Font.SystemFontName, button.Font.Size + 2);
             }
-            else if (button.Text.Length/t  <=3)
+            else if (button.Text.Length / t <= 3)
             {
                 button.Font = new Font(button.Font.SystemFontName, button.Font.Size + 1);
-            }        
+            }
             if (button.Text != "_-")
             {
                 string[] strs = button.Text.Split('_');
@@ -66,7 +66,7 @@ namespace AVRKeys.Keyboard
                 }
             }
             return button;
-        }   
+        }
         public Button CreateButton(int U1)
         {
             Button button = new Button();
@@ -83,7 +83,7 @@ namespace AVRKeys.Keyboard
             button.FlatStyle = FlatStyle.Flat;
             button.BackColor = Color.White;
             button.Font = new Font("Franklin Gothic", 7);
-            button.TextAlign = ContentAlignment.TopLeft;        
+            button.TextAlign = ContentAlignment.TopLeft;
             return button;
         }
     }
@@ -116,9 +116,9 @@ namespace AVRKeys.Keyboard
         //bit5->第full组 0 off, 1 on
         //bit4->第RGB组 0 off, 1 on
         //bit0-3-> RGB Effect
-        public int[] rgb_pos;//optional
-        public int[] rgb_rainbow;//optional
-        public int[] rgb_fixcolor;//optional
+        public int[] rgb_pos;//
+        public int[] rgb_rainbow;//
+        public int[] rgb_fixcolor;//
         public IMatrix() { }
         /// //////////
         public void MCU_Init(string MCU)
@@ -128,7 +128,7 @@ namespace AVRKeys.Keyboard
                 this.VENDOR_ID = 0x32C2;
                 this.FLASH_END_ADDRESS = 0x7000;
                 this.MAX_EEP = 0x03FF;
-                MAX_DELAY = 0x0200;
+                MAX_DELAY = 0x0010;
             }
             if (MCU == "__AVR_ATmega32U4__")
             {
@@ -138,9 +138,25 @@ namespace AVRKeys.Keyboard
                 MAX_DELAY = 0x0010;
             }
         }
-        public void WS2812_Init(int WS2812_count)
+        public void WS2812_Init(int WS2812_pin, int WS2812_count, int Effect_count)
         {
+            WS2812_PIN = WS2812_pin;
             WS2812_COUNT = WS2812_count;
+            RGB_EFFECT_COUNT = Effect_count;
+            rgb_pos = new int[WS2812_COUNT];
+            rgb_rainbow = new int[WS2812_COUNT];
+            rgb_fixcolor = new int[(WS2812_COUNT * 3)];
+        }
+        public void KeyCap_Init(string[] keycap)
+        {
+            if (keycap.Length <= 0) return;
+            for (int i = 0; i < keycap.Length; i++)
+            {
+                key_caps.Add(new IKeycap(keycap[i]));
+            }
+        }
+        public void EEP_Init()
+        {
             int ADD_INDEX = 10;
             int ADD_ROW = ADD_INDEX + ROWS;
             int ADD_COL = ADD_ROW + COLS;
@@ -150,14 +166,6 @@ namespace AVRKeys.Keyboard
             int ADD_RGBTYPE = ADD_RGB_FIX + (WS2812_COUNT * 3);
             ADD_EEP = ADD_RGBTYPE + 6;
         }
-        public void Keycap_Init(string[] keycap)
-        {
-            if (keycap.Length <= 0) return;
-            for (int i = 0; i < keycap.Length; i++)
-            {
-                key_caps.Add(new IKeycap(keycap[i]));
-            }
-        }
         public void Matrix_Init(int[] R, int[] C)
         {
             row_pins = R; col_pins = C;
@@ -165,15 +173,50 @@ namespace AVRKeys.Keyboard
             hexa_keys0 = new int[ROWS, COLS];
             hexa_keys1 = new int[ROWS, COLS];
             key_mask = new int[ROWS, COLS];
-        } 
+        }
         public List<Button> CreateButton(int U1)
         {
             List<Button> bus = new List<Button>();
             for (int i = 0; i < this.key_caps.Count; i++)
             {
-                Button button= key_caps[i].CreateButton(U1);
+                Button button = key_caps[i].CreateButton(U1);
                 button.Name = i.ToString();
-                bus.Add(button);          
+                bus.Add(button);
+            }
+            return bus;
+        }
+        public List<Button> CreateIOButton(int U1)
+        {
+            List<Button> bus = new List<Button>();
+            if (ROWS == 0 && COLS == 0) return bus;
+            for (int i = 0; i < this.row_pins.Length; i++)
+            {
+                Button button = new Button();
+                float x = i * U1 + 1;
+                float y = 0 * U1 + 1;
+                button.Width = (int)U1 - 2;
+                button.Height = (int)U1 - 2;
+                button.Location = new Point((int)x, (int)y);
+                button.FlatStyle = FlatStyle.Flat;
+                button.BackColor = Color.White;
+                button.Font = new Font("Courier10 BT", 8);
+                button.TextAlign = ContentAlignment.TopLeft;
+                button.Text = row_pins[i];
+                bus.Add(button);
+            }
+            for (int i = 0; i < this.col_pins.Length; i++)
+            {
+                Button button = new Button();
+                float x = i * U1 + 1;
+                float y = 1 * U1 + 1;
+                button.Width = (int)U1 - 2;
+                button.Height = (int)U1 - 2;
+                button.Location = new Point((int)x, (int)y);
+                button.FlatStyle = FlatStyle.Flat;
+                button.BackColor = Color.White;
+                button.Font = new Font("Courier10 BT", 8);
+                button.TextAlign = ContentAlignment.TopLeft;
+                bus.Add(button);
             }
             return bus;
         }
@@ -252,7 +295,7 @@ namespace AVRKeys.Keyboard
         {
             this.NAME = "QMK61_ISO";
             MCU_Init("__AVR_ATmega32U4__");
-            Keycap_Init(keycap);
+            KeyCap_Init(keycap);
         }
     }
     public partial class QMK63_ISO : IMatrix
@@ -261,8 +304,8 @@ namespace AVRKeys.Keyboard
         {
             this.NAME = "QMK63_ISO";
             MCU_Init("__AVR_ATmega32U4__");
-            Keycap_Init(keycap);
-        }    
+            KeyCap_Init(keycap);
+        }
     }
     public partial class QMK64_ISO : IMatrix
     {
@@ -270,8 +313,8 @@ namespace AVRKeys.Keyboard
         {
             this.NAME = "QMK64_ISO";
             MCU_Init("__AVR_ATmega32U4__");
-            Keycap_Init(keycap);
-        } 
+            KeyCap_Init(keycap);
+        }
     }
     public partial class QMK68_ISO : IMatrix
     {
@@ -279,7 +322,7 @@ namespace AVRKeys.Keyboard
         {
             this.NAME = "QMK68_ISO";
             MCU_Init("__AVR_ATmega32U4__");
-            Keycap_Init(keycap);
+            KeyCap_Init(keycap);
         }
     }
     public partial class QMK84_ISO : IMatrix
@@ -288,7 +331,7 @@ namespace AVRKeys.Keyboard
         {
             this.NAME = "QMK84_ISO";
             MCU_Init("__AVR_ATmega32U4__");
-            Keycap_Init(keycap);
+            KeyCap_Init(keycap);
         }
     }
     public partial class QMK87_ISO : IMatrix
@@ -297,7 +340,7 @@ namespace AVRKeys.Keyboard
         {
             this.NAME = "QMK87_ISO";
             MCU_Init("__AVR_ATmega32U4__");
-            Keycap_Init(keycap);
+            KeyCap_Init(keycap);
         }
     }
     public partial class QMK100_ISO : IMatrix
@@ -306,7 +349,7 @@ namespace AVRKeys.Keyboard
         {
             this.NAME = "QMK100_ISO";
             MCU_Init("__AVR_ATmega32U4__");
-            Keycap_Init(keycap);
+            KeyCap_Init(keycap);
         }
     }
     public partial class QMK104_ISO : IMatrix
@@ -315,7 +358,7 @@ namespace AVRKeys.Keyboard
         {
             this.NAME = "QMK104_ISO";
             MCU_Init("__AVR_ATmega32U4__");
-            Keycap_Init(keycap);
+            KeyCap_Init(keycap);
         }
     }
     public partial class QMK108_ISO : IMatrix
@@ -324,7 +367,7 @@ namespace AVRKeys.Keyboard
         {
             this.NAME = "QMK108_ISO";
             MCU_Init("__AVR_ATmega32U4__");
-           Keycap_Init(keycap);
+            KeyCap_Init(keycap);
         }
     }
 }
