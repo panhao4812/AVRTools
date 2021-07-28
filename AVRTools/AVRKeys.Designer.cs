@@ -45,6 +45,9 @@
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
+            this.wS2812ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.wS64ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pG61ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uploadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gBKToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testKeyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -127,7 +130,8 @@
             // matrixToolStripMenuItem
             // 
             this.matrixToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.iSOToolStripMenuItem});
+            this.iSOToolStripMenuItem,
+            this.wS2812ToolStripMenuItem});
             this.matrixToolStripMenuItem.Name = "matrixToolStripMenuItem";
             this.matrixToolStripMenuItem.Size = new System.Drawing.Size(87, 24);
             this.matrixToolStripMenuItem.Text = "Matrix";
@@ -145,7 +149,7 @@
             this.toolStripMenuItem7,
             this.toolStripMenuItem8});
             this.iSOToolStripMenuItem.Name = "iSOToolStripMenuItem";
-            this.iSOToolStripMenuItem.Size = new System.Drawing.Size(117, 26);
+            this.iSOToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
             this.iSOToolStripMenuItem.Text = "ISO";
             // 
             // iSO60ToolStripMenuItem
@@ -210,6 +214,28 @@
             this.toolStripMenuItem8.Size = new System.Drawing.Size(117, 26);
             this.toolStripMenuItem8.Text = "108";
             this.toolStripMenuItem8.Click += new System.EventHandler(this.ISO108_Click);
+            // 
+            // wS2812ToolStripMenuItem
+            // 
+            this.wS2812ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.wS64ToolStripMenuItem,
+            this.pG61ToolStripMenuItem});
+            this.wS2812ToolStripMenuItem.Name = "wS2812ToolStripMenuItem";
+            this.wS2812ToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
+            this.wS2812ToolStripMenuItem.Text = "WS2812";
+            // 
+            // wS64ToolStripMenuItem
+            // 
+            this.wS64ToolStripMenuItem.Name = "wS64ToolStripMenuItem";
+            this.wS64ToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
+            this.wS64ToolStripMenuItem.Text = "WS64";
+            this.wS64ToolStripMenuItem.Click += new System.EventHandler(this.WS64_Click);
+            // 
+            // pG61ToolStripMenuItem
+            // 
+            this.pG61ToolStripMenuItem.Name = "pG61ToolStripMenuItem";
+            this.pG61ToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
+            this.pG61ToolStripMenuItem.Text = "PG61";
             // 
             // uploadToolStripMenuItem
             // 
@@ -341,8 +367,10 @@
             this.ConsoleBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ConsoleBox.Multiline = true;
             this.ConsoleBox.Name = "ConsoleBox";
+            this.ConsoleBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.ConsoleBox.Size = new System.Drawing.Size(1103, 275);
             this.ConsoleBox.TabIndex = 0;
+            this.ConsoleBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ConsoleBox_KeyDown);
             // 
             // Schematic
             // 
@@ -354,6 +382,7 @@
             this.Schematic.TabIndex = 2;
             this.Schematic.Text = "Schematic";
             this.Schematic.UseVisualStyleBackColor = true;
+            this.Schematic.Enter += new System.EventHandler(this.Schematic_Enter);
             // 
             // Layer2
             // 
@@ -366,7 +395,6 @@
             this.Layer2.Text = "Layer2";
             this.Layer2.UseVisualStyleBackColor = true;
             this.Layer2.Enter += new System.EventHandler(this.Layer2_Enter);
-            this.Layer2.Leave += new System.EventHandler(this.Layer2_Leave);
             // 
             // Layer1
             // 
@@ -379,7 +407,6 @@
             this.Layer1.Text = "Layer1";
             this.Layer1.UseVisualStyleBackColor = true;
             this.Layer1.Enter += new System.EventHandler(this.Layer1_Enter);
-            this.Layer1.Leave += new System.EventHandler(this.Layer1_Leave);
             // 
             // MatrixPanel
             // 
@@ -442,13 +469,13 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(815, 1);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Location = new System.Drawing.Point(712, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 29);
+            this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 23;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.TextChanged += new System.EventHandler(this.button1_TextChanged);
             // 
             // AVRKeys
             // 
@@ -521,6 +548,9 @@
         private System.Windows.Forms.TextBox VidBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem wS2812ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem wS64ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pG61ToolStripMenuItem;
         private System.Windows.Forms.Button button1;
     }
 }

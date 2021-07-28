@@ -41,30 +41,14 @@ namespace AVRKeys.Keyboard
         public static Button UpdateButton(Button button)
         {
             //fix fond size
-            if (button.Width < 40)
+            if (button.Width < 40|| button.Height < 40|| button.Text.Length > 3)
             {
                 button.Font = new Font(button.Font.SystemFontName, button.Font.Size - 1);
-            }
-            float t = (float)button.Width / (float)button.Height;
-            if (t < 1) t = 1;
-            if (button.Text.Length / t <= 1)
+            } 
+            if (button.Text.Length >5)
             {
-                button.Font = new Font(button.Font.SystemFontName, button.Font.Size + 2);
-            }
-            else if (button.Text.Length / t <= 3)
-            {
-                button.Font = new Font(button.Font.SystemFontName, button.Font.Size + 1);
-            }
-            if (button.Text != "_-")
-            {
-                string[] strs = button.Text.Split('_');
-                if (strs.Length >= 2)
-                {
-                    string newname = "";
-                    for (int i = 0; i < strs.Length; i++) { newname += strs[i] + "\r\n"; }
-                    button.Text = newname;
-                }
-            }
+                button.Font = new Font(button.Font.SystemFontName, button.Font.Size - 2);
+            }        
             return button;
         }
         public Button CreateButton(int U1)
@@ -82,13 +66,16 @@ namespace AVRKeys.Keyboard
             button.Location = new Point((int)x, (int)y);
             button.FlatStyle = FlatStyle.Flat;
             button.BackColor = Color.White;
-            button.Font = new Font("Franklin Gothic", 7);
+            button.Font = new Font("Arial", 9);
             button.TextAlign = ContentAlignment.TopLeft;
             return button;
         }
     }
     public class IMatrix
     {
+        public ICodes FuncCodes = new ICodes();
+        public IMega32U4 FuncMega32U4 = new IMega32U4();
+        public IColors FuncColors = new IColors();
         public List<IKeycap> key_caps = new List<IKeycap>();
         public string DEBUG_OUTPUT = "";
         public string NAME = "unamed";
@@ -201,7 +188,7 @@ namespace AVRKeys.Keyboard
                 button.BackColor = Color.White;
                 button.Font = new Font("Courier10 BT", 8);
                 button.TextAlign = ContentAlignment.TopLeft;
-                button.Text = row_pins[i];
+                button.Text = "r"+i.ToString() + "\r\n" + FuncMega32U4.GetIOName(row_pins[i]);
                 bus.Add(button);
             }
             for (int i = 0; i < this.col_pins.Length; i++)
@@ -216,6 +203,7 @@ namespace AVRKeys.Keyboard
                 button.BackColor = Color.White;
                 button.Font = new Font("Courier10 BT", 8);
                 button.TextAlign = ContentAlignment.TopLeft;
+                button.Text ="c"+i.ToString()+"\r\n"+ FuncMega32U4.GetIOName(col_pins[i]);
                 bus.Add(button);
             }
             return bus;
