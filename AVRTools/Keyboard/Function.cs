@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -338,6 +339,10 @@ namespace AVRKeys.Keyboard
     }
     public class IColors
     {
+        public Color GetColor(int index)
+        {
+            return Color.FromArgb(Rcolors[index], Gcolors[index], Bcolors[index]);
+        }
         public static int[] Rcolors =
 {
     243,243,243,243,242,242,241,241,240,240,239,239,238,238,237,237,236,236,236,236,236,236,235,234,233,

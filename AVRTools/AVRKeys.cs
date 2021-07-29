@@ -173,6 +173,7 @@ namespace AVRTools
             Layer1.Controls.Clear();
             Layer2.Controls.Clear();
             Schematic.Controls.Clear();
+            IOPage.Controls.Clear();
         }
         private void InitMatrrix()
         {
@@ -181,7 +182,15 @@ namespace AVRTools
             List<Button> buttons2 = ActiveMatrix.CreateButton(40);
             List<Button> buttons3 = ActiveMatrix.CreateButton(40);
             List<Button> buttons4 = ActiveMatrix.CreateIOButton(40);
-
+            for (int i = 0; i < buttons4.Count; i++)
+            {
+                buttons4[i].MouseDown += new MouseEventHandler(IO_Button_MouseClick);
+                if (i >= ActiveMatrix.ROWS)
+                {
+                    buttons4[i].BackColor = ActiveMatrix.FuncColors.GetColor((i - ActiveMatrix.ROWS) * (int)(250.0 / ActiveMatrix.COLS));
+                }
+                IOPage.Controls.Add(buttons4[i]);
+            }
             for (int i = 0; i < buttons1.Count; i++)
             {
                 buttons1[i].Text = ActiveMatrix.FuncCodes.FromFullName(ActiveMatrix.key_caps[i].layer1).ShortName;
@@ -195,15 +204,10 @@ namespace AVRTools
                 buttons2[i].TextChanged += new System.EventHandler(Layer2_Keycap_TextChanged);
                 Layer2.Controls.Add(IKeycap.UpdateButton(buttons2[i]));
                 buttons3[i].Text = ActiveMatrix.key_caps[i].R.ToString() + "/" + ActiveMatrix.key_caps[i].C.ToString();
+                buttons3[i].BackColor= ActiveMatrix.FuncColors.GetColor(ActiveMatrix.key_caps[i].C  * (int)(250.0 / ActiveMatrix.COLS));
                 buttons3[i].MouseDown += new MouseEventHandler(Keycap_Button_MouseClick);
                 buttons3[i].TextChanged += new System.EventHandler(Layer3_Keycap_TextChanged);
                 Schematic.Controls.Add(IKeycap.UpdateButton(buttons3[i]));
-
-            }
-            for (int i = 0; i < buttons4.Count; i++)
-            {
-                buttons4[i].MouseDown += new MouseEventHandler(IO_Button_MouseClick);
-                IOPage.Controls.Add(buttons4[i]);
             }
             PidBox.Text = "0x" + ActiveMatrix.PRODUCT_ID.ToString("X");
             VidBox.Text = "0x" + ActiveMatrix.VENDOR_ID.ToString("X");
@@ -231,14 +235,14 @@ namespace AVRTools
         private void Keycap_Button_MouseClick(object sender, MouseEventArgs e)
         {
             //key button
-            if (ActiveButton != null) ActiveButton.BackColor = KeycapColor;
+            if (ActiveButton != null) { } //ActiveButton.BackColor = KeycapColor;
             if (e.Button == MouseButtons.Right)
             {
                 ActiveButton = null;
             }
             else
             {
-                ((Button)sender).BackColor = Color.LightSalmon;
+               // ((Button)sender).BackColor = Color.LightSalmon;
                 ActiveButton = ((Button)sender);
             }
         }
@@ -274,8 +278,11 @@ namespace AVRTools
                     string[] strs1 = ActiveButton.Text.Split('/');
                     string[] strs2 = ((Button)sender).Text.Split(new string[] { "\r\n" }, StringSplitOptions.None);
                     string str2 = strs2[0];
-                    if (str2[0] == 'r') ActiveButton.Text = str2.Remove(0, 1) + "/" + strs1[1];
-                    else if (str2[0] == 'c') ActiveButton.Text = strs1[0] + "/" + str2.Remove(0, 1);
+                    string R="", C="";
+                    if (str2[0] == 'r') { R = str2.Remove(0, 1);C = strs1[1]; }
+                    else if (str2[0] == 'c') { R = strs1[0];C= str2.Remove(0, 1); }
+                    ActiveButton.Text = R + "/" + C;
+                    ActiveButton.BackColor= ActiveMatrix.FuncColors.GetColor(Convert.ToInt32(C) * (int)(250.0 / ActiveMatrix.COLS));
                 }
 
             }
@@ -290,17 +297,17 @@ namespace AVRTools
         }
         private void Layer1_Enter(object sender, EventArgs e)
         {
-            if (ActiveButton != null) ActiveButton.BackColor = KeycapColor;
+            if (ActiveButton != null) { }//ActiveButton.BackColor = KeycapColor;
             ActiveButton = null;
         }
         private void Layer2_Enter(object sender, EventArgs e)
         {
-            if (ActiveButton != null) ActiveButton.BackColor = KeycapColor;
+            if (ActiveButton != null) { } //ActiveButton.BackColor = KeycapColor;
             ActiveButton = null;
         }
         private void Schematic_Enter(object sender, EventArgs e)
         {
-            if (ActiveButton != null) ActiveButton.BackColor = KeycapColor;
+            if (ActiveButton != null) { } //ActiveButton.BackColor = KeycapColor;
             ActiveButton = null;
             SelectKeysPanel.SelectedTab = IOPage;
         }
