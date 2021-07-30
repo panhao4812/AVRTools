@@ -10,15 +10,11 @@ namespace AVRKeys.Keyboard
     {
         public WS64()
         {
-            this.NAME = "WS64";
-            MCU_Init("__AVR_ATmega32U4__");
-            //KeyCap_Init(keycap);
-            this.PRODUCT_ID = 0xF164;        
+            MCU_Init("WS64",0x32C4, 0xF164);
+            //KeyCap_Init(keycap);     
             int[] row_pins=new int[5]{ 8,7,6,5,24};
             int[] col_pins = new int[14] { 18, 19, 20, 21, 4, 16, 22, 11, 12, 13, 14, 15, 9, 10 };
-            Matrix_Init(row_pins, col_pins);
-            WS2812_Init(FuncMega32U4.GetIOIndex("F6"), 64, 3);
-            EEP_Init();
+            IO_Init(row_pins, col_pins, FuncMega32U4.GetIOIndex("F6"), 64, 3); 
         }
     }
 }
