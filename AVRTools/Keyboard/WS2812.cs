@@ -6,15 +6,159 @@ using System.Threading.Tasks;
 
 namespace AVRKeys.Keyboard
 {
-    class WS64:QMK64_ISO
+    class WS64:IMatrix
     {
         public WS64()
         {
-            MCU_Init("WS64",0x32C4, 0xF164);
-            //KeyCap_Init(keycap);     
+            MCU_Init("WS64",0x32C4, 0xF164);              
             int[] row_pins=new int[5]{ 8,7,6,5,24};
             int[] col_pins = new int[14] { 18, 19, 20, 21, 4, 16, 22, 11, 12, 13, 14, 15, 9, 10 };
-            IO_Init(row_pins, col_pins, FuncMega32U4.GetIOIndex("F6"), 64, 3); 
+            IO_Init(row_pins, col_pins, FuncMega32U4.GetIOIndex("F6"), 64, 3);
+            KeyCap_Init(keycap2);
         }
+        #region kecap
+        string[] keycap2 = new string[64]{
+"0,0,1,0,0,MACRO2,KEY_TILDE",
+"1,0,1,0,1,KEY_1,KEY_F1",
+"2,0,1,0,2,KEY_2,KEY_F2",
+"3,0,1,0,3,KEY_3,KEY_F3",
+"4,0,1,0,4,KEY_4,KEY_F4",
+"5,0,1,0,5,KEY_5,KEY_F5",
+"6,0,1,0,6,KEY_6,KEY_F6",
+"7,0,1,0,7,KEY_7,KEY_F7",
+"8,0,1,0,8,KEY_8,KEY_F8",
+"9,0,1,0,9,KEY_9,KEY_F9",
+"10,0,1,0,10,KEY_0,KEY_F10",
+"11,0,1,0,11,KEY_MINUS,KEY_F11",
+"12,0,1,0,12,KEY_EQUAL,KEY_F12",
+"13,0,2,0,13,KEY_BACKSPACE,KEY_DELETE",
+"0,1,1.5,1,0,KEY_TAB,KEY_TAB",
+"1.5,1,1,1,1,KEY_Q,KEYPAD_1",
+"2.5,1,1,1,2,KEY_W,KEYPAD_2",
+"3.5,1,1,1,3,KEY_E,KEYPAD_3",
+"4.5,1,1,1,4,KEY_R,KEYPAD_4",
+"5.5,1,1,1,5,KEY_T,KEYPAD_5",
+"6.5,1,1,1,6,KEY_Y,KEYPAD_6",
+"7.5,1,1,1,7,KEY_U,KEYPAD_7",
+"8.5,1,1,1,8,KEY_I,KEYPAD_8",
+"9.5,1,1,1,9,KEY_O,KEYPAD_9",
+"10.5,1,1,1,10,KEY_P,KEYPAD_0",
+"11.5,1,1,1,11,KEY_LEFT_BRACE,KEYPAD_MINUS",
+"12.5,1,1,1,12,KEY_RIGHT_BRACE,KEYPAD_PLUS",
+"13.5,1,1.5,1,13,KEY_BACKSLASH,KEY_BACKSLASH",
+"0,2,1.75,2,0,KEY_CAPS_LOCK,KEY_CAPS_LOCK",
+"1.75,2,1,2,1,KEY_A,MOUSE_LEFT",
+"2.75,2,1,2,2,KEY_S,MOUSE_MID",
+"3.75,2,1,2,3,KEY_D,MOUSE_RIGHT",
+"4.75,2,1,2,4,KEY_F,",
+"5.75,2,1,2,5,KEY_G,",
+"6.75,2,1,2,6,KEY_H,",
+"7.75,2,1,2,7,KEY_J,",
+"8.75,2,1,2,8,KEY_K,",
+"9.75,2,1,2,9,KEY_L,",
+"10.75,2,1,2,10,KEY_SEMICOLON,",
+"11.75,2,1,2,11,KEY_QUOTE,",
+"12.75,2,2.25,2,12,KEY_ENTER,KEY_ENTER",
+"0,3,2,3,0,KEY_SHIFT,KEY_SHIFT",
+"2,3,1,3,1,KEY_Z,KEY_NUM_LOCK",
+"3,3,1,3,2,KEY_X,MACRO1",
+"4,3,1,3,3,KEY_C,MACRO5",
+"5,3,1,3,4,KEY_V,",
+"6,3,1,3,5,KEY_B,",
+"7,3,1,3,6,KEY_N,",
+"8,3,1,3,7,KEY_M,",
+"9,3,1,3,8,KEY_COMMA,AUDIO_VOL_DOWN",
+"10,3,1,3,9,KEY_PERIOD,AUDIO_VOL_UP",
+"11,3,1,3,10,KEY_SLASH,AUDIO_MUTE",
+"12,3,1,3,11,KEY_RIGHT_SHIFT,KEY_RIGHT_SHIFT",
+"13,3,1,3,12,KEY_UP,KEY_UP",
+"14,3,1,3,13,KEY_DELETE,KEY_DELETE",
+"0,4,1.25,4,0,KEY_CTRL,KEY_CTRL",
+"1.25,4,1.25,4,1,KEY_FN,KEY_FN",
+"2.5,4,1.25,4,2,KEY_ALT,KEY_ALT",
+"3.75,4,6.25,4,5,KEY_SPACE,KEY_SPACE",
+"10,4,1,4,9,KEY_RIGHT_ALT,KEY_RIGHT_ALT",
+"11,4,1,4,10,KEY_RIGHT_CTRL,KEY_RIGHT_CTRL",
+"12,4,1,4,11,KEY_LEFT,KEY_LEFT",
+"13,4,1,4,12,KEY_DOWN,KEY_DOWN",
+"14,4,1,4,13,KEY_RIGHT,KEY_RIGHT"
+        };
+        #endregion
+    }
+    class PG60 : IMatrix
+    {
+        public PG60()
+        {
+            MCU_Init("PG60", 0x32C4, 0xF160);
+            int[] row_pins = new int[5] { 10, 9, 15, 14, 13 };
+            int[] col_pins = new int[15] { 16, 17, 18, 19, 20, 21, 24, 0, 1, 2, 3, 5, 6, 7, 8 };
+            IO_Init(row_pins, col_pins, FuncMega32U4.GetIOIndex("D7"), 61, 3);
+           // KeyCap_Init(keycap2);
+        }
+        #region kecap
+        string[] keycap2 = new string[61]{
+"0,0,1,0,0,MACRO2,KEY_TILDE",
+"1,0,1,0,1,KEY_1,KEY_F1",
+"2,0,1,0,2,KEY_2,KEY_F2",
+"3,0,1,0,3,KEY_3,KEY_F3",
+"4,0,1,0,4,KEY_4,KEY_F4",
+"5,0,1,0,5,KEY_5,KEY_F5",
+"6,0,1,0,6,KEY_6,KEY_F6",
+"7,0,1,0,7,KEY_7,KEY_F7",
+"8,0,1,0,8,KEY_8,KEY_F8",
+"9,0,1,0,9,KEY_9,KEY_F9",
+"10,0,1,0,10,KEY_0,KEY_F10",
+"11,0,1,0,11,KEY_MINUS,KEY_F11",
+"12,0,1,0,12,KEY_EQUAL,KEY_F12",
+"13,0,2,0,14,KEY_BACKSPACE,KEY_DELETE",
+"0,1,1.5,1,0,KEY_TAB,KEY_TAB",
+"1.5,1,1,1,2,KEY_Q,KEYPAD_1",
+"2.5,1,1,1,3,KEY_W,KEYPAD_2",
+"3.5,1,1,1,4,KEY_E,KEYPAD_3",
+"4.5,1,1,1,5,KEY_R,KEYPAD_4",
+"5.5,1,1,1,6,KEY_T,KEYPAD_5",
+"6.5,1,1,1,7,KEY_Y,KEYPAD_6",
+"7.5,1,1,1,8,KEY_U,KEYPAD_7",
+"8.5,1,1,1,9,KEY_I,KEYPAD_8",
+"9.5,1,1,1,10,KEY_O,KEYPAD_9",
+"10.5,1,1,1,11,KEY_P,KEYPAD_0",
+"11.5,1,1,1,12,KEY_LEFT_BRACE,KEYPAD_MINUS",
+"12.5,1,1,1,13,KEY_RIGHT_BRACE,KEYPAD_PLUS",
+"13.5,1,1.5,1,14,KEY_BACKSLASH,KEY_BACKSLASH",
+"0,2,1.75,2,0,KEY_CAPS_LOCK,KEY_CAPS_LOCK",
+"1.75,2,1,2,2,KEY_A,MOUSE_LEFT",
+"2.75,2,1,2,3,KEY_S,MOUSE_MID",
+"3.75,2,1,2,4,KEY_D,MOUSE_RIGHT",
+"4.75,2,1,2,5,KEY_F,",
+"5.75,2,1,2,6,KEY_G,",
+"6.75,2,1,2,7,KEY_H,",
+"7.75,2,1,2,8,KEY_J,",
+"8.75,2,1,2,9,KEY_K,",
+"9.75,2,1,2,10,KEY_L,",
+"10.75,2,1,2,11,KEY_SEMICOLON,",
+"11.75,2,1,2,12,KEY_QUOTE,",
+"12.75,2,2.25,2,13,KEY_ENTER,KEY_ENTER",
+"0,3,2.25,3,1,KEY_SHIFT,KEY_SHIFT",
+"2.25,3,1,3,2,KEY_Z,MACRO0",
+"3.25,3,1,3,3,KEY_X,MACRO1",
+"4.25,3,1,3,4,KEY_C,MACRO5",
+"5.25,3,1,3,5,KEY_V,",
+"6.25,3,1,3,6,KEY_B,",
+"7.25,3,1,3,7,KEY_N,KEY_NUM_LOCK",
+"8.25,3,1,3,8,KEY_M,KEY_SCROLL_LOCK",
+"9.25,3,1,3,9,KEY_COMMA,AUDIO_VOL_DOWN",
+"10.25,3,1,3,10,KEY_PERIOD,AUDIO_VOL_UP",
+"11.25,3,1,3,11,KEY_SLASH,AUDIO_MUTE",
+"12.25,3,2.75,3,13,KEY_RIGHT_SHIFT,KEY_RIGHT_SHIFT",
+"0,4,1.25,4,0,KEY_CTRL,KEY_CTRL",
+"1.25,4,1.25,4,1,KEY_FN,KEY_FN",
+"2.5,4,1.25,4,3,KEY_ALT,KEY_ALT",
+"3.75,4,6.25,4,6,KEY_SPACE,KEY_SPACE",
+"10,4,1.25,4,10,KEY_RIGHT_ALT,KEY_RIGHT_ALT",
+"11.25,4,1.25,4,11,KEY_LEFT,KEY_UP",
+"12.5,4,1.25,4,13,KEY_RIGHT,KEY_DOWN",
+"13.75,4,1.25,4,14,KEY_RIGHT_CTRL,KEY_RIGHT_CTRL"
+        };
+        #endregion
     }
 }

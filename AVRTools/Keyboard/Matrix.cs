@@ -109,6 +109,7 @@ namespace AVRKeys.Keyboard
         public int[] rgb_pos;//
         public int[] rgb_rainbow;//
         public int[] rgb_fixcolor;//
+       
         public IMatrix() { }
         /// //////////
         public void MCU_Init(string Name, int VID, int PID)
@@ -118,13 +119,14 @@ namespace AVRKeys.Keyboard
             {
                 this.VENDOR_ID = VID; this.PRODUCT_ID = PID;
                 this.FLASH_END_ADDRESS = 0x7000;
-                this.MAX_EEP = 0x01FF;
+                this.MAX_EEP = 0x03FF;
                 MAX_DELAY = 0x0010;
             }
         }
         public void KeyCap_Init(string[] keycap)
         {
             if (keycap.Length <= 0) return;
+            key_caps.Clear();
             for (int i = 0; i < keycap.Length; i++)
             {
                 key_caps.Add(new IKeycap(keycap[i]));
@@ -171,7 +173,7 @@ namespace AVRKeys.Keyboard
         {
             List<Button> bus = new List<Button>();
             if (ROWS == 0 && COLS == 0) return bus;
-            for (int i = 0; i < this.row_pins.Length; i++)
+            for (int i = 0; i < ROWS; i++)
             {
                 Button button = new Button();
                 float x = i * U1 + 1;
@@ -187,7 +189,8 @@ namespace AVRKeys.Keyboard
                 button.TabStop = false;
                 bus.Add(button);
             }
-            for (int i = 0; i < this.col_pins.Length; i++)
+            
+            for (int i = 0; i < COLS; i++)
             {
                 Button button = new Button();
                 float x = i * U1 + 1;
@@ -200,6 +203,7 @@ namespace AVRKeys.Keyboard
                 button.Font = new Font("Courier10 BT", 8);
                 button.TextAlign = ContentAlignment.TopLeft;
                 button.Text = "c" + i.ToString() + "\r\n" + FuncMega32U4.GetIOName(col_pins[i]);
+                button.BackColor = FuncColors.IOColors[i];
                 bus.Add(button);
             }
             return bus;
@@ -212,6 +216,19 @@ namespace AVRKeys.Keyboard
                 for (int i = 0; i < this.key_caps.Count; i++)
                 {
                     output += key_caps[i].ToString() + "\r\n";
+                }
+                return output;
+            }
+            else return "";
+        }
+        public string ExportKeyCap()
+        {
+            if (this.key_caps.Count > 0)
+            {
+                string output = "";
+                for (int i = 0; i < this.key_caps.Count; i++)
+                {
+                    output +="\""+ key_caps[i].ToString() + "\","+"\r\n";
                 }
                 return output;
             }

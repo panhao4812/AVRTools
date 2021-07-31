@@ -34,6 +34,8 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.keycapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu2 = new System.Windows.Forms.ToolStripMenuItem();
             this.iSOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iSO60ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,23 +52,40 @@
             this.pG61ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu3 = new System.Windows.Forms.ToolStripMenuItem();
             this.Upload_Matrix = new System.Windows.Forms.ToolStripMenuItem();
+            this.printerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu4 = new System.Windows.Forms.ToolStripMenuItem();
             this.TestKey_Enable = new System.Windows.Forms.ToolStripMenuItem();
-            this.menu5 = new System.Windows.Forms.ToolStripMenuItem();
-            this.hidRawToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lEDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rGBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu6 = new System.Windows.Forms.ToolStripMenuItem();
             this.SelectKeysPanel = new System.Windows.Forms.TabControl();
-            this.US = new System.Windows.Forms.TabPage();
-            this.Macro = new System.Windows.Forms.TabPage();
+            this.USPage = new System.Windows.Forms.TabPage();
+            this.MacroPage = new System.Windows.Forms.TabPage();
             this.IOPage = new System.Windows.Forms.TabPage();
+            this.ColorPage = new System.Windows.Forms.TabPage();
             this.ConsolePage = new System.Windows.Forms.TabPage();
             this.ConsoleBox = new System.Windows.Forms.TextBox();
-            this.Schematic = new System.Windows.Forms.TabPage();
-            this.Layer2 = new System.Windows.Forms.TabPage();
-            this.Layer1 = new System.Windows.Forms.TabPage();
+            this.SchematicPage = new System.Windows.Forms.TabPage();
+            this.Layer2Page = new System.Windows.Forms.TabPage();
+            this.Layer1Page = new System.Windows.Forms.TabPage();
             this.MatrixPanel = new System.Windows.Forms.TabControl();
+            this.RGBPage = new System.Windows.Forms.TabPage();
+            this.PrinterPage = new System.Windows.Forms.TabPage();
+            this.label8 = new System.Windows.Forms.Label();
+            this.Length2Box = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.EncodeButton3 = new System.Windows.Forms.Button();
+            this.EncodeButton2 = new System.Windows.Forms.Button();
+            this.EncodeButton1 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.Length1Box = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.PrinterEncodeBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.EEPBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.AddressBox = new System.Windows.Forms.TextBox();
+            this.PrinterInputBox = new System.Windows.Forms.TextBox();
             this.PidBox = new System.Windows.Forms.TextBox();
             this.VidBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -75,6 +94,7 @@
             this.SelectKeysPanel.SuspendLayout();
             this.ConsolePage.SuspendLayout();
             this.MatrixPanel.SuspendLayout();
+            this.PrinterPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -86,7 +106,6 @@
             this.menu2,
             this.menu3,
             this.menu4,
-            this.menu5,
             this.menu6});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -100,7 +119,8 @@
             this.menu1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
             this.saveToolStripMenuItem,
-            this.saveAsToolStripMenuItem});
+            this.saveAsToolStripMenuItem,
+            this.exportToolStripMenuItem});
             this.menu1.Name = "menu1";
             this.menu1.Size = new System.Drawing.Size(65, 24);
             this.menu1.Text = "File";
@@ -108,23 +128,38 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.Open_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.Save_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.saveAsToolStripMenuItem.Text = "Save As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.SaveAs_Click);
+            // 
+            // exportToolStripMenuItem
+            // 
+            this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.keycapToolStripMenuItem});
+            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.exportToolStripMenuItem.Text = "Export";
+            // 
+            // keycapToolStripMenuItem
+            // 
+            this.keycapToolStripMenuItem.Name = "keycapToolStripMenuItem";
+            this.keycapToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.keycapToolStripMenuItem.Text = "Keycap";
+            this.keycapToolStripMenuItem.Click += new System.EventHandler(this.Export_Keycap_Click);
             // 
             // menu2
             // 
@@ -234,12 +269,14 @@
             // 
             this.pG61ToolStripMenuItem.Name = "pG61ToolStripMenuItem";
             this.pG61ToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
-            this.pG61ToolStripMenuItem.Text = "PG61";
+            this.pG61ToolStripMenuItem.Text = "PG60";
+            this.pG61ToolStripMenuItem.Click += new System.EventHandler(this.PG60_Click);
             // 
             // menu3
             // 
             this.menu3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Upload_Matrix});
+            this.Upload_Matrix,
+            this.printerToolStripMenuItem});
             this.menu3.Name = "menu3";
             this.menu3.Size = new System.Drawing.Size(87, 24);
             this.menu3.Text = "Upload";
@@ -247,9 +284,15 @@
             // Upload_Matrix
             // 
             this.Upload_Matrix.Name = "Upload_Matrix";
-            this.Upload_Matrix.Size = new System.Drawing.Size(150, 26);
+            this.Upload_Matrix.Size = new System.Drawing.Size(161, 26);
             this.Upload_Matrix.Text = "Matrix";
             this.Upload_Matrix.Click += new System.EventHandler(this.Upload_Click);
+            // 
+            // printerToolStripMenuItem
+            // 
+            this.printerToolStripMenuItem.Name = "printerToolStripMenuItem";
+            this.printerToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
+            this.printerToolStripMenuItem.Text = "Printer";
             // 
             // menu4
             // 
@@ -262,37 +305,9 @@
             // TestKey_Enable
             // 
             this.TestKey_Enable.Name = "TestKey_Enable";
-            this.TestKey_Enable.Size = new System.Drawing.Size(106, 26);
-            this.TestKey_Enable.Text = "ON";
+            this.TestKey_Enable.Size = new System.Drawing.Size(181, 26);
+            this.TestKey_Enable.Text = "Start";
             this.TestKey_Enable.Click += new System.EventHandler(this.TestKey_Click);
-            // 
-            // menu5
-            // 
-            this.menu5.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.hidRawToolStripMenuItem,
-            this.lEDToolStripMenuItem,
-            this.rGBToolStripMenuItem});
-            this.menu5.Name = "menu5";
-            this.menu5.Size = new System.Drawing.Size(76, 24);
-            this.menu5.Text = "Tools";
-            // 
-            // hidRawToolStripMenuItem
-            // 
-            this.hidRawToolStripMenuItem.Name = "hidRawToolStripMenuItem";
-            this.hidRawToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
-            this.hidRawToolStripMenuItem.Text = "HidRaw";
-            // 
-            // lEDToolStripMenuItem
-            // 
-            this.lEDToolStripMenuItem.Name = "lEDToolStripMenuItem";
-            this.lEDToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
-            this.lEDToolStripMenuItem.Text = "LED";
-            // 
-            // rGBToolStripMenuItem
-            // 
-            this.rGBToolStripMenuItem.Name = "rGBToolStripMenuItem";
-            this.rGBToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
-            this.rGBToolStripMenuItem.Text = "RGB";
             // 
             // menu6
             // 
@@ -302,9 +317,10 @@
             // 
             // SelectKeysPanel
             // 
-            this.SelectKeysPanel.Controls.Add(this.US);
-            this.SelectKeysPanel.Controls.Add(this.Macro);
+            this.SelectKeysPanel.Controls.Add(this.USPage);
+            this.SelectKeysPanel.Controls.Add(this.MacroPage);
             this.SelectKeysPanel.Controls.Add(this.IOPage);
+            this.SelectKeysPanel.Controls.Add(this.ColorPage);
             this.SelectKeysPanel.Controls.Add(this.ConsolePage);
             this.SelectKeysPanel.Font = new System.Drawing.Font("Courier New", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SelectKeysPanel.Location = new System.Drawing.Point(0, 341);
@@ -314,27 +330,27 @@
             this.SelectKeysPanel.Size = new System.Drawing.Size(1117, 312);
             this.SelectKeysPanel.TabIndex = 5;
             // 
-            // US
+            // USPage
             // 
-            this.US.Location = new System.Drawing.Point(4, 29);
-            this.US.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.US.Name = "US";
-            this.US.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.US.Size = new System.Drawing.Size(1109, 279);
-            this.US.TabIndex = 0;
-            this.US.Text = "US";
-            this.US.UseVisualStyleBackColor = true;
+            this.USPage.Location = new System.Drawing.Point(4, 29);
+            this.USPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.USPage.Name = "USPage";
+            this.USPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.USPage.Size = new System.Drawing.Size(1109, 279);
+            this.USPage.TabIndex = 0;
+            this.USPage.Text = "US";
+            this.USPage.UseVisualStyleBackColor = true;
             // 
-            // Macro
+            // MacroPage
             // 
-            this.Macro.Location = new System.Drawing.Point(4, 29);
-            this.Macro.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Macro.Name = "Macro";
-            this.Macro.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Macro.Size = new System.Drawing.Size(1109, 279);
-            this.Macro.TabIndex = 1;
-            this.Macro.Text = "Macro";
-            this.Macro.UseVisualStyleBackColor = true;
+            this.MacroPage.Location = new System.Drawing.Point(4, 29);
+            this.MacroPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MacroPage.Name = "MacroPage";
+            this.MacroPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MacroPage.Size = new System.Drawing.Size(1109, 279);
+            this.MacroPage.TabIndex = 1;
+            this.MacroPage.Text = "Macro";
+            this.MacroPage.UseVisualStyleBackColor = true;
             // 
             // IOPage
             // 
@@ -346,6 +362,16 @@
             this.IOPage.TabIndex = 2;
             this.IOPage.Text = "IO";
             this.IOPage.UseVisualStyleBackColor = true;
+            // 
+            // ColorPage
+            // 
+            this.ColorPage.Location = new System.Drawing.Point(4, 29);
+            this.ColorPage.Name = "ColorPage";
+            this.ColorPage.Padding = new System.Windows.Forms.Padding(3);
+            this.ColorPage.Size = new System.Drawing.Size(1109, 279);
+            this.ColorPage.TabIndex = 4;
+            this.ColorPage.Text = "Color";
+            this.ColorPage.UseVisualStyleBackColor = true;
             // 
             // ConsolePage
             // 
@@ -371,47 +397,49 @@
             this.ConsoleBox.TabIndex = 0;
             this.ConsoleBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ConsoleBox_KeyDown);
             // 
-            // Schematic
+            // SchematicPage
             // 
-            this.Schematic.Location = new System.Drawing.Point(4, 29);
-            this.Schematic.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Schematic.Name = "Schematic";
-            this.Schematic.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Schematic.Size = new System.Drawing.Size(1109, 279);
-            this.Schematic.TabIndex = 2;
-            this.Schematic.Text = "Schematic";
-            this.Schematic.UseVisualStyleBackColor = true;
-            this.Schematic.Enter += new System.EventHandler(this.Schematic_Enter);
+            this.SchematicPage.Location = new System.Drawing.Point(4, 29);
+            this.SchematicPage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SchematicPage.Name = "SchematicPage";
+            this.SchematicPage.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SchematicPage.Size = new System.Drawing.Size(1109, 279);
+            this.SchematicPage.TabIndex = 2;
+            this.SchematicPage.Text = "Schematic";
+            this.SchematicPage.UseVisualStyleBackColor = true;
+            this.SchematicPage.Enter += new System.EventHandler(this.Schematic_Enter);
             // 
-            // Layer2
+            // Layer2Page
             // 
-            this.Layer2.Location = new System.Drawing.Point(4, 29);
-            this.Layer2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Layer2.Name = "Layer2";
-            this.Layer2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Layer2.Size = new System.Drawing.Size(1109, 279);
-            this.Layer2.TabIndex = 1;
-            this.Layer2.Text = "Layer2";
-            this.Layer2.UseVisualStyleBackColor = true;
-            this.Layer2.Enter += new System.EventHandler(this.Layer2_Enter);
+            this.Layer2Page.Location = new System.Drawing.Point(4, 29);
+            this.Layer2Page.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Layer2Page.Name = "Layer2Page";
+            this.Layer2Page.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Layer2Page.Size = new System.Drawing.Size(1109, 279);
+            this.Layer2Page.TabIndex = 1;
+            this.Layer2Page.Text = "Layer2";
+            this.Layer2Page.UseVisualStyleBackColor = true;
+            this.Layer2Page.Enter += new System.EventHandler(this.Layer2_Enter);
             // 
-            // Layer1
+            // Layer1Page
             // 
-            this.Layer1.Location = new System.Drawing.Point(4, 29);
-            this.Layer1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Layer1.Name = "Layer1";
-            this.Layer1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Layer1.Size = new System.Drawing.Size(1109, 279);
-            this.Layer1.TabIndex = 0;
-            this.Layer1.Text = "Layer1";
-            this.Layer1.UseVisualStyleBackColor = true;
-            this.Layer1.Enter += new System.EventHandler(this.Layer1_Enter);
+            this.Layer1Page.Location = new System.Drawing.Point(4, 29);
+            this.Layer1Page.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Layer1Page.Name = "Layer1Page";
+            this.Layer1Page.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Layer1Page.Size = new System.Drawing.Size(1109, 279);
+            this.Layer1Page.TabIndex = 0;
+            this.Layer1Page.Text = "Layer1";
+            this.Layer1Page.UseVisualStyleBackColor = true;
+            this.Layer1Page.Enter += new System.EventHandler(this.Layer1_Enter);
             // 
             // MatrixPanel
             // 
-            this.MatrixPanel.Controls.Add(this.Layer1);
-            this.MatrixPanel.Controls.Add(this.Layer2);
-            this.MatrixPanel.Controls.Add(this.Schematic);
+            this.MatrixPanel.Controls.Add(this.Layer1Page);
+            this.MatrixPanel.Controls.Add(this.Layer2Page);
+            this.MatrixPanel.Controls.Add(this.SchematicPage);
+            this.MatrixPanel.Controls.Add(this.RGBPage);
+            this.MatrixPanel.Controls.Add(this.PrinterPage);
             this.MatrixPanel.Font = new System.Drawing.Font("Courier New", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MatrixPanel.Location = new System.Drawing.Point(0, 31);
             this.MatrixPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -419,6 +447,229 @@
             this.MatrixPanel.SelectedIndex = 0;
             this.MatrixPanel.Size = new System.Drawing.Size(1117, 312);
             this.MatrixPanel.TabIndex = 6;
+            // 
+            // RGBPage
+            // 
+            this.RGBPage.Location = new System.Drawing.Point(4, 29);
+            this.RGBPage.Name = "RGBPage";
+            this.RGBPage.Padding = new System.Windows.Forms.Padding(3);
+            this.RGBPage.Size = new System.Drawing.Size(1109, 279);
+            this.RGBPage.TabIndex = 3;
+            this.RGBPage.Text = "RGB";
+            this.RGBPage.UseVisualStyleBackColor = true;
+            // 
+            // PrinterPage
+            // 
+            this.PrinterPage.Controls.Add(this.label8);
+            this.PrinterPage.Controls.Add(this.Length2Box);
+            this.PrinterPage.Controls.Add(this.button1);
+            this.PrinterPage.Controls.Add(this.button2);
+            this.PrinterPage.Controls.Add(this.EncodeButton3);
+            this.PrinterPage.Controls.Add(this.EncodeButton2);
+            this.PrinterPage.Controls.Add(this.EncodeButton1);
+            this.PrinterPage.Controls.Add(this.label7);
+            this.PrinterPage.Controls.Add(this.Length1Box);
+            this.PrinterPage.Controls.Add(this.label6);
+            this.PrinterPage.Controls.Add(this.label5);
+            this.PrinterPage.Controls.Add(this.PrinterEncodeBox);
+            this.PrinterPage.Controls.Add(this.label4);
+            this.PrinterPage.Controls.Add(this.EEPBox);
+            this.PrinterPage.Controls.Add(this.label3);
+            this.PrinterPage.Controls.Add(this.AddressBox);
+            this.PrinterPage.Controls.Add(this.PrinterInputBox);
+            this.PrinterPage.Location = new System.Drawing.Point(4, 29);
+            this.PrinterPage.Name = "PrinterPage";
+            this.PrinterPage.Padding = new System.Windows.Forms.Padding(3);
+            this.PrinterPage.Size = new System.Drawing.Size(1109, 279);
+            this.PrinterPage.TabIndex = 4;
+            this.PrinterPage.Text = "Printer";
+            this.PrinterPage.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Location = new System.Drawing.Point(8, 199);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(53, 20);
+            this.label8.TabIndex = 42;
+            this.label8.Text = "WORD";
+            // 
+            // Length2Box
+            // 
+            this.Length2Box.BackColor = System.Drawing.SystemColors.Control;
+            this.Length2Box.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Length2Box.Font = new System.Drawing.Font("Courier10 BT", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Length2Box.Location = new System.Drawing.Point(8, 224);
+            this.Length2Box.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Length2Box.Multiline = true;
+            this.Length2Box.Name = "Length2Box";
+            this.Length2Box.ReadOnly = true;
+            this.Length2Box.Size = new System.Drawing.Size(80, 25);
+            this.Length2Box.TabIndex = 41;
+            this.Length2Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // button1
+            // 
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(592, 217);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(102, 36);
+            this.button1.TabIndex = 40;
+            this.button1.Text = "UTF-8";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(592, 175);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(102, 36);
+            this.button2.TabIndex = 39;
+            this.button2.Text = "Unicode";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // EncodeButton3
+            // 
+            this.EncodeButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EncodeButton3.Location = new System.Drawing.Point(592, 133);
+            this.EncodeButton3.Name = "EncodeButton3";
+            this.EncodeButton3.Size = new System.Drawing.Size(102, 36);
+            this.EncodeButton3.TabIndex = 37;
+            this.EncodeButton3.Text = "Big5";
+            this.EncodeButton3.UseVisualStyleBackColor = true;
+            // 
+            // EncodeButton2
+            // 
+            this.EncodeButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EncodeButton2.Location = new System.Drawing.Point(592, 91);
+            this.EncodeButton2.Name = "EncodeButton2";
+            this.EncodeButton2.Size = new System.Drawing.Size(102, 36);
+            this.EncodeButton2.TabIndex = 36;
+            this.EncodeButton2.Text = "GB2312";
+            this.EncodeButton2.UseVisualStyleBackColor = true;
+            // 
+            // EncodeButton1
+            // 
+            this.EncodeButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EncodeButton1.Location = new System.Drawing.Point(592, 50);
+            this.EncodeButton1.Name = "EncodeButton1";
+            this.EncodeButton1.Size = new System.Drawing.Size(102, 36);
+            this.EncodeButton1.TabIndex = 35;
+            this.EncodeButton1.Text = "GBK";
+            this.EncodeButton1.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Location = new System.Drawing.Point(8, 144);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(53, 20);
+            this.label7.TabIndex = 34;
+            this.label7.Text = "BYTE";
+            // 
+            // Length1Box
+            // 
+            this.Length1Box.BackColor = System.Drawing.SystemColors.Control;
+            this.Length1Box.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Length1Box.Font = new System.Drawing.Font("Courier10 BT", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Length1Box.Location = new System.Drawing.Point(8, 169);
+            this.Length1Box.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Length1Box.Multiline = true;
+            this.Length1Box.Name = "Length1Box";
+            this.Length1Box.ReadOnly = true;
+            this.Length1Box.Size = new System.Drawing.Size(80, 25);
+            this.Length1Box.TabIndex = 33;
+            this.Length1Box.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Location = new System.Drawing.Point(588, 3);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(108, 20);
+            this.label6.TabIndex = 32;
+            this.label6.Text = "EncodeBox";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Location = new System.Drawing.Point(4, 3);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(97, 20);
+            this.label5.TabIndex = 31;
+            this.label5.Text = "InputBox";
+            // 
+            // PrinterEncodeBox
+            // 
+            this.PrinterEncodeBox.BackColor = System.Drawing.Color.Beige;
+            this.PrinterEncodeBox.Location = new System.Drawing.Point(700, 3);
+            this.PrinterEncodeBox.Multiline = true;
+            this.PrinterEncodeBox.Name = "PrinterEncodeBox";
+            this.PrinterEncodeBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.PrinterEncodeBox.Size = new System.Drawing.Size(443, 270);
+            this.PrinterEncodeBox.TabIndex = 30;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Location = new System.Drawing.Point(8, 33);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(42, 20);
+            this.label4.TabIndex = 29;
+            this.label4.Text = "EEP";
+            // 
+            // EEPBox
+            // 
+            this.EEPBox.BackColor = System.Drawing.SystemColors.Control;
+            this.EEPBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.EEPBox.Font = new System.Drawing.Font("Courier10 BT", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EEPBox.Location = new System.Drawing.Point(8, 58);
+            this.EEPBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.EEPBox.Multiline = true;
+            this.EEPBox.Name = "EEPBox";
+            this.EEPBox.ReadOnly = true;
+            this.EEPBox.Size = new System.Drawing.Size(80, 25);
+            this.EEPBox.TabIndex = 28;
+            this.EEPBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Location = new System.Drawing.Point(8, 88);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(86, 20);
+            this.label3.TabIndex = 27;
+            this.label3.Text = "ADDRESS";
+            // 
+            // AddressBox
+            // 
+            this.AddressBox.BackColor = System.Drawing.SystemColors.Control;
+            this.AddressBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.AddressBox.Font = new System.Drawing.Font("Courier10 BT", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddressBox.Location = new System.Drawing.Point(8, 113);
+            this.AddressBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.AddressBox.Multiline = true;
+            this.AddressBox.Name = "AddressBox";
+            this.AddressBox.ReadOnly = true;
+            this.AddressBox.Size = new System.Drawing.Size(80, 25);
+            this.AddressBox.TabIndex = 26;
+            this.AddressBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // PrinterInputBox
+            // 
+            this.PrinterInputBox.BackColor = System.Drawing.Color.White;
+            this.PrinterInputBox.Location = new System.Drawing.Point(107, 3);
+            this.PrinterInputBox.Multiline = true;
+            this.PrinterInputBox.Name = "PrinterInputBox";
+            this.PrinterInputBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.PrinterInputBox.Size = new System.Drawing.Size(473, 270);
+            this.PrinterInputBox.TabIndex = 0;
             // 
             // PidBox
             // 
@@ -493,6 +744,8 @@
             this.ConsolePage.ResumeLayout(false);
             this.ConsolePage.PerformLayout();
             this.MatrixPanel.ResumeLayout(false);
+            this.PrinterPage.ResumeLayout(false);
+            this.PrinterPage.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -508,10 +761,7 @@
         private System.Windows.Forms.ToolStripMenuItem menu3;
         private System.Windows.Forms.ToolStripMenuItem menu4;
         private System.Windows.Forms.TabControl SelectKeysPanel;
-        private System.Windows.Forms.TabPage US;
-        private System.Windows.Forms.TabPage Macro;
-        private System.Windows.Forms.ToolStripMenuItem menu5;
-        private System.Windows.Forms.ToolStripMenuItem hidRawToolStripMenuItem;
+        private System.Windows.Forms.TabPage MacroPage;
         private System.Windows.Forms.ToolStripMenuItem iSOToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem iSO60ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
@@ -523,12 +773,10 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem8;
         private System.Windows.Forms.ToolStripMenuItem Upload_Matrix;
         private System.Windows.Forms.ToolStripMenuItem TestKey_Enable;
-        private System.Windows.Forms.ToolStripMenuItem lEDToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem rGBToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menu6;
-        private System.Windows.Forms.TabPage Schematic;
-        private System.Windows.Forms.TabPage Layer2;
-        private System.Windows.Forms.TabPage Layer1;
+        private System.Windows.Forms.TabPage SchematicPage;
+        private System.Windows.Forms.TabPage Layer2Page;
+        private System.Windows.Forms.TabPage Layer1Page;
         private System.Windows.Forms.TabControl MatrixPanel;
         private System.Windows.Forms.TabPage IOPage;
         private System.Windows.Forms.TabPage ConsolePage;
@@ -541,6 +789,30 @@
         private System.Windows.Forms.ToolStripMenuItem wS2812ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem wS64ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pG61ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem printerToolStripMenuItem;
+        private System.Windows.Forms.TabPage RGBPage;
+        private System.Windows.Forms.TabPage PrinterPage;
+        private System.Windows.Forms.TabPage ColorPage;
+        private System.Windows.Forms.TabPage USPage;
+        private System.Windows.Forms.TextBox PrinterInputBox;
+        private System.Windows.Forms.TextBox PrinterEncodeBox;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox EEPBox;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox AddressBox;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button EncodeButton2;
+        private System.Windows.Forms.Button EncodeButton1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox Length1Box;
+        private System.Windows.Forms.Button EncodeButton3;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox Length2Box;
+        private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem keycapToolStripMenuItem;
     }
 }
 

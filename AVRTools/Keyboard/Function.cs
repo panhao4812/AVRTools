@@ -339,11 +339,26 @@ namespace AVRKeys.Keyboard
     }
     public class IColors
     {
+        public Color[] IOColors = new Color[21];
+        public IColors()
+        {
+            for (int i = 0; i < 21; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    IOColors[i] = GetColor((int)((float)i / 21.0 * 250.0));
+                }
+                else if (i > 0)
+                {
+                    IOColors[i] = Color.FromArgb(255, 255 - IOColors[i - 1].R, 255 - IOColors[i - 1].G, 255 - IOColors[i - 1].B);
+                }
+            }
+        }
         public Color GetColor(int index)
         {
             return Color.FromArgb(Rcolors[index], Gcolors[index], Bcolors[index]);
         }
-        public static int[] Rcolors =
+        public int[] Rcolors =
 {
     243,243,243,243,242,242,241,241,240,240,239,239,238,238,237,237,236,236,236,236,236,236,235,234,233,
     232,231,229,227,226,224,222,220,219,217,216,214,213,212,211,211,210,210,210,208,206,202,198,193,187,
@@ -357,7 +372,7 @@ namespace AVRKeys.Keyboard
     245,246,246,247,247,247,247,247,247,247,247,246,246,246,246,246,245,245,245,245,244,244,244,244,244,
     243,243,243,243,243
 };
-        public static int[] Gcolors =
+        public int[] Gcolors =
 {
     57,57,56,55,54,52,50,48,46,43,41,38,36,34,32,30,29,28,27,27,27,27,26,25,24,
     23,21,20,18,16,15,13,11,9,7,6,4,3,2,1,1,0,0,0,0,0,0,0,0,0,
@@ -371,7 +386,7 @@ namespace AVRKeys.Keyboard
     165,163,161,160,159,159,158,157,154,151,148,144,139,134,128,122,116,110,103,97,91,85,80,75,70,
     66,63,60,59,57
 };
-        public static int[] Bcolors =
+        public int[] Bcolors =
 {
     0,0,2,4,6,10,14,18,23,27,32,37,42,46,50,54,56,58,60,60,60,61,62,64,66,
     69,72,76,79,83,87,91,95,99,102,106,109,111,114,116,117,118,118,118,118,118,118,118,118,118,
