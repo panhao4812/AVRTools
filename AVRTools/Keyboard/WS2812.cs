@@ -93,7 +93,7 @@ namespace AVRKeys.Keyboard
             int[] row_pins = new int[5] { 10, 9, 15, 14, 13 };
             int[] col_pins = new int[15] { 16, 17, 18, 19, 20, 21, 24, 0, 1, 2, 3, 5, 6, 7, 8 };
             IO_Init(row_pins, col_pins, FuncMega32U4.GetIOIndex("D7"), 61, 3);
-           // KeyCap_Init(keycap2);
+            KeyCap_Init(keycap2);
         }
         #region kecap
         string[] keycap2 = new string[61]{

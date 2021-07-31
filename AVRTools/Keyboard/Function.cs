@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AVRKeys.Keyboard
 {
@@ -28,7 +29,7 @@ namespace AVRKeys.Keyboard
         }
         public int ToNumber(string str)
         {
-            if (str.Contains("0x")|| str.Contains("0X")||str.Contains("ox") || str.Contains("oX"))
+            if (str.Contains("0x") || str.Contains("0X") || str.Contains("ox") || str.Contains("oX"))
             {
                 str = str.Remove(0, 2);
                 return Int32.Parse(str, System.Globalization.NumberStyles.AllowHexSpecifier);
@@ -339,6 +340,28 @@ namespace AVRKeys.Keyboard
     }
     public class IColors
     {
+        public static List<Button> CreateButton(int U1)
+        {
+            List<Button> bus = new List<Button>();
+            int count = (int)(40.0 / U1 * 22);
+            for (int i = 0; i < Rcolors.Length; i++)
+            {
+                float x = i % count * U1 + 1;
+                float y = (i / count) * U1 + 1;
+                Button button = new Button();
+                button.Text = i.ToString();
+                button.BackColor = GetColor(i);
+                button.Font = new Font("Courier10 BT", 6);
+                button.TextAlign = ContentAlignment.TopLeft;
+                button.TabStop = false;
+                button.Width = (int)U1 - 2;
+                button.Height = (int)U1 - 2;
+                button.Location = new Point((int)x, (int)y);
+                button.FlatStyle = FlatStyle.Flat;
+                bus.Add(button);
+            }
+            return bus;
+        }
         public Color[] IOColors = new Color[21];
         public IColors()
         {
@@ -354,11 +377,11 @@ namespace AVRKeys.Keyboard
                 }
             }
         }
-        public Color GetColor(int index)
+        public static Color GetColor(int index)
         {
             return Color.FromArgb(Rcolors[index], Gcolors[index], Bcolors[index]);
         }
-        public int[] Rcolors =
+        public static int[] Rcolors = new int[255]
 {
     243,243,243,243,242,242,241,241,240,240,239,239,238,238,237,237,236,236,236,236,236,236,235,234,233,
     232,231,229,227,226,224,222,220,219,217,216,214,213,212,211,211,210,210,210,208,206,202,198,193,187,
@@ -372,7 +395,7 @@ namespace AVRKeys.Keyboard
     245,246,246,247,247,247,247,247,247,247,247,246,246,246,246,246,245,245,245,245,244,244,244,244,244,
     243,243,243,243,243
 };
-        public int[] Gcolors =
+        public static int[] Gcolors = new int[255]
 {
     57,57,56,55,54,52,50,48,46,43,41,38,36,34,32,30,29,28,27,27,27,27,26,25,24,
     23,21,20,18,16,15,13,11,9,7,6,4,3,2,1,1,0,0,0,0,0,0,0,0,0,
@@ -386,7 +409,7 @@ namespace AVRKeys.Keyboard
     165,163,161,160,159,159,158,157,154,151,148,144,139,134,128,122,116,110,103,97,91,85,80,75,70,
     66,63,60,59,57
 };
-        public int[] Bcolors =
+        public static int[] Bcolors = new int[255]
 {
     0,0,2,4,6,10,14,18,23,27,32,37,42,46,50,54,56,58,60,60,60,61,62,64,66,
     69,72,76,79,83,87,91,95,99,102,106,109,111,114,116,117,118,118,118,118,118,118,118,118,118,
@@ -484,5 +507,242 @@ namespace AVRKeys.Keyboard
                 data.Add(Convert.ToUInt16(a));
             }
         }
+    }
+
+    public class IEncode
+    {
+        public TextBox console;
+        public IEncode(TextBox Cons) { console = Cons; }
+        public void Print(string str)
+        {
+            console.Text += str;
+        }
+        public void Clear()
+        {
+            console.Text = "";
+        }
+        public string CodeDec = "";
+        public string CodeHex = "";
+        public void Solve(string input, string encode)
+        {
+            CodeDec = ""; CodeHex = ""; Clear();
+            try
+            {
+                char[] ch = input.ToArray();
+                if (ch == null || ch.Length == 0)
+                {
+                    Print("Nothing to encode!");
+                    return;
+                }
+                //Print("English 0-127 GBK > " + 0x8080);
+                int length = ch.Length;
+                int length2 = length;
+                for (int j = 0; j < length; j++)
+                {
+                    if (ch[j] < 127 && ch[j] >= 0)
+                    {
+                        int code = ascii_to_scan_code_table[(int)ch[j]];
+                        if (code != 0)
+                        {
+                            CodeHex += "," + code.ToString("x");
+                            CodeDec += "," + code.ToString();
+                        }
+                        else
+                        {
+                            length2--;
+                        }
+                    }
+                    else if (ch[j] <= 0xFFFF)
+                    {
+                        //汉字   
+                        string a3 = ConvertChinese1(ch[j], encode);
+                        CodeHex += "," + a3;
+                        CodeDec += "," + Convert.ToUInt16(a3, 16).ToString();
+                    }
+                }
+                CodeHex += length2.ToString("x") + CodeHex;
+                CodeDec += length2.ToString() + CodeDec;
+
+            }
+            catch (Exception ex)
+            {
+                Print(ex.ToString());
+                return;
+            }
+        }
+        public string ConvertChinese1(char str, string code)
+        {
+            string str2 = Convert.ToString(str);
+            byte[] data;
+            //ushort a3;
+            if (code == "GBK"|| code =="gbk")
+            {
+                return ConvertChinese2(str, code);
+            }
+            else if (code == "Unicode" || code == "unicode")
+            {
+                data = Encoding.Unicode.GetBytes(str2);
+            }
+            else if (code == "UTF8"|| code == "utf8" || code == "UTF-8")
+            {
+                data = Encoding.UTF8.GetBytes(str2);
+            }
+            else if (code == "Big5" || code == "big5" || code == "BIG5")
+            {
+                return ConvertChinese2(str, code);
+            }
+            else if (code == "GB2312")
+            {
+                return ConvertChinese2(str, code);
+            }
+            else { Print("encoding error"); return "0x00"; }
+            string data1 = data[1].ToString("x"); if (data1.Length == 1) data1 = "0" + data1;
+            string data2 = data[0].ToString("x"); if (data2.Length == 1) data2 = "0" + data2;
+            str2 = data1 + data2;
+            return str2;
+            //a3 = Convert.ToUInt16(str2, 16);
+            //return a3;
+        }
+        public string ConvertChinese2(char str, string code)
+        {
+            string str2 = Convert.ToString(str);
+            byte[] data = Encoding.GetEncoding(code).GetBytes(str2);
+            string Data1 = data[0].ToString("x"); if (Data1.Length == 1) Data1 = "0" + Data1;
+            string Data2 = data[1].ToString("x"); if (Data2.Length == 1) Data2 = "0" + Data2;
+            str2 = Data1 + Data2;
+            return str2;
+            //ushort a3 = Convert.ToUInt16(str2, 16);
+            //return a3;
+        }
+        #region ascii
+        public static int[] ascii_to_scan_code_table = {
+	/* ASCII:   0 */0,
+	/* ASCII:   1 */0,
+	/* ASCII:   2 */0,
+	/* ASCII:   3 */0,
+	/* ASCII:   4 */0,
+	/* ASCII:   5 */0,
+	/* ASCII:   6 */0,
+	/* ASCII:   7 */0,
+	/* ASCII:   8 */ 42,
+	/* ASCII:   9 */ 43,
+	/* ASCII:  10 */ 40,
+	/* ASCII:  11 */ 0,
+	/* ASCII:  12 */ 0,
+	/* ASCII:  13 */ 0,
+	/* ASCII:  14 */ 0,
+	/* ASCII:  15 */ 0,
+	/* ASCII:  16 */ 0,
+	/* ASCII:  17 */ 0,
+	/* ASCII:  18 */ 0,
+	/* ASCII:  19 */ 0,
+	/* ASCII:  20 */ 0,
+	/* ASCII:  21 */ 0,
+	/* ASCII:  22 */ 0,
+	/* ASCII:  23 */ 0,
+	/* ASCII:  24 */ 0,
+	/* ASCII:  25 */ 0,
+	/* ASCII:  26 */ 0,
+	/* ASCII:  27 */ 41,
+	/* ASCII:  28 */ 0,
+	/* ASCII:  29 */ 0,
+	/* ASCII:  30 */ 0,
+	/* ASCII:  31 */ 0,
+	/* ASCII:  32 */ 44,
+	/* ASCII:  33 */ 158,
+	/* ASCII:  34 */ 180,
+	/* ASCII:  35 */ 160,
+	/* ASCII:  36 */ 161,
+	/* ASCII:  37 */ 162,
+	/* ASCII:  38 */ 164,
+	/* ASCII:  39 */ 52,
+	/* ASCII:  40 */ 166,
+	/* ASCII:  41 */ 167,
+	/* ASCII:  42 */ 165,
+	/* ASCII:  43 */ 174,
+	/* ASCII:  44 */ 54,
+	/* ASCII:  45 */ 45,
+	/* ASCII:  46 */ 55,
+	/* ASCII: / 47 */ 56,
+	/* ASCII:  48 */ 39,
+	/* ASCII:  49 */ 30,
+	/* ASCII:  50 */ 31,
+	/* ASCII:  51 */ 32,
+	/* ASCII:  52 */ 33,
+	/* ASCII:  53 */ 34,
+	/* ASCII:  54 */ 35,
+	/* ASCII:  55 */ 36,
+	/* ASCII:  56 */ 37,
+	/* ASCII:  57 */ 38,
+	/* ASCII:  58 */ 179,
+	/* ASCII:  59 */ 51,
+	/* ASCII:  60 */ 182,
+	/* ASCII:  61 */ 46,
+	/* ASCII:  62 */ 183,
+	/* ASCII:  ?63 */ 184,
+	/* ASCII:  64 */ 159,
+	/* ASCII: A 65 */ 132,
+	/* ASCII:  66 */ 133,
+	/* ASCII:  67 */ 134,
+	/* ASCII:  68 */ 135,
+	/* ASCII:  69 */ 136,
+	/* ASCII:  70 */ 137,
+	/* ASCII:  71 */ 138,
+	/* ASCII:  72 */ 139,
+	/* ASCII:  73 */ 140,
+	/* ASCII:  74 */ 141,
+	/* ASCII:  75 */ 142,
+	/* ASCII:  76 */ 143,
+	/* ASCII:  77 */ 144,
+	/* ASCII:  78 */ 145,
+	/* ASCII:  79 */ 146,
+	/* ASCII:  80 */ 147,
+	/* ASCII:  81 */ 148,
+	/* ASCII:  82 */ 149,
+	/* ASCII:  83 */ 150,
+	/* ASCII:  84 */ 151,
+	/* ASCII:  85 */ 152,
+	/* ASCII:  86 */ 153,
+	/* ASCII:  87 */ 154,
+	/* ASCII:  88 */ 155,
+	/* ASCII:  89 */ 156,
+	/* ASCII: Z 90 */ 157,
+	/* ASCII:  91 */ 47,
+	/* ASCII:  92 */ 49,
+	/* ASCII:  93 */ 48,
+	/* ASCII:  94 */ 163,
+	/* ASCII:  95 */ 173,
+	/* ASCII:  96 */ 53,
+	/* ASCII: a 97 */ 4,
+	/* ASCII:  98 */ 5,
+	/* ASCII:  99 */ 6,
+	/* ASCII: 100 */ 7,
+	/* ASCII: 101 */ 8,
+	/* ASCII: 102 */ 9,
+	/* ASCII: 103 */ 10,
+	/* ASCII: 104 */ 11,
+	/* ASCII: 105 */ 12,
+	/* ASCII: 106 */ 13,
+	/* ASCII: 107 */ 14,
+	/* ASCII: 108 */ 15,
+	/* ASCII: 109 */ 16,
+	/* ASCII: 110 */ 17,
+	/* ASCII: 111 */ 18,
+	/* ASCII: 112 */ 19,
+	/* ASCII: 113 */ 20,
+	/* ASCII: 114 */ 21,
+	/* ASCII: 115 */ 22,
+	/* ASCII: 116 */ 23,
+	/* ASCII: 117 */ 24,
+	/* ASCII: 118 */ 25,
+	/* ASCII: 119 */ 26,
+	/* ASCII: 120 */ 27,
+	/* ASCII: 121 */ 28,
+	/* ASCII: 122 */ 29,
+	/* ASCII: 123 */ 175,
+	/* ASCII: 124 */ 177,
+	/* ASCII: 125 */ 176,
+	/* ASCII: 126 */ 181 };
+        #endregion
     }
 }

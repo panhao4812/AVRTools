@@ -278,10 +278,9 @@ namespace HidRawTools
                 }
                 for (int i = 0; i < HidDeviceList.Length; i++)
                 {
-                    //Print(HidDeviceList[i].DevicePath);
-                    HidDevice = HidDeviceList[0];
-                    break;
+                    Print(HidDeviceList[i].DevicePath);                   
                 }
+                HidDevice = HidDeviceList[0];
                 if (HidDevice == null)
                 {
                     Print("Connect usb device. Try open again.");

@@ -128,21 +128,21 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.Open_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.Save_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
             this.saveAsToolStripMenuItem.Text = "Save As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.SaveAs_Click);
             // 
@@ -151,13 +151,13 @@
             this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.keycapToolStripMenuItem});
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
             this.exportToolStripMenuItem.Text = "Export";
             // 
             // keycapToolStripMenuItem
             // 
             this.keycapToolStripMenuItem.Name = "keycapToolStripMenuItem";
-            this.keycapToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.keycapToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
             this.keycapToolStripMenuItem.Text = "Keycap";
             this.keycapToolStripMenuItem.Click += new System.EventHandler(this.Export_Keycap_Click);
             // 
@@ -284,15 +284,16 @@
             // Upload_Matrix
             // 
             this.Upload_Matrix.Name = "Upload_Matrix";
-            this.Upload_Matrix.Size = new System.Drawing.Size(161, 26);
+            this.Upload_Matrix.Size = new System.Drawing.Size(181, 26);
             this.Upload_Matrix.Text = "Matrix";
             this.Upload_Matrix.Click += new System.EventHandler(this.Upload_Click);
             // 
             // printerToolStripMenuItem
             // 
             this.printerToolStripMenuItem.Name = "printerToolStripMenuItem";
-            this.printerToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
+            this.printerToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.printerToolStripMenuItem.Text = "Printer";
+            this.printerToolStripMenuItem.Click += new System.EventHandler(this.Upload_Printer_Click);
             // 
             // menu4
             // 
@@ -305,7 +306,7 @@
             // TestKey_Enable
             // 
             this.TestKey_Enable.Name = "TestKey_Enable";
-            this.TestKey_Enable.Size = new System.Drawing.Size(181, 26);
+            this.TestKey_Enable.Size = new System.Drawing.Size(139, 26);
             this.TestKey_Enable.Text = "Start";
             this.TestKey_Enable.Click += new System.EventHandler(this.TestKey_Click);
             // 
@@ -493,7 +494,7 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(53, 20);
             this.label8.TabIndex = 42;
-            this.label8.Text = "WORD";
+            this.label8.Text = "CHAR";
             // 
             // Length2Box
             // 
@@ -516,8 +517,9 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(102, 36);
             this.button1.TabIndex = 40;
-            this.button1.Text = "UTF-8";
+            this.button1.Text = "UTF8";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.EncodeButton5_Click);
             // 
             // button2
             // 
@@ -528,6 +530,7 @@
             this.button2.TabIndex = 39;
             this.button2.Text = "Unicode";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.EncodeButton4_Click);
             // 
             // EncodeButton3
             // 
@@ -538,6 +541,7 @@
             this.EncodeButton3.TabIndex = 37;
             this.EncodeButton3.Text = "Big5";
             this.EncodeButton3.UseVisualStyleBackColor = true;
+            this.EncodeButton3.Click += new System.EventHandler(this.EncodeButton3_Click);
             // 
             // EncodeButton2
             // 
@@ -548,6 +552,7 @@
             this.EncodeButton2.TabIndex = 36;
             this.EncodeButton2.Text = "GB2312";
             this.EncodeButton2.UseVisualStyleBackColor = true;
+            this.EncodeButton2.Click += new System.EventHandler(this.EncodeButton2_Click);
             // 
             // EncodeButton1
             // 
@@ -558,6 +563,7 @@
             this.EncodeButton1.TabIndex = 35;
             this.EncodeButton1.Text = "GBK";
             this.EncodeButton1.UseVisualStyleBackColor = true;
+            this.EncodeButton1.Click += new System.EventHandler(this.EncodeButton1_Click);
             // 
             // label7
             // 
@@ -609,9 +615,11 @@
             this.PrinterEncodeBox.Location = new System.Drawing.Point(700, 3);
             this.PrinterEncodeBox.Multiline = true;
             this.PrinterEncodeBox.Name = "PrinterEncodeBox";
+            this.PrinterEncodeBox.ReadOnly = true;
             this.PrinterEncodeBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.PrinterEncodeBox.Size = new System.Drawing.Size(443, 270);
             this.PrinterEncodeBox.TabIndex = 30;
+            this.PrinterEncodeBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrinterEncodeBox_KeyDown);
             // 
             // label4
             // 
@@ -670,6 +678,7 @@
             this.PrinterInputBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.PrinterInputBox.Size = new System.Drawing.Size(473, 270);
             this.PrinterInputBox.TabIndex = 0;
+            this.PrinterInputBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.PrinterInputBox_KeyDown);
             // 
             // PidBox
             // 

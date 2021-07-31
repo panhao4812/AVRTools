@@ -20,6 +20,7 @@ namespace AVRTools
     public partial class AVRKeys : Form
     {
         #region IO
+        string SavePath = "";
         private void Open_Click(object sender, EventArgs e)
         {
             try
@@ -116,8 +117,11 @@ namespace AVRTools
                 Print(ex.ToString());
             }
         }
+
         #endregion
         #region Load
+        public IMatrix ActiveMatrix;
+        public Button ActiveButton;
         public void Print(string str)
         {
             ConsoleBox.Text += str + "\r\n";
@@ -125,12 +129,7 @@ namespace AVRTools
         public void Clear()
         {
             ConsoleBox.Text = "";
-        }
-        string SavePath = "";
-        public IMatrix ActiveMatrix;
-        public Button ActiveButton;
-        public Color KeycapColor = Color.White;
-        public static HidDevice HidDevice;
+        }                  
         private void DefaultLayout()
         {
             int Height1 = 20; int Width1 = 54;
@@ -144,11 +143,7 @@ namespace AVRTools
             PrinterInputBox.Size = new Size(350, 215);
             PrinterEncodeBox.Size = new Size(350, 215);
             PrinterEncodeBox.Height += Height1;
-            PrinterInputBox.Height += Height1;
-            // Panel panel = new Panel();
-            // panel.Location = new Point(0, 0);
-            // panel.Size =new Size( 1106, 279);
-            // Layer1.Controls.Add(panel);
+            PrinterInputBox.Height += Height1;        
         }
         public AVRKeys()
         {
@@ -156,8 +151,12 @@ namespace AVRTools
         }
         private void AVRKeys_Load(object sender, EventArgs e)
         {
-            DefaultLayout();
+            DefaultLayout();         
+            FuncEncode = new IEncode(ConsoleBox);
             USPage.Controls.Clear();
+            MacroPage.Controls.Clear();
+            IOPage.Controls.Clear();
+            ColorPage.Controls.Clear();
             IMatrix matrix104 = new QMK104_ISO();
             List<Button> buttons1 = matrix104.CreateButton(36);
             for (int i = 0; i < buttons1.Count; i++)
@@ -166,23 +165,12 @@ namespace AVRTools
                 buttons1[i].MouseDown += new MouseEventHandler(Keycode_Button_MouseClick);
                 USPage.Controls.Add(IKeycap.UpdateButton(buttons1[i]));
             }
-            /*
-            try
-            {
-                string path = @"C:\Users\Administrator\Desktop\ASCaaII.txt";
-                FileStream fs = new FileStream(path, FileMode.Open);
-                StreamReader srd = new StreamReader(fs,Encoding.GetEncoding("GBK"));
-                    while (srd.Peek() != -1)
-                {
-                    Print("\""+srd.ReadLine()+ "\",");
-                }
-                srd.Close();            
-            }
-            catch (Exception ex)
-            {
-                Print(ex.ToString());
-            }
-            */
+            List<Button> buttons2 = IColors.CreateButton(27);
+            for (int i = 0; i < buttons2.Count; i++)
+            {            
+                //buttons1[i].MouseDown += new MouseEventHandler(Keycode_Button_MouseClick);
+                ColorPage.Controls.Add(IKeycap.UpdateButton(buttons2[i]));
+            }        
         }
         private void ClearButton()
         {
@@ -299,6 +287,7 @@ namespace AVRTools
         }
         #endregion
         #region keyboard
+        public Color KeycapColor = Color.White;
         private void InitMatrrix()
         {
             ClearButton();
@@ -396,6 +385,7 @@ namespace AVRTools
         }
         #endregion
         #region uploadMatrix
+        public static HidDevice HidDevice;
         private void Upload_Click(object sender, EventArgs e)
         {
             SelectKeysPanel.SelectedTab = ConsolePage;
@@ -552,10 +542,10 @@ namespace AVRTools
             {
                 ((Button)Layer2Page.Controls[i]).BackColor = KeycapColor;
             }
-            if (TestKey_Enable.Name == "Close")
+            if (TestKey_Enable.Text == "Close")
             {
                 EnableControl();
-                TestKey_Enable.Name = "start";
+                TestKey_Enable.Text = "Start";
                 Layer1Page.BackColor = Color.White;
                 Layer2Page.BackColor = Color.White;
                 keytest = false;
@@ -565,7 +555,7 @@ namespace AVRTools
                 //keytest start
                 DisableControl();
                 Clear();
-                TestKey_Enable.Name = "Close";
+                TestKey_Enable.Text = "Close";
                 Layer1Page.BackColor = Color.LightGray;
                 Layer2Page.BackColor = Color.LightGray;
                 keytest = true;
@@ -601,9 +591,112 @@ namespace AVRTools
             PrinterPage.Enabled = false;
             ColorPage.Enabled = false;
         }
-
         #endregion
-
-        
+        #region Printer
+        public IEncode FuncEncode ;
+        private void EncodeButton1_Click(object sender, EventArgs e)
+        {
+            FuncEncode.Solve(PrinterInputBox.Text, "GBK");
+            PrinterEncodeBox.Text = FuncEncode.CodeHex;
+        }
+        private void EncodeButton2_Click(object sender, EventArgs e)
+        {
+            FuncEncode.Solve(PrinterInputBox.Text, "GB2312");
+            PrinterEncodeBox.Text = FuncEncode.CodeHex;
+        }
+        private void EncodeButton3_Click(object sender, EventArgs e)
+        {
+          FuncEncode.Solve(PrinterInputBox.Text, "Big5");
+            PrinterEncodeBox.Text = FuncEncode.CodeHex;
+        }
+        private void EncodeButton4_Click(object sender, EventArgs e)
+        {
+           FuncEncode.Solve(PrinterInputBox.Text, "Unicode");
+            PrinterEncodeBox.Text = FuncEncode.CodeHex;
+        }
+        private void EncodeButton5_Click(object sender, EventArgs e)
+        {
+            FuncEncode.Solve(PrinterInputBox.Text, "UTF8");
+            PrinterEncodeBox.Text = FuncEncode.CodeHex;
+        }
+        private void PrinterInputBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.A)
+            {
+                ((TextBox)sender).SelectAll();
+            }
+        }
+        private void PrinterEncodeBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.A)
+            {
+                ((TextBox)sender).SelectAll();
+            }
+        }
+        private void Upload_Printer_Click(object sender, EventArgs e)
+        {                
+            OpenDevice();
+            string CodeTemp= FuncEncode.CodeDec;
+            try
+            {
+                if (ActiveMatrix == null) return;
+                Print("eepromsize=" + ActiveMatrix.MAX_EEP.ToString());
+                if (CodeTemp == "")
+                {
+                    Print("Nothing to upload");
+                    return;
+                }
+                string[] str = CodeTemp.Split(',');
+                if (HidDevice == null)
+                {
+                    Print("Invalid device");
+                    return;
+                }
+                byte[] outdata = new byte[9]; outdata[0] = 0;
+                byte[] a = new byte[2];
+                outdata[1] = 0xFF; outdata[2] = 0xF1;
+                HidDevice.Write(outdata); Thread.Sleep(100);//汇报符的等待时间和灯的延迟有关，必须大于一个灯的循环。
+                for (ushort i = 0; (i * 2 + 4 + ActiveMatrix.ADD_EEP) < ActiveMatrix.MAX_EEP; i += 3)
+                {
+                    a = BitConverter.GetBytes((ushort)(i * 2 + ActiveMatrix.ADD_EEP));
+                    outdata[1] = a[0]; outdata[2] = a[1];
+                    if ((i + 2) < str.Length)
+                    {
+                        ushort data3 = Convert.ToUInt16(str[i + 2]);
+                        //Print(data3);
+                        a = BitConverter.GetBytes(data3);
+                        outdata[7] = a[0]; outdata[8] = a[1];
+                    }
+                    if ((i + 1) < str.Length)
+                    {
+                        ushort data2 = Convert.ToUInt16(str[i + 1]);
+                        //Print(data2);
+                        a = BitConverter.GetBytes(data2);
+                        outdata[5] = a[0]; outdata[6] = a[1];
+                    }
+                    if (i < str.Length)
+                    {
+                        ushort data1 = Convert.ToUInt16(str[i]);
+                        //Print(data1);
+                        a = BitConverter.GetBytes(data1);
+                        outdata[3] = a[0]; outdata[4] = a[1];
+                    }
+                    else { break; }
+                    HidDevice.Write(outdata);
+                    string outdatastr = "";
+                    for (int k = 1; k < outdata.Length; k++)
+                    {
+                        outdatastr += outdata[k].ToString() + "/";
+                    }
+                    Print(outdatastr);
+                    Thread.Sleep(100);
+                }
+                outdata[1] = 0xFF; outdata[2] = 0xF2;
+                HidDevice.Write(outdata); Thread.Sleep(100);
+                Print("Upload finished");
+            }
+            catch (Exception ex) { Print(ex.ToString()); }    
+    }
+        #endregion
     }
 }
