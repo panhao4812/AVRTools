@@ -23,11 +23,11 @@ namespace AVRKeys.Keyboard
             str += layer2;
             return str;
         }
-        public float X = 0;
-        public float Y = 0;
+        public double X = 0;
+        public double Y = 0;
         public int R = 0;
         public int C = 0;
-        public float L = 0;
+        public double L = 0;
         public string layer1;
         public string layer2;
         public IKeycap(string input)
@@ -43,11 +43,13 @@ namespace AVRKeys.Keyboard
         public static Button UpdateButton(Button button)
         {
             //fix fond size
-            if (button.Width < 40 || button.Height < 40 || button.Text.Length > 3)
+            double L = button.Width / button.Height;
+            if (L < 1) L = 1 / L;
+            if (button.Width < 40 || button.Height < 40 )
             {
                 button.Font = new Font(button.Font.SystemFontName, button.Font.Size - 1);
             }
-            if (button.Text.Length > 5)
+            if (button.Text.Length/L >= 5)
             {
                 button.Font = new Font(button.Font.SystemFontName, button.Font.Size - 2);
             }
@@ -56,13 +58,33 @@ namespace AVRKeys.Keyboard
         public Button CreateButton(int U1)
         {
             Button button = new Button();
-            float x = X * U1 + 1;
-            float y = Y * U1 + 1;
+            double x = X * U1 + 1;
+            double y = Y * U1 + 1;
             button.Width = (int)(U1 * L) - 2;
             button.Height = (int)U1 - 2;
             if (L == 0.5)
             {
                 button.Width = (int)U1 - 2;
+                button.Height = (int)(U1 * 2) - 2;
+            }
+            button.Location = new Point((int)x, (int)y);
+            button.FlatStyle = FlatStyle.Flat;
+            button.BackColor = Color.White;
+            button.Font = new Font("Arial", 9);
+            button.TextAlign = ContentAlignment.TopLeft;
+            button.TabStop = false;
+            return button;
+        }
+        public Button CreateButton(int U1,double scale)
+        {
+            Button button = new Button();
+            double x = X * U1*scale + 1;
+            double y = Y * U1 + 1;
+            button.Width = (int)(U1 * scale * L) - 2;
+            button.Height = (int)U1 - 2;
+            if (L == 0.5)
+            {
+                button.Width = (int)(U1 * scale) - 2;
                 button.Height = (int)(U1 * 2) - 2;
             }
             button.Location = new Point((int)x, (int)y);
@@ -80,6 +102,7 @@ namespace AVRKeys.Keyboard
         public IMega32U4 FuncMega32U4 = new IMega32U4();
         public IColors FuncColors = new IColors();
         public List<IKeycap> key_caps = new List<IKeycap>();
+        public List<IKeycap> RGB = new List<IKeycap>();
         public string DEBUG_OUTPUT = "";
         public string NAME = "unamed";
         /// ///////////////
@@ -132,6 +155,27 @@ namespace AVRKeys.Keyboard
                 key_caps.Add(new IKeycap(keycap[i]));
             }
         }
+        public void RGB_Init(string[] keycap)
+        {
+            if (keycap.Length <= 0) return;
+            RGB.Clear();
+            for (int i = 0; i < keycap.Length; i++)
+            {
+                RGB.Add(new IKeycap(keycap[i]));
+            }
+            if(rgb_pos.Length == RGB.Count)
+            {
+                for (int i = 0; i < rgb_pos.Length; i++)
+                {
+                    RGB[i].layer1 = rgb_pos[i].ToString();
+
+                    double maxX = 21;
+                    //double maxY = 5 * 48 ;
+                    int index = (int)(RGB[i].X / maxX * 254);
+                    RGB[i].layer2 = index.ToString();
+                }
+            }
+        }
         public void IO_Init(int[] R, int[] C, int WS2812_pin, int WS2812_count, int Effect_count)
         {
             row_pins = R; col_pins = C;
@@ -169,6 +213,29 @@ namespace AVRKeys.Keyboard
             }
             return bus;
         }
+        public List<Button> CreateRGBButton(int U1)
+        {
+            List<Button> bus = new List<Button>();
+            for (int i = 0; i < this.RGB.Count; i++)
+            {
+                Button button = RGB[i].CreateButton(U1);
+                button.Name = i.ToString();
+                button.Font = new Font("Courier10 BT", 7);
+                bus.Add(button);
+            }
+            return bus;
+        }
+        public List<Button> CreateButton(int U1, double scale)
+        {
+            List<Button> bus = new List<Button>();
+            for (int i = 0; i < this.key_caps.Count; i++)
+            {
+                Button button = key_caps[i].CreateButton(U1, (double) scale);
+                button.Name = i.ToString();
+                bus.Add(button);
+            }
+            return bus;
+        }
         public List<Button> CreateIOButton(int U1)
         {
             List<Button> bus = new List<Button>();
@@ -176,8 +243,8 @@ namespace AVRKeys.Keyboard
             for (int i = 0; i < ROWS; i++)
             {
                 Button button = new Button();
-                float x = i * U1 + 1;
-                float y = 0 * U1 + 1;
+                double x = i * U1 + 1;
+                double y = 0 * U1 + 1;
                 button.Width = (int)U1 - 2;
                 button.Height = (int)U1 - 2;
                 button.Location = new Point((int)x, (int)y);
@@ -193,8 +260,8 @@ namespace AVRKeys.Keyboard
             for (int i = 0; i < COLS; i++)
             {
                 Button button = new Button();
-                float x = i * U1 + 1;
-                float y = 1 * U1 + 1;
+                double x = i * U1 + 1;
+                double y = 1 * U1 + 1;
                 button.Width = (int)U1 - 2;
                 button.Height = (int)U1 - 2;
                 button.Location = new Point((int)x, (int)y);
@@ -395,6 +462,22 @@ namespace AVRKeys.Keyboard
             {
                 return "";
             }
+        }
+    }
+    public partial class PanelUS : IMatrix
+    {
+        public PanelUS()
+        {
+            this.NAME = "Panel104";
+            KeyCap_Init(keycap);
+        }
+    }
+    public partial class PanelMacro : IMatrix
+    {
+        public PanelMacro()
+        {
+            this.NAME = "PanelMacro";
+            KeyCap_Init(keycap);
         }
     }
     public partial class QMK61_ISO : IMatrix

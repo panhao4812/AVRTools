@@ -508,7 +508,6 @@ namespace AVRKeys.Keyboard
             }
         }
     }
-
     public class IEncode
     {
         public TextBox console;
@@ -544,8 +543,9 @@ namespace AVRKeys.Keyboard
                         int code = ascii_to_scan_code_table[(int)ch[j]];
                         if (code != 0)
                         {
-                            CodeHex += "," + code.ToString("x");
-                            CodeDec += "," + code.ToString();
+                            if (j != 0) { CodeHex += ","; CodeDec += ","; }
+                            CodeHex +=  code.ToString("x");
+                            CodeDec +=  code.ToString();
                         }
                         else
                         {
@@ -556,11 +556,12 @@ namespace AVRKeys.Keyboard
                     {
                         //汉字   
                         string a3 = ConvertChinese1(ch[j], encode);
-                        CodeHex += "," + a3;
-                        CodeDec += "," + Convert.ToUInt16(a3, 16).ToString();
+                        if (j!= 0){CodeHex += ","; CodeDec += ",";}
+                        CodeHex +=  a3;
+                        CodeDec +=  Convert.ToUInt16(a3, 16).ToString();
                     }
                 }
-                CodeHex += length2.ToString("x") + CodeHex;
+                CodeHex = length2.ToString("x") + CodeHex;
                 CodeDec += length2.ToString() + CodeDec;
 
             }
@@ -607,8 +608,16 @@ namespace AVRKeys.Keyboard
         {
             string str2 = Convert.ToString(str);
             byte[] data = Encoding.GetEncoding(code).GetBytes(str2);
-            string Data1 = data[0].ToString("x"); if (Data1.Length == 1) Data1 = "0" + Data1;
-            string Data2 = data[1].ToString("x"); if (Data2.Length == 1) Data2 = "0" + Data2;
+            string Data1 = "00"; string Data2 = "00";
+            if (data.Length == 0) { }
+            else if (data.Length == 1) {
+                Data1 = data[0].ToString("x"); if (Data1.Length == 1) Data1 = "0" + Data1;
+            }
+            else
+            {
+                Data1 = data[0].ToString("x"); if (Data1.Length == 1) Data1 = "0" + Data1;
+                Data2 = data[1].ToString("x"); if (Data2.Length == 1) Data2 = "0" + Data2;
+            }
             str2 = Data1 + Data2;
             return str2;
             //ushort a3 = Convert.ToUInt16(str2, 16);

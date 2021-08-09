@@ -157,7 +157,7 @@ namespace AVRTools
             MacroPage.Controls.Clear();
             IOPage.Controls.Clear();
             ColorPage.Controls.Clear();
-            IMatrix matrix104 = new QMK104_ISO();
+            IMatrix matrix104 = new PanelUS();
             List<Button> buttons1 = matrix104.CreateButton(36);
             for (int i = 0; i < buttons1.Count; i++)
             {
@@ -165,10 +165,18 @@ namespace AVRTools
                 buttons1[i].MouseDown += new MouseEventHandler(Keycode_Button_MouseClick);
                 USPage.Controls.Add(IKeycap.UpdateButton(buttons1[i]));
             }
+            IMatrix matrixMacro = new PanelMacro();
+            List<Button> buttons3 = matrixMacro.CreateButton(40);
+            for (int i = 0; i < buttons3.Count; i++)
+            {
+                buttons3[i].Text = matrixMacro.FuncCodes.FromFullName(matrixMacro.key_caps[i].layer1).ShortName;
+                buttons3[i].MouseDown += new MouseEventHandler(Keycode_Button_MouseClick);
+                MacroPage.Controls.Add(IKeycap.UpdateButton(buttons3[i]));
+            }
             List<Button> buttons2 = IColors.CreateButton(27);
             for (int i = 0; i < buttons2.Count; i++)
             {            
-                //buttons1[i].MouseDown += new MouseEventHandler(Keycode_Button_MouseClick);
+                buttons2[i].MouseDown += new MouseEventHandler(Color_Button_MouseClick);
                 ColorPage.Controls.Add(IKeycap.UpdateButton(buttons2[i]));
             }        
         }
@@ -198,6 +206,13 @@ namespace AVRTools
             if (ActiveMatrix == null) return;
             int index = Convert.ToInt32(((Button)sender).Name);
             ActiveMatrix.key_caps[index].layer2 = ((Button)sender).Text;
+        }
+        private void RGB_Keycap_BackColorChanged(object sender, EventArgs e)
+        {
+            if (ActiveMatrix == null) return;
+            int index = Convert.ToInt32(((Button)sender).Name);
+            string[] cr = ((Button)sender).Text.Split('/');
+            ActiveMatrix.RGB[index].layer2 = cr[1];
         }
         private void Schematic_Keycap_TextChanged(object sender, EventArgs e)
         {
@@ -262,6 +277,24 @@ namespace AVRTools
                 }
             }
         }
+        private void Color_Button_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (ActiveButton == null) return;
+            //key button      
+            if (e.Button == MouseButtons.Right)
+            {
+
+            }
+            else
+            {
+                if (ActiveButton.Parent.Name == "RGBPage")
+                {
+                    ActiveButton.BackColor = ((Button)sender).BackColor;
+                    string[] strs1 = ActiveButton.Text.Split('/');
+                    ActiveButton.Text = strs1[0]+"/"+((Button)sender).Text;
+                }
+            }
+        }
         private void Layer1_Enter(object sender, EventArgs e)
         {
             if (ActiveButton != null) { ActiveButton.FlatAppearance.BorderSize = 1; }
@@ -295,7 +328,18 @@ namespace AVRTools
             List<Button> buttons2 = ActiveMatrix.CreateButton(40);
             List<Button> buttons3 = ActiveMatrix.CreateButton(40);
             List<Button> buttons4 = ActiveMatrix.CreateIOButton(40);
-            for (int i = 0; i < buttons4.Count; i++)
+            List<Button> buttons5 = ActiveMatrix.CreateRGBButton(40);
+            for (int i = 0; i < buttons5.Count; i++)
+            {
+                buttons5[i].Text = ActiveMatrix.RGB[i].layer1+"/"+ ActiveMatrix.RGB[i].layer2;
+                int colorIndex = Convert.ToInt32(ActiveMatrix.RGB[i].layer2);
+                buttons5[i].BackColor = IColors.GetColor(colorIndex) ;
+                buttons5[i].MouseDown += new MouseEventHandler(Keycap_Button_MouseClick);
+                buttons5[i].BackColorChanged += new System.EventHandler(RGB_Keycap_BackColorChanged);
+                RGBPage.Controls.Add(buttons5[i]);
+
+            }
+                for (int i = 0; i < buttons4.Count; i++)
             {
                 buttons4[i].MouseDown += new MouseEventHandler(IO_Button_MouseClick);
                 IOPage.Controls.Add(buttons4[i]);
@@ -698,5 +742,10 @@ namespace AVRTools
             catch (Exception ex) { Print(ex.ToString()); }    
     }
         #endregion
+
+        private void button3_BackColorChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

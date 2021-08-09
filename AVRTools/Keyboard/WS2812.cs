@@ -15,8 +15,17 @@ namespace AVRKeys.Keyboard
             int[] col_pins = new int[14] { 18, 19, 20, 21, 4, 16, 22, 11, 12, 13, 14, 15, 9, 10 };
             IO_Init(row_pins, col_pins, FuncMega32U4.GetIOIndex("F6"), 64, 3);
             KeyCap_Init(keycap2);
+            this.rgb_pos = new int[64]{
+63,62,61,60,59,58,57,56,55,54,53,52,51,50,
+49,48,47,46,45,44,43,42,41,40,39,38,37,36,
+35,34,33,32,31,30,29,28,27,26,25,24,23,
+22,21,20,19,18,17,16,15,14,13,12,11,10,9,
+8,7,6,5,4,3,2,1,0
+};
+            RGB_Init(keycap2);
         }
         #region kecap
+        
         string[] keycap2 = new string[64]{
 "0,0,1,0,0,MACRO2,KEY_TILDE",
 "1,0,1,0,1,KEY_1,KEY_F1",
@@ -94,6 +103,13 @@ namespace AVRKeys.Keyboard
             int[] col_pins = new int[15] { 16, 17, 18, 19, 20, 21, 24, 0, 1, 2, 3, 5, 6, 7, 8 };
             IO_Init(row_pins, col_pins, FuncMega32U4.GetIOIndex("D7"), 61, 3);
             KeyCap_Init(keycap2);
+            this.rgb_pos = new int[61]{
+0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,
+    16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,
+    31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,
+    46,47,48,49,50,51,52,53,54,55,56,57,58,59,60
+};
+            RGB_Init(keycap2);
         }
         #region kecap
         string[] keycap2 = new string[61]{
