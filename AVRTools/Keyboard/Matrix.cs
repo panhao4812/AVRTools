@@ -100,7 +100,7 @@ namespace AVRKeys.Keyboard
     {
         public ICodes FuncCodes = new ICodes();
         public IMega32U4 FuncMega32U4 = new IMega32U4();
-        public IColors FuncColors = new IColors();
+        public Color[] IOColors = IColors.GetIOColors();
         public List<IKeycap> key_caps = new List<IKeycap>();
         public List<IKeycap> RGB = new List<IKeycap>();
         public string DEBUG_OUTPUT = "";
@@ -157,6 +157,7 @@ namespace AVRKeys.Keyboard
         }
         public void RGB_Init(string[] keycap)
         {
+            if (rgb_pos == null) return;
             if (keycap.Length <= 0) return;
             RGB.Clear();
             for (int i = 0; i < keycap.Length; i++)
@@ -186,7 +187,7 @@ namespace AVRKeys.Keyboard
             WS2812_PIN = WS2812_pin;
             WS2812_COUNT = WS2812_count;
             RGB_EFFECT_COUNT = Effect_count;
-            rgb_pos = new int[WS2812_COUNT];
+            if(rgb_pos==null)rgb_pos = new int[WS2812_COUNT];
             rgb_rainbow = new int[WS2812_COUNT];
             rgb_fixcolor = new int[(WS2812_COUNT * 3)];
             for (int i = 0; i < rgb_fixcolor.Length; i++)
@@ -270,7 +271,7 @@ namespace AVRKeys.Keyboard
                 button.Font = new Font("Courier10 BT", 8);
                 button.TextAlign = ContentAlignment.TopLeft;
                 button.Text = "c" + i.ToString() + "\r\n" + FuncMega32U4.GetIOName(col_pins[i]);
-                button.BackColor = FuncColors.IOColors[i];
+                button.BackColor = IOColors[i];
                 bus.Add(button);
             }
             return bus;
@@ -338,8 +339,9 @@ namespace AVRKeys.Keyboard
                         break;
                     case "RowPins":
                         datastring = srd.ReadLine();
-                        datastrings = datastring.Split(',');
-                        ROWS = datastrings.Length - 1;
+                        if (datastring == "") { ROWS = 0; break; }
+                        datastrings = datastring.Split(new Char[] { ',' },StringSplitOptions.RemoveEmptyEntries);
+                        ROWS = datastrings.Length;
                         if (ROWS < 0) { ROWS = 0; break; }
                         row_pins = new int[ROWS];
                         for (int i = 0; i < ROWS; i++)
@@ -349,13 +351,26 @@ namespace AVRKeys.Keyboard
                         break;
                     case "ColPins":
                         datastring = srd.ReadLine();
-                        datastrings = datastring.Split(',');
-                        COLS = datastrings.Length - 1;
+                        if (datastring=="") { COLS = 0; break; }
+                        datastrings = datastring.Split(new Char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                        COLS = datastrings.Length;
                         if (COLS < 0) { COLS = 0; break; }
                         col_pins = new int[COLS];
                         for (int i = 0; i < COLS; i++)
                         {
                             col_pins[i] = Convert.ToInt32(datastrings[i]);
+                        }
+                        break;
+                    case "RGBPos":
+                        datastring = srd.ReadLine();
+                        if (datastring == "") { break; }
+                        datastrings = datastring.Split(new Char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                        int Count = datastrings.Length;
+                        if (Count < 0) { break; }
+                        rgb_pos = new int[Count];
+                        for (int i = 0; i < Count; i++)
+                        {
+                            rgb_pos[i] = Convert.ToInt32(datastrings[i]);
                         }
                         break;
                     case "KeyCap":
@@ -365,8 +380,15 @@ namespace AVRKeys.Keyboard
             }
             srd.Close();
             MCU_Init(NAME, VENDOR_ID, PRODUCT_ID);
-            IO_Init(row_pins, col_pins, WS2812_PIN, WS2812_COUNT, RGB_EFFECT_COUNT);
+            if (row_pins != null && col_pins != null)
+            {
+                IO_Init(row_pins, col_pins, WS2812_PIN, WS2812_COUNT, RGB_EFFECT_COUNT);
+            }
             KeyCap_Init(keycaps.ToArray());
+            if (rgb_pos != null)
+            {
+                RGB_Init(keycaps.ToArray());
+            }
         }
         public override string ToString()
         {
@@ -388,6 +410,15 @@ namespace AVRKeys.Keyboard
             {
                 str += col_pins[i].ToString() + ",";
             }
+            if (rgb_pos != null)
+            {
+                str += "\r\n";
+                str += "RGBPos" + "\r\n";          
+                for (int i = 0; i < rgb_pos.Length; i++)
+                {
+                    str += rgb_pos[i].ToString() + ",";
+                }            
+            }
             str += "\r\n";
             str += "KeyCap" + "\r\n";
             str += PrintKeyCap();
@@ -403,7 +434,15 @@ namespace AVRKeys.Keyboard
                 this.hexa_keys1[key_caps[i].R, key_caps[i].C] = FuncCodes.FromFullName(key_caps[i].layer2).KeyCode;
                 key_mask[key_caps[i].R, key_caps[i].C] += FuncCodes.FromFullName(key_caps[i].layer1).KeyMask;
             }
-            try
+            for (int i = 0; i < RGB.Count; i++)
+            {
+                int index = Convert.ToInt32(RGB[i].layer1);
+                int colorIndex = Convert.ToInt32(RGB[i].layer2);
+                rgb_fixcolor[index * 3] = IColors.Rcolors[colorIndex];
+                rgb_fixcolor[index * 3+1] = IColors.Gcolors[colorIndex];
+                rgb_fixcolor[index * 3+2] = IColors.Bcolors[colorIndex];
+            }
+                try
             {
                 ushort add1 = 5 * 2;
                 ushort add2 = (ushort)(add1 + ROWS);
@@ -429,7 +468,6 @@ namespace AVRKeys.Keyboard
                 {
                     output.Append(col_pins[i]); output.Append(",");
                 }
-                int[,] mask = new int[ROWS, COLS];
                 for (int r = 0; r < ROWS; r++)
                 {
                     for (int c = 0; c < COLS; c++)
@@ -448,7 +486,7 @@ namespace AVRKeys.Keyboard
                 {
                     for (int c = 0; c < COLS; c++)
                     {
-                        output.Append(mask[r, c]); output.Append(",");
+                        output.Append(key_mask[r, c]); output.Append(",");
                     }
                 }
                 for (int i = 0; i < rgb_fixcolor.Length; i++)

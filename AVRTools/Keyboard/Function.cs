@@ -362,9 +362,9 @@ namespace AVRKeys.Keyboard
             }
             return bus;
         }
-        public Color[] IOColors = new Color[21];
-        public IColors()
-        {
+        public IColors() { }
+        public static Color[]  GetIOColors()
+        {  Color[] IOColors = new Color[21];
             for (int i = 0; i < 21; i++)
             {
                 if (i % 2 == 0)
@@ -376,6 +376,7 @@ namespace AVRKeys.Keyboard
                     IOColors[i] = Color.FromArgb(255, 255 - IOColors[i - 1].R, 255 - IOColors[i - 1].G, 255 - IOColors[i - 1].B);
                 }
             }
+            return IOColors;
         }
         public static Color GetColor(int index)
         {

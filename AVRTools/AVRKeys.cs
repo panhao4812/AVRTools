@@ -163,6 +163,7 @@ namespace AVRTools
             {
                 buttons1[i].Text = matrix104.FuncCodes.FromFullName(matrix104.key_caps[i].layer1).ShortName;
                 buttons1[i].MouseDown += new MouseEventHandler(Keycode_Button_MouseClick);
+                Tip1.SetToolTip(buttons1[i], buttons1[i].Text);
                 USPage.Controls.Add(IKeycap.UpdateButton(buttons1[i]));
             }
             IMatrix matrixMacro = new PanelMacro();
@@ -171,11 +172,14 @@ namespace AVRTools
             {
                 buttons3[i].Text = matrixMacro.FuncCodes.FromFullName(matrixMacro.key_caps[i].layer1).ShortName;
                 buttons3[i].MouseDown += new MouseEventHandler(Keycode_Button_MouseClick);
+                Tip1.SetToolTip(buttons3[i], buttons3[i].Text);
                 MacroPage.Controls.Add(IKeycap.UpdateButton(buttons3[i]));
             }
             List<Button> buttons2 = IColors.CreateButton(27);
             for (int i = 0; i < buttons2.Count; i++)
-            {            
+            {
+                Tip1.SetToolTip(buttons2[i], buttons2[i].BackColor.R.ToString()+","+
+                    buttons2[i].BackColor.G.ToString() + "," + buttons2[i].BackColor.B.ToString());
                 buttons2[i].MouseDown += new MouseEventHandler(Color_Button_MouseClick);
                 ColorPage.Controls.Add(IKeycap.UpdateButton(buttons2[i]));
             }        
@@ -186,6 +190,7 @@ namespace AVRTools
             Layer2Page.Controls.Clear();
             SchematicPage.Controls.Clear();
             IOPage.Controls.Clear();
+            RGBPage.Controls.Clear();
             PidBox.Text = "";
             VidBox.Text = "";
             EEPBox.Text = "";
@@ -207,7 +212,7 @@ namespace AVRTools
             int index = Convert.ToInt32(((Button)sender).Name);
             ActiveMatrix.key_caps[index].layer2 = ((Button)sender).Text;
         }
-        private void RGB_Keycap_BackColorChanged(object sender, EventArgs e)
+        private void RGB_Keycap_TextChanged(object sender, EventArgs e)
         {
             if (ActiveMatrix == null) return;
             int index = Convert.ToInt32(((Button)sender).Name);
@@ -273,7 +278,7 @@ namespace AVRTools
                     if (str2[0] == 'r') { R = str2.Remove(0, 1); C = strs1[1]; }
                     else if (str2[0] == 'c') { R = strs1[0]; C = str2.Remove(0, 1); }
                     ActiveButton.Text = R + "/" + C;
-                    ActiveButton.BackColor = ActiveMatrix.FuncColors.IOColors[Convert.ToInt32(C)];
+                    ActiveButton.BackColor = ActiveMatrix.IOColors[Convert.ToInt32(C)];
                 }
             }
         }
@@ -335,7 +340,7 @@ namespace AVRTools
                 int colorIndex = Convert.ToInt32(ActiveMatrix.RGB[i].layer2);
                 buttons5[i].BackColor = IColors.GetColor(colorIndex) ;
                 buttons5[i].MouseDown += new MouseEventHandler(Keycap_Button_MouseClick);
-                buttons5[i].BackColorChanged += new System.EventHandler(RGB_Keycap_BackColorChanged);
+                buttons5[i].TextChanged += new System.EventHandler(RGB_Keycap_TextChanged);
                 RGBPage.Controls.Add(buttons5[i]);
 
             }
@@ -359,7 +364,7 @@ namespace AVRTools
                 buttons3[i].Text = ActiveMatrix.key_caps[i].R.ToString() + "/" + ActiveMatrix.key_caps[i].C.ToString();
                 if (ActiveMatrix.ROWS != 0 || ActiveMatrix.COLS != 0)
                 {
-                    buttons3[i].BackColor = ActiveMatrix.FuncColors.IOColors[ActiveMatrix.key_caps[i].C];
+                    buttons3[i].BackColor = ActiveMatrix.IOColors[ActiveMatrix.key_caps[i].C];
                 }
                 buttons3[i].MouseDown += new MouseEventHandler(Keycap_Button_MouseClick);
                 buttons3[i].TextChanged += new System.EventHandler(Schematic_Keycap_TextChanged);
@@ -434,6 +439,17 @@ namespace AVRTools
         {
             SelectKeysPanel.SelectedTab = ConsolePage;
             UploadMatrix();
+        }
+        private void EncodeMatrix_Click(object sender, EventArgs e)
+        {
+            SelectKeysPanel.SelectedTab = ConsolePage;
+            if (ActiveMatrix == null)
+            {
+                Print("Nothing to upload,try to select a matrix.");
+                return;
+            }
+            string codeTemp = ActiveMatrix.EncodeMatrix();
+            Print(codeTemp);
         }
         private void OpenDevice()
         {
@@ -742,10 +758,6 @@ namespace AVRTools
             catch (Exception ex) { Print(ex.ToString()); }    
     }
         #endregion
-
-        private void button3_BackColorChanged(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }

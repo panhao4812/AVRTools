@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AVRKeys));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menu1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,6 +57,7 @@
             this.menu4 = new System.Windows.Forms.ToolStripMenuItem();
             this.TestKey_Enable = new System.Windows.Forms.ToolStripMenuItem();
             this.menu6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.encodeMatrixToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SelectKeysPanel = new System.Windows.Forms.TabControl();
             this.USPage = new System.Windows.Forms.TabPage();
             this.MacroPage = new System.Windows.Forms.TabPage();
@@ -90,7 +92,7 @@
             this.VidBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.Tip1 = new System.Windows.Forms.ToolTip(this.components);
             this.menuStrip1.SuspendLayout();
             this.SelectKeysPanel.SuspendLayout();
             this.ConsolePage.SuspendLayout();
@@ -313,9 +315,18 @@
             // 
             // menu6
             // 
+            this.menu6.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.encodeMatrixToolStripMenuItem});
             this.menu6.Name = "menu6";
             this.menu6.Size = new System.Drawing.Size(65, 24);
             this.menu6.Text = "HELP";
+            // 
+            // encodeMatrixToolStripMenuItem
+            // 
+            this.encodeMatrixToolStripMenuItem.Name = "encodeMatrixToolStripMenuItem";
+            this.encodeMatrixToolStripMenuItem.Size = new System.Drawing.Size(227, 26);
+            this.encodeMatrixToolStripMenuItem.Text = "Encode Matrix";
+            this.encodeMatrixToolStripMenuItem.Click += new System.EventHandler(this.EncodeMatrix_Click);
             // 
             // SelectKeysPanel
             // 
@@ -729,23 +740,12 @@
             this.label1.TabIndex = 19;
             this.label1.Text = "PID";
             // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(576, 5);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 23;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.BackColorChanged += new System.EventHandler(this.button3_BackColorChanged);
-            // 
             // AVRKeys
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1112, 654);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.PidBox);
             this.Controls.Add(this.VidBox);
             this.Controls.Add(this.label2);
@@ -834,7 +834,8 @@
         private System.Windows.Forms.TextBox Length2Box;
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem keycapToolStripMenuItem;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ToolStripMenuItem encodeMatrixToolStripMenuItem;
+        private System.Windows.Forms.ToolTip Tip1;
     }
 }
 
