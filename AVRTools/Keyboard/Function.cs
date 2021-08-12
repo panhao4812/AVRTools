@@ -583,8 +583,9 @@ namespace AVRKeys.Keyboard
                         CodeDec +=  Convert.ToUInt16(a3, 16).ToString();
                     }
                 }
-                CodeHex = length2.ToString("x") + CodeHex;
-                CodeDec += length2.ToString() + CodeDec;
+                if (length2 > 0xFFFF) length2 = 0xFFFF;
+                 CodeHex = length2.ToString("x") +","+ CodeHex;
+                CodeDec += length2.ToString() + "," + CodeDec;
 
             }
             catch (Exception ex)

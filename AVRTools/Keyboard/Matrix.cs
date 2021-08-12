@@ -426,15 +426,15 @@ namespace AVRKeys.Keyboard
                 this.hexa_keys0[key_caps[i].R, key_caps[i].C] = FuncCodes.FromFullName( key_caps[i].layer1).KeyCode;
                 key_mask[key_caps[i].R, key_caps[i].C] = FuncCodes.FromFullName(key_caps[i].layer1).KeyMask * 16;
                 this.hexa_keys1[key_caps[i].R, key_caps[i].C] = FuncCodes.FromFullName(key_caps[i].layer2).KeyCode;
-                key_mask[key_caps[i].R, key_caps[i].C] += FuncCodes.FromFullName(key_caps[i].layer1).KeyMask;
+                key_mask[key_caps[i].R, key_caps[i].C] += FuncCodes.FromFullName(key_caps[i].layer2).KeyMask;
             }
-            for (int i = 0; i < RGB.Count; i++)
+            for (int i = 0; i < rgb_pos.Length; i++)
             {
-                int index = Convert.ToInt32(RGB[i].layer1);
+                //int index = Convert.ToInt32(RGB[i].layer1);
                 int colorIndex = Convert.ToInt32(RGB[i].layer2);
-                rgb_fixcolor[index * 3] = IColors.Rcolors[colorIndex];
-                rgb_fixcolor[index * 3+1] = IColors.Gcolors[colorIndex];
-                rgb_fixcolor[index * 3+2] = IColors.Bcolors[colorIndex];
+                rgb_fixcolor[i * 3] = IColors.Rcolors[colorIndex];
+                rgb_fixcolor[i * 3+1] = IColors.Gcolors[colorIndex];
+                rgb_fixcolor[i * 3+2] = IColors.Bcolors[colorIndex];
             }
                 try
             {

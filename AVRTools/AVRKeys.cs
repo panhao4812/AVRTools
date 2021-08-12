@@ -204,13 +204,13 @@ namespace AVRTools
         {
             if (ActiveMatrix == null) return;
             int index = Convert.ToInt32(((Button)sender).Name);
-            ActiveMatrix.key_caps[index].layer1 = ((Button)sender).Text;
+            ActiveMatrix.key_caps[index].layer1 = ActiveMatrix.FuncCodes.FromShortName(((Button)sender).Text).FullName;
         }
         private void Layer2_Keycap_TextChanged(object sender, EventArgs e)
         {
             if (ActiveMatrix == null) return;
             int index = Convert.ToInt32(((Button)sender).Name);
-            ActiveMatrix.key_caps[index].layer2 = ((Button)sender).Text;
+            ActiveMatrix.key_caps[index].layer2 = ActiveMatrix.FuncCodes.FromShortName(((Button)sender).Text).FullName;
         }
         private void RGB_Keycap_TextChanged(object sender, EventArgs e)
         {
