@@ -93,6 +93,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Tip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.cXT64ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vem84ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lI84ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SelectKeysPanel.SuspendLayout();
             this.ConsolePage.SuspendLayout();
@@ -186,7 +189,7 @@
             this.toolStripMenuItem7,
             this.toolStripMenuItem8});
             this.iSOToolStripMenuItem.Name = "iSOToolStripMenuItem";
-            this.iSOToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
+            this.iSOToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.iSOToolStripMenuItem.Text = "ISO";
             // 
             // iSO60ToolStripMenuItem
@@ -256,22 +259,25 @@
             // 
             this.wS2812ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.wS64ToolStripMenuItem,
-            this.pG61ToolStripMenuItem});
+            this.pG61ToolStripMenuItem,
+            this.cXT64ToolStripMenuItem,
+            this.vem84ToolStripMenuItem,
+            this.lI84ToolStripMenuItem});
             this.wS2812ToolStripMenuItem.Name = "wS2812ToolStripMenuItem";
-            this.wS2812ToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
+            this.wS2812ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.wS2812ToolStripMenuItem.Text = "WS2812";
             // 
             // wS64ToolStripMenuItem
             // 
             this.wS64ToolStripMenuItem.Name = "wS64ToolStripMenuItem";
-            this.wS64ToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
+            this.wS64ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.wS64ToolStripMenuItem.Text = "WS64";
             this.wS64ToolStripMenuItem.Click += new System.EventHandler(this.WS64_Click);
             // 
             // pG61ToolStripMenuItem
             // 
             this.pG61ToolStripMenuItem.Name = "pG61ToolStripMenuItem";
-            this.pG61ToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
+            this.pG61ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.pG61ToolStripMenuItem.Text = "PG60";
             this.pG61ToolStripMenuItem.Click += new System.EventHandler(this.PG60_Click);
             // 
@@ -739,6 +745,27 @@
             this.label1.TabIndex = 19;
             this.label1.Text = "PID";
             // 
+            // cXT64ToolStripMenuItem
+            // 
+            this.cXT64ToolStripMenuItem.Name = "cXT64ToolStripMenuItem";
+            this.cXT64ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.cXT64ToolStripMenuItem.Text = "CXT64";
+            this.cXT64ToolStripMenuItem.Click += new System.EventHandler(this.CXT64_Click);
+            // 
+            // vem84ToolStripMenuItem
+            // 
+            this.vem84ToolStripMenuItem.Name = "vem84ToolStripMenuItem";
+            this.vem84ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.vem84ToolStripMenuItem.Text = "Vem84";
+            this.vem84ToolStripMenuItem.Click += new System.EventHandler(this.Vem84_Click);
+            // 
+            // lI84ToolStripMenuItem
+            // 
+            this.lI84ToolStripMenuItem.Name = "lI84ToolStripMenuItem";
+            this.lI84ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.lI84ToolStripMenuItem.Text = "LI84";
+            this.lI84ToolStripMenuItem.Click += new System.EventHandler(this.LI84_Click);
+            // 
             // AVRKeys
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -835,6 +862,9 @@
         private System.Windows.Forms.ToolStripMenuItem keycapToolStripMenuItem;
         private System.Windows.Forms.ToolTip Tip1;
         private System.Windows.Forms.ToolStripMenuItem encodeMatrixToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cXT64ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vem84ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lI84ToolStripMenuItem;
     }
 }
 

@@ -57,35 +57,19 @@ namespace AVRKeys.Keyboard
         }
         public Button CreateButton(int U1)
         {
-            Button button = new Button();
-            double x = X * U1 + 1;
-            double y = Y * U1 + 1;
-            button.Width = (int)(U1 * L) - 2;
-            button.Height = (int)U1 - 2;
-            if (L == 0.5)
-            {
-                button.Width = (int)U1 - 2;
-                button.Height = (int)(U1 * 2) - 2;
-            }
-            button.Location = new Point((int)x, (int)y);
-            button.FlatStyle = FlatStyle.Flat;
-            button.BackColor = Color.White;
-            button.Font = new Font("Arial", 9);
-            button.TextAlign = ContentAlignment.TopLeft;
-            button.TabStop = false;
-            return button;
+            return CreateButton(U1, new SizeF(1, 1), new PointF(0, 0));
         }
-        public Button CreateButton(int U1,double scale)
+        public Button CreateButton(int U1, SizeF scale, PointF Shift)
         {
             Button button = new Button();
-            double x = X * U1*scale + 1;
-            double y = Y * U1 + 1;
-            button.Width = (int)(U1 * scale * L) - 2;
-            button.Height = (int)U1 - 2;
+            double x = (X + Shift.X) * U1*scale.Width + 1;
+            double y = (Y + Shift.Y) * U1*scale.Height + 1;
+            button.Width = (int)(U1 * scale.Width * L) - 2;
+            button.Height = (int)(U1* scale.Height) - 2;
             if (L == 0.5)
             {
-                button.Width = (int)(U1 * scale) - 2;
-                button.Height = (int)(U1 * 2) - 2;
+                button.Width = (int)(U1 * scale.Width) - 2;
+                button.Height = (int)(U1 * scale.Height /L) - 2;
             }
             button.Location = new Point((int)x, (int)y);
             button.FlatStyle = FlatStyle.Flat;
@@ -213,9 +197,16 @@ namespace AVRKeys.Keyboard
         public List<Button> CreateButton(int U1)
         {
             List<Button> bus = new List<Button>();
+            if (this.key_caps.Count == 0) return bus;
+            PointF shift=new PointF(0,0);
             for (int i = 0; i < this.key_caps.Count; i++)
             {
-                Button button = key_caps[i].CreateButton(U1);
+                if ((float)key_caps[i].Y < (-shift.Y)) { shift.Y = Math.Abs((float)key_caps[i].Y); }
+                if ((float)key_caps[i].X < (-shift.X)) { shift.X = Math.Abs((float)key_caps[i].X); }
+            }
+                for (int i = 0; i < this.key_caps.Count; i++)
+            {
+                Button button = key_caps[i].CreateButton(U1, new SizeF(1, 1), shift);
                 button.Name = i.ToString();
                 bus.Add(button);
             }
@@ -224,22 +215,18 @@ namespace AVRKeys.Keyboard
         public List<Button> CreateRGBButton(int U1)
         {
             List<Button> bus = new List<Button>();
+            if (this.RGB.Count == 0) return bus;
+            PointF shift = new PointF(0, 0);
             for (int i = 0; i < this.RGB.Count; i++)
             {
-                Button button = RGB[i].CreateButton(U1);
+                if ((float)RGB[i].Y < (-shift.Y)) { shift.Y = Math.Abs((float)RGB[i].Y);}
+                if ((float)RGB[i].X < (-shift.X)) { shift.X = Math.Abs((float)RGB[i].X);}
+            }
+            for (int i = 0; i < this.RGB.Count; i++)
+            {
+                Button button = RGB[i].CreateButton(U1,new SizeF(1,1),shift);
                 button.Name = i.ToString();
                 button.Font = new Font("Courier10 BT", 7);
-                bus.Add(button);
-            }
-            return bus;
-        }
-        public List<Button> CreateButton(int U1, double scale)
-        {
-            List<Button> bus = new List<Button>();
-            for (int i = 0; i < this.key_caps.Count; i++)
-            {
-                Button button = key_caps[i].CreateButton(U1, (double) scale);
-                button.Name = i.ToString();
                 bus.Add(button);
             }
             return bus;

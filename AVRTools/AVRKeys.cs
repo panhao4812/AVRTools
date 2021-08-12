@@ -432,6 +432,22 @@ namespace AVRTools
             ActiveMatrix = new PG60();
             InitMatrrix();
         }
+        private void CXT64_Click(object sender, EventArgs e)
+        {
+            ActiveMatrix = new CXT64();
+            InitMatrrix();
+        }
+
+        private void Vem84_Click(object sender, EventArgs e)
+        {
+            ActiveMatrix = new Vem84();
+            InitMatrrix();
+        }
+        private void LI84_Click(object sender, EventArgs e)
+        {
+            ActiveMatrix = new LI84();
+            InitMatrrix();
+        }
         #endregion
         #region uploadMatrix
         public static HidDevice HidDevice;
@@ -760,8 +776,7 @@ namespace AVRTools
             }
             catch (Exception ex) { Print(ex.ToString()); }    
     }
-        #endregion
 
-        
+        #endregion        
     }
 }
