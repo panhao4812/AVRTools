@@ -291,7 +291,7 @@ namespace AVRKeys.Keyboard
      };
         #endregion
     }
-     struct IIO
+    public struct IIO
     {
         public string Name ;
         public int Index;
@@ -341,6 +341,23 @@ namespace AVRKeys.Keyboard
 "15,B6","16,F7","17,F6","18,F5","19,F4",
 "20,F1","21,F0","22,D4","23,D5","24,E6",
         };       
+    }
+    public class IMega32U2 : AVR_MCU
+    {
+        public IMega32U2()
+        {
+            codes.Clear();
+            for (int i = 0; i < pins.Length; i++)
+            {
+                codes.Add(new IIO(pins[i]));
+            }
+        }
+        public string[] pins = new String[24]
+        {
+"0,B0","1,B1","2,B2","3,B3","4,B4","5,B5","6,B6","7,B7",
+"8,C0","9,C1","10,C2","11,C3","12,C4","13,C5","14,C6","15,C7",
+"16,D0","17,D1","18,D2","19,D3","20,D4","21,D5","22,D6","23,D7"
+        };
     }
     public class IColors
     {

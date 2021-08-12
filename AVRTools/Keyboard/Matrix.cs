@@ -141,8 +141,15 @@ namespace AVRKeys.Keyboard
             if (VID == 0x32C2 || VID == 0x32C4)
             {
                 this.VENDOR_ID = VID; this.PRODUCT_ID = PID;
-                this.FLASH_END_ADDRESS = 0x7000;
-                this.MAX_EEP = 0x03FF;
+                this.FLASH_END_ADDRESS = 0x8000-0x0800-1;//32k-2k(boot)-1
+                this.MAX_EEP = 0x0400-1;//1k-1
+                MAX_DELAY = 0x0010;
+            }
+            if (VID == 0x16C2 || VID == 0x16C4)
+            {
+                this.VENDOR_ID = VID; this.PRODUCT_ID = PID;
+                this.FLASH_END_ADDRESS = 0x4000 - 0x0400 - 1;//16k-1k(boot)-1
+                this.MAX_EEP = 0x0200-1;//512-1
                 MAX_DELAY = 0x0010;
             }
         }
