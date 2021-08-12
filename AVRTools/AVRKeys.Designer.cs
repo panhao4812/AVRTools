@@ -54,10 +54,10 @@
             this.menu3 = new System.Windows.Forms.ToolStripMenuItem();
             this.Upload_Matrix = new System.Windows.Forms.ToolStripMenuItem();
             this.printerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.encodeMatrixToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu4 = new System.Windows.Forms.ToolStripMenuItem();
             this.TestKey_Enable = new System.Windows.Forms.ToolStripMenuItem();
             this.menu6 = new System.Windows.Forms.ToolStripMenuItem();
-            this.encodeMatrixToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SelectKeysPanel = new System.Windows.Forms.TabControl();
             this.USPage = new System.Windows.Forms.TabPage();
             this.MacroPage = new System.Windows.Forms.TabPage();
@@ -279,7 +279,8 @@
             // 
             this.menu3.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Upload_Matrix,
-            this.printerToolStripMenuItem});
+            this.printerToolStripMenuItem,
+            this.encodeMatrixToolStripMenuItem});
             this.menu3.Name = "menu3";
             this.menu3.Size = new System.Drawing.Size(87, 24);
             this.menu3.Text = "Upload";
@@ -287,16 +288,23 @@
             // Upload_Matrix
             // 
             this.Upload_Matrix.Name = "Upload_Matrix";
-            this.Upload_Matrix.Size = new System.Drawing.Size(161, 26);
-            this.Upload_Matrix.Text = "Matrix";
+            this.Upload_Matrix.Size = new System.Drawing.Size(238, 26);
+            this.Upload_Matrix.Text = "Upload Matrix";
             this.Upload_Matrix.Click += new System.EventHandler(this.Upload_Click);
             // 
             // printerToolStripMenuItem
             // 
             this.printerToolStripMenuItem.Name = "printerToolStripMenuItem";
-            this.printerToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
-            this.printerToolStripMenuItem.Text = "Printer";
+            this.printerToolStripMenuItem.Size = new System.Drawing.Size(238, 26);
+            this.printerToolStripMenuItem.Text = "Upload Printer";
             this.printerToolStripMenuItem.Click += new System.EventHandler(this.Upload_Printer_Click);
+            // 
+            // encodeMatrixToolStripMenuItem
+            // 
+            this.encodeMatrixToolStripMenuItem.Name = "encodeMatrixToolStripMenuItem";
+            this.encodeMatrixToolStripMenuItem.Size = new System.Drawing.Size(238, 26);
+            this.encodeMatrixToolStripMenuItem.Text = "Encode Matrix";
+            this.encodeMatrixToolStripMenuItem.Click += new System.EventHandler(this.EncodeMatrix_Click);
             // 
             // menu4
             // 
@@ -315,18 +323,9 @@
             // 
             // menu6
             // 
-            this.menu6.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.encodeMatrixToolStripMenuItem});
             this.menu6.Name = "menu6";
             this.menu6.Size = new System.Drawing.Size(65, 24);
             this.menu6.Text = "HELP";
-            // 
-            // encodeMatrixToolStripMenuItem
-            // 
-            this.encodeMatrixToolStripMenuItem.Name = "encodeMatrixToolStripMenuItem";
-            this.encodeMatrixToolStripMenuItem.Size = new System.Drawing.Size(227, 26);
-            this.encodeMatrixToolStripMenuItem.Text = "Encode Matrix";
-            this.encodeMatrixToolStripMenuItem.Click += new System.EventHandler(this.EncodeMatrix_Click);
             // 
             // SelectKeysPanel
             // 
@@ -834,8 +833,8 @@
         private System.Windows.Forms.TextBox Length2Box;
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem keycapToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem encodeMatrixToolStripMenuItem;
         private System.Windows.Forms.ToolTip Tip1;
+        private System.Windows.Forms.ToolStripMenuItem encodeMatrixToolStripMenuItem;
     }
 }
 

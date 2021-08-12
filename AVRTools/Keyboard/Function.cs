@@ -291,36 +291,21 @@ namespace AVRKeys.Keyboard
      };
         #endregion
     }
-    public class IIO
+     struct IIO
     {
-        public string Name = "";
-        public int Index = -1;
+        public string Name ;
+        public int Index;
         public IIO(string input)
         {
+            Name = ""; Index = -1;
             string[] str = input.Split(',');
             Index = Convert.ToInt32(str[0]);
             Name = str[1];
         }
     }
-    public class IMega32U4
+    public class AVR_MCU
     {
-        public List<IIO> codes;
-        public IMega32U4()
-        {
-            codes = new List<IIO>();
-            for (int i = 0; i < pins.Length; i++)
-            {
-                codes.Add(new IIO(pins[i]));
-            }
-        }
-        public string[] pins = new String[25]
-        {
-"0,B0","1,B1","2,B2","3,B3","4,B7",
-"5,D0","6,D1","7,D2","8,D3","9,C6",
-"10,C7","11,D6","12,D7","13,B4","14,B5",
-"15,B6","16,F7","17,F6","18,F5","19,F4",
-"20,F1","21,F0","22,D4","23,D5","24,E6",
-        };
+        public List<IIO> codes=new List<IIO>();
         public string GetIOName(int pin)
         {
             for (int i = 0; i < codes.Count; i++)
@@ -337,6 +322,25 @@ namespace AVRKeys.Keyboard
             }
             return -1;
         }
+    }
+    public class IMega32U4: AVR_MCU
+    {  
+        public IMega32U4()
+        {
+            codes.Clear();
+            for (int i = 0; i < pins.Length; i++)
+            {
+                codes.Add(new IIO(pins[i]));
+            }
+        }
+        public string[] pins = new String[25]
+        {
+"0,B0","1,B1","2,B2","3,B3","4,B7",
+"5,D0","6,D1","7,D2","8,D3","9,C6",
+"10,C7","11,D6","12,D7","13,B4","14,B5",
+"15,B6","16,F7","17,F6","18,F5","19,F4",
+"20,F1","21,F0","22,D4","23,D5","24,E6",
+        };       
     }
     public class IColors
     {

@@ -440,17 +440,6 @@ namespace AVRTools
             SelectKeysPanel.SelectedTab = ConsolePage;
             UploadMatrix();
         }
-        private void EncodeMatrix_Click(object sender, EventArgs e)
-        {
-            SelectKeysPanel.SelectedTab = ConsolePage;
-            if (ActiveMatrix == null)
-            {
-                Print("Nothing to upload,try to select a matrix.");
-                return;
-            }
-            string codeTemp = ActiveMatrix.EncodeMatrix();
-            Print(codeTemp);
-        }
         private void OpenDevice()
         {
             try
@@ -546,6 +535,17 @@ namespace AVRTools
                 Print("Upload finished");
             }
             catch (Exception ex) { Print(ex.ToString()); return; }
+        }
+        private void EncodeMatrix_Click(object sender, EventArgs e)
+        {
+            SelectKeysPanel.SelectedTab = ConsolePage;
+            if (ActiveMatrix == null)
+            {
+                Print("Nothing to upload,try to select a matrix.");
+                return;
+            }
+            string codeTemp = ActiveMatrix.EncodeMatrix();
+            Print(codeTemp);
         }
         #endregion
         #region Testkey
@@ -699,19 +699,22 @@ namespace AVRTools
             string CodeTemp= FuncEncode.CodeDec;
             try
             {
-                if (ActiveMatrix == null) return;
-                Print("eepromsize=" + ActiveMatrix.MAX_EEP.ToString());
+                if (ActiveMatrix == null)
+                {
+                    Print("Active Matrix is null.");
+                    return;
+                }
                 if (CodeTemp == "")
                 {
-                    Print("Nothing to upload");
+                    Print("Nothing to upload.");
                     return;
                 }
-                string[] str = CodeTemp.Split(',');
                 if (HidDevice == null)
                 {
-                    Print("Invalid device");
+                    Print("Invalid device.");
                     return;
                 }
+                string[] str = CodeTemp.Split(',');               
                 byte[] outdata = new byte[9]; outdata[0] = 0;
                 byte[] a = new byte[2];
                 outdata[1] = 0xFF; outdata[2] = 0xF1;
@@ -758,6 +761,7 @@ namespace AVRTools
             catch (Exception ex) { Print(ex.ToString()); }    
     }
         #endregion
-       
+
+        
     }
 }
