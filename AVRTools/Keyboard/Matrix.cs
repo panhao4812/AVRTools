@@ -185,14 +185,7 @@ namespace AVRKeys.Keyboard
             {
                 rgb_fixcolor[i] = 128;
             }
-            int ADD_INDEX = 10;
-            int ADD_ROW = ADD_INDEX + ROWS;
-            int ADD_COL = ADD_ROW + COLS;
-            int ADD_KEYS1 = ADD_COL + (ROWS * COLS);
-            int ADD_KEYS2 = ADD_KEYS1 + (ROWS * COLS);
-            int ADD_RGB_FIX = ADD_KEYS2 + (ROWS * COLS);
-            int ADD_RGBTYPE = ADD_RGB_FIX + (WS2812_COUNT * 3);
-            ADD_EEP = ADD_RGBTYPE + 6;
+            ADD_EEP = 10 + ROWS + COLS + (ROWS * COLS * 3) + (WS2812_COUNT * 3) + 6;
         }
         public List<Button> CreateButton(int U1)
         {

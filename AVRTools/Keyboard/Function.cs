@@ -585,7 +585,7 @@ namespace AVRKeys.Keyboard
                 }
                 if (length2 > 0xFFFF) length2 = 0xFFFF;
                  CodeHex = length2.ToString("x") +","+ CodeHex;
-                CodeDec += length2.ToString() + "," + CodeDec;
+                CodeDec = length2.ToString() + "," + CodeDec;
 
             }
             catch (Exception ex)

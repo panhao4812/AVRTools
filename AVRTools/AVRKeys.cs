@@ -751,7 +751,7 @@ namespace AVRTools
             {
                 Print("Invalid device.");
                 return;
-            }
+            }                                                                                                                                                 
            Print("Uploading");
             PrinterMachine.RunWorkerAsync();
         }
