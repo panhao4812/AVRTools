@@ -126,6 +126,8 @@ namespace AVRTools
         public void Print(string str)
         {
             ConsoleBox.Text += str + "\r\n";
+            ConsoleBox.SelectionStart = ConsoleBox.Text.Length;
+            ConsoleBox.ScrollToCaret();
         }
         public void Clear()
         {
@@ -461,7 +463,35 @@ namespace AVRTools
         private void Upload_Click(object sender, EventArgs e)
         {
             SelectKeysPanel.SelectedTab = ConsolePage;
-            UploadMatrix();
+            Clear();
+            if (ActiveMatrix == null)
+            {
+                Print("Nothing to upload,try to select a matrix.");
+                return;
+            }
+            OpenDevice();
+            if (HidDevice == null)
+            {
+                //Clear();
+                Print("Invalid device");
+                return;
+            }
+            CodeTemp = ActiveMatrix.EncodeMatrix();
+            if (CodeTemp == "")
+            {
+                //Clear();
+                Print("Nothing to upload");
+                return;
+            }
+            Print("Uploading");
+            try
+            {
+                MatrixMachine.RunWorkerAsync();
+            }
+            catch (Exception ex)
+            {
+                Print(ex.ToString());
+            }
         }
         private void OpenDevice()
         {
@@ -498,31 +528,6 @@ namespace AVRTools
                 Print("Invalid Matrix,Try to selcet a matrix.");
             }
         }
-        private void UploadMatrix()
-        {
-            Clear();
-            if (ActiveMatrix == null)
-            {
-                Print("Nothing to upload,try to select a matrix.");
-                return;
-            }
-            OpenDevice();
-            if (HidDevice == null)
-            {
-                //Clear();
-                Print("Invalid device");
-                return;
-            }
-            CodeTemp = ActiveMatrix.EncodeMatrix();
-            if (CodeTemp == "")
-            {
-                //Clear();
-                Print("Nothing to upload");
-                return;
-            }
-            Print("Uploading");
-            MatrixMachine.RunWorkerAsync();
-        }
         private void EncodeMatrix_Click(object sender, EventArgs e)
         {
             SelectKeysPanel.SelectedTab = ConsolePage;
@@ -536,10 +541,10 @@ namespace AVRTools
         }
         private void MatrixMachine_DoWork(object sender, DoWorkEventArgs e)
         {
-           
+
             try
             {
-                string[] str = CodeTemp.Split(',');           
+                string[] str = CodeTemp.Split(',');
                 byte[] outdata = new byte[9]; outdata[0] = 0;
                 outdata[1] = 0xFF; outdata[2] = 0xF1;
                 HidDevice.Write(outdata); Thread.Sleep(100);
@@ -734,6 +739,7 @@ namespace AVRTools
         }
         private void Upload_Printer_Click(object sender, EventArgs e)
         {
+            SelectKeysPanel.SelectedTab = ConsolePage;
             Clear();
             if (ActiveMatrix == null)
             {
@@ -751,12 +757,19 @@ namespace AVRTools
             {
                 Print("Invalid device.");
                 return;
-            }                                                                                                                                                 
-           Print("Uploading");
-            PrinterMachine.RunWorkerAsync();
+            }
+            Print("Uploading");
+            try
+            {
+                PrinterMachine.RunWorkerAsync();
+            }
+            catch (Exception ex)
+            {
+                Print(ex.ToString());
+            }
         }
         private void PrinterMachine_DoWork(object sender, DoWorkEventArgs e)
-        {        
+        {
             try
             {
                 string[] str = CodeTemp.Split(',');

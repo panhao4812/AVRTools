@@ -366,7 +366,7 @@
             this.SelectKeysPanel.Controls.Add(this.ConsolePage);
             this.SelectKeysPanel.Font = new System.Drawing.Font("Courier New", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SelectKeysPanel.Location = new System.Drawing.Point(0, 273);
-            this.SelectKeysPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SelectKeysPanel.Margin = new System.Windows.Forms.Padding(2);
             this.SelectKeysPanel.Name = "SelectKeysPanel";
             this.SelectKeysPanel.SelectedIndex = 0;
             this.SelectKeysPanel.Size = new System.Drawing.Size(838, 250);
@@ -375,9 +375,9 @@
             // USPage
             // 
             this.USPage.Location = new System.Drawing.Point(4, 26);
-            this.USPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.USPage.Margin = new System.Windows.Forms.Padding(2);
             this.USPage.Name = "USPage";
-            this.USPage.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.USPage.Padding = new System.Windows.Forms.Padding(2);
             this.USPage.Size = new System.Drawing.Size(830, 220);
             this.USPage.TabIndex = 0;
             this.USPage.Text = "US";
@@ -386,9 +386,9 @@
             // MacroPage
             // 
             this.MacroPage.Location = new System.Drawing.Point(4, 26);
-            this.MacroPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MacroPage.Margin = new System.Windows.Forms.Padding(2);
             this.MacroPage.Name = "MacroPage";
-            this.MacroPage.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MacroPage.Padding = new System.Windows.Forms.Padding(2);
             this.MacroPage.Size = new System.Drawing.Size(830, 220);
             this.MacroPage.TabIndex = 1;
             this.MacroPage.Text = "Macro";
@@ -397,9 +397,9 @@
             // IOPage
             // 
             this.IOPage.Location = new System.Drawing.Point(4, 26);
-            this.IOPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.IOPage.Margin = new System.Windows.Forms.Padding(2);
             this.IOPage.Name = "IOPage";
-            this.IOPage.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.IOPage.Padding = new System.Windows.Forms.Padding(2);
             this.IOPage.Size = new System.Drawing.Size(830, 220);
             this.IOPage.TabIndex = 2;
             this.IOPage.Text = "IO";
@@ -408,9 +408,9 @@
             // ColorPage
             // 
             this.ColorPage.Location = new System.Drawing.Point(4, 26);
-            this.ColorPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ColorPage.Margin = new System.Windows.Forms.Padding(2);
             this.ColorPage.Name = "ColorPage";
-            this.ColorPage.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ColorPage.Padding = new System.Windows.Forms.Padding(2);
             this.ColorPage.Size = new System.Drawing.Size(830, 220);
             this.ColorPage.TabIndex = 4;
             this.ColorPage.Text = "Color";
@@ -420,9 +420,9 @@
             // 
             this.ConsolePage.Controls.Add(this.ConsoleBox);
             this.ConsolePage.Location = new System.Drawing.Point(4, 26);
-            this.ConsolePage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ConsolePage.Margin = new System.Windows.Forms.Padding(2);
             this.ConsolePage.Name = "ConsolePage";
-            this.ConsolePage.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ConsolePage.Padding = new System.Windows.Forms.Padding(2);
             this.ConsolePage.Size = new System.Drawing.Size(830, 220);
             this.ConsolePage.TabIndex = 3;
             this.ConsolePage.Text = "Console";
@@ -434,7 +434,7 @@
             this.ConsoleBox.AcceptsTab = true;
             this.ConsoleBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ConsoleBox.Location = new System.Drawing.Point(2, 2);
-            this.ConsoleBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ConsoleBox.Margin = new System.Windows.Forms.Padding(2);
             this.ConsoleBox.Multiline = true;
             this.ConsoleBox.Name = "ConsoleBox";
             this.ConsoleBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -445,9 +445,9 @@
             // SchematicPage
             // 
             this.SchematicPage.Location = new System.Drawing.Point(4, 26);
-            this.SchematicPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SchematicPage.Margin = new System.Windows.Forms.Padding(2);
             this.SchematicPage.Name = "SchematicPage";
-            this.SchematicPage.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SchematicPage.Padding = new System.Windows.Forms.Padding(2);
             this.SchematicPage.Size = new System.Drawing.Size(830, 220);
             this.SchematicPage.TabIndex = 2;
             this.SchematicPage.Text = "Schematic";
@@ -457,9 +457,9 @@
             // Layer2Page
             // 
             this.Layer2Page.Location = new System.Drawing.Point(4, 26);
-            this.Layer2Page.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Layer2Page.Margin = new System.Windows.Forms.Padding(2);
             this.Layer2Page.Name = "Layer2Page";
-            this.Layer2Page.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Layer2Page.Padding = new System.Windows.Forms.Padding(2);
             this.Layer2Page.Size = new System.Drawing.Size(830, 220);
             this.Layer2Page.TabIndex = 1;
             this.Layer2Page.Text = "Layer2";
@@ -469,9 +469,9 @@
             // Layer1Page
             // 
             this.Layer1Page.Location = new System.Drawing.Point(4, 26);
-            this.Layer1Page.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Layer1Page.Margin = new System.Windows.Forms.Padding(2);
             this.Layer1Page.Name = "Layer1Page";
-            this.Layer1Page.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Layer1Page.Padding = new System.Windows.Forms.Padding(2);
             this.Layer1Page.Size = new System.Drawing.Size(830, 220);
             this.Layer1Page.TabIndex = 0;
             this.Layer1Page.Text = "Layer1";
@@ -487,7 +487,7 @@
             this.MatrixPanel.Controls.Add(this.PrinterPage);
             this.MatrixPanel.Font = new System.Drawing.Font("Courier New", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MatrixPanel.Location = new System.Drawing.Point(0, 25);
-            this.MatrixPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MatrixPanel.Margin = new System.Windows.Forms.Padding(2);
             this.MatrixPanel.Name = "MatrixPanel";
             this.MatrixPanel.SelectedIndex = 0;
             this.MatrixPanel.Size = new System.Drawing.Size(838, 250);
@@ -496,9 +496,9 @@
             // RGBPage
             // 
             this.RGBPage.Location = new System.Drawing.Point(4, 26);
-            this.RGBPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RGBPage.Margin = new System.Windows.Forms.Padding(2);
             this.RGBPage.Name = "RGBPage";
-            this.RGBPage.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.RGBPage.Padding = new System.Windows.Forms.Padding(2);
             this.RGBPage.Size = new System.Drawing.Size(830, 220);
             this.RGBPage.TabIndex = 3;
             this.RGBPage.Text = "RGB";
@@ -524,9 +524,9 @@
             this.PrinterPage.Controls.Add(this.AddressBox);
             this.PrinterPage.Controls.Add(this.PrinterInputBox);
             this.PrinterPage.Location = new System.Drawing.Point(4, 26);
-            this.PrinterPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PrinterPage.Margin = new System.Windows.Forms.Padding(2);
             this.PrinterPage.Name = "PrinterPage";
-            this.PrinterPage.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PrinterPage.Padding = new System.Windows.Forms.Padding(2);
             this.PrinterPage.Size = new System.Drawing.Size(830, 220);
             this.PrinterPage.TabIndex = 4;
             this.PrinterPage.Text = "Printer";
@@ -549,7 +549,7 @@
             this.Length2Box.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Length2Box.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Length2Box.Location = new System.Drawing.Point(6, 179);
-            this.Length2Box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Length2Box.Margin = new System.Windows.Forms.Padding(2);
             this.Length2Box.Multiline = true;
             this.Length2Box.Name = "Length2Box";
             this.Length2Box.ReadOnly = true;
@@ -561,7 +561,7 @@
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Location = new System.Drawing.Point(444, 174);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(76, 29);
             this.button1.TabIndex = 40;
@@ -573,7 +573,7 @@
             // 
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Location = new System.Drawing.Point(444, 140);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(76, 29);
             this.button2.TabIndex = 39;
@@ -585,7 +585,7 @@
             // 
             this.EncodeButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EncodeButton3.Location = new System.Drawing.Point(444, 106);
-            this.EncodeButton3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EncodeButton3.Margin = new System.Windows.Forms.Padding(2);
             this.EncodeButton3.Name = "EncodeButton3";
             this.EncodeButton3.Size = new System.Drawing.Size(76, 29);
             this.EncodeButton3.TabIndex = 37;
@@ -597,7 +597,7 @@
             // 
             this.EncodeButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EncodeButton2.Location = new System.Drawing.Point(444, 73);
-            this.EncodeButton2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EncodeButton2.Margin = new System.Windows.Forms.Padding(2);
             this.EncodeButton2.Name = "EncodeButton2";
             this.EncodeButton2.Size = new System.Drawing.Size(76, 29);
             this.EncodeButton2.TabIndex = 36;
@@ -609,7 +609,7 @@
             // 
             this.EncodeButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.EncodeButton1.Location = new System.Drawing.Point(444, 40);
-            this.EncodeButton1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EncodeButton1.Margin = new System.Windows.Forms.Padding(2);
             this.EncodeButton1.Name = "EncodeButton1";
             this.EncodeButton1.Size = new System.Drawing.Size(76, 29);
             this.EncodeButton1.TabIndex = 35;
@@ -634,7 +634,7 @@
             this.Length1Box.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Length1Box.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Length1Box.Location = new System.Drawing.Point(6, 135);
-            this.Length1Box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Length1Box.Margin = new System.Windows.Forms.Padding(2);
             this.Length1Box.Multiline = true;
             this.Length1Box.Name = "Length1Box";
             this.Length1Box.ReadOnly = true;
@@ -668,7 +668,7 @@
             // 
             this.PrinterEncodeBox.BackColor = System.Drawing.Color.Beige;
             this.PrinterEncodeBox.Location = new System.Drawing.Point(525, 2);
-            this.PrinterEncodeBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PrinterEncodeBox.Margin = new System.Windows.Forms.Padding(2);
             this.PrinterEncodeBox.Multiline = true;
             this.PrinterEncodeBox.Name = "PrinterEncodeBox";
             this.PrinterEncodeBox.ReadOnly = true;
@@ -694,7 +694,7 @@
             this.EEPBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.EEPBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EEPBox.Location = new System.Drawing.Point(6, 46);
-            this.EEPBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EEPBox.Margin = new System.Windows.Forms.Padding(2);
             this.EEPBox.Multiline = true;
             this.EEPBox.Name = "EEPBox";
             this.EEPBox.ReadOnly = true;
@@ -719,7 +719,7 @@
             this.AddressBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.AddressBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddressBox.Location = new System.Drawing.Point(6, 90);
-            this.AddressBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AddressBox.Margin = new System.Windows.Forms.Padding(2);
             this.AddressBox.Multiline = true;
             this.AddressBox.Name = "AddressBox";
             this.AddressBox.ReadOnly = true;
@@ -731,7 +731,7 @@
             // 
             this.PrinterInputBox.BackColor = System.Drawing.Color.White;
             this.PrinterInputBox.Location = new System.Drawing.Point(80, 2);
-            this.PrinterInputBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PrinterInputBox.Margin = new System.Windows.Forms.Padding(2);
             this.PrinterInputBox.Multiline = true;
             this.PrinterInputBox.Name = "PrinterInputBox";
             this.PrinterInputBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
@@ -745,7 +745,7 @@
             this.PidBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PidBox.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.PidBox.Location = new System.Drawing.Point(788, 4);
-            this.PidBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PidBox.Margin = new System.Windows.Forms.Padding(2);
             this.PidBox.Multiline = true;
             this.PidBox.Name = "PidBox";
             this.PidBox.ReadOnly = true;
@@ -759,7 +759,7 @@
             this.VidBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.VidBox.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.VidBox.Location = new System.Drawing.Point(717, 4);
-            this.VidBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.VidBox.Margin = new System.Windows.Forms.Padding(2);
             this.VidBox.Multiline = true;
             this.VidBox.Name = "VidBox";
             this.VidBox.ReadOnly = true;
@@ -820,7 +820,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "AVRKeys";
             this.Text = "AVRKeys";
