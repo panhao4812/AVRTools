@@ -90,21 +90,21 @@ namespace AVRTools
         {
             if (ActiveMatrix == null) return;
             try
-            {            
+            {
                 string path = "";
                 SaveFileDialog sfd = new SaveFileDialog();
-                    sfd.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-                    sfd.FilterIndex = 0;
-                    sfd.RestoreDirectory = true;
-                    if (sfd.ShowDialog() == DialogResult.OK)
-                    {
-                        path = sfd.FileName; SavePath = path;
-                    }
-                    else
-                    {
-                        return;
-                    }
-                
+                sfd.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+                sfd.FilterIndex = 0;
+                sfd.RestoreDirectory = true;
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    path = sfd.FileName; SavePath = path;
+                }
+                else
+                {
+                    return;
+                }
+
                 FileStream fs = new FileStream(path, FileMode.OpenOrCreate);
                 fs.SetLength(0);
                 StreamWriter stream = new StreamWriter(fs);
@@ -122,6 +122,7 @@ namespace AVRTools
         #region Load
         public IMatrix ActiveMatrix;
         public Button ActiveButton;
+        string CodeTemp = ""; string outdatastr = "";
         public void Print(string str)
         {
             ConsoleBox.Text += str + "\r\n";
@@ -129,10 +130,9 @@ namespace AVRTools
         public void Clear()
         {
             ConsoleBox.Text = "";
-        }                  
+        }
         private void DefaultLayout()
         {
-            int Height1 = 20; int Width1 = 54;
             this.Size = new Size(850 + Width1, 561 + Height1);
             MatrixPanel.Size = new Size(838 + Width1, 250 + Height1);
             MatrixPanel.Location = new Point(0, 25);
@@ -143,7 +143,14 @@ namespace AVRTools
             PrinterInputBox.Size = new Size(350, 215);
             PrinterEncodeBox.Size = new Size(350, 215);
             PrinterEncodeBox.Height += Height1;
-            PrinterInputBox.Height += Height1;        
+            PrinterInputBox.Height += Height1;
+        }
+        int Height1 = 20; int Width1 = 54;
+        private void AVRKeys_ResizeEnd(object sender, EventArgs e)
+        {
+            if (this.Width != 850 + Width1) this.Width = 850 + Width1;
+            if (this.Height < 561 + Height1) this.Height = 561 + Height1;
+            SelectKeysPanel.Height = 250 + this.Height - 561 - Height1;
         }
         public AVRKeys()
         {
@@ -151,7 +158,7 @@ namespace AVRTools
         }
         private void AVRKeys_Load(object sender, EventArgs e)
         {
-            DefaultLayout();         
+            DefaultLayout();
             FuncEncode = new IEncode(ConsoleBox);
             USPage.Controls.Clear();
             MacroPage.Controls.Clear();
@@ -178,11 +185,11 @@ namespace AVRTools
             List<Button> buttons2 = IColors.CreateButton(27);
             for (int i = 0; i < buttons2.Count; i++)
             {
-                Tip1.SetToolTip(buttons2[i], buttons2[i].BackColor.R.ToString()+","+
+                Tip1.SetToolTip(buttons2[i], buttons2[i].BackColor.R.ToString() + "," +
                     buttons2[i].BackColor.G.ToString() + "," + buttons2[i].BackColor.B.ToString());
                 buttons2[i].MouseDown += new MouseEventHandler(Color_Button_MouseClick);
                 ColorPage.Controls.Add(IKeycap.UpdateButton(buttons2[i]));
-            }        
+            }
         }
         private void ClearButton()
         {
@@ -296,7 +303,7 @@ namespace AVRTools
                 {
                     ActiveButton.BackColor = ((Button)sender).BackColor;
                     string[] strs1 = ActiveButton.Text.Split('/');
-                    ActiveButton.Text = strs1[0]+"/"+((Button)sender).Text;
+                    ActiveButton.Text = strs1[0] + "/" + ((Button)sender).Text;
                 }
             }
         }
@@ -336,15 +343,15 @@ namespace AVRTools
             List<Button> buttons5 = ActiveMatrix.CreateRGBButton(40);
             for (int i = 0; i < buttons5.Count; i++)
             {
-                buttons5[i].Text = ActiveMatrix.RGB[i].layer1+"/"+ ActiveMatrix.RGB[i].layer2;
+                buttons5[i].Text = ActiveMatrix.RGB[i].layer1 + "/" + ActiveMatrix.RGB[i].layer2;
                 int colorIndex = Convert.ToInt32(ActiveMatrix.RGB[i].layer2);
-                buttons5[i].BackColor = IColors.GetColor(colorIndex) ;
+                buttons5[i].BackColor = IColors.GetColor(colorIndex);
                 buttons5[i].MouseDown += new MouseEventHandler(Keycap_Button_MouseClick);
                 buttons5[i].TextChanged += new System.EventHandler(RGB_Keycap_TextChanged);
                 RGBPage.Controls.Add(buttons5[i]);
 
             }
-                for (int i = 0; i < buttons4.Count; i++)
+            for (int i = 0; i < buttons4.Count; i++)
             {
                 buttons4[i].MouseDown += new MouseEventHandler(IO_Button_MouseClick);
                 IOPage.Controls.Add(buttons4[i]);
@@ -375,7 +382,7 @@ namespace AVRTools
             EEPBox.Text = "0x" + ActiveMatrix.MAX_EEP.ToString("X");
             AddressBox.Text = "0x" + ActiveMatrix.ADD_EEP.ToString("X");
             Length1Box.Text = Convert.ToString(ActiveMatrix.MAX_EEP - ActiveMatrix.ADD_EEP);
-            Length2Box.Text = Convert.ToString((ActiveMatrix.MAX_EEP - ActiveMatrix.ADD_EEP)/2);
+            Length2Box.Text = Convert.ToString((ActiveMatrix.MAX_EEP - ActiveMatrix.ADD_EEP) / 2);
         }
         private void ISO61_Click(object sender, EventArgs e)
         {
@@ -486,38 +493,53 @@ namespace AVRTools
                 // 0xFFF1是upload的flag
                 // 0xFFF2是end的flag
             }
-            catch (Exception ex)
+            catch
             {
-                Print(ex.ToString());
+                Print("Invalid Matrix,Try to selcet a matrix.");
             }
         }
         private void UploadMatrix()
         {
+            Clear();
             if (ActiveMatrix == null)
             {
                 Print("Nothing to upload,try to select a matrix.");
                 return;
             }
             OpenDevice();
+            if (HidDevice == null)
+            {
+                //Clear();
+                Print("Invalid device");
+                return;
+            }
+            CodeTemp = ActiveMatrix.EncodeMatrix();
+            if (CodeTemp == "")
+            {
+                //Clear();
+                Print("Nothing to upload");
+                return;
+            }
+            Print("Uploading");
+            MatrixMachine.RunWorkerAsync();
+        }
+        private void EncodeMatrix_Click(object sender, EventArgs e)
+        {
+            SelectKeysPanel.SelectedTab = ConsolePage;
+            if (ActiveMatrix == null)
+            {
+                Print("Nothing to upload,try to select a matrix.");
+                return;
+            }
+            string codeTemp = ActiveMatrix.EncodeMatrix();
+            Print(codeTemp);
+        }
+        private void MatrixMachine_DoWork(object sender, DoWorkEventArgs e)
+        {
+           
             try
             {
-                if (HidDevice == null)
-                {
-                    //Clear();
-                    Print("Invalid device");
-                    return;
-                }
-                string codeTemp = ActiveMatrix.EncodeMatrix();
-                if (codeTemp == "")
-                {
-                    //Clear();
-                    Print("Nothing to upload");
-                    return;
-                }
-                string[] str = codeTemp.Split(',');
-
-                //Clear();
-                Print("Uploading");
+                string[] str = CodeTemp.Split(',');           
                 byte[] outdata = new byte[9]; outdata[0] = 0;
                 outdata[1] = 0xFF; outdata[2] = 0xF1;
                 HidDevice.Write(outdata); Thread.Sleep(100);
@@ -531,10 +553,10 @@ namespace AVRTools
                     if ((i + 3) < str.Length) { outdata[6] = Convert.ToByte(str[i + 3]); }
                     if ((i + 2) < str.Length) { outdata[5] = Convert.ToByte(str[i + 2]); }
                     if ((i + 1) < str.Length) { outdata[4] = Convert.ToByte(str[i + 1]); }
-                    if (i < str.Length) { outdata[3] = Convert.ToByte(str[i]); }
+                    if ((i + 0) < str.Length) { outdata[3] = Convert.ToByte(str[i + 0]); }
                     else { break; }
                     HidDevice.Write(outdata);
-                    string outdatastr = "";
+                    outdatastr = "";
                     outdatastr += outdata[1].ToString() + "/";
                     outdatastr += outdata[2].ToString() + "--";
                     outdatastr += outdata[3].ToString() + "/";
@@ -543,25 +565,26 @@ namespace AVRTools
                     outdatastr += outdata[6].ToString() + "/";
                     outdatastr += outdata[7].ToString() + "/";
                     outdatastr += outdata[8].ToString();
-                    Print(outdatastr);
+                    MatrixMachine.ReportProgress(1);
                     Thread.Sleep(100);
                 }
                 outdata[1] = 0xFF; outdata[2] = 0xF2;
                 HidDevice.Write(outdata); Thread.Sleep(100);
-                Print("Upload finished");
             }
-            catch (Exception ex) { Print(ex.ToString()); return; }
-        }
-        private void EncodeMatrix_Click(object sender, EventArgs e)
-        {
-            SelectKeysPanel.SelectedTab = ConsolePage;
-            if (ActiveMatrix == null)
+            catch (Exception ex)
             {
-                Print("Nothing to upload,try to select a matrix.");
+                Print(ex.ToString());
+                MatrixMachine.CancelAsync();
                 return;
             }
-            string codeTemp = ActiveMatrix.EncodeMatrix();
-            Print(codeTemp);
+        }
+        private void MatrixMachine_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            Print(outdatastr);
+        }
+        private void MatrixMachine_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Print("Upload finished");
         }
         #endregion
         #region Testkey
@@ -649,7 +672,7 @@ namespace AVRTools
             IOPage.Enabled = true;
             RGBPage.Enabled = true;
             PrinterPage.Enabled = true;
-           ColorPage.Enabled = true;
+            ColorPage.Enabled = true;
         }
         public void DisableControl()
         {
@@ -669,7 +692,7 @@ namespace AVRTools
         }
         #endregion
         #region Printer
-        public IEncode FuncEncode ;
+        public IEncode FuncEncode;
         private void EncodeButton1_Click(object sender, EventArgs e)
         {
             FuncEncode.Solve(PrinterInputBox.Text, "GBK");
@@ -682,12 +705,12 @@ namespace AVRTools
         }
         private void EncodeButton3_Click(object sender, EventArgs e)
         {
-          FuncEncode.Solve(PrinterInputBox.Text, "Big5");
+            FuncEncode.Solve(PrinterInputBox.Text, "Big5");
             PrinterEncodeBox.Text = FuncEncode.CodeHex;
         }
         private void EncodeButton4_Click(object sender, EventArgs e)
         {
-           FuncEncode.Solve(PrinterInputBox.Text, "Unicode");
+            FuncEncode.Solve(PrinterInputBox.Text, "Unicode");
             PrinterEncodeBox.Text = FuncEncode.CodeHex;
         }
         private void EncodeButton5_Click(object sender, EventArgs e)
@@ -710,27 +733,33 @@ namespace AVRTools
             }
         }
         private void Upload_Printer_Click(object sender, EventArgs e)
-        {                
+        {
+            Clear();
+            if (ActiveMatrix == null)
+            {
+                Print("Active Matrix is null.");
+                return;
+            }
+            CodeTemp = FuncEncode.CodeDec;
+            if (CodeTemp == "")
+            {
+                Print("Nothing to upload.");
+                return;
+            }
             OpenDevice();
-            string CodeTemp= FuncEncode.CodeDec;
+            if (HidDevice == null)
+            {
+                Print("Invalid device.");
+                return;
+            }
+           Print("Uploading");
+            PrinterMachine.RunWorkerAsync();
+        }
+        private void PrinterMachine_DoWork(object sender, DoWorkEventArgs e)
+        {        
             try
             {
-                if (ActiveMatrix == null)
-                {
-                    Print("Active Matrix is null.");
-                    return;
-                }
-                if (CodeTemp == "")
-                {
-                    Print("Nothing to upload.");
-                    return;
-                }
-                if (HidDevice == null)
-                {
-                    Print("Invalid device.");
-                    return;
-                }
-                string[] str = CodeTemp.Split(',');               
+                string[] str = CodeTemp.Split(',');
                 byte[] outdata = new byte[9]; outdata[0] = 0;
                 byte[] a = new byte[2];
                 outdata[1] = 0xFF; outdata[2] = 0xF1;
@@ -762,21 +791,32 @@ namespace AVRTools
                     }
                     else { break; }
                     HidDevice.Write(outdata);
-                    string outdatastr = "";
+                    outdatastr = "";
                     for (int k = 1; k < outdata.Length; k++)
                     {
                         outdatastr += outdata[k].ToString() + "/";
                     }
-                    Print(outdatastr);
+                    PrinterMachine.ReportProgress(1);
                     Thread.Sleep(100);
                 }
                 outdata[1] = 0xFF; outdata[2] = 0xF2;
                 HidDevice.Write(outdata); Thread.Sleep(100);
-                Print("Upload finished");
             }
-            catch (Exception ex) { Print(ex.ToString()); }    
-    }
-
-        #endregion        
+            catch (Exception ex)
+            {
+                Print(ex.ToString());
+                MatrixMachine.CancelAsync();//取消异步调用
+                return;
+            }
+        }
+        private void PrinterMachine_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            Print(outdatastr);
+        }
+        private void PrinterMachine_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            Print("Upload finished");
+        }
+        #endregion       
     }
 }

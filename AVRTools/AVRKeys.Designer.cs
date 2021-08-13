@@ -51,6 +51,9 @@
             this.wS2812ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wS64ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pG61ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cXT64ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vem84ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lI84ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu3 = new System.Windows.Forms.ToolStripMenuItem();
             this.Upload_Matrix = new System.Windows.Forms.ToolStripMenuItem();
             this.printerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -93,9 +96,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Tip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.cXT64ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.vem84ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lI84ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PrinterMachine = new System.ComponentModel.BackgroundWorker();
+            this.MatrixMachine = new System.ComponentModel.BackgroundWorker();
             this.menuStrip1.SuspendLayout();
             this.SelectKeysPanel.SuspendLayout();
             this.ConsolePage.SuspendLayout();
@@ -189,7 +191,7 @@
             this.toolStripMenuItem7,
             this.toolStripMenuItem8});
             this.iSOToolStripMenuItem.Name = "iSOToolStripMenuItem";
-            this.iSOToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.iSOToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
             this.iSOToolStripMenuItem.Text = "ISO";
             // 
             // iSO60ToolStripMenuItem
@@ -264,22 +266,43 @@
             this.vem84ToolStripMenuItem,
             this.lI84ToolStripMenuItem});
             this.wS2812ToolStripMenuItem.Name = "wS2812ToolStripMenuItem";
-            this.wS2812ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.wS2812ToolStripMenuItem.Size = new System.Drawing.Size(150, 26);
             this.wS2812ToolStripMenuItem.Text = "WS2812";
             // 
             // wS64ToolStripMenuItem
             // 
             this.wS64ToolStripMenuItem.Name = "wS64ToolStripMenuItem";
-            this.wS64ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.wS64ToolStripMenuItem.Size = new System.Drawing.Size(139, 26);
             this.wS64ToolStripMenuItem.Text = "WS64";
             this.wS64ToolStripMenuItem.Click += new System.EventHandler(this.WS64_Click);
             // 
             // pG61ToolStripMenuItem
             // 
             this.pG61ToolStripMenuItem.Name = "pG61ToolStripMenuItem";
-            this.pG61ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.pG61ToolStripMenuItem.Size = new System.Drawing.Size(139, 26);
             this.pG61ToolStripMenuItem.Text = "PG60";
             this.pG61ToolStripMenuItem.Click += new System.EventHandler(this.PG60_Click);
+            // 
+            // cXT64ToolStripMenuItem
+            // 
+            this.cXT64ToolStripMenuItem.Name = "cXT64ToolStripMenuItem";
+            this.cXT64ToolStripMenuItem.Size = new System.Drawing.Size(139, 26);
+            this.cXT64ToolStripMenuItem.Text = "CXT64";
+            this.cXT64ToolStripMenuItem.Click += new System.EventHandler(this.CXT64_Click);
+            // 
+            // vem84ToolStripMenuItem
+            // 
+            this.vem84ToolStripMenuItem.Name = "vem84ToolStripMenuItem";
+            this.vem84ToolStripMenuItem.Size = new System.Drawing.Size(139, 26);
+            this.vem84ToolStripMenuItem.Text = "Vem84";
+            this.vem84ToolStripMenuItem.Click += new System.EventHandler(this.Vem84_Click);
+            // 
+            // lI84ToolStripMenuItem
+            // 
+            this.lI84ToolStripMenuItem.Name = "lI84ToolStripMenuItem";
+            this.lI84ToolStripMenuItem.Size = new System.Drawing.Size(139, 26);
+            this.lI84ToolStripMenuItem.Text = "LI84";
+            this.lI84ToolStripMenuItem.Click += new System.EventHandler(this.LI84_Click);
             // 
             // menu3
             // 
@@ -307,9 +330,10 @@
             // 
             // encodeMatrixToolStripMenuItem
             // 
+            this.encodeMatrixToolStripMenuItem.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.encodeMatrixToolStripMenuItem.Name = "encodeMatrixToolStripMenuItem";
             this.encodeMatrixToolStripMenuItem.Size = new System.Drawing.Size(238, 26);
-            this.encodeMatrixToolStripMenuItem.Text = "Encode Matrix";
+            this.encodeMatrixToolStripMenuItem.Text = "Test Matrix";
             this.encodeMatrixToolStripMenuItem.Click += new System.EventHandler(this.EncodeMatrix_Click);
             // 
             // menu4
@@ -323,7 +347,7 @@
             // TestKey_Enable
             // 
             this.TestKey_Enable.Name = "TestKey_Enable";
-            this.TestKey_Enable.Size = new System.Drawing.Size(139, 26);
+            this.TestKey_Enable.Size = new System.Drawing.Size(181, 26);
             this.TestKey_Enable.Text = "Start";
             this.TestKey_Enable.Click += new System.EventHandler(this.TestKey_Click);
             // 
@@ -405,6 +429,8 @@
             // 
             // ConsoleBox
             // 
+            this.ConsoleBox.AcceptsReturn = true;
+            this.ConsoleBox.AcceptsTab = true;
             this.ConsoleBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ConsoleBox.Location = new System.Drawing.Point(3, 2);
             this.ConsoleBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -745,26 +771,21 @@
             this.label1.TabIndex = 19;
             this.label1.Text = "PID";
             // 
-            // cXT64ToolStripMenuItem
+            // PrinterMachine
             // 
-            this.cXT64ToolStripMenuItem.Name = "cXT64ToolStripMenuItem";
-            this.cXT64ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.cXT64ToolStripMenuItem.Text = "CXT64";
-            this.cXT64ToolStripMenuItem.Click += new System.EventHandler(this.CXT64_Click);
+            this.PrinterMachine.WorkerReportsProgress = true;
+            this.PrinterMachine.WorkerSupportsCancellation = true;
+            this.PrinterMachine.DoWork += new System.ComponentModel.DoWorkEventHandler(this.PrinterMachine_DoWork);
+            this.PrinterMachine.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.PrinterMachine_ProgressChanged);
+            this.PrinterMachine.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.PrinterMachine_RunWorkerCompleted);
             // 
-            // vem84ToolStripMenuItem
+            // MatrixMachine
             // 
-            this.vem84ToolStripMenuItem.Name = "vem84ToolStripMenuItem";
-            this.vem84ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.vem84ToolStripMenuItem.Text = "Vem84";
-            this.vem84ToolStripMenuItem.Click += new System.EventHandler(this.Vem84_Click);
-            // 
-            // lI84ToolStripMenuItem
-            // 
-            this.lI84ToolStripMenuItem.Name = "lI84ToolStripMenuItem";
-            this.lI84ToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.lI84ToolStripMenuItem.Text = "LI84";
-            this.lI84ToolStripMenuItem.Click += new System.EventHandler(this.LI84_Click);
+            this.MatrixMachine.WorkerReportsProgress = true;
+            this.MatrixMachine.WorkerSupportsCancellation = true;
+            this.MatrixMachine.DoWork += new System.ComponentModel.DoWorkEventHandler(this.MatrixMachine_DoWork);
+            this.MatrixMachine.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.MatrixMachine_ProgressChanged);
+            this.MatrixMachine.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.MatrixMachine_RunWorkerCompleted);
             // 
             // AVRKeys
             // 
@@ -782,9 +803,11 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximizeBox = false;
             this.Name = "AVRKeys";
             this.Text = "AVRKeys";
             this.Load += new System.EventHandler(this.AVRKeys_Load);
+            this.ResizeEnd += new System.EventHandler(this.AVRKeys_ResizeEnd);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.SelectKeysPanel.ResumeLayout(false);
@@ -865,6 +888,8 @@
         private System.Windows.Forms.ToolStripMenuItem cXT64ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vem84ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lI84ToolStripMenuItem;
+        private System.ComponentModel.BackgroundWorker PrinterMachine;
+        private System.ComponentModel.BackgroundWorker MatrixMachine;
     }
 }
 
