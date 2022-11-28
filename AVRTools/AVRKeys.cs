@@ -379,10 +379,10 @@ namespace AVRTools
                 buttons3[i].TextChanged += new System.EventHandler(Schematic_Keycap_TextChanged);
                 SchematicPage.Controls.Add(IKeycap.UpdateButton(buttons3[i]));
             }
-            PidBox.Text = "0x" + ActiveMatrix.PRODUCT_ID.ToString("X");
-            VidBox.Text = "0x" + ActiveMatrix.VENDOR_ID.ToString("X");
-            EEPBox.Text = "0x" + ActiveMatrix.MAX_EEP.ToString("X");
-            AddressBox.Text = "0x" + ActiveMatrix.ADD_EEP.ToString("X");
+            PidBox.Text = "0x" + ActiveMatrix.PRODUCT_ID.ToString("X4");
+            VidBox.Text = "0x" + ActiveMatrix.VENDOR_ID.ToString("X4");
+            EEPBox.Text = "0x" + ActiveMatrix.MAX_EEP.ToString("X4");
+            AddressBox.Text = "0x" + ActiveMatrix.ADD_EEP.ToString("X4");
             Length1Box.Text = Convert.ToString(ActiveMatrix.MAX_EEP - ActiveMatrix.ADD_EEP);
             Length2Box.Text = Convert.ToString((ActiveMatrix.MAX_EEP - ActiveMatrix.ADD_EEP) / 2);
         }
@@ -604,7 +604,7 @@ namespace AVRTools
             long keyData = (long)m.LParam;
             keyData = keyData >> 16;
             Clear();
-            Print(m.Msg.ToString("x") + " " + m.WParam.ToString() + " " + keyData.ToString("x"));
+            Print(m.Msg.ToString("X4") + " " + m.WParam.ToString() + " " + keyData.ToString("X4"));
             //LParam 有键盘bios码,应该用这个来判断，注意码表版本
             for (int i = 0; i < MatrixPanel.SelectedTab.Controls.Count; i++)
             {

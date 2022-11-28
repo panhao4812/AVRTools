@@ -566,7 +566,7 @@ namespace AVRKeys.Keyboard
                         if (code != 0)
                         {
                             if (j != 0) { CodeHex += ","; CodeDec += ","; }
-                            CodeHex +=  code.ToString("x");
+                            CodeHex +=  code.ToString("X4");
                             CodeDec +=  code.ToString();
                         }
                         else
@@ -584,7 +584,7 @@ namespace AVRKeys.Keyboard
                     }
                 }
                 if (length2 > 0xFFFF) length2 = 0xFFFF;
-                 CodeHex = length2.ToString("x") +","+ CodeHex;
+                 CodeHex = length2.ToString("X4") +","+ CodeHex;
                 CodeDec = length2.ToString() + "," + CodeDec;
 
             }
@@ -620,8 +620,8 @@ namespace AVRKeys.Keyboard
                 return ConvertChinese2(str, code);
             }
             else { Print("encoding error"); return "0x00"; }
-            string data1 = data[1].ToString("x"); if (data1.Length == 1) data1 = "0" + data1;
-            string data2 = data[0].ToString("x"); if (data2.Length == 1) data2 = "0" + data2;
+            string data1 = data[1].ToString("X2"); 
+            string data2 = data[0].ToString("X2"); 
             str2 = data1 + data2;
             return str2;
             //a3 = Convert.ToUInt16(str2, 16);
@@ -634,12 +634,12 @@ namespace AVRKeys.Keyboard
             string Data1 = "00"; string Data2 = "00";
             if (data.Length == 0) { }
             else if (data.Length == 1) {
-                Data1 = data[0].ToString("x"); if (Data1.Length == 1) Data1 = "0" + Data1;
+                Data1 = data[0].ToString("X2"); 
             }
             else
             {
-                Data1 = data[0].ToString("x"); if (Data1.Length == 1) Data1 = "0" + Data1;
-                Data2 = data[1].ToString("x"); if (Data2.Length == 1) Data2 = "0" + Data2;
+                Data1 = data[0].ToString("X2");
+                Data2 = data[1].ToString("X2");
             }
             str2 = Data1 + Data2;
             return str2;

@@ -60,7 +60,7 @@
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(214, 318);
+            this.textBox1.Size = new System.Drawing.Size(195, 318);
             this.textBox1.TabIndex = 0;
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
@@ -70,12 +70,12 @@
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBox2.ForeColor = System.Drawing.Color.Black;
-            this.textBox2.Location = new System.Drawing.Point(220, 186);
+            this.textBox2.Location = new System.Drawing.Point(201, 124);
             this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox2.Size = new System.Drawing.Size(213, 158);
+            this.textBox2.Size = new System.Drawing.Size(232, 220);
             this.textBox2.TabIndex = 2;
             this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox2_KeyDown);
             // 
@@ -83,13 +83,13 @@
             // 
             this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox3.Location = new System.Drawing.Point(220, 27);
+            this.textBox3.Location = new System.Drawing.Point(201, 27);
             this.textBox3.Margin = new System.Windows.Forms.Padding(2);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
             this.textBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox3.Size = new System.Drawing.Size(213, 158);
+            this.textBox3.Size = new System.Drawing.Size(232, 93);
             this.textBox3.TabIndex = 4;
             // 
             // menuStrip1
@@ -119,7 +119,7 @@
             // 
             this.uploadToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.uploadToolStripMenuItem.Name = "uploadToolStripMenuItem";
-            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.uploadToolStripMenuItem.Text = "Upload";
             this.uploadToolStripMenuItem.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click);
             // 
@@ -136,21 +136,21 @@
             // gBKToolStripMenuItem
             // 
             this.gBKToolStripMenuItem.Name = "gBKToolStripMenuItem";
-            this.gBKToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.gBKToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.gBKToolStripMenuItem.Text = "GBK";
             this.gBKToolStripMenuItem.Click += new System.EventHandler(this.gBKToolStripMenuItem_Click);
             // 
             // unicodeToolStripMenuItem
             // 
             this.unicodeToolStripMenuItem.Name = "unicodeToolStripMenuItem";
-            this.unicodeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.unicodeToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.unicodeToolStripMenuItem.Text = "Unicode";
             this.unicodeToolStripMenuItem.Click += new System.EventHandler(this.unicodeToolStripMenuItem_Click);
             // 
             // uToolStripMenuItem
             // 
             this.uToolStripMenuItem.Name = "uToolStripMenuItem";
-            this.uToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.uToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.uToolStripMenuItem.Text = "UTF8";
             this.uToolStripMenuItem.Click += new System.EventHandler(this.UTF8ToolStripMenuItem_Click);
             // 

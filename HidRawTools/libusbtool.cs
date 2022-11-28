@@ -155,8 +155,11 @@ namespace HidRawTools
                 Print(ex.ToString());
             }
         }
+        public string CodeHex = "";
+        public string CodeDec = "";
         void encode(string _code)
-        {            
+        {
+            CodeDec = ""; CodeHex = "";
             try
             {
                 char[] ch = textBox1.Text.ToArray();
@@ -173,7 +176,6 @@ namespace HidRawTools
                 Print("Encoding-->" + _code);
                 int length = Convert.ToInt32(eepromsize) / 2 - 1;
                 if (ch.Length < length) length = ch.Length;
-                string output = "";
                 int length2 = length;
                 for (int j = 0; j < length; j++)
                 {
@@ -182,8 +184,12 @@ namespace HidRawTools
                         int code = IKeycode.ascii_to_scan_code_table[(int)ch[j]];
                         if (code != 0)
                         {
-                            output += code.ToString();
-                            if (j != length - 1) output += ",";
+                            CodeHex += code.ToString("X4");
+                            CodeDec += code.ToString();
+                            if (j != length - 1)
+                            {
+                                CodeHex += ","; CodeDec += ",";
+                            }
                         }
                         else
                         {
@@ -194,13 +200,18 @@ namespace HidRawTools
                     {
                         //汉字                     
                         ushort a3 = ConvertChinese1(ch[j], _code);
-                        output += a3.ToString();
+                        CodeHex += a3.ToString("X4");
+                        CodeDec += a3.ToString();
                         //Printhex((int)a3);
-                        if (j != length - 1) output += ",";
+                        if (j != length - 1)
+                        {
+                            CodeHex += ","; CodeDec += ",";
+                        }
                     }
                 }
-                textBox2.Text = length2.ToString() + ",";
-                textBox2.Text += output;
+                CodeHex = length2.ToString("X4") + "," + CodeHex;
+                CodeDec = length2.ToString() + "," + CodeDec;
+                textBox2.Text = CodeHex;
             }
             catch (Exception ex) { Print(ex.ToString()); }
         }
@@ -233,7 +244,7 @@ namespace HidRawTools
                     Print("Nothing to upload");
                     return;
                 }
-                string[] str = textBox2.Text.Split(',');
+                string[] str = CodeDec.Split(',');
                 if (HidDevice == null)
                 {
                    
