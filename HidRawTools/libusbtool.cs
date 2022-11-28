@@ -229,8 +229,7 @@ namespace HidRawTools
         }
         private void uploadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenDevice();         
-           
+            OpenDevice();                  
             try
             {
                 int addr = 0;
@@ -255,10 +254,8 @@ namespace HidRawTools
                 Print("Uploading address=" + addr);
                 byte[] outdata = new byte[9]; outdata[0] = 0;
                 byte[] a = new byte[2];
-
                 outdata[1] = 0xFF; outdata[2] = 0xF1;
                 HidDevice.Write(outdata, 50); Thread.Sleep(50);
-
                 for (ushort i = 0; (i * 2) < Convert.ToInt32(eepromsize); i += 3)
                 {
                     a = BitConverter.GetBytes((ushort)(i * 2+addr));
@@ -320,7 +317,5 @@ namespace HidRawTools
             string str = Environment.CurrentDirectory + "\\EEPROMtools.conf";
             loadOptions(str);
         }
-
-     
     }
 }

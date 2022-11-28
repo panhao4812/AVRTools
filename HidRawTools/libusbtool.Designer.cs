@@ -119,7 +119,7 @@
             // 
             this.uploadToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.uploadToolStripMenuItem.Name = "uploadToolStripMenuItem";
-            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.uploadToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.uploadToolStripMenuItem.Text = "Upload";
             this.uploadToolStripMenuItem.Click += new System.EventHandler(this.uploadToolStripMenuItem_Click);
             // 
@@ -136,21 +136,21 @@
             // gBKToolStripMenuItem
             // 
             this.gBKToolStripMenuItem.Name = "gBKToolStripMenuItem";
-            this.gBKToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.gBKToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.gBKToolStripMenuItem.Text = "GBK";
             this.gBKToolStripMenuItem.Click += new System.EventHandler(this.gBKToolStripMenuItem_Click);
             // 
             // unicodeToolStripMenuItem
             // 
             this.unicodeToolStripMenuItem.Name = "unicodeToolStripMenuItem";
-            this.unicodeToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.unicodeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.unicodeToolStripMenuItem.Text = "Unicode";
             this.unicodeToolStripMenuItem.Click += new System.EventHandler(this.unicodeToolStripMenuItem_Click);
             // 
             // uToolStripMenuItem
             // 
             this.uToolStripMenuItem.Name = "uToolStripMenuItem";
-            this.uToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.uToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.uToolStripMenuItem.Text = "UTF8";
             this.uToolStripMenuItem.Click += new System.EventHandler(this.UTF8ToolStripMenuItem_Click);
             // 
@@ -186,7 +186,7 @@
             this.vidbox.Name = "vidbox";
             this.vidbox.Size = new System.Drawing.Size(40, 16);
             this.vidbox.TabIndex = 19;
-            this.vidbox.Text = "D850";
+            this.vidbox.Text = "F103";
             this.vidbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // pidbox
@@ -199,7 +199,7 @@
             this.pidbox.Name = "pidbox";
             this.pidbox.Size = new System.Drawing.Size(40, 16);
             this.pidbox.TabIndex = 18;
-            this.pidbox.Text = "0102";
+            this.pidbox.Text = "C8C6";
             this.pidbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label3
@@ -223,7 +223,7 @@
             this.addbox.Name = "addbox";
             this.addbox.Size = new System.Drawing.Size(40, 16);
             this.addbox.TabIndex = 22;
-            this.addbox.Text = "31";
+            this.addbox.Text = "2";
             this.addbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label4
@@ -247,7 +247,7 @@
             this.eepbox.Name = "eepbox";
             this.eepbox.Size = new System.Drawing.Size(40, 16);
             this.eepbox.TabIndex = 24;
-            this.eepbox.Text = "511";
+            this.eepbox.Text = "1024";
             this.eepbox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // libusbtool
