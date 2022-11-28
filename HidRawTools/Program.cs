@@ -16,7 +16,10 @@ namespace HidRawTools
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new HidRawTools());
+            int index = 2;
+            if (index == 1) { Application.Run(new HidRawTools()); }
+            else { Application.Run(new libusbtool()); }
+          
         }
     }
 }
